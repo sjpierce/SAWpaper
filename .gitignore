@@ -34,7 +34,9 @@
 /cache/
 
 # Folder
+drafts
 inst/doc
+inst/manuscript
 
 # Windows file for caching thumbnail images.
 Thumbs.db
