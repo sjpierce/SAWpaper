@@ -1612,7 +1612,7 @@ Folder: *`r getwd()`*
 * We use R Markdown to enhance reproducibility. Knitting the R Markdown script
   generates the PDF file containing explanatory text, R code, plus R output 
   (text and graphics) noted in the Document Information section above.
-* We will use RStudio (version 1.2.1335 or later, www.rstudio.org ) to knit this 
+* We will use RStudio (version 1.2.5001 or later, www.rstudio.org ) to knit this 
   script. The software chain looks like this **Rmd file -> RStudio -> R -> knitr 
   -> pandoc -> MiKTeX -> PDF file**.
 * We are using MiKTeX 2.9 ( https://miktex.org ).
