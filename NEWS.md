@@ -1,0 +1,11 @@
+# SAWpaper 0.0.0.9001, 2019-10-27
+* Created the GitHub repository to store this package. 
+* Added `.gitignore` file. 
+* Added `.Rbuildignore` file. 
+* Added `DESCRIPTION` file. 
+* Added `README.Rmd` file and updated `README.md` file.
+* Added `NEWS.md` file. 
+* Added `graphics/CSTATLogoH.png` file. 
+* Added `data/DF_CORR.csv` file. 
+* Added `data/DF_CRM.csv` file. 
+* Added `inst/SAW_Paper_Spanish_Analysis.Rmd` file. 
