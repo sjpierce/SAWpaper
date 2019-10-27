@@ -1,5 +1,6 @@
 ---
-title: "Self-Assessment Works! Paper: Spanish Analysis"
+title: \sffamily{\bfseries{\LARGE Self-Assessment Works! Paper Spanish Analysis}}
+geometry: "left=1.0in,right=1.0in,top=.75in,bottom=.75in"
 author: "Steven J. Pierce & Xiaowan Zhang"
 date: ""
 output:
@@ -14,12 +15,23 @@ header-includes:
 - \usepackage[yyyymmdd,hhmmss]{datetime}
 - \usepackage{lastpage}
 - \usepackage{fontspec}
+- \defaultfontfeatures{Ligatures=TeX}
+- \usepackage[font={small}, margin=1cm, skip=2pt]{caption}
+- \usepackage{url}
+- \usepackage{float}
 - \usepackage{booktabs}
+- \usepackage{longtable}
 - \usepackage{dcolumn}
+- \floatplacement{figure}{H}
+- \usepackage{titling}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \pretitle{\begin{center}\LARGE\bfseries}
+- \posttitle{\end{center}}
 - \pagestyle{fancy}
 - \lhead{Self-Assessment Works! (Spanish)}
 - \rhead{\today\ \currenttime}
-- \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = TRUE))`}}} 
+- \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
 - \cfoot{ }
 - \fancyfoot[R]{\thepage}
 - \renewcommand{\headrulewidth}{0.4pt}
@@ -115,11 +127,11 @@ knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE,
 
 ********************************************************************************
 # LOAD PACKAGES & SET PACKAGE OPTIONS
-Some of the functions we use below come from a personal R package called piercer
-that is available online from [GitHub](https://github.com). You can install it 
-by changing the eval option in next chunk from FALSE to TRUE, then running that 
-chunk. You should only need to do that once, unless you want to update the 
-piercer package. 
+Some of the functions we use below come from a personal R package called 
+[piercer](https://github.com/sjpierce/piercer) that is available online from 
+[GitHub](https://github.com). You can install it by changing the eval option in
+next chunk from FALSE to TRUE, then running that chunk. You should only need to
+do that once, unless you want to update the piercer package.
 
 ```{r install_piercer, eval = FALSE}
 install.packages("devtools")
@@ -130,10 +142,13 @@ install_github("sjpierce/piercer")
 Load contributed R packages that we need to get additional functions. 
 
 ``` {r load_packages}
+library(here)         # for here()
 library(polycor)           # for hetcor()
 library(car)               # for residualPlots(), influenceIndexPlot(), outlierTest()
 library(multcomp)          # for glht()
 library(visreg)            # for visreg()
+# Set package options. 
+# options(knitr.kable.NA = '0.00')
 library(knitr)             # for kable()
 library(texreg)            # for texreg()
 library(pander)            # for pander()
@@ -143,6 +158,10 @@ library(tidyr)             # for unite()
 library(directlabels)      # for direct.label()
 library(lattice)           # for strip.custom()
 library(modEvA)            # for HLfit()
+# Set package options. 
+options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)        # for kable_styling(), add_header_above(), 
+                           # column_spec(), collapse_rows(), and landscape()
 library(piercer)           # for p2s(), p2bfb(), p2pp(), convertp(), lrcm(), 
                            # brier()
 ```
@@ -160,8 +179,8 @@ continuation-ratio models in the context of logistic regression. Other analyses
 (i.e., correlational analyses) are performed based on the data frame of df_corr.
 
 ```{r}
-df_corr <- read.csv("Data/DF_CORR.csv")
-df_crm  <- read.csv("Data/DF_CRM.csv")
+df_corr <- read.csv(here::here("./data/DF_CORR.csv"))
+df_crm  <- read.csv(here::here("./data/DF_CRM.csv"))
 ```
 
 Now explore the structure of the two data frames, df_crm and df_corr. 
