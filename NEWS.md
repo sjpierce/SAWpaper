@@ -8,4 +8,4 @@
 * Added `graphics/CSTATLogoH.png` file. 
 * Added `data/DF_CORR.csv` file. 
 * Added `data/DF_CRM.csv` file. 
-* Added `inst/SAW_Paper_Spanish_Analysis.Rmd` file. 
+* Added `inst/SAW_Paper_Spanish_Analysis.Rmd` file, then updated it. 
