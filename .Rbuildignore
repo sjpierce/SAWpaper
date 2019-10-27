@@ -12,3 +12,9 @@
 
 # Exclude graphics folder to avoid note when checking package.
 ^graphics$
+
+# Exclude drafts folder to avoid note when checking package.
+^drafts$
+
+# Exclude manuscript folder.
+^inst/manuscript$
