@@ -746,7 +746,7 @@ Let's show models 1a and 1b side by side.
 ```{r, results='asis'} 
 T16 <- list(m1a, m1b)
 texreg(T16, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
-       single.row = TRUE, digits = 3, label = "T16", float.pos = "ht!", 
+       single.row = TRUE, digits = 3, label = "T16", float.pos = "!ht", 
        custom.model.names = c("Model 1a Parallel",  "Model 1b Non-Parallel"), 
        caption = "Parallel vs. Non-Parallel Course Effect")
 ```
@@ -1121,7 +1121,7 @@ Let's show the models 2a and 2b side by side.
 ```{r, results='asis'} 
 T26 <- list(m2a, m2b)
 texreg(T26, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
-       single.row = TRUE, digits = 3, label = "T26", float.pos = "ht!", 
+       single.row = TRUE, digits = 3, label = "T26", float.pos = "!ht", 
        custom.model.names = c("Model 2a Parallel", "Model 2b Non-Parallel"), 
        caption = "Parallel vs. Non-Parallel OPIC Effect")
 ```
