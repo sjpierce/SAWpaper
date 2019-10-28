@@ -108,12 +108,9 @@ predictive models (Fenlon, O'Grady, Doherty, & Dunnion, 2018).
 
 ## Remaining Tasks
 
-* Review table formatting to ensure column headings align w/ content. 
-* Convert additional output into nice tables? 
 * Consider adding deviance plots based on Fenlon et al. (2018). 
 * Recheck table object names and resulting table numbering in knitted output. 
 * Review and update interpretation text and conclusions. 
-* Fix T30 (too wide for page). 
 
 ********************************************************************************
 # SETUP
@@ -1732,7 +1729,7 @@ Manuscript in preparation.
 
 Winke, P., Pierce, S. J., & Zhang, X. (2018, October). Self-assessment works! 
 Continuation-ratio models for testing course and OPIc score effects on oral 
-proficiency self-assessments. Abstract accepted for the East Coast Organization 
+proficiency self-assessments. Paper presented at the East Coast Organization 
 of Language Testers 2018 conference, hosted by the Educational Testing Service,
 Princeton, NJ. https://sites.google.com/site/ecoltaelrc/home
 
