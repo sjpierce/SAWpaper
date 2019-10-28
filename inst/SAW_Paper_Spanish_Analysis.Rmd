@@ -210,8 +210,8 @@ there are 1340 rows in df_crm.
 
 Although the variable "Level" exists in both df_corr and df_crm, it has
 different denotations in the two data frames. In df_corr, Level denotes the five
-levels of can-do statements on the self-assessment, whereas in df_crm, Level
-represents the transitions that exists between every two adjacent
+levels of Can-Do statements on the self-assessment, whereas in df_crm, Level
+represents the transitions that exist between every two adjacent
 self-assessment levels. The relationship between the two Level variables is
 illustrated in this disgram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is
 represented by the numbers, and Level in df_crm is represented by the arrows
@@ -1637,12 +1637,18 @@ model 2b over this model on the basis of parsimony.
 * CSTAT Client: Paula Winke
 * CSTAT CaseID: 18-009
 
-## Funding Source
+## Funding Sources
 Winke, P., Gass, S., & Pierce, S. J. (08/01/2017-07/31/2018). Michigan State
    University Language Flagship Proficiency Initiative Year 4 continuation 
    proposal. [Award #: 0054-MSU-22-PI-280-PO2, $249,865]. Sponsor: Institute
    of International Education. Location: Michigan State University, East 
    Lansing, MI. 
+
+Winke, P., Gass, S., & Pierce, S. J. (01/01/2019–12/31/2019). Michigan State
+   University Language Flagship Proficiency Initiative Year 5 continuation
+   proposal. [Award #: 0054-MSU-22-PI-280-PO2, Awarded, $37,634]. Sponsor:
+   Institute of International Education. Location: Michigan State University, 
+   East Lansing, MI. 
 
 ## Document Information
 Folder: *`r getwd()`*
@@ -1654,10 +1660,11 @@ Folder: *`r getwd()`*
 * We use R Markdown to enhance reproducibility. Knitting the R Markdown script
   generates the PDF file containing explanatory text, R code, plus R output 
   (text and graphics) noted in the Document Information section above.
-* We will use RStudio (version 1.2.5001 or later, www.rstudio.org ) to knit this 
-  script. The software chain looks like this **Rmd file -> RStudio -> R -> knitr 
-  -> pandoc -> MiKTeX -> PDF file**.
-* We are using MiKTeX 2.9 ( https://miktex.org ).
+* We use [RStudio (version 1.2.5001 or later)](www.rstudio.org) to work with 
+  R and R markdown files. The software chain looks like this:
+  **Rmd file -> RStudio -> R -> knitr -> pandoc -> MiKTeX -> PDF file**.
+* We are using using [MiKTeX version 2.9](https://miktex.org) to compile LaTeX files 
+  into PDF files.
 
 ## References
 Benjamin, D. J., & Berger, J. O. (2019). Three recommendations for improving 
