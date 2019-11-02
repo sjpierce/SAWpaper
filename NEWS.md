@@ -1,3 +1,6 @@
+# SAWpaper 0.0.0.9002, 2019-11-02
+* Updated `SAWpaper.Rproj` to build vignettes along with package. 
+
 # SAWpaper 0.0.0.9001, 2019-10-27
 * Created the GitHub repository to store this package. 
 * Added `.gitignore` file. 
