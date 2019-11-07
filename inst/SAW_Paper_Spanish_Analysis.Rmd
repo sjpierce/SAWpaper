@@ -1656,10 +1656,11 @@ Folder: *`r getwd()`*
 * Script: *`r knitr:::current_input()`*
 * Output: *`r sub(".Rmd", ".pdf", knitr:::current_input())`*
 
-## Assumptions.
-* We use R Markdown to enhance reproducibility. Knitting the R Markdown script
-  generates the PDF file containing explanatory text, R code, plus R output 
-  (text and graphics) noted in the Document Information section above.
+## Software Information
+We use R Markdown to enhance reproducibility. Knitting the R Markdown script
+generates the PDF file containing explanatory text, R code, plus R output (text
+and graphics) noted in the Document Information section above.
+  
 * We use [RStudio (version 1.2.5001 or later)](www.rstudio.org) to work with 
   R and R markdown files. The software chain looks like this:
   **Rmd file -> RStudio -> R -> knitr -> pandoc -> MiKTeX -> PDF file**.
