@@ -112,8 +112,6 @@ predictive models (Fenlon, O'Grady, Doherty, & Dunnion, 2018).
 * Consider adding deviance plots based on Fenlon et al. (2018). 
 * Recheck table object names and resulting table numbering in knitted output. 
 * Review and update interpretation text and conclusions. 
-* Solve LaTeX warning about !h float specifier changed to !ht. Try switching 
-  from float package to floatrow? 
 
 ********************************************************************************
 # SETUP
