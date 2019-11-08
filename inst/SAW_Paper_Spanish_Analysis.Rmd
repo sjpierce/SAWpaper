@@ -56,6 +56,13 @@ We currently plan to submit this as a "Research Report" to a journal called
 Studies in Second Language Acquisition (SSLA), 
 https://www.cambridge.org/core/journals/studies-in-second-language-acquisition.
 
+We will consider applying for the SSLA *Open Data Badge* and the 
+*Open Materials Badge* described at 
+https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/open-science-badges
+. Note that hosting a public Github repository should meet the requirements for 
+both badges because GitHub is on the 
+[Registry of Research Data Repositories](https://www.re3data.org). 
+
 ## Comment on Statistical Methodology
 We have begun trying to apply ideas discussed in Wasserstein, Schirm, and Lazar
 (2019) about abandoning declarations of statstical significance. This landmark
@@ -112,6 +119,7 @@ predictive models (Fenlon, O'Grady, Doherty, & Dunnion, 2018).
 * Consider adding deviance plots based on Fenlon et al. (2018). 
 * Recheck table object names and resulting table numbering in knitted output. 
 * Review and update interpretation text and conclusions. 
+* Add code to export figures that will be submitted with the manuscript. 
 
 ********************************************************************************
 # SETUP
