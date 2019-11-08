@@ -18,12 +18,12 @@ header-includes:
 - \defaultfontfeatures{Ligatures=TeX}
 - \usepackage[font={small}, margin=1cm, skip=2pt]{caption}
 - \usepackage{url}
-- \usepackage{float} 
+- \usepackage{floatrow} 
 - \usepackage{booktabs}
 - \usepackage{longtable}
 - \usepackage{dcolumn}
-- \floatplacement{figure}{H}
-- \floatplacement{table}{H}
+- \floatplacement{figure}{!ht}
+- \floatplacement{table}{!ht}
 - \usepackage{titling}
 - \usepackage{threeparttable}
 - \usepackage{threeparttablex}
@@ -270,7 +270,7 @@ crosstabulations. First, we use the data frame df_corr.
 T01 <- addmargins(xtabs(~Level + Course, data = df_corr))
 kable(T01, format = "latex", booktabs = TRUE, 
       caption = "Crosstab SA Level by Course") %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 \newpage
@@ -280,7 +280,7 @@ kable_styling(latex_options = c("repeat_header", "hold_position"))
 T02 <- addmargins(xtabs(~Level + OPIC, data = df_corr))
 kable(T02, format = "latex", booktabs = TRUE, 
       caption = "Crosstab SA Level by OPIc") %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 ```{r}
@@ -288,7 +288,7 @@ kable_styling(latex_options = c("repeat_header", "hold_position"))
 T03 <- addmargins(xtabs(~Course + OPIC, data = df_corr))
 kable(T03, format = "latex", booktabs = TRUE, 
       caption = "Crosstab Course by OPIc") %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 We then examine some additional crosstabulations based on the data frame df_crm.
@@ -299,7 +299,7 @@ Note that Level in df_crm denotes the transitions between SA levels.
 T04 <- addmargins(xtabs(~Level + pass, data = df_crm))
 kable(T04, format = "latex", booktabs = TRUE, 
       caption = "Crosstab SA Level Transition by Pass") %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 ```{r}
@@ -307,7 +307,7 @@ kable_styling(latex_options = c("repeat_header", "hold_position"))
 T05 <- addmargins(xtabs(~Level + Course, data = df_crm))
 kable(T05, format = "latex", booktabs = TRUE, 
       caption = "Crosstab SA Level Transition by Course") %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 ```{r}
@@ -316,7 +316,7 @@ T06<-addmargins(xtabs(~Level + COPIC, data=df_crm,
                       drop.unused.levels = TRUE)) 
 kable(T06, format = "latex", booktabs = TRUE, 
       caption="Crosstab SA Level Transition by OPIc rating") %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 We then check the contrast coding associated with each of factors in df_crm so
@@ -361,7 +361,7 @@ T07 <- rbind(r.ps(HC, c("OPIC"), c("Level", "Course"), digits = 2,
              r.pc(HC, c("Level", "Course"), digits = 2, pdigits = NULL))
 kable(T07, format = "latex", booktabs = TRUE, 
       caption = "Correlations among OPIc, Course, and Level") %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 Notice that the Z-statistics are all really large, so the p-values are zero. 
@@ -478,7 +478,7 @@ kable(T12, format = "latex", booktabs = TRUE, digits = 2,
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates with 95 percent CIs and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 ## Odds-Ratios for Course Effect
@@ -511,7 +511,7 @@ kable(T13, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
       digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2), 
       caption = paste("Multiple Comparisons for Course Effect, Westfall (1997)",
       "Adjustment for Multiplicity")) %>%
-kable_styling(latex_options = c("repeat_header", "hold_position"))
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 ## Assessing Goodness of Fit, Discrimination, and Calibration
@@ -984,7 +984,7 @@ dimnames(T23)[[1]] <- "COPIC (0 vs 1)"
 kable(T23, format = "latex", booktabs = TRUE, digits = 2, 
       caption = paste("Odds-Ratios for COPIC Effect (Estimates and 95 Percent",
                       "Confidence Intervals)")) %>% 
-kable_styling(latex_options = c("repeat_header", "hold_position")) 
+kable_styling(latex_options = c("repeat_header")) 
 ```
 
 ## Assessing Goodness of Fit, Discrimination, and Calibration
@@ -1218,7 +1218,7 @@ kable(T29, format = "latex", booktabs = TRUE, digits = 2,
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>% 
-kable_styling(latex_options = c("repeat_header", "hold_position")) 
+kable_styling(latex_options = c("repeat_header")) 
 ```
 
 ## Odds-Ratios for COPIC Effect    
@@ -1270,7 +1270,7 @@ kable(T30, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
       digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2),
       caption = paste("Simple Slopes of COPIC Effect, Westfall (1997)",
                       "Adjustment for Multiplicity")) %>% 
-kable_styling(latex_options = c("repeat_header", "hold_position", "scale_down"))
+kable_styling(latex_options = c("repeat_header", "scale_down"))
 ```
 
 ## Assessing Assessing Goodness of Fit, Discrimination, and Calibration
