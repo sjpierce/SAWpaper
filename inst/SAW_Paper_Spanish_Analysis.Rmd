@@ -55,6 +55,8 @@ objective was to validate the Can-Do test results.
 We currently plan to submit this as a "Research Report" to a journal called 
 Studies in Second Language Acquisition (SSLA), 
 https://www.cambridge.org/core/journals/studies-in-second-language-acquisition.
+The author instructions are at
+https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/information/instructions-contributors.
 
 We will consider applying for the SSLA *Open Data Badge* and the 
 *Open Materials Badge* described at 
