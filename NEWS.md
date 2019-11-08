@@ -1,3 +1,9 @@
+# SAWpaper 0.0.0.9003, 2019-11-07
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
+
+# SAWpaper 0.0.0.9002, 2019-11-02
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
+
 # SAWpaper 0.0.0.9002, 2019-11-02
 * Updated `SAWpaper.Rproj` to build vignettes along with package. 
 
