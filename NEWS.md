@@ -1,3 +1,7 @@
+# SAWpaper 0.0.0.9004, 2019-11-08
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Solved LaTeX warnings about 
+  float position being changed. 
+
 # SAWpaper 0.0.0.9003, 2019-11-07
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
 
