@@ -13,11 +13,10 @@ status](https://www.r-pkg.org/badges/version/cstatops)](https://CRAN.R-project.o
 
 This package and corresponding GitHub repository are intended to enhance
 the reproducibility of a research paper. The principal investigators for
-the study are Dr. Paula Winke (Associate Professor, Department of
-Linguistics & Germanic, Slavic, Asian, and African Languages, Michigan
-State University) and Dr. Susan Gass (University Distinguished
-Professor, Department of Linguistics & Germanic, Slavic, Asian, and
-African Languages, Michigan State University) The paper analyzes data on
+the study are Dr. Paula Winke (Associate Professor) and Dr. Susan Gass
+(University Distinguished Professor), both of whom belong to the
+Department of Linguistics & Germanic, Slavic, Asian, and African
+Languages at Michigan State University. The paper analyzes data on
 Spanish language learners who took a Can-Do self-assessment test, along
 with the more authoritative OPIc language proficiency test. We did both
 correlation analyses and continuation-ratio models that examine the

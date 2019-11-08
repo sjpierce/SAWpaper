@@ -19,17 +19,16 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 This package and corresponding GitHub repository are intended to enhance the
-reproducibility of a research paper. The principal investigators for the study 
-are Dr. Paula Winke (Associate Professor, Department of Linguistics & Germanic, 
-Slavic, Asian, and African Languages, Michigan State University) and Dr. Susan 
-Gass (University Distinguished Professor, Department of Linguistics & Germanic, 
-Slavic, Asian, and African Languages, Michigan State University)  The paper 
-analyzes data on Spanish language learners who took a Can-Do self-assessment
-test, along with the more authoritative OPIc language proficiency test. We did
-both correlation analyses and continuation-ratio models that examine the effect
-of course and OPIc speaking proficiency scores on the passing rate for each
-level of the Can-Do statements self-assessment. The objective was to validate
-the Can-Do test results.
+reproducibility of a research paper. The principal investigators for the study
+are Dr. Paula Winke (Associate Professor) and Dr. Susan Gass (University
+Distinguished Professor), both of whom belong to the Department of Linguistics &
+Germanic, Slavic, Asian, and African Languages at Michigan State University. The
+paper analyzes data on Spanish language learners who took a Can-Do
+self-assessment test, along with the more authoritative OPIc language
+proficiency test. We did both correlation analyses and continuation-ratio models
+that examine the effect of course and OPIc speaking proficiency scores on the
+passing rate for each level of the Can-Do statements self-assessment. The
+objective was to validate the Can-Do test results.
 
 ## Task List
 * Add disclaimer text regarding our results not being the official position of 
@@ -191,14 +190,16 @@ are described in more detail below.
   second year courses are coded 200, third year courses are coded 300, and 
   fourth year courses are coded 400. Course values are stored as integers. 
 - *COPIC*: These integer values are a centered version of the OPIC variable 
-  found in *df_corr*. The centering was done around OPIC = 5, so the centered
-  scores, in increasing level of proficiency, are: 
+  found in *df_corr*. We centered around Intermediate-mid (OPIC = 5) because it
+  is the level of proficiency expected of students exiting the 200-level
+  courses. The centered scores, in increasing level of proficiency, are:
 
     - *-4*: Novice low.
     - *-3*: Novice mid.
     - *-2*: Novice high.
     - *-1*: Intermediate low.
-    - *0*: Intermediate mid.
+    - *0*: Intermediate mid (expected proficiency for students after 200-level 
+      courses).
     - *1*: Intermediate high.
     - *2*: Advanced low.
     - *3*: Advanced mid.
