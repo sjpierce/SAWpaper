@@ -1,4 +1,6 @@
 # SAWpaper 0.0.0.9004, 2019-11-08
+* Updated `README.Rmd` with better introduction text and some details about 
+  centering OPIC scores. 
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Solved LaTeX warnings about 
   float position being changed. 
 
