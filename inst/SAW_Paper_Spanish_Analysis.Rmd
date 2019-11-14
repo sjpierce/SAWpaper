@@ -274,6 +274,17 @@ OPIc scale.
 ## Descriptive Statistics
 
 ```{r}
+xtabs(~Level, data = df_corr)
+
+df_corr %>% 
+   group_by(Level) %>% 
+   summarise(N = n(),
+             Pct = 100*N/nrow(df_corr)) %>% 
+   ungroup() %>% 
+   mutate(CumN = cumsum(N),
+          CumPct = cumsum(Pct)) ->
+   LevelFreq
+
 N <- nrow(df_corr)
 
 df_corr %>% 
