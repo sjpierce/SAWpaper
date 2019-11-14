@@ -163,6 +163,7 @@ library(pander)            # for pander()
 library(pROC)              # for roc()
 library(ggplot2)           # for ggplot()
 library(tidyr)             # for unite()
+library(dplyr)             # for filter(), select(), etc.
 library(directlabels)      # for direct.label()
 library(lattice)           # for strip.custom()
 library(modEvA)            # for HLfit()
@@ -270,6 +271,31 @@ OPIc scores instead of the original OPIc results in df_crm and stored them as
 COPIC. A score of zero in COPIC represents the level of Intermediate-mid on the
 OPIc scale.
 
+## Descriptive Statistics
+
+```{r}
+N <- nrow(df_corr)
+
+df_corr %>% 
+   filter(Level %in% c("2", "3", "4", "5")) %>% 
+   nrow() ->
+   N_SA_GE_2 
+
+df_corr %>% 
+   filter(Level %in% c("3", "4", "5")) %>% 
+   nrow() ->
+   N_SA_GE_3 
+
+Pct_SA_GE_2 <- 100*N_SA_GE_2/N
+Pct_SA_GE_3 <- 100*N_SA_GE_3/N
+```
+
+Only $N = `r N_SA_GE_2`$ (`r round(Pct_SA_GE_2, digits = 0)`%) of the learners 
+reached level 2 or higher on the self-assessment. Only $N = `r N_SA_GE_3`$ 
+(`r round(Pct_SA_GE_3, digits = 0)`%) learners reached level 3 or higher on the 
+self-assessment. 
+
+## Crosstabulations
 We now examine the relationships among Level, Course, and OPIC by calling for
 crosstabulations. First, we use the data frame df_corr.
 
