@@ -27,6 +27,7 @@ header-includes:
 - \usepackage{titling}
 - \usepackage{threeparttable}
 - \usepackage{threeparttablex}
+- \usepackage{lscape}
 - \pretitle{\begin{center}\LARGE\bfseries}
 - \posttitle{\end{center}}
 - \pagestyle{fancy}
@@ -416,6 +417,49 @@ read more about interpreting s-values and BFB values in Greenland (2019),
 Benjamin & Berger (2019), and Wasserstein, Schirm, & Lazar (2019). 
 
 ********************************************************************************
+# FIT CONTINUATION-RATIO MODELS
+Here we fit a series of continuation-ratio models and display a combined table
+summarizing them for comparison purposes. In subsequent sections, we examine 
+each of the fitted models in detail. 
+
+```{r fit_models}
+# Model 1a: Parallel course effect
+m1a <- glm(pass ~ Level + Course - 1, data = df_crm, family = "binomial")
+
+# Model 1b: Non-parallel course effect
+m1b <- glm(pass ~ Level + Course + Level*Course - 1, data = df_crm, 
+           family = "binomial")
+
+# Model 2a: Parallel OPIC effect
+m2a <- glm(pass ~ Level + COPIC - 1, data = df_crm, family = "binomial")
+
+# Model 2b: Non-parallel OPIC effect
+m2b <- glm(pass ~ Level + COPIC + Level*COPIC - 1, data = df_crm, 
+           family = "binomial")
+
+# Model 3a: Non-parallel OPIC + parallel course effect
+m3a <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = df_crm, 
+           family = "binomial")
+
+# Create a list of the model fit objects.
+TModels <- list(m1a, m1b, m2a, m2b, m3a)
+```
+
+The table below shows the model parameters for the whole set of models.  
+
+\begin{landscape}
+
+```{r display_models, results='asis'} 
+
+texreg(TModels, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
+       single.row = TRUE, digits = 3, label = "TModels", 
+       custom.model.names = c("Model 1a",  "Model 1b", "Model 2a", "Model 2b",
+                              "Model 3a"), 
+       caption = "Continuation-Ratio Models")
+```
+
+\end{landscape}
+
 # MODEL 1A: PARALLEL COURSE EFFECT
 We fit a series of continuation-ratio models to df_crm to see whether course
 level and OPIc scores significantly predict the pass rate for each transition on
@@ -430,7 +474,6 @@ raw parameter estimates.
 \newpage
 
 ```{r}
-m1a <- glm(pass ~ Level + Course - 1, data = df_crm, family = "binomial")
 T08 <- summary(m1a)
 panderOptions('keep.trailing.zeros', TRUE)
 set.caption("Model 1a Summary")
@@ -772,8 +815,6 @@ summary below shows the actual model fit information and the raw parameter
 estimates.
 
 ```{r}
-m1b <- glm(pass ~ Level + Course + Level*Course - 1, 
-           data = df_crm, family = "binomial")
 T14 <- summary(m1b)
 set.caption("Model 1b Summary")
 pander(T14, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
@@ -963,7 +1004,6 @@ The summary below shows the actual model fit information and the raw parameter
 estimates.
 
 ```{r}
-m2a <- glm(pass ~ Level + COPIC - 1, data = df_crm, family = "binomial")
 T19 <- summary(m2a)
 set.caption("Model 2a Summary")
 pander(T19, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
@@ -1147,8 +1187,6 @@ are still using the centered version of OPIC in the model. The summary below
 shows the actual model fit information and the raw parameter estimates.
 
 ```{r}
-m2b <- glm(pass ~ Level + COPIC + Level*COPIC - 1, 
-           data = df_crm, family = "binomial")
 T24 <- summary(m2b)
 set.caption("Model 2b Summary")
 pander(T24, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
@@ -1515,8 +1553,6 @@ sequential test will examine whether it adds any value beyond the non-parallel
 OPIC effect.
 
 ```{r}
-m3a <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, 
-           data = df_crm, family = "binomial")
 T31 <- summary(m3a)
 set.caption("Model 3a Summary")
 pander(T31, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
