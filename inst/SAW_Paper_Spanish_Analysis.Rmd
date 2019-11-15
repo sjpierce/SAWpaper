@@ -120,6 +120,7 @@ predictive models (Fenlon, O'Grady, Doherty, & Dunnion, 2018).
 ## Remaining Tasks
 
 * Consider adding deviance plots based on Fenlon et al. (2018). 
+* Streamline flow and eliminate unneeded output. 
 * Recheck table object names and resulting table numbering in knitted output. 
 * Review and update interpretation text and conclusions. 
 * Add code to export figures that will be submitted with the manuscript. 
