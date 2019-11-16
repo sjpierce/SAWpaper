@@ -308,7 +308,7 @@ reached level 2 or higher on the self-assessment. Only $N = `r N_SA_GE_3`$
 (`r round(Pct_SA_GE_3, digits = 0)`%) learners reached level 3 or higher on the 
 self-assessment. 
 
-## Crosstabulations
+## Crosstabulations (Learner Data)
 We now examine the relationships among Level, Course, and OPIC by calling for
 crosstabulations. First, we use the data frame df_corr.
 
@@ -338,6 +338,21 @@ kable(T03, format = "latex", booktabs = TRUE,
 kable_styling(latex_options = c("repeat_header"))
 ```
 
+```{r}
+rbind(T02, T03) -> TmpTable
+
+kable(TmpTable, format = "latex", booktabs = TRUE,  
+      caption = "Crosstab Self-Assessment Level and Course by OPIc Score") %>% 
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "OPIc Score" = 9, " ")) %>% 
+group_rows(group_label = "SA Level", bold = FALSE, start_row = 1, end_row = 6) %>% 
+group_rows(group_label = "Course", bold = FALSE, start_row = 7, end_row = 11) %>% 
+row_spec(row = c(6, 11), italic = TRUE) %>% 
+column_spec(column = 11, italic = TRUE)
+```
+
+
+## Crosstabulations (Transition Test Data)
 We then examine some additional crosstabulations based on the data frame df_crm.
 Note that Level in df_crm denotes the transitions between SA levels.
 
