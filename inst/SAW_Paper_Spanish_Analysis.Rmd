@@ -286,15 +286,21 @@ df_corr %>%
           CumPct = cumsum(Pct),
           RemainN = sum(N) - CumN,
           RemainPct = 100 - CumPct) ->
-   LevelFreq
+   T01
 
-# Extract N & % of learners with self-assessed level > 1 (i.e., >= 2). 
-N_SA_GE_2   <- LevelFreq$RemainN[1]
-Pct_SA_GE_2 <- LevelFreq$RemainPct[1]
+# Extract N and percent of learners with self-assessed level > 1 (i.e., >= 2). 
+N_SA_GE_2   <- T01$RemainN[1]
+Pct_SA_GE_2 <- T01$RemainPct[1]
 
-# Extract N of learners with self-assessed level > 2 (i.e., >= 3). 
-N_SA_GE_3   <- LevelFreq$RemainN[2]
-Pct_SA_GE_3 <- LevelFreq$RemainPct[2]
+# Extract N and percent of learners with self-assessed level > 2 (i.e., >= 3). 
+N_SA_GE_3   <- T01$RemainN[2]
+Pct_SA_GE_3 <- T01$RemainPct[2]
+
+# Display formatted table.
+kable(T01, format = "latex", booktabs = TRUE, digits = 0, 
+      col.names = c("Level", "N", "%", "Cumulative N", "Cumulative %", 
+                    "Remaining N", "Remaining %"),
+      caption = "Frequency Table for Maximum Self-Assesment Level Achieved")
 ```
 
 Only $N = `r N_SA_GE_2`$ (`r round(Pct_SA_GE_2, digits = 0)`%) of the learners 
@@ -308,9 +314,9 @@ crosstabulations. First, we use the data frame df_corr.
 
 ```{r}
 # Examine the relationship between SA level and course level. 
-T01 <- addmargins(xtabs(~Level + Course, data = df_corr))
-kable(T01, format = "latex", booktabs = TRUE, 
-      caption = "Crosstab SA Level by Course") %>%
+T02 <- addmargins(xtabs(~Level + Course, data = df_corr))
+kable(T02, format = "latex", booktabs = TRUE, 
+      caption = "Crosstab Self-Assessment Level by Course") %>%
 kable_styling(latex_options = c("repeat_header"))
 ```
 
@@ -318,25 +324,17 @@ kable_styling(latex_options = c("repeat_header"))
 
 ```{r}
 # Examine the relationship between OPIc scores and SA level.
-T02 <- addmargins(xtabs(~Level + OPIC, data = df_corr))
-kable(T02, format = "latex", booktabs = TRUE, 
-      caption = "Crosstab SA Level by OPIc") %>%
-kable_styling(latex_options = c("repeat_header"))
-```
+T03a <- addmargins(xtabs(~Level + OPIC, data = df_corr))
 
-```{r}
 # Examine the relationship between OPIc scores and course level.
-T03 <- addmargins(xtabs(~Course + OPIC, data = df_corr))
-kable(T03, format = "latex", booktabs = TRUE, 
-      caption = "Crosstab Course by OPIc") %>%
-kable_styling(latex_options = c("repeat_header"))
-```
+T03b <- addmargins(xtabs(~Course + OPIC, data = df_corr))
 
-```{r}
-rbind(T02, T03) -> TmpTable
+# Combine two cross-tabs into a single object. 
+T03  <- rbind(T03a, T03b) 
 
-kable(TmpTable, format = "latex", booktabs = TRUE,  
-      caption = "Crosstab Self-Assessment Level and Course by OPIc Score") %>% 
+# Display formatted table. 
+kable(T03, format = "latex", booktabs = TRUE,  
+      caption = "Crosstabs of Self-Assessment Level and Course by OPIc Score") %>% 
 kable_styling(latex_options = c("repeat_header")) %>% 
 add_header_above(header = c(" ", "OPIc Score" = 9, " ")) %>% 
 group_rows(group_label = "SA Level", bold = FALSE, start_row = 1, end_row = 6) %>% 
@@ -344,7 +342,6 @@ group_rows(group_label = "Course", bold = FALSE, start_row = 7, end_row = 11) %>
 row_spec(row = c(6, 11), italic = TRUE) %>% 
 column_spec(column = 11, italic = TRUE)
 ```
-
 
 ## Crosstabulations (Transition Test Data)
 We then examine some additional crosstabulations based on the data frame df_crm.
@@ -354,25 +351,39 @@ Note that Level in df_crm denotes the transitions between SA levels.
 # Crosstab to get a look at how often people pass each level transition.  
 T04 <- addmargins(xtabs(~Level + pass, data = df_crm))
 kable(T04, format = "latex", booktabs = TRUE, 
-      caption = "Crosstab SA Level Transition by Pass") %>%
-kable_styling(latex_options = c("repeat_header"))
+      caption = "Crosstab Self-Assessment Level Transition by Pass") %>%
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "Pass" = 2, " ")) %>% 
+group_rows(group_label = "Level", bold = FALSE, start_row = 1, 
+           end_row = 5) %>% 
+row_spec(row = 5, italic = TRUE) %>%
+column_spec(column = 4, italic = TRUE)
 ```
 
 ```{r}
 # Examine the relationship between SA level transition and course level.
 T05 <- addmargins(xtabs(~Level + Course, data = df_crm))
 kable(T05, format = "latex", booktabs = TRUE, 
-      caption = "Crosstab SA Level Transition by Course") %>%
-kable_styling(latex_options = c("repeat_header"))
+      caption = "Crosstab Self-Assessment Level Transition by Course") %>%
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "Course" = 4, " ")) %>% 
+group_rows(group_label = "Level", bold = FALSE, start_row = 1, 
+           end_row = 5) %>%
+row_spec(row = 5, italic = TRUE) %>%
+column_spec(column = 6, italic = TRUE)
 ```
 
 ```{r}
 # Examine the relationship between centered OPIc scores and SA level transition.
-T06<-addmargins(xtabs(~Level + COPIC, data=df_crm,
-                      drop.unused.levels = TRUE)) 
+T06 <- addmargins(xtabs(~Level + COPIC, data=df_crm)) 
 kable(T06, format = "latex", booktabs = TRUE, 
-      caption="Crosstab SA Level Transition by OPIc rating") %>%
-kable_styling(latex_options = c("repeat_header"))
+      caption="Crosstab Self-Assessment Level Transition by OPIc rating") %>%
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "Centered OPIc Score (OPIc - 5)" = 9, " ")) %>% 
+group_rows(group_label = "Level", bold = FALSE, start_row = 1, 
+           end_row = 5) %>%
+row_spec(row = 5, italic = TRUE) %>%
+column_spec(column = 11, italic = TRUE)
 ```
 
 We then check the contrast coding associated with each of factors in df_crm so
