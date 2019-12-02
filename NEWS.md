@@ -1,6 +1,7 @@
-# SAWpaper 0.0.0.9005, 2019-12-01
+# SAWpaper 0.0.0.9006 2019-12-01
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Simplified some descriptive 
-  statistics code.
+  statistics code. Renamed some objects, added new Table 1, combined tables 
+  to make new Table 3, improved table formatting for Tables 1-6. 
 
 # SAWpaper 0.0.0.9005, 2019-11-16
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Tested combining some tables.  
