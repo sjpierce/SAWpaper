@@ -1,4 +1,8 @@
-# SAWpaper 0.0.0.9005, 2019-11-016
+# SAWpaper 0.0.0.9005, 2019-12-01
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Simplified some descriptive 
+  statistics code.
+
+# SAWpaper 0.0.0.9005, 2019-11-16
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Tested combining some tables.  
 
 # SAWpaper 0.0.0.9004, 2019-11-08
