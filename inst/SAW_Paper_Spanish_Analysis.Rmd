@@ -274,33 +274,27 @@ COPIC. A score of zero in COPIC represents the level of Intermediate-mid on the
 OPIc scale.
 
 ## Descriptive Statistics
-
+Here we make some descriptive results reported in the manuscript reproducible. 
 ```{r}
-xtabs(~Level, data = df_corr)
-
+# Frequency table for maximum level achieved. 
 df_corr %>% 
    group_by(Level) %>% 
    summarise(N = n(),
              Pct = 100*N/nrow(df_corr)) %>% 
    ungroup() %>% 
    mutate(CumN = cumsum(N),
-          CumPct = cumsum(Pct)) ->
+          CumPct = cumsum(Pct),
+          RemainN = sum(N) - CumN,
+          RemainPct = 100 - CumPct) ->
    LevelFreq
 
-N <- nrow(df_corr)
+# Extract N & % of learners with self-assessed level > 1 (i.e., >= 2). 
+N_SA_GE_2   <- LevelFreq$RemainN[1]
+Pct_SA_GE_2 <- LevelFreq$RemainPct[1]
 
-df_corr %>% 
-   filter(Level %in% c("2", "3", "4", "5")) %>% 
-   nrow() ->
-   N_SA_GE_2 
-
-df_corr %>% 
-   filter(Level %in% c("3", "4", "5")) %>% 
-   nrow() ->
-   N_SA_GE_3 
-
-Pct_SA_GE_2 <- 100*N_SA_GE_2/N
-Pct_SA_GE_3 <- 100*N_SA_GE_3/N
+# Extract N of learners with self-assessed level > 2 (i.e., >= 3). 
+N_SA_GE_3   <- LevelFreq$RemainN[2]
+Pct_SA_GE_3 <- LevelFreq$RemainPct[2]
 ```
 
 Only $N = `r N_SA_GE_2`$ (`r round(Pct_SA_GE_2, digits = 0)`%) of the learners 
