@@ -1,3 +1,7 @@
+# SAWpaper 0.0.0.9007 2019-12-10
+* Added package-level documentation ?SAWpaper via usethis::use_package_doc() and
+  devtools::document(). 
+
 # SAWpaper 0.0.0.9006 2019-12-01
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Simplified some descriptive 
   statistics code. Renamed some objects, added new Table 1, combined tables 
