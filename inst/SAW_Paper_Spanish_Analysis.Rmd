@@ -2,7 +2,6 @@
 title: \sffamily{\bfseries{\LARGE Self-Assessment Works! Paper Spanish Analysis}}
 geometry: "left=1.0in,right=1.0in,top=.75in,bottom=.75in"
 author: "Steven J. Pierce & Xiaowan Zhang"
-date: ""
 output:
  pdf_document:
    latex_engine: xelatex
@@ -33,13 +32,14 @@ header-includes:
 - \pagestyle{fancy}
 - \lhead{Self-Assessment Works! (Spanish)}
 - \rhead{\today\ \currenttime}
-- \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
 - \cfoot{ }
 - \fancyfoot[R]{\thepage}
 - \renewcommand{\headrulewidth}{0.4pt}
 - \renewcommand{\footrulewidth}{0.4pt}
 - \fancypagestyle{plain}{\pagestyle{fancy}}
 ---
+
+\lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
 
 ********************************************************************************  
 # PURPOSE
