@@ -1758,17 +1758,6 @@ Folder: *`r getwd()`*
 * Script: *`r knitr:::current_input()`*
 * Output: *`r sub(".Rmd", ".pdf", knitr:::current_input())`*
 
-## Software Information
-We use R Markdown to enhance reproducibility. Knitting the R Markdown script
-generates the PDF file containing explanatory text, R code, plus R output (text
-and graphics) noted in the Document Information section above.
-  
-* We use [RStudio (version 1.2.5001 or later)](www.rstudio.org) to work with 
-  R and R markdown files. The software chain looks like this:
-  **Rmd file -> RStudio -> R -> knitr -> pandoc -> MiKTeX -> PDF file**.
-* We are using using [MiKTeX version 2.9](https://miktex.org) to compile LaTeX files 
-  into PDF files.
-
 ## References
 Benjamin, D. J., & Berger, J. O. (2019). Three recommendations for improving 
 the use of p-values. *The American Statistician, 73*(Supplement 1), 186-191. 
@@ -1846,6 +1835,17 @@ Princeton, NJ. https://sites.google.com/site/ecoltaelrc/home
 Youden, W. J. (1950). Index for rating diagnostic tests. *Cancer, 3*(1), 32-35.
 [doi:10.1002/1097-0142(1950)3%3A1%3C32%3A%3AAID-CNCR2820030106%3E3.0.CO%3B2-3](http://dx.doi.org/10.1002/1097-0142(1950)3%3A1%3C32%3A%3AAID-CNCR2820030106%3E3.0.CO%3B2-3)
 
+## Software Information
+We use R Markdown to enhance reproducibility. Knitting the R Markdown script
+generates the PDF file containing explanatory text, R code, plus R output (text
+and graphics) noted in the Document Information section above.
+  
+* We use [RStudio (version 1.2.5019 or later)](www.rstudio.org) to work with 
+  R and R markdown files. The software chain looks like this:
+  **Rmd file -> RStudio -> R -> knitr -> pandoc -> TinyTeX -> PDF file**.
+* We are using using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
+  files into PDF files.
+  
 ## Show Software Citations & Version Information.
 ``` {r show_citations}
 sessionInfo()
