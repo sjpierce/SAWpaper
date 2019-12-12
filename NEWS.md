@@ -1,3 +1,12 @@
+# SAWpaper 0.0.0.9008 2019-12-12
+* Started using TinyTeX instead of MiKTeX on my laptop. Updated 
+  `inst/SAW_Paper_Spanish_Analysis.Rmd` software information to reflect that. 
+* Moved software information section below references in 
+  `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
+* Removed date field from `inst/SAW_Paper_Spanish_Analysis.Rmd` YAML header. 
+* Fixed left footer in `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
+
+
 # SAWpaper 0.0.0.9007 2019-12-10
 * Added package-level documentation ?SAWpaper via usethis::use_package_doc() and
   devtools::document(). 
