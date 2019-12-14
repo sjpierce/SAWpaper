@@ -29,8 +29,6 @@ header-includes:
 - \usepackage{threeparttable}
 - \usepackage{threeparttablex}
 - \usepackage{lscape}
-- \pretitle{\begin{center}\LARGE\bfseries}
-- \posttitle{\end{center}}
 - \pagestyle{fancy}
 - \lhead{Self-Assessment Works! (Spanish)}
 - \rhead{\today\ \currenttime}
