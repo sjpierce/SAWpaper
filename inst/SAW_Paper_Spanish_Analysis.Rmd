@@ -13,16 +13,18 @@ header-includes:
 - \usepackage{fancyhdr}
 - \usepackage[yyyymmdd,hhmmss]{datetime}
 - \usepackage{lastpage}
-- \usepackage{fontspec}
+- \usepackage{amsmath,amsthm}
+- \usepackage{unicode-math}
 - \defaultfontfeatures{Ligatures=TeX}
+- \setmonofont{Consolas}
 - \usepackage[font={small}, margin=1cm, skip=2pt]{caption}
 - \usepackage{url}
 - \usepackage{floatrow} 
+- \floatplacement{figure}{!ht}
+- \floatplacement{table}{!ht}
 - \usepackage{booktabs}
 - \usepackage{longtable}
 - \usepackage{dcolumn}
-- \floatplacement{figure}{!ht}
-- \floatplacement{table}{!ht}
 - \usepackage{titling}
 - \usepackage{threeparttable}
 - \usepackage{threeparttablex}
