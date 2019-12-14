@@ -1,3 +1,6 @@
+# SAWpaper 0.0.0.9009 2019-12-13
+* Updated YAML headers in `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
+  
 # SAWpaper 0.0.0.9008 2019-12-12
 * Started using TinyTeX instead of MiKTeX on my laptop. Updated 
   `inst/SAW_Paper_Spanish_Analysis.Rmd` software information to reflect that. 
