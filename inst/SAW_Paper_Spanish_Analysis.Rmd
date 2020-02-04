@@ -215,7 +215,7 @@ dim(df_crm) # Rows, columns
 
 Note that df_crm is an expanded data frame where there is one row per learner
 per level transition attempted in the Can-Do self-assessment test. In total,
-there are 1340 rows in df_crm.
+there are `r nrow(df_crm)` rows in df_crm.
 
 ********************************************************************************
 # DATA MANAGEMENT & EXPLORATION
