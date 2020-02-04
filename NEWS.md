@@ -1,3 +1,8 @@
+# SAWpaper 0.0.0.9010 2020-02-04
+* Updated data file names read in by `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
+* Replaced `data/df_corr.sv` and `data/df_crm.csv` with final versions that 
+  match what will appear in the published data archive. 
+
 # SAWpaper 0.0.0.9009 2019-12-13
 * Updated YAML headers in `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
   
