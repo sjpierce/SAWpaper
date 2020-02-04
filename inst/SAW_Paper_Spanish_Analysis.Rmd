@@ -203,7 +203,8 @@ head(df_corr)
 dim(df_corr) # Rows, columns
 ```
 
-Note that there is one row per learner in df_corr, with a total of 820 rows. 
+Note that there is one row per learner in df_corr, with a total of 
+`r nrow(df_corr)` rows. 
 
 ```{r}
 # # Explore the data structure of df_crm.
