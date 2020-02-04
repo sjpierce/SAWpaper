@@ -34,6 +34,11 @@ objective was to validate the Can-Do test results.
 * Add disclaimer text regarding our results not being the official position of 
   the funder? 
 * Add more details about downloading and installing the repository. 
+* Update the data documentation to point toward the published data archive at 
+  ICPSR. 
+* Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to integrate code from Xiaowan's
+  file `CRM_Spanish_2020-2-3.Rmd`. 
+* Integrate code from Xiaowan's file `CRM_Spanish_2020-2-3.Rmd`. 
 
 ## Associated Research Paper
 Winke, P., Zhang, X., & Pierce, S. J. (2019). *Self-assessment works! 

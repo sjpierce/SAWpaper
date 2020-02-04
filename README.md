@@ -29,6 +29,11 @@ objective was to validate the Can-Do test results.
   - Add disclaimer text regarding our results not being the official
     position of the funder?
   - Add more details about downloading and installing the repository.
+  - Update the data documentation to point toward the published data
+    archive at ICPSR.
+  - Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to integrate code from
+    Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`.
+  - Integrate code from Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`.
 
 ## Associated Research Paper
 
@@ -115,7 +120,7 @@ df_crm  <- read.csv(here::here("./data/DF_CRM.csv"))
 ### Learner Data File: *data/DF\_CORR.csv*
 
 This data file has one row per Spanish language learner in our study,
-with \(N = 820\) observations and 5 variables. The first few rows of
+with \(N = 807\) observations and 63 variables. The first few rows of
 data are shown below.
 
 ``` r
@@ -123,14 +128,14 @@ data are shown below.
 kable(head(df_corr))
 ```
 
-| id | Course | OPIc | OPIC | Level |
-| -: | -----: | :--- | ---: | ----: |
-|  1 |    400 | IH   |    6 |     1 |
-|  2 |    100 | NH   |    3 |     1 |
-|  3 |    200 | IL   |    4 |     2 |
-|  4 |    300 | IM   |    5 |     2 |
-|  5 |    200 | NM   |    2 |     1 |
-|  6 |    200 | NH   |    3 |     1 |
+| X | student\_id | Gender | Course | OPIc | OPIC | Level | Item1 | Item2 | Item3 | Item4 | Item5 | Item6 | Item7 | Item8 | Item9 | Item10 | Item11 | Item12 | Item13 | Item14 | Item15 | Item16 | Item17 | Item18 | Item19 | Item20 | Item21 | Item22 | Item23 | Item24 | Item25 | Item26 | Item27 | Item28 | Item29 | Item30 | Item31 | Item32 | Item33 | Item34 | Item35 | Item36 | Item37 | Item38 | Item39 | Item40 | Item41 | Item42 | Item43 | Item44 | Item45 | Item46 | Item47 | Item48 | Item49 | Item50 | Item1\_10 | Item11\_20 | Item21\_30 | Item31\_40 | Item41\_50 | Item1\_50 |
+| -: | :---------- | :----- | -----: | :--- | ---: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | --------: | ---------: | ---------: | ---------: | ---------: | --------: |
+| 1 | A12479352   | Female |    100 | NL   |    1 |     1 |     1 |     2 |     1 |     1 |     3 |     1 |     2 |     2 |     1 |      1 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        15 |         NA |         NA |         NA |         NA |        15 |
+| 2 | A12658221   | Male   |    200 | IL   |    4 |     1 |     3 |     4 |     4 |     4 |     3 |     3 |     3 |     3 |     3 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        33 |         NA |         NA |         NA |         NA |        33 |
+| 3 | A12711564   | Female |    200 | IL   |    4 |     2 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |
+| 4 | A12879916   | Female |    200 | IM   |    5 |     5 |     4 |     4 |     3 |     4 |     4 |     4 |     4 |     4 |     4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      3 |      4 |      4 |      3 |      3 |      4 |      3 |      3 |        39 |         40 |         39 |         38 |         34 |       190 |
+| 5 | A13226298   | Male   |    200 | NH   |    3 |     1 |     3 |     4 |     3 |     2 |     2 |     3 |     3 |     2 |     2 |      2 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        26 |         NA |         NA |         NA |         NA |        26 |
+| 6 | A13320012   | Female |    200 | NM   |    2 |     1 |     3 |     3 |     4 |     4 |     3 |     3 |     3 |     3 |     2 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        31 |         NA |         NA |         NA |         NA |        31 |
 
 This is the data file to use when examining simple correlations between
 variables like OPIC and Course. The variables are described below.
@@ -186,7 +191,7 @@ are different (but related) variables.
 ### Level-Transition Test Data File: *data/DF\_CRM.csv*
 
 This data file has one row per level transition test attempted by a
-learner in our study, with \(N = 1340\) observations and 5 variables.
+learner in our study, with \(N = 1320\) observations and 66 variables.
 The first few rows of data are shown below.
 
 ``` r
@@ -194,14 +199,14 @@ The first few rows of data are shown below.
 kable(head(df_crm))
 ```
 
-| id | Course | COPIC | Level | pass |
-| -: | -----: | ----: | ----: | ---: |
-|  1 |    400 |     1 |     1 |    0 |
-|  2 |    100 |   \-2 |     1 |    0 |
-|  3 |    200 |   \-1 |     1 |    1 |
-|  3 |    200 |   \-1 |     2 |    0 |
-|  4 |    300 |     0 |     1 |    1 |
-|  4 |    300 |     0 |     2 |    0 |
+|   X | student\_id | Gender | Course | OPIc | OPIC | COPIC | Level | pass | Item1 | Item2 | Item3 | Item4 | Item5 | Item6 | Item7 | Item8 | Item9 | Item10 | Item11 | Item12 | Item13 | Item14 | Item15 | Item16 | Item17 | Item18 | Item19 | Item20 | Item21 | Item22 | Item23 | Item24 | Item25 | Item26 | Item27 | Item28 | Item29 | Item30 | Item31 | Item32 | Item33 | Item34 | Item35 | Item36 | Item37 | Item38 | Item39 | Item40 | Item41 | Item42 | Item43 | Item44 | Item45 | Item46 | Item47 | Item48 | Item49 | Item50 | Item1\_10 | Item11\_20 | Item21\_30 | Item31\_40 | Item41\_50 | Item1\_50 | Highest\_level |
+| --: | :---------- | :----- | -----: | :--- | ---: | ----: | ----: | ---: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | --------: | ---------: | ---------: | ---------: | ---------: | --------: | -------------: |
+|   1 | A12479352   | Female |    100 | NL   |    1 |   \-4 |     1 |    0 |     1 |     2 |     1 |     1 |     3 |     1 |     2 |     2 |     1 |      1 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        15 |         NA |         NA |         NA |         NA |        15 |              1 |
+|   2 | A12658221   | Male   |    200 | IL   |    4 |   \-1 |     1 |    0 |     3 |     4 |     4 |     4 |     3 |     3 |     3 |     3 |     3 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        33 |         NA |         NA |         NA |         NA |        33 |              1 |
+|   3 | A12711564   | Female |    200 | IL   |    4 |   \-1 |     1 |    1 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |              2 |
+| 810 | A12711564   | Female |    200 | IL   |    4 |   \-1 |     2 |    0 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |              2 |
+|   4 | A12879916   | Female |    200 | IM   |    5 |     0 |     1 |    1 |     4 |     4 |     3 |     4 |     4 |     4 |     4 |     4 |     4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      3 |      4 |      4 |      3 |      3 |      4 |      3 |      3 |        39 |         40 |         39 |         38 |         34 |       190 |              5 |
+| 811 | A12879916   | Female |    200 | IM   |    5 |     0 |     2 |    1 |     4 |     4 |     3 |     4 |     4 |     4 |     4 |     4 |     4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      3 |      4 |      4 |      3 |      3 |      4 |      3 |      3 |        39 |         40 |         39 |         38 |         34 |       190 |              5 |
 
 This dataset is used in continuation-ratio modeling of the
 self-assessment test results. The data shown above have two rows for id
@@ -220,14 +225,17 @@ below.
     values are stored as integers.
 
   - *COPIC*: These integer values are a centered version of the OPIC
-    variable found in *df\_corr*. The centering was done around OPIC =
-    5, so the centered scores, in increasing level of proficiency, are:
+    variable found in *df\_corr*. We centered around Intermediate-mid
+    (OPIC = 5) because it is the level of proficiency expected of
+    students exiting the 200-level courses. The centered scores, in
+    increasing level of proficiency, are:
     
       - *-4*: Novice low.
       - *-3*: Novice mid.
       - *-2*: Novice high.
       - *-1*: Intermediate low.
-      - *0*: Intermediate mid.
+      - *0*: Intermediate mid (expected proficiency for students after
+        200-level courses).
       - *1*: Intermediate high.
       - *2*: Advanced low.
       - *3*: Advanced mid.
