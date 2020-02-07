@@ -2021,8 +2021,9 @@ and graphics) noted in the Document Information section above.
 * We use [RStudio (version 1.2.5019 or later)](www.rstudio.org) to work with 
   R and R markdown files. The software chain looks like this:
   **Rmd file -> RStudio -> R -> knitr -> pandoc -> TinyTeX -> PDF file**.
-* We are using using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
-  files into PDF files.
+* We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX files 
+  into PDF files. However, it should be viable to use 
+  [MiKTeX version 2.9](https://miktex.org) instead. 
   
 \FloatBarrier
 
