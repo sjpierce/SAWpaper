@@ -1,3 +1,16 @@
+# SAWpaper 0.1.0 2020-02-07
+* Added `inst/Development_Tools.R` to store example code useful during package
+  development and testing. 
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
+    * Remove horizontal lines between main sections. 
+    * Keep tables and figures in their respective sections. 
+    * Update software information. 
+* Updated to most recent piercer package to fix a bug in lrcm() that affected 
+  `inst/SAW_Paper_Spanish_Analysis.Rmd`.
+* Updated `README.Rmd` and `README.md` to:
+    * Update the task list.
+    * Update software information. 
+
 # SAWpaper 0.0.0.9010 2020-02-04
 * Updated data file names read in by `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
 * Replaced `data/df_corr.sv` and `data/df_crm.csv` with final versions that 
@@ -13,7 +26,6 @@
   `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
 * Removed date field from `inst/SAW_Paper_Spanish_Analysis.Rmd` YAML header. 
 * Fixed left footer in `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
-
 
 # SAWpaper 0.0.0.9007 2019-12-10
 * Added package-level documentation ?SAWpaper via usethis::use_package_doc() and
