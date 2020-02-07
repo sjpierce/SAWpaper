@@ -33,7 +33,6 @@ objective was to validate the Can-Do test results.
     archive at ICPSR.
   - Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to integrate code from
     Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`.
-  - Integrate code from Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`.
 
 ## Associated Research Paper
 
@@ -65,12 +64,13 @@ script can generate a PDF file containing explanatory text, R code, plus
 R output (text and graphics), although it can also produce HTML or
 Markdown files too depending on the contents of the R Markdown file.
 
-  - We use [RStudio (version 1.2.5001 or later)](www.rstudio.org) to
+  - We use [RStudio (version 1.2.5033 or later)](www.rstudio.org) to
     work with R and R markdown files. The software chain looks like
-    this: **Rmd file -\> RStudio -\> R -\> knitr -\> pandoc -\> MiKTeX
+    this: **Rmd file -\> RStudio -\> R -\> knitr -\> pandoc -\> TinyTeX
     -\> PDF file**.
-  - We are using [MiKTeX version 2.9](https://miktex.org) to compile
-    LaTeX files into PDF files.
+  - We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
+    LaTeX files into PDF files. However, it should be viable to use
+    [MiKTeX version 2.9](https://miktex.org) instead.
 
 ## Installation
 
