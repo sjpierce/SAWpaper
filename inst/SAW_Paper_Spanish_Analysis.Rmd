@@ -33,15 +33,13 @@ header-includes:
 - \lhead{Self-Assessment Works! (Spanish)}
 - \rhead{\today\ \currenttime}
 - \cfoot{ }
+- \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
 - \fancyfoot[R]{\thepage}
 - \renewcommand{\headrulewidth}{0.4pt}
 - \renewcommand{\footrulewidth}{0.4pt}
 - \fancypagestyle{plain}{\pagestyle{fancy}}
 ---
 
-\lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
-
-********************************************************************************  
 # PURPOSE
 This file facilitates reproducing the results reported in our manuscript (Winke,
 Zhang, & Pierce, 2019), which was based on a presentation (Winke, Pierce, &
@@ -125,7 +123,7 @@ predictive models (Fenlon, O'Grady, Doherty, & Dunnion, 2018).
 * Review and update interpretation text and conclusions. 
 * Add code to export figures that will be submitted with the manuscript. 
 
-********************************************************************************
+
 # SETUP
 Set global R chunk options (local chunk options will over-ride global options). 
 
@@ -135,7 +133,6 @@ knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE,
                       message = TRUE, warning = TRUE, fig.pos = "!ht")
 ```
 
-********************************************************************************
 # LOAD PACKAGES & SET PACKAGE OPTIONS
 Some of the functions we use below come from a personal R package called 
 [piercer](https://github.com/sjpierce/piercer) that is available online from 
@@ -177,7 +174,6 @@ library(piercer)           # for p2s(), p2bfb(), p2pp(), convertp(), lrcm(),
                            # brier()
 ```
 
-********************************************************************************
 # LOAD DATA
 
 The file df_corr has the cleaned self-assesment data of 820 Spanish students,
@@ -217,7 +213,6 @@ Note that df_crm is an expanded data frame where there is one row per learner
 per level transition attempted in the Can-Do self-assessment test. In total,
 there are `r nrow(df_crm)` rows in df_crm.
 
-********************************************************************************
 # DATA MANAGEMENT & EXPLORATION
 
 Although the variable "Level" exists in both df_corr and df_crm, it has
@@ -400,7 +395,6 @@ contrasts(df_crm$Level)
 contrasts(df_crm$Course)
 ```
 
-*******************************************************************************
 # CORRELATIONS
 We examine the correlations among course level, OPIc scores, and SA level using
 the dataset df_corr (not in a long data format). As we mentioned earlier, Level
@@ -438,7 +432,6 @@ NaN (not-a-number) because we are dividing by zero in the denominator. You can
 read more about interpreting s-values and BFB values in Greenland (2019),
 Benjamin & Berger (2019), and Wasserstein, Schirm, & Lazar (2019). 
 
-********************************************************************************
 # FIT CONTINUATION-RATIO MODELS
 Here we fit a series of continuation-ratio models and display a combined table
 summarizing them for comparison purposes. In subsequent sections, we examine 
@@ -826,7 +819,6 @@ those who pass vs. fail (it has modest accuracy, low sensitivity, high
 specificity, and low AUC). It explains only a small percentage of the variance.
 We can probably do better by considering another predictor. 
 
-********************************************************************************
 # MODEL 1B: NON-PARALLEL COURSE EFFECT
 We again omit the intercept term in order to simplify post-processing of the
 model results into interpretable estimates. We continue to focus on a model
@@ -1015,7 +1007,6 @@ The interaction is not improving the model. We should interpret model 1a instead
 of model 1b. That may change if we build in other covariates. However, we should
 also test COPIC as an alternative to course. We turn to that next in model 2a.
 
-********************************************************************************
 # MODEL 2A: PARALLEL OPIC EFFECT
 We now want to look at a different covariate, namely OPIc speaking proficiency
 scores. We again fit a model that omits the intercept term in order to simplify
@@ -1198,7 +1189,6 @@ model 1a. However, we still need to run another model to see whether relaxing
 the assumption that the OPIC effect is constant across levels is viable. We do
 that in model 2b.
 
-********************************************************************************
 \newpage
 
 # MODEL 2B: NON-PARALLEL OPIC EFFECT
@@ -1566,7 +1556,6 @@ significant. It has better accuracy and sensitivity than model 1a, but we need
 to run another model to decide whether adding a course effect to model 2b will
 improve the model. That will be done in model 3a.
 
-********************************************************************************
 # MODEL 3A: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
 
 We finally test a model with a parallel course effect and a non-parallel OPIc
@@ -1733,7 +1722,6 @@ What distinguished this model from model 2b was inclusion of the parallel course
 effect, but the Type III LRT for that effect is not-significant. We will report
 model 2b over this model on the basis of parsimony.
 
-********************************************************************************
 # WRAP UP
 
 ## Project Information
