@@ -67,14 +67,14 @@ can generate a PDF file containing explanatory text, R code, plus R output
 (text and graphics), although it can also produce HTML or Markdown files too
 depending on the contents of the R Markdown file. 
 
-* We use [RStudio (version 1.2.5001 or later)](www.rstudio.org) to work with 
+* We use [RStudio (version 1.2.5033 or later)](www.rstudio.org) to work with 
   R and R markdown files. The software chain looks like this:
-  **Rmd file -> RStudio -> R -> knitr -> pandoc -> MiKTeX -> PDF file**.
-* We are using [MiKTeX version 2.9](https://miktex.org) to compile LaTeX files 
-  into PDF files. 
+  **Rmd file -> RStudio -> R -> knitr -> pandoc -> TinyTeX -> PDF file**.
+* We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX files 
+  into PDF files. However, it should be viable to use 
+  [MiKTeX version 2.9](https://miktex.org) instead. 
 
 ## Installation
-
 This package is only available from a *private* repository available on 
 [GitHub](https://github.com/). It is private for now because we are not ready to
 release this code yet. 
