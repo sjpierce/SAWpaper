@@ -1,3 +1,6 @@
+# SAWpaper 0.1.1 2020-02-12
+* Updated `DESCRIPTION` to list Xiaowan Zhang as an author. 
+
 # SAWpaper 0.1.0 2020-02-07
 * Added `inst/Development_Tools.R` to store example code useful during package
   development and testing. 
