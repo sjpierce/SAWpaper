@@ -36,6 +36,10 @@ objective was to validate the Can-Do test results.
   - Copy Xiaowan’s custom functions from `CRM_Spanish_2020-2-3.Rmd` into
     R scripts under `R/` folder and add roxygen documentation to
     generate help file.
+  - Fix check() warning about Undocumented data sets: ‘df\_corr’
+    ‘df\_crm’. All user-level objects in a package should have
+    documentation entries. See chapter ‘Writing R documentation files’
+    in the ‘Writing R Extensions’ manual.
 
 ## Associated Research Paper
 
