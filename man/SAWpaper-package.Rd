@@ -28,5 +28,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Steven J. Pierce \email{pierces1@msu.edu} (\href{https://orcid.org/0000-0002-0679-3019}{ORCID}) [copyright holder]
 
+Authors:
+\itemize{
+  \item Xiaowan Zhang \email{zhang874@msu.edu}
+}
+
 }
 \keyword{internal}
