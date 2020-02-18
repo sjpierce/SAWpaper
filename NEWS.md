@@ -1,7 +1,11 @@
-# SAWpaper 0.1.1 2020-02-12
+# SAWpaper 0.1.2, 2020-02-18
+* Updated `README.Rmd` and `README.md` task list  added headings.
+* Edits to practice using Git  GitHub collaboration with co-author.
+
+# SAWpaper 0.1.1, 2020-02-12
 * Updated `DESCRIPTION` to list Xiaowan Zhang as an author. 
 
-# SAWpaper 0.1.0 2020-02-07
+# SAWpaper 0.1.0, 2020-02-07
 * Added `inst/Development_Tools.R` to store example code useful during package
   development and testing. 
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
@@ -14,15 +18,15 @@
     * Update the task list.
     * Update software information. 
 
-# SAWpaper 0.0.0.9010 2020-02-04
+# SAWpaper 0.0.0.9010, 2020-02-04
 * Updated data file names read in by `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
 * Replaced `data/df_corr.sv` and `data/df_crm.csv` with final versions that 
   match what will appear in the published data archive. 
 
-# SAWpaper 0.0.0.9009 2019-12-13
+# SAWpaper 0.0.0.9009,2019-12-13
 * Updated YAML headers in `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
   
-# SAWpaper 0.0.0.9008 2019-12-12
+# SAWpaper 0.0.0.9008, 2019-12-12
 * Started using TinyTeX instead of MiKTeX on my laptop. Updated 
   `inst/SAW_Paper_Spanish_Analysis.Rmd` software information to reflect that. 
 * Moved software information section below references in 
@@ -30,11 +34,11 @@
 * Removed date field from `inst/SAW_Paper_Spanish_Analysis.Rmd` YAML header. 
 * Fixed left footer in `inst/SAW_Paper_Spanish_Analysis.Rmd`. 
 
-# SAWpaper 0.0.0.9007 2019-12-10
+# SAWpaper 0.0.0.9007, 2019-12-10
 * Added package-level documentation ?SAWpaper via usethis::use_package_doc() and
   devtools::document(). 
 
-# SAWpaper 0.0.0.9006 2019-12-01
+# SAWpaper 0.0.0.9006, 2019-12-01
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd`. Simplified some descriptive 
   statistics code. Renamed some objects, added new Table 1, combined tables 
   to make new Table 3, improved table formatting for Tables 1-6. 
