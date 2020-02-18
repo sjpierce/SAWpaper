@@ -33,6 +33,9 @@ objective was to validate the Can-Do test results.
     archive at ICPSR.
   - Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to integrate code from
     Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`.
+  - Copy Xiaowan’s custom functions from `CRM_Spanish_2020-2-3.Rmd` into
+    R scripts under `R/` folder and add roxygen documentation to
+    generate help file.
 
 ## Associated Research Paper
 
@@ -85,6 +88,10 @@ have *devtools* installed, uncomment that line first.
 # install.packages("devtools")
 devtools::install_github("sjpierce/SAWpaper")
 ```
+
+### Install RStudio
+
+### Install & Configure Git
 
 ### Downloading The Repository from GitHub
 
