@@ -16,7 +16,6 @@ header-includes:
 - \usepackage{amsmath,amsthm}
 - \usepackage{unicode-math}
 - \defaultfontfeatures{Ligatures=TeX}
-- \setmonofont{Consolas}
 - \usepackage[font={small}, margin=1cm, skip=2pt]{caption}
 - \usepackage{url}
 - \usepackage{floatrow} 
