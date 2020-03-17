@@ -1,8 +1,8 @@
 Package: SAWpaper
 Type: Package
 Title: Self-Assessment Works Paper
-Version: 0.1.3
-Date: 2020-03-06
+Version: 0.1.4
+Date: 2020-03-17
 Authors@R: 
     c(person(given = c("Steven", "J."),
            family = "Pierce",
@@ -18,14 +18,14 @@ Maintainer: Steven J. Pierce <pierces1@msu.edu>
 Description: This package and corresponding GitHub repository are intended to
   enhance the reproducibility of a research paper. The principal investigators 
   for the study are Dr. Paula Winke (Associate Professor) and Dr. Susan Gass
- (University Distinguished Professor), both whom are at the Department of 
- Linguistics & Germanic, Slavic, Asian, and African Languages, Michigan State 
- University. The paper analyzes data on Spanish language learners who took a 
- Can-Do self-assessment test, along with the more authoritative OPIc language 
- proficiency test. We did both correlation analyses and continuation-ratio 
- models that examine the effect of course and OPIc speaking proficiency scores 
- on the passing rate for each level of the Can-Do statements self-assessment. 
- The objective was to validate the Can-Do test results.
+  (University Distinguished Professor), both whom are at the Department of 
+  Linguistics & Germanic, Slavic, Asian, and African Languages, Michigan State 
+  University. The paper analyzes data on Spanish language learners who took a 
+  Can-Do self-assessment test, along with the more authoritative OPIc language 
+  proficiency test. We did both correlation analyses and continuation-ratio 
+  models that examine the effect of course and OPIc speaking proficiency scores 
+  on the passing rate for each level of the Can-Do statements self-assessment. 
+  The objective was to validate the Can-Do test results.
 License: GPL-3 + file LICENSE
 URL: https://github.com/sjpierce/SAWpaper
 BugReport: https://github.com/sjpierce/SAWpaper/issues

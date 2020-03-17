@@ -1,3 +1,6 @@
+# SAWpaper 0.1.4, 2020-03-17
+* Updated Description text layout in `DESCTIPTION`. 
+
 # SAWpaper 0.1.3, 2020-03-06
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to remove code for setting 
   monofont to Consolas. 
