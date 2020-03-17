@@ -1,3 +1,7 @@
+# SAWpaper 0.1.3, 2020-03-06
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to remove code for setting 
+  monofont to Consolas. 
+
 # SAWpaper 0.1.2, 2020-02-18
 * Updated `README.Rmd` and `README.md` task list  added headings.
 * Edits to practice using Git  GitHub collaboration with co-author.
