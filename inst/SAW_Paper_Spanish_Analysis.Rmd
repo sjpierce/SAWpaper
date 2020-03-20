@@ -417,6 +417,36 @@ contrasts(df_crm$Course)
 
 \FloatBarrier
 
+# DATA VISUALIZATION
+We visualize the relationship of SA level with OPIc scores and course level 
+using scatterplots. We put students' OPIc scores on the x-axis and their total
+SA scores (ranging from 1 to 200) on the Y-axis. We assigned different colors to
+individual data points based on course level. We also jiggered the data 
+points so that overlapping points are nudged apart and can be seen more clearly. 
+
+Additionally, we imposed lines onto the scatterplots to better illustrate the 
+shape of the relationship between SA level and OPI scores.
+
+In Figure 1, we impose a loess line to represent the overall relationship
+between SA level and OPIc scores. A loess line is a smooth line based on local
+regression of a dependent variable (Y-variable) on an indepdent variable (X-
+variable). It helps one to see the true relationship between two variables. 
+In Figure 2, we impose four loess lines to represent the relationship
+between SA level and OPIc scores within each of the four course levels.
+In Figure 3, we impose a linear regression line to visually check to what extent
+the linear line repersents the overall relationship between SA level and OPIc 
+scores.
+In Figure 4, we impose four linear regression lines to visually check to what 
+extent the linear lines represent the relationship between SA level and OPIc 
+scores within each of the four course levels. 
+
+
+
+
+
+
+
+
 # CORRELATIONS
 We examine the correlations among course level, OPIc scores, and SA level using
 the dataset df_corr (not in a long data format). As we mentioned earlier, Level
