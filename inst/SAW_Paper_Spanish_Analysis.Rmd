@@ -1953,6 +1953,25 @@ s-values, BFBs, and posterior probabilities of H1.
 format(convertp(T31$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
+\FloatBarrier
+
+## Sequential Tests (Type I SS)
+Each row in Table 33 tests the significance of unique additional variance
+explained by the term on that line after controlling for all previously entered
+terms. Significant results mean adding that term improved the model. 
+
+```{r}
+T33 <- anova(m3a, test = "Chisq")
+T33 <- cbind(T33, convertp(T33[,"Pr(>Chi)"]))
+pander(T33, justify = "right", split.tables = Inf, 
+       digits = c(5, 5, 5, 8, 3, 3, 4, 3, 3), 
+       round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
+       caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
+```
+
+Note that Course entered the model last, and it was not significant. This 
+indicated that Course did not explain a significant amount of the variance 
+in the conditional pass rates after controlling for OPIc.
 
 
 
