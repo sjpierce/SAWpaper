@@ -569,12 +569,16 @@ m2a <- glm(pass ~ Level + COPIC - 1, data = df_crm, family = "binomial")
 m2b <- glm(pass ~ Level + COPIC + Level*COPIC - 1, data = df_crm, 
            family = "binomial")
 
-# Model 3a: Non-parallel OPIC + parallel course effect
-m3a <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = df_crm, 
+# Model 3a: Parallel OPIC + parallel course effect
+m3a <- glm(pass ~ Level + COPIC + Course - 1, data = df_crm, 
+           family = "binomial")
+
+# Model 3b: Non-parallel OPIC + parallel course effect
+m3b <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = df_crm, 
            family = "binomial")
 
 # Create a list of the model fit objects.
-TModels <- list(m1a, m1b, m2a, m2b, m3a)
+TModels <- list(m1a, m1b, m2a, m2b, m3a, m3b)
 ```
 
 The table below shows the model parameters for the whole set of models.  
