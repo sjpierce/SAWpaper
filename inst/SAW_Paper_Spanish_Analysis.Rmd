@@ -1971,7 +1971,7 @@ pander(T33, justify = "right", split.tables = Inf,
 
 Note that Course entered the model last, and it was not significant. This 
 indicated that Course did not explain a significant amount of the variance 
-in the conditional pass rates after controlling for OPIc.
+in the conditional pass rates after controlling for COPIC.
 
 \FloatBarrier
 
@@ -1996,7 +1996,11 @@ pander(T34, justify = "right", split.tables = Inf,
 
 Results of the simultaneous tests are consistent with those of the sequential 
 tests in showing that Course was no longer a significant predictor of the 
-conditional pass rates after controlling for OPIc.
+conditional pass rates after controlling for COPIC.
+
+The fact that the course effect is not significant in Table 34 tells us that we
+can really revert back to model 2a because Course doesn't have an effect after
+controlling for level and COPIC.
 
 
 
