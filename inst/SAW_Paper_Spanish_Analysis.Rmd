@@ -1931,6 +1931,9 @@ improve the model. That will be done in model 3a.
 
 \FloatBarrier
 
+# MODEL 3A: PARALLEL COURSE + PARALLEL OPIC EFFECTS
+
+
 # MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
 
 We finally test a model with a parallel course effect and a non-parallel OPIc
