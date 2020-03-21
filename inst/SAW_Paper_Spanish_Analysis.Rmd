@@ -527,6 +527,13 @@ T07 <- rbind(r.ps(HC, c("OPIC"), c("Level", "Course"), digits = 2,
 kable(T07, format = "latex", booktabs = TRUE, 
       caption = "Correlations among OPIc, Course, and Level") %>%
 kable_styling(latex_options = c("repeat_header"))
+
+# Use rcorr () function in Hmisc package to obtain Pearson correlations
+pcorr<-rcorr(as.matrix(df_corr[c("OPIC","Course","Item1_50","Level")]))
+T08<-pearson.format(pcorr,c("OPIC","Course","Item1_50","Level"), 2)
+kable(T08, format = "latex", booktabs = TRUE, 
+      caption = "Pearson Correlations among OPIc, Course, Item1_50 Sum, and SA Level") %>%
+kable_styling(latex_options = c("repeat_header"))
 ```
 
 Notice that the Z-statistics are all really large, so the p-values are zero. 
