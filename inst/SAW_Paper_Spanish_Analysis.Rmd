@@ -180,6 +180,7 @@ library(modEvA)            # for HLfit()
 options(kableExtra.latex.load_packages = FALSE)
 library(kableExtra)        # for kable_styling(), add_header_above(), 
                            # column_spec(), collapse_rows(), and landscape()
+library(Hmisc)             # for rcorr()
 library(piercer)           # for p2s(), p2bfb(), p2pp(), convertp(), lrcm(), 
                            # brier()
 ```
