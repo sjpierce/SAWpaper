@@ -1251,8 +1251,53 @@ pander(T22, justify = "right", split.tables = Inf,
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We omit these rates because model 2b is better than model 2a. See the results
-for model 2b instead.
+We use the inverse logit transformation to convert fitted values and associated 
+confidence intervals into the conditional probability of passing a particular 
+level transition given that the student has a particular COPIC score.
+We compute the unconditional pass rates from the conditional pass rates as sets 
+of cumulative products.
+
+```{r}
+# Create a new data frame object for use with predict()
+m2a.ND <- data.frame(Level = gl(n = 4, k = 1, length = 36, 
+                                labels = c("1", "2", "3", "4")),
+                     COPIC = rep(-4:4, each = 4), OPIC = rep(1:9, each = 4))
+
+# Compute predicted mean passing rate at each combination of Level & Course
+m2a.pred <- predict(m2a, newdata = m2a.ND, type = "link", se.fit = TRUE)
+
+# Add fitted values and CIs to the new data frame & display it.
+critval       <- qnorm(0.975) # For Wald 95% CIs
+m2a.ND$fit    <- m2a.pred$fit
+m2a.ND$se.fit <- m2a.pred$se.fit
+m2a.ND$fit.LL <- with(m2a.ND, fit - (critval * se.fit))
+m2a.ND$fit.UL <- with(m2a.ND, fit + (critval * se.fit))
+
+# Convert fitted values and CIs to probabilities. 
+m2a.ND$Pass.Rate <- invlogit(m2a.ND$fit)
+m2a.ND$Pass.LL   <- invlogit(m2a.ND$fit.LL)
+m2a.ND$Pass.UL   <- invlogit(m2a.ND$fit.UL)
+
+# Compute unconditional pass rates.
+m2a.ND$Pass.URate <- c(cumprod(m2a.ND[m2a.ND$COPIC == -4, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == -3, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == -2, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == -1, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 0, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 1, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 2, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 3, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 4, "Pass.Rate"]))
+
+ShowVars <- c("Level", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
+T23 <- m2a.ND[, ShowVars] 
+kable(T23, format = "latex", booktabs = TRUE, digits = 2, 
+      format.args = list(nsmall = 2),
+      caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
+                      "Unconditional Pass Rates by Level Transition and Course")) %>% 
+kable_styling(latex_options = c("repeat_header")) 
+```
+
 
 \FloatBarrier
 
