@@ -1502,6 +1502,21 @@ direct.label(F3, "first.polygons")
 
 \FloatBarrier
 
+### Unconditional Pass Rates  
+Use ggplot to generate the graph for unconditional pass rates derived from model
+m2a.
+
+```{r}
+F4 <- ggplot(T23, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
+  geom_line()+ coord_cartesian(ylim = c(0, 1))+
+  xlab("SA Level Transition")+
+  ylab("Unconditional Pass Rate")+
+  ggtitle(label="Unconditional Pass Rates by OPIC Score and SA Level Transition")
+direct.label(F4, "first.polygons")
+```
+
+\FloatBarrier
+
 ## Conclusion
 Model 2a suggests that higher OPIC scores are associated with higher passing
 rates across the level transitions. Furthermore, model 2a is clearly better than
