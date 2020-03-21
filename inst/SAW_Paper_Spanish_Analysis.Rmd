@@ -1973,6 +1973,31 @@ Note that Course entered the model last, and it was not significant. This
 indicated that Course did not explain a significant amount of the variance 
 in the conditional pass rates after controlling for OPIc.
 
+\FloatBarrier
+
+## Simultaneous Tests of Main/Interaction Effects via LRT (Type III SS)
+The simultaneous tests in Table 34 are the effects of the indicated terms after
+controlling for all other terms in the model. They are only computed for terms
+that are not part of a higher-order interaction because it makes no sense to
+test for a main effect when the variable is involved in an interaction. These
+should be functionally equivalent to the results you get with *anova()* when you
+feed it a pair of nested models that differ only in that one model includes a
+term that is absent from the other model. They are likelihood ratio tests
+(LRTs).
+
+```{r}
+T34 <- drop1(m3a, test = "Chisq")   
+T34 <- cbind(T34, convertp(T34[,"Pr(>Chi)"]))
+pander(T34, justify = "right", split.tables = Inf, 
+       digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
+       round = c(0, 3, 0, 3, Inf, 2, 2, 2),
+       caption = "Model 3a Simultaneous Tests (Type III SS)")
+```
+
+Results of the simultaneous tests are consistent with those of the sequential 
+tests in showing that Course was no longer a significant predictor of the 
+conditional pass rates after controlling for OPIc.
+
 
 
 # MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
