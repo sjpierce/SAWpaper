@@ -2045,6 +2045,19 @@ HLT.m3a
 convertp(p = HLT.m3a$p.value, digits = 2)
 ```
 
+\FloatBarrier
+
+### Classification 
+Here we want to examine the classification table, plus the overall accuracy,
+sensitivity, and specificity estimates.
+
+```{r}
+df_crm$pred.m3a <- predict(m3a, type = "response")
+set.seed(3419) # For reproducibility of bootstrap estimates.
+roc.m3a <- roc(pass ~ pred.m3a, data = df_crm, ci = TRUE, direction = "<",
+               ci.method = "bootstrap", boot.n = 10000)
+round(lrcm(roc.m3a, seed = 6342), digits = 3) 
+```
 
 
 
