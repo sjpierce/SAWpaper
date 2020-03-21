@@ -1931,7 +1931,7 @@ improve the model. That will be done in model 3a.
 
 \FloatBarrier
 
-# MODEL 3A: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
+# MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
 
 We finally test a model with a parallel course effect and a non-parallel OPIc
 effect. We add the course effect into the model after the interaction so that a
@@ -1939,7 +1939,7 @@ sequential test will examine whether it adds any value beyond the non-parallel
 OPIC effect.
 
 ```{r}
-T31 <- summary(m3a)
+T31 <- summary(m3b)
 set.caption("Model 3a Summary")
 pander(T31, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 3a Summary")
@@ -1961,7 +1961,7 @@ terms. Significant results mean adding that term improved the model. Note that
 course actually entered the model last. 
 
 ```{r}
-T33 <- anova(m3a, test = "Chisq")
+T33 <- anova(m3b, test = "Chisq")
 T33 <- cbind(T33, convertp(T33[,"Pr(>Chi)"]))
 pander(T33, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 3, 4, 3, 3), 
@@ -1982,7 +1982,7 @@ term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
 ```{r}
-T34 <- drop1(m3a, test = "Chisq")   
+T34 <- drop1(m3b, test = "Chisq")   
 T34 <- cbind(T34, convertp(T34[,"Pr(>Chi)"]))
 pander(T34, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
@@ -2025,16 +2025,16 @@ bins with a minimum width of 0.10 because that way all the values grouped
 together are quite similar.
 
 ```{r}
-HLT.m3a <- HLfit(m3a, bin.method = "prob.bins", min.prob.interval = 0.1, 
+HLT.m3b <- HLfit(m3b, bin.method = "prob.bins", min.prob.interval = 0.1, 
                  main = "Calibration Plot", 
                  xlab = "Predicted Probability (minimum bin interval = 0.10)",
                  ylab = "Observed Probability")
-HLT.m3a
+HLT.m3b
 ```
 
 ```{r}
 # Get the s-value, BFB, and posterior probability of H1. 
-convertp(p = HLT.m3a$p.value, digits = 2)
+convertp(p = HLT.m3b$p.value, digits = 2)
 ```
 
 \FloatBarrier
@@ -2044,11 +2044,11 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-df_crm$pred.m3a <- predict(m3a, type = "response")
+df_crm$pred.m3b <- predict(m3b, type = "response")
 set.seed(9173) # For reproducibility of bootstrap estimates.
-roc.m3a <- roc(pass ~ pred.m3a, data = df_crm, ci = TRUE, direction = "<",
+roc.m3b <- roc(pass ~ pred.m3b, data = df_crm, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m3a, seed = 7146), digits = 3) 
+round(lrcm(roc.m3b, seed = 7146), digits = 3) 
 ```
 
 \FloatBarrier
@@ -2062,7 +2062,7 @@ making it similar to an $R^{2}$ statistic. We report the scaled Brier score
 below.  
 
 ```{r}
-brier(m3a, digits = 2)
+brier(m3b, digits = 2)
 ```
 
 \FloatBarrier
@@ -2075,8 +2075,8 @@ poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
 outstanding.
 
 ```{r}
-print(roc.m3a)
-plot.roc(roc.m3a, print.auc = TRUE, main = "ROC Curve, Model 3a", 
+print(roc.m3b)
+plot.roc(roc.m3b, print.auc = TRUE, main = "ROC Curve, Model 3a", 
          print.thres = "best")
 ```
 
@@ -2085,13 +2085,13 @@ the difference between the AUC values (Robin et al., 2011).
 
 ```{r}
 set.seed(1128) # For reproducible bootstrap estimates.
-roct.m2a.m3a <- roc.test(roc.m2a, roc.m3a, method = "bootstrap", boot.n = 10000)
-roct.m2a.m3a
+roct.m2a.m3b <- roc.test(roc.m2a, roc.m3b, method = "bootstrap", boot.n = 10000)
+roct.m2a.m3b
 ```
 
 ```{r}
 # Get the s-value, BFB, and posterior probability of H1. 
-convertp(p = roct.m2a.m3a$p.value, digits = 2)
+convertp(p = roct.m2a.m3b$p.value, digits = 2)
 ```
 
 \FloatBarrier
@@ -2103,7 +2103,7 @@ and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
 1997, p. 451; Cameron & Windmeijer, 1997).
 
 ```{r}
-c(PsedoR2 = pseudoR2(m3a, digits = 2), R2Dev = R2Dev(m3a, digits = 2))
+c(PsedoR2 = pseudoR2(m3b, digits = 2), R2Dev = R2Dev(m3b, digits = 2))
 ```
 
 \FloatBarrier
