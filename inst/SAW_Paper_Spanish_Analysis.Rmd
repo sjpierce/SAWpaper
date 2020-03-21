@@ -1940,9 +1940,9 @@ regression model. Model 3a tells us to what extent OPIc and Course each predicts
 the conditional pass rates, after controlling for the other predictor's effect. 
 
 ```{r}
-T31 <- summary(m3a)
+T34 <- summary(m3a)
 set.caption("Model 3a Summary")
-pander(T31, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+pander(T34, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 3a Summary")
 ```
 
@@ -1950,20 +1950,20 @@ Post-process the raw model output to get additional information, including
 s-values, BFBs, and posterior probabilities of H1.
 
 ```{r}
-format(convertp(T31$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+format(convertp(T34$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 33 tests the significance of unique additional variance
+Each row in Table 36 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model. 
 
 ```{r}
-T33 <- anova(m3a, test = "Chisq")
-T33 <- cbind(T33, convertp(T33[,"Pr(>Chi)"]))
-pander(T33, justify = "right", split.tables = Inf, 
+T36 <- anova(m3a, test = "Chisq")
+T36 <- cbind(T36, convertp(T36[,"Pr(>Chi)"]))
+pander(T36, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
        caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
@@ -1976,7 +1976,7 @@ in the conditional pass rates after controlling for COPIC.
 \FloatBarrier
 
 ## Simultaneous Tests of Main/Interaction Effects via LRT (Type III SS)
-The simultaneous tests in Table 34 are the effects of the indicated terms after
+The simultaneous tests in Table 37 are the effects of the indicated terms after
 controlling for all other terms in the model. They are only computed for terms
 that are not part of a higher-order interaction because it makes no sense to
 test for a main effect when the variable is involved in an interaction. These
@@ -1986,9 +1986,9 @@ term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
 ```{r}
-T34 <- drop1(m3a, test = "Chisq")   
-T34 <- cbind(T34, convertp(T34[,"Pr(>Chi)"]))
-pander(T34, justify = "right", split.tables = Inf, 
+T37 <- drop1(m3a, test = "Chisq")   
+T37 <- cbind(T34, convertp(T34[,"Pr(>Chi)"]))
+pander(T37, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2),
        caption = "Model 3a Simultaneous Tests (Type III SS)")
@@ -1998,7 +1998,7 @@ Results of the simultaneous tests are consistent with those of the sequential
 tests in showing that Course was no longer a significant predictor of the 
 conditional pass rates after controlling for COPIC.
 
-The fact that the course effect is not significant in Table 34 tells us that we
+The fact that the course effect is not significant in Table 37 tells us that we
 can really revert back to model 2a because Course doesn't have an effect after
 controlling for level and COPIC.
 
@@ -2140,9 +2140,9 @@ sequential test will examine whether it adds any value beyond the non-parallel
 OPIC effect.
 
 ```{r}
-T31 <- summary(m3b)
+T38 <- summary(m3b)
 set.caption("Model 3a Summary")
-pander(T31, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+pander(T38, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 3a Summary")
 ```
 
@@ -2150,21 +2150,21 @@ Post-process the raw model output to get additional information, including
 s-values, BFBs, and posterior probabilities of H1.
 
 ```{r}
-format(convertp(T31$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+format(convertp(T38$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 33 tests the significance of unique additional variance
+Each row in Table 40 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model. Note that 
 course actually entered the model last. 
 
 ```{r}
-T33 <- anova(m3b, test = "Chisq")
-T33 <- cbind(T33, convertp(T33[,"Pr(>Chi)"]))
-pander(T33, justify = "right", split.tables = Inf, 
+T40 <- anova(m3b, test = "Chisq")
+T40 <- cbind(T40, convertp(T40[,"Pr(>Chi)"]))
+pander(T40, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
        caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
@@ -2173,7 +2173,7 @@ pander(T33, justify = "right", split.tables = Inf,
 \FloatBarrier
 
 ## Simultaneous Tests of Main/Interaction Effects via LRT (Type III SS)
-The simultaneous tests in Table 34 are the effects of the indicated terms after
+The simultaneous tests in Table 41 are the effects of the indicated terms after
 controlling for all other terms in the model. They are only computed for terms
 that are not part of a higher-order interaction because it makes no sense to
 test for a main effect when the variable is involved in an interaction. These
@@ -2183,27 +2183,27 @@ term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
 ```{r}
-T34 <- drop1(m3b, test = "Chisq")   
-T34 <- cbind(T34, convertp(T34[,"Pr(>Chi)"]))
-pander(T34, justify = "right", split.tables = Inf, 
+T41 <- drop1(m3b, test = "Chisq")   
+T41 <- cbind(T41, convertp(T41[,"Pr(>Chi)"]))
+pander(T41, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2),
        caption = "Model 3a Simultaneous Tests (Type III SS)")
 ```
 
-The fact that the course effect is not significant in Table 34 tells us that we
+The fact that the course effect is not significant in Table 41 tells us that we
 can really revert back to model 2b because course doesn't have an effect after
 controlling for level, COPIC, and their interaction.
 
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We omit calculating these rates because model 3a is not better than model 2b.
+We omit calculating these rates because model 3b is not better than model 2b.
 
 \FloatBarrier
 
 ## Odds-Ratio for COPIC Effect 
-We omit calculating odds-ratios because model 3a is not better than model 2b.
+We omit calculating odds-ratios because model 3b is not better than model 2b.
 
 \FloatBarrier
 
@@ -2281,7 +2281,7 @@ plot.roc(roc.m3b, print.auc = TRUE, main = "ROC Curve, Model 3a",
          print.thres = "best")
 ```
 
-Next we compare the ROC curves for models m2a and m2b using a bootstrap test for
+Next we compare the ROC curves for models m2a and m3b using a bootstrap test for
 the difference between the AUC values (Robin et al., 2011). 
 
 ```{r}
@@ -2310,12 +2310,12 @@ c(PsedoR2 = pseudoR2(m3b, digits = 2), R2Dev = R2Dev(m3b, digits = 2))
 \FloatBarrier
 
 ## Diagnostics
-We omit diagnostics because model 3a is not better than model 2b.
+We omit diagnostics because model 3b is not better than model 2b.
 
 \FloatBarrier
 
 ## Graphs
-We omit graphs because model 3a is not better than model 2b. 
+We omit graphs because model 3b is not better than model 2b. 
 
 \FloatBarrier
 
