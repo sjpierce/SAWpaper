@@ -1933,6 +1933,28 @@ improve the model. That will be done in model 3a.
 
 # MODEL 3A: PARALLEL COURSE + PARALLEL OPIC EFFECTS
 
+We now test a model with a parallel course effect and a parallel OPIc
+effect. We want to see if course and OPIc are still significant preditors 
+of the condtional pass rates when they are simultaneously included into one 
+regression model. Model 3a tells us to what extent OPIc and Course each predicts
+the conditional pass rates, after controlling for the other predictor's effect. 
+
+```{r}
+T31 <- summary(m3a)
+set.caption("Model 3a Summary")
+pander(T31, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+       caption = "Model 3a Summary")
+```
+
+Post-process the raw model output to get additional information, including 
+s-values, BFBs, and posterior probabilities of H1.
+
+```{r}
+format(convertp(T31$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+```
+
+
+
 
 # MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
 
