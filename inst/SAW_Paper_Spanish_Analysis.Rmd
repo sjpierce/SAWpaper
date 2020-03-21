@@ -1202,9 +1202,9 @@ The summary below shows the actual model fit information and the raw parameter
 estimates.
 
 ```{r}
-T19 <- summary(m2a)
+T21 <- summary(m2a)
 set.caption("Model 2a Summary")
-pander(T19, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+pander(T21, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 2a Summary")
 ```
 
@@ -1212,20 +1212,20 @@ Post-process the raw model output to get additional information, including
 s-values, BFBs, and posterior probabilities of H1.
 
 ```{r}
-format(convertp(T19$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+format(convertp(T21$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
 \FloatBarrier
 
 # Sequential Tests (Type I SS)
-Each row in Table 21 tests the significance of unique additional variance
+Each row in Table 23 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model.
 
 ```{r}
-T21 <- anova(m2a, test = "Chisq")
-T21 <- cbind(T21, convertp(T21[,"Pr(>Chi)"]))
-pander(T21, justify = "right", split.tables = Inf, 
+T23 <- anova(m2a, test = "Chisq")
+T23 <- cbind(T23, convertp(T23[,"Pr(>Chi)"]))
+pander(T23, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2),
        caption = "Model 2a Sequential Tests (Type I SS): Analysis of Deviance")
@@ -1234,7 +1234,7 @@ pander(T21, justify = "right", split.tables = Inf,
 \FloatBarrier
 
 ## Simultaneous Tests of Main Effects via LRT (Type III SS)
-The simultaneous tests in Table 22 are the effects of the indicated terms after
+The simultaneous tests in Table 24 are the effects of the indicated terms after
 controlling for all other terms in the model. They are only computed for terms
 that are not part of a higher-order interaction because it makes no sense to
 test for a main effect when the variable is involved in an interaction. These
@@ -1244,9 +1244,9 @@ term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
 ```{r}
-T22 <- drop1(m2a, test = "Chisq") 
-T22 <- cbind(T22, convertp(T22[,"Pr(>Chi)"]))
-pander(T22, justify = "right", split.tables = Inf, 
+T24 <- drop1(m2a, test = "Chisq") 
+T24 <- cbind(T24, convertp(T24[,"Pr(>Chi)"]))
+pander(T24, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 8, 8, 3, 4, 3, 3),
        round = c(0, 3, 3, 3, Inf, 2, 2, 2), 
        caption = "Model 2a Simultaneous Tests (Type III SS)")
@@ -1294,8 +1294,8 @@ m2a.ND$Pass.URate <- c(cumprod(m2a.ND[m2a.ND$COPIC == -4, "Pass.Rate"]),
                        cumprod(m2a.ND[m2a.ND$COPIC == 4, "Pass.Rate"]))
 
 ShowVars <- c("Level", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
-T23 <- m2a.ND[, ShowVars] 
-kable(T23, format = "latex", booktabs = TRUE, digits = 2, 
+T25 <- m2a.ND[, ShowVars] 
+kable(T25, format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>% 
@@ -1312,11 +1312,11 @@ level transitions. We will test whether that assumption is reasonable in another
 model later.
 
 ```{r}
-T23   <- cbind(OR = exp(coef(m2a)[5]), 
+T26   <- cbind(OR = exp(coef(m2a)[5]), 
                LL = exp(confint(m2a, level = 0.95)[5, 1]),
                UL = exp(confint(m2a, level = 0.95)[5, 2]))
-dimnames(T23)[[1]] <- "COPIC (0 vs 1)"
-kable(T23, format = "latex", booktabs = TRUE, digits = 2, 
+dimnames(T26)[[1]] <- "COPIC (0 vs 1)"
+kable(T26, format = "latex", booktabs = TRUE, digits = 2, 
       caption = paste("Odds-Ratios for COPIC Effect (Estimates and 95 Percent",
                       "Confidence Intervals)")) %>% 
 kable_styling(latex_options = c("repeat_header")) 
@@ -1496,7 +1496,7 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m2a.
 
 ```{r}
-F3 <- ggplot(T23, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
+F3 <- ggplot(T25, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("SA Level Transition")+
   ylab("Conditional Pass Rate")+
@@ -1511,7 +1511,7 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m2a.
 
 ```{r}
-F4 <- ggplot(T23, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
+F4 <- ggplot(T25, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("SA Level Transition")+
   ylab("Unconditional Pass Rate")+
