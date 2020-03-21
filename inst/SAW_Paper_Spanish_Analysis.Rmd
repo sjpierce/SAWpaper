@@ -1298,7 +1298,6 @@ kable(T23, format = "latex", booktabs = TRUE, digits = 2,
 kable_styling(latex_options = c("repeat_header")) 
 ```
 
-
 \FloatBarrier
 
 ## Odds-Ratio for COPIC Effect 
@@ -1487,6 +1486,19 @@ visreg(m2a, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
 ```
 
 \FloatBarrier
+
+### Conditional Pass Rates
+Use ggplot to generate the graph for conditional pass rates derived from model
+m2a.
+
+```{r}
+F3 <- ggplot(T23, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
+  geom_line()+ coord_cartesian(ylim = c(0, 1))+
+  xlab("SA Level Transition")+
+  ylab("Conditional Pass Rate")+
+  ggtitle(label="Conditional Pass Rates by OPIC Score and Level Transition")
+direct.label(F3, "first.polygons")
+```
 
 \FloatBarrier
 
