@@ -2012,6 +2012,13 @@ We omit calculating these rates because model 3a is not better than model 2a.
 ## Odds-Ratio for COPIC Effect 
 We omit calculating odds-ratios because model 3a is not better than model 2a.
 
+\FloatBarrier
+
+## Assessing Goodness of Fit, Discrimination, and Calibration
+Since we are running the continuation-ration model as a logistic regression, all
+the stadard methods for assessing goodness of fit for logistic regresion models
+apply.
+
 
 
 
