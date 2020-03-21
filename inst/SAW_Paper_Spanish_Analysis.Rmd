@@ -1987,7 +1987,7 @@ term that is absent from the other model. They are likelihood ratio tests
 
 ```{r}
 T37 <- drop1(m3a, test = "Chisq")   
-T37 <- cbind(T34, convertp(T34[,"Pr(>Chi)"]))
+T37 <- cbind(T37, convertp(T37[,"Pr(>Chi)"]))
 pander(T37, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2),
