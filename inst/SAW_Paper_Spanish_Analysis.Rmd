@@ -612,10 +612,10 @@ raw parameter estimates.
 \newpage
 
 ```{r}
-T08 <- summary(m1a)
+T10 <- summary(m1a)
 panderOptions('keep.trailing.zeros', TRUE)
 set.caption("Model 1a Summary")
-pander(T08, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+pander(T10, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 1a Summary")
 ```
 
@@ -624,22 +624,22 @@ s-values, BFBs, and posterior probabilities of H1 corresponding to the p-values
 listed above.
 
 ```{r}
-format(convertp(T08$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+format(convertp(T10$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 10 tests the significance of unique additional variance
+Each row in Table 12 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model.
 
 \newpage
 
 ```{r}
-T10 <- anova(m1a, test = "Chisq")
-T10 <- cbind(T10, convertp(T10[,"Pr(>Chi)"]))
-pander(T10, justify = "right", split.tables = Inf, 
+T12 <- anova(m1a, test = "Chisq")
+T12 <- cbind(T12, convertp(T12[,"Pr(>Chi)"]))
+pander(T12, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
        caption = "Model 1a Sequential Tests (Type I SS): Analysis of Deviance")
@@ -648,7 +648,7 @@ pander(T10, justify = "right", split.tables = Inf,
 \FloatBarrier
 
 ## Simultaneous Tests of Main Effects via LRT (Type III SS)
-The simultaneous tests in Table 11 are the effects of the indicated terms after
+The simultaneous tests in Table 13 are the effects of the indicated terms after
 controlling for all other terms in the model. They are only computed for terms
 that are not part of a higher-order interaction because it makes no sense to
 test for a main effect when the variable is involved in an interaction. These
@@ -658,9 +658,9 @@ term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
 ```{r}
-T11 <- drop1(m1a, test = "Chisq")   
-T11 <- cbind(T11, convertp(T11[,"Pr(>Chi)"]))
-pander(T11, justify = "right", split.tables = Inf, 
+T13 <- drop1(m1a, test = "Chisq")   
+T13 <- cbind(T13, convertp(T13[,"Pr(>Chi)"]))
+pander(T13, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 8, 8, 3, 4, 3, 3),
        round = c(0, 3, 3, 3, Inf, 2, 2, 2), 
        caption = "Model 1a Simultaneous Tests (Type III SS)")
@@ -705,8 +705,8 @@ m1a.ND$Pass.URate <- c(cumprod(m1a.ND[m1a.ND$Course == "100", "Pass.Rate"]),
                        cumprod(m1a.ND[m1a.ND$Course == "400", "Pass.Rate"]))
 
 ShowVars <- c("Level", "Course", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
-T12 <- m1a.ND[, ShowVars] 
-kable(T12, format = "latex", booktabs = TRUE, digits = 2, 
+T14 <- m1a.ND[, ShowVars] 
+kable(T14, format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates with 95 percent CIs and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>%
@@ -729,7 +729,7 @@ testing via Westfall's (1997) method.
 m1a.ct <- glht(m1a, linfct = mcp(Course = "Tukey"))
 m1a.mc <- summary(m1a.ct, test = adjusted("Westfall"))
 m1a.ci <- confint(m1a.ct, calpha = adjusted_calpha(test = "Westfall"))
-T13 <- data.frame(Est   = m1a.mc$test$coefficients, 
+T15 <- data.frame(Est   = m1a.mc$test$coefficients, 
                   SE    = m1a.mc$test$sigma, 
                   CI.LL = m1a.ci$confint[, "lwr"],
                   CI.UL = m1a.ci$confint[, "upr"],
@@ -741,7 +741,7 @@ T13 <- data.frame(Est   = m1a.mc$test$coefficients,
                   Sval  = p2s(m1a.mc$test$pvalues),
                   BFB   = p2bfb(m1a.mc$test$pvalues),
                   PPH1  = p2pp(m1a.mc$test$pvalues))
-kable(T13, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
+kable(T15, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
       digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2), 
       caption = paste("Multiple Comparisons for Course Effect, Westfall (1997)",
       "Adjustment for Multiplicity")) %>%
@@ -931,7 +931,7 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m1a. 
 
 ```{r}
-F1 <- ggplot(T12, aes(Level, Pass.Rate, group=Course, color=Course))+
+F1 <- ggplot(T14, aes(Level, Pass.Rate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.8))+
       xlab("SA Level Transition")+
       ylab("Conditional Pass Rate")+
@@ -946,7 +946,7 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m1a. 
 
 ```{r}
-F2 <- ggplot(T12, aes(Level, Pass.URate, group=Course, color=Course))+
+F2 <- ggplot(T14, aes(Level, Pass.URate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.65))+
       xlab("SA Level Transition")+
       ylab("Unconditional Pass Rate")+
@@ -986,9 +986,9 @@ summary below shows the actual model fit information and the raw parameter
 estimates.
 
 ```{r}
-T14 <- summary(m1b)
+T16 <- summary(m1b)
 set.caption("Model 1b Summary")
-pander(T14, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+pander(T16, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 1b Summary")
 ```
 
@@ -996,15 +996,15 @@ Post-process the raw model output to get additional information, including
 s-values, BFBs, and posterior probabilities of H1.
 
 ```{r}
-format(convertp(T14$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+format(convertp(T16$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
 Let's show models 1a and 1b side by side. 
 
 ```{r, results='asis'} 
-T16 <- list(m1a, m1b)
-texreg(T16, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
-       single.row = TRUE, digits = 3, label = "T16", 
+T18 <- list(m1a, m1b)
+texreg(T18, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
+       single.row = TRUE, digits = 3, label = "T18", 
        custom.model.names = c("Model 1a Parallel",  "Model 1b Non-Parallel"), 
        caption = "Parallel vs. Non-Parallel Course Effect")
 ```
@@ -1019,9 +1019,9 @@ whether allowing course to have a level-specific effect instead of a constant
 effect across levels improved the model.
 
 ```{r}
-T17 <- anova(m1b, test = "Chisq")
-T17 <- cbind(T17, convertp(T17[,"Pr(>Chi)"]))
-pander(T17, justify = "right", split.tables = Inf, 
+T19 <- anova(m1b, test = "Chisq")
+T19 <- cbind(T19, convertp(T19[,"Pr(>Chi)"]))
+pander(T19, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
        caption = "Model 1b Sequential Tests (Type I SS): Analysis of Deviance")
@@ -1040,9 +1040,9 @@ subset of the parameters in the other model).
 
 ```{r}
 #CONTINUE  HERE
-T18 <- anova(m1a, m1b, test = "Chisq")
-T18 <- cbind(T18, convertp(T18[,"Pr(>Chi)"]))
-pander(T18, justify = "right", split.tables = Inf, 
+T20 <- anova(m1a, m1b, test = "Chisq")
+T20 <- cbind(T20, convertp(T20[,"Pr(>Chi)"]))
+pander(T20, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2),
        caption = "Model 1a vs 1b: Likelihood Ratio Test for Interaction")
