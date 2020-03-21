@@ -2114,6 +2114,23 @@ and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
 c(PsedoR2 = pseudoR2(m3a, digits = 2), R2Dev = R2Dev(m3a, digits = 2))
 ```
 
+\FloatBarrier
+
+## Diagnostics
+We omit diagnostics because model 3a is not better than model 2a.
+
+\FloatBarrier
+
+## Graphs
+We omit graphs because model 3a is not better than model 2a. 
+
+\FloatBarrier
+
+## Conclusion
+What distinguished this model from model 2a was inclusion of the parallel course
+effect, but the Type III LRT for that effect is not-significant. We will report
+model 2a over this model on the basis of parsimony.
+
 
 # MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
 
