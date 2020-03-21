@@ -528,7 +528,12 @@ kable(T07, format = "latex", booktabs = TRUE,
       caption = "Correlations among OPIc, Course, and Level") %>%
 kable_styling(latex_options = c("repeat_header"))
 
-# Use rcorr () function in Hmisc package to obtain Pearson correlations
+# Use rcorr () function in "Hmisc" package to obtain Pearson correlations
+# among two continuous variables, OPIC and Item1_50 (SA sum scores ranging
+# from 1 to 200), and two ordinal variables, Course and Level. Note that it
+# is inappropriate to use Pearson's r for ordinal variables. We include 
+# Pearson's correlations here only for comparison purposes. 
+
 pcorr<-rcorr(as.matrix(df_corr[c("OPIC","Course","Item1_50","Level")]))
 T08<-pearson.format(pcorr,c("OPIC","Course","Item1_50","Level"), 2)
 kable(T08, format = "latex", booktabs = TRUE, 
