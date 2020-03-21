@@ -2019,6 +2019,31 @@ Since we are running the continuation-ration model as a logistic regression, all
 the stadard methods for assessing goodness of fit for logistic regresion models
 apply.
 
+\FloatBarrier
+
+### Hosmer-Lemeshow goodness of fit test. 
+The null hypothesis for the Hosmer-Lemeshow test is that the data fit the model,
+so a significant result is actually undesirable because it says that the data
+don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
+which can also be examined with a calibration plot like the one shown below.
+
+The calibration plot uses the same set of bins used for the HLT. We used a
+binning method that creates bins by grouping the predicted probabilities into
+bins with a minimum width of 0.10 because that way all the values grouped
+together are quite similar.
+
+```{r}
+HLT.m3a <- HLfit(m3a, bin.method = "prob.bins", min.prob.interval = 0.1, 
+                 main = "Calibration Plot", 
+                 xlab = "Predicted Probability (minimum bin interval = 0.10)",
+                 ylab = "Observed Probability")
+HLT.m3a
+```
+
+```{r}
+# Get the s-value, BFB, and posterior probability of H1. 
+convertp(p = HLT.m3a$p.value, digits = 2)
+```
 
 
 
