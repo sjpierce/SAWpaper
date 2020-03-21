@@ -1424,7 +1424,46 @@ c(PseudoR2 = pseudoR2(m2a, digits = 2), R2Dev = R2Dev(m2a, digits = 2))
 \FloatBarrier
 
 ## Diagnostics
-We omit model diagnostics because model 2b is better than model 2a.
+We need to run model diagnostics to see if there are any obvious problems with 
+the model. First we check for outliers and find that there are none of note.
+
+```{r}
+outlierTest(m2a)
+```
+
+Now we look at some residual plots.
+```{r}
+residualPlots(m2a, layout = c(1,3))
+```
+
+Now we look at some index plots for influence measures. We are looking for
+observations with values exceeding the cutoffs.
+
+```{r}
+# Plot Cook's Distance vs observation index.
+PlotCookD(m2a)
+
+# How many cases have high Cook's Distances (D > cutoff)?
+summary(cooks.distance(m2a))
+addmargins(table(cooks.distance(m2a) > CookDco(m2a)))
+
+# Plot Leverage (hat) values vs. observation index.
+PlotHat(m2a)
+
+# Plot Standardized Pearson Residuals vs Leverage, w/ Cook's D contours.
+plot(m2a, which = 5, id.n = 10, cex.id = .6, 
+     cook.levels = round(CookDco(m2a), digits = 3))
+abline(v = hatco(m2a), lty = 2, col = "blue")
+text(x = hatco(m2a), y = 5.7, pos = 4, col = "blue", cex = .75,
+     labels = paste("Leverage cutoff >", round(hatco(m2a), digits = 3)))
+
+# How many cases have high leverage (hat > cutoff)?
+summary(hatvalues(m2a))
+addmargins(table(hatvalues(m2b) > hatco(m2a)))
+
+# Identify cases w/ high leverage and high Cook's D. 
+InfCases(m2a)
+```
 
 \FloatBarrier
 
