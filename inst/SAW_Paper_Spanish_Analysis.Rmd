@@ -2102,6 +2102,19 @@ roct.m2a.m3a
 convertp(p = roct.m2a.m3a$p.value, digits = 2)
 ```
 
+\FloatBarrier
+
+### $R^{2}$ Measures
+Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
+and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
+182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
+1997, p. 451; Cameron & Windmeijer, 1997).
+
+```{r}
+c(PsedoR2 = pseudoR2(m3a, digits = 2), R2Dev = R2Dev(m3a, digits = 2))
+```
+
+
 # MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
 
 We finally test a model with a parallel course effect and a non-parallel OPIc
