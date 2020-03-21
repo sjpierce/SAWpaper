@@ -1540,9 +1540,9 @@ are still using the centered version of OPIC in the model. The summary below
 shows the actual model fit information and the raw parameter estimates.
 
 ```{r}
-T24 <- summary(m2b)
+T27 <- summary(m2b)
 set.caption("Model 2b Summary")
-pander(T24, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+pander(T27, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 2b Summary")
 ```
 
@@ -1550,14 +1550,14 @@ Post-process the raw model output to get additional information, including
 s-values, BFBs, and posterior probabilities of H1.
 
 ```{r}
-format(convertp(T24$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+format(convertp(T27$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
 Let's show the models 2a and 2b side by side. 
 
 ```{r, results='asis'} 
-T26 <- list(m2a, m2b)
-texreg(T26, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
+T29 <- list(m2a, m2b)
+texreg(T29, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
        single.row = TRUE, digits = 3, label = "T26", 
        custom.model.names = c("Model 2a Parallel", "Model 2b Non-Parallel"), 
        caption = "Parallel vs. Non-Parallel OPIC Effect")
@@ -1576,7 +1576,7 @@ favors model 2a by a larger margin because it imposes a stronger penalty for mod
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 27 tests the significance of unique additional variance
+Each row in Table 30 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model. Here, we
 want to focus on the result for the interaction effect. That tells us whether
@@ -1584,9 +1584,9 @@ allowing OPIc to have a level-specific effect instead of a constant effect
 across levels improved the model.
 
 ```{r}
-T27 <- anova(m2b, test = "Chisq")
-T27 <- cbind(T27, convertp(T27[,"Pr(>Chi)"]))
-pander(T27, justify = "right", split.tables = Inf, 
+T30 <- anova(m2b, test = "Chisq")
+T30 <- cbind(T30, convertp(T30[,"Pr(>Chi)"]))
+pander(T30, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
        caption = "Model 2b Sequential Tests (Type I SS): Analysis of Deviance")
@@ -1603,9 +1603,9 @@ function two model fit objects. The models must be nested (one contains only a
 subset of the parameters in the other model).
 
 ```{r}
-T28 <- anova(m2a, m2b, test = "Chisq")   
-T28 <- cbind(T28, convertp(T28[,"Pr(>Chi)"]))
-pander(T28, justify = "right", split.tables = Inf, 
+T31 <- anova(m2a, m2b, test = "Chisq")   
+T31 <- cbind(T31, convertp(T31[,"Pr(>Chi)"]))
+pander(T31, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2),
        caption = "Model 2b Simultaneous Tests (Type III SS)")
@@ -1655,8 +1655,8 @@ m2b.ND$Pass.URate <- c(cumprod(m2b.ND[m2b.ND$COPIC == -4, "Pass.Rate"]),
                        cumprod(m2b.ND[m2b.ND$COPIC == 4, "Pass.Rate"]))
 
 ShowVars <- c("Level", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
-T29 <- m2b.ND[, ShowVars] 
-kable(T29, format = "latex", booktabs = TRUE, digits = 2, 
+T32 <- m2b.ND[, ShowVars] 
+kable(T32, format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>% 
@@ -1695,7 +1695,7 @@ K <- matrix(c(0, 0, 0, 0, 1, 0, 0, 0,
 m2b.ct <- glht(m2b, linfct = K)
 m2b.mc <- summary(m2b.ct, test = adjusted("Westfall"))
 m2b.ci <- confint(m2b.ct, calpha = adjusted_calpha(test = "Westfall"))
-T30 <- data.frame(Est   = m2b.mc$test$coefficients, 
+T33 <- data.frame(Est   = m2b.mc$test$coefficients, 
                   SE    = m2b.mc$test$sigma, 
                   CI.LL = m2b.ci$confint[, "lwr"],
                   CI.UL = m2b.ci$confint[, "upr"],
@@ -1707,10 +1707,10 @@ T30 <- data.frame(Est   = m2b.mc$test$coefficients,
                   Sval  = p2s(m2b.mc$test$pvalues),
                   BFB   = p2bfb(m2b.mc$test$pvalues),
                   PPH1  = p2pp(m2b.mc$test$pvalues))
-T30$OR[5:10]    <- NA
-T30$OR.LL[5:10] <- NA
-T30$OR.UL[5:10] <- NA
-kable(T30, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
+T33$OR[5:10]    <- NA
+T33$OR.LL[5:10] <- NA
+T33$OR.UL[5:10] <- NA
+kable(T33, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
       digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2),
       caption = paste("Simple Slopes of COPIC Effect, Westfall (1997)",
                       "Adjustment for Multiplicity")) %>% 
@@ -1898,7 +1898,7 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m2b.
 
 ```{r}
-F3 <- ggplot(T29, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
+F3 <- ggplot(T32, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
       xlab("SA Level Transition")+
       ylab("Conditional Pass Rate")+
@@ -1913,7 +1913,7 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m2b.
 
 ```{r}
-F4 <- ggplot(T29, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
+F4 <- ggplot(T32, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
       xlab("SA Level Transition")+
       ylab("Unconditional Pass Rate")+
