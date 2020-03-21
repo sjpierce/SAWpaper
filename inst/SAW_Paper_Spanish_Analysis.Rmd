@@ -2059,7 +2059,19 @@ roc.m3a <- roc(pass ~ pred.m3a, data = df_crm, ci = TRUE, direction = "<",
 round(lrcm(roc.m3a, seed = 6342), digits = 3) 
 ```
 
+\FloatBarrier
 
+### Brier Score
+The unscaled Brier score is an overall measure of accuracy suitable for logistic
+regression models with binary outcomes (Fenlon et al., 2018). It is the average
+prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
+Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
+making it similar to an $R^{2}$ statistic. We report the scaled Brier score 
+below.  
+
+```{r}
+brier(m3a, digits = 2)
+```
 
 
 
