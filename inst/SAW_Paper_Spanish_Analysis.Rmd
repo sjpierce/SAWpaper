@@ -418,6 +418,87 @@ contrasts(df_crm$Course)
 
 \FloatBarrier
 
+# DATA VISUALIZATION
+We visualize the relationship of SA level with OPIc scores and course level 
+using scatterplots. We put students' OPIc scores on the x-axis and their total
+SA scores (ranging from 1 to 200) on the Y-axis. We assigned different colors to
+individual data points based on course level. We also jiggered the data 
+points so that overlapping points are nudged apart and can be seen more clearly. 
+
+Additionally, we imposed lines onto the scatterplots to better illustrate the 
+shape of the relationship between SA level and OPI scores.
+
+In Figure 1, we impose a loess line to represent the overall relationship
+between SA level and OPIc scores. A loess line is a smooth line based on local
+regression of a dependent variable (Y-variable) on an indepdent variable (X-
+variable). It helps one to see the true relationship between two variables. 
+In Figure 2, we impose four loess lines to represent the relationship
+between SA level and OPIc scores within each of the four course levels.
+In Figure 3, we impose a linear regression line to visually check to what extent
+the linear line repersents the overall relationship between SA level and OPIc 
+scores.
+In Figure 4, we impose four linear regression lines to visually check to what 
+extent the linear lines represent the relationship between SA level and OPIc 
+scores within each of the four course levels. 
+
+```{r}
+# Smooth loess lines added to jittered and colored-coded scatterplots
+ggplot(df_corr, aes(OPIC,Item1_50))+
+  geom_jitter(aes(color=Course))+
+  geom_smooth(method="loess", se=FALSE)+
+  xlim(1,9)+
+  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
+                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
+  scale_y_continuous(breaks=c(40,80,120,160,200),
+                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
+  xlab("OPIc")+
+  ylab("Self-assessment can do statements")+
+   ggtitle ("Figure 1")+
+  guides(color = guide_legend(title="course level"))
+
+ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
+  geom_jitter()+
+  geom_smooth(method="loess", se=FALSE)+
+  xlim(1,9)+
+  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
+                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
+  scale_y_continuous(breaks=c(40,80,120,160,200),
+                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
+  xlab("OPIc")+
+  ylab("Self-assessment can do statements")+
+   ggtitle("Figure 2")+
+  guides(color = guide_legend(title="course level"))
+
+# Linear regression lines added to jittered and colored-coded plots
+ggplot(df_corr, aes(OPIC,Item1_50))+
+  geom_jitter(aes(color=Course))+
+  geom_smooth(method="lm", se=FALSE)+
+  xlim(1,9)+
+  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
+                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
+  scale_y_continuous(breaks=c(40,80,120,160,200),
+                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
+  xlab("OPIc")+
+  ylab("Self-assessment can do statements")+
+   ggtitle("Figure 3")+
+  guides(color = guide_legend(title="course level"))
+
+ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
+  geom_jitter()+
+  geom_smooth(method="lm", se=FALSE)+
+  xlim(1,9)+
+  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
+                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
+  scale_y_continuous(breaks=c(40,80,120,160,200),
+                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
+  xlab("OPIc")+
+  ylab("Self-assessment can do statements")+
+   ggtitle("Figure 4")
+  guides(color = guide_legend(title="course level"))
+```
+
+\FloatBarrier
+
 # CORRELATIONS
 We examine the correlations among course level, OPIc scores, and SA level using
 the dataset df_corr (not in a long data format). As we mentioned earlier, Level
@@ -446,6 +527,13 @@ T07 <- rbind(r.ps(HC, c("OPIC"), c("Level", "Course"), digits = 2,
              r.pc(HC, c("Level", "Course"), digits = 2, pdigits = NULL))
 kable(T07, format = "latex", booktabs = TRUE, 
       caption = "Correlations among OPIc, Course, and Level") %>%
+kable_styling(latex_options = c("repeat_header"))
+
+# Use rcorr () function in Hmisc package to obtain Pearson correlations
+pcorr<-rcorr(as.matrix(df_corr[c("OPIC","Course","Item1_50","Level")]))
+T08<-pearson.format(pcorr,c("OPIC","Course","Item1_50","Level"), 2)
+kable(T08, format = "latex", booktabs = TRUE, 
+      caption = "Pearson Correlations among OPIc, Course, Item1_50 Sum, and SA Level") %>%
 kable_styling(latex_options = c("repeat_header"))
 ```
 
