@@ -2002,6 +2002,20 @@ The fact that the course effect is not significant in Table 34 tells us that we
 can really revert back to model 2a because Course doesn't have an effect after
 controlling for level and COPIC.
 
+\FloatBarrier
+
+## Conditional and Unconditional Pass Rates
+We omit calculating these rates because model 3a is not better than model 2a.
+
+\FloatBarrier
+
+## Odds-Ratio for COPIC Effect 
+We omit calculating odds-ratios because model 3a is not better than model 2a.
+
+
+
+
+
 
 
 # MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
