@@ -1468,8 +1468,25 @@ InfCases(m2a)
 \FloatBarrier
 
 ## Graphs
-We omit graphs because model 2b is better than model 2a. See the graphs for
-model 2b instead.
+
+### COPIC Effect in log odds (logits) and conditional pass rates
+
+We visualize below the level-transition-specific OPIc effect. The effect of OPIc
+decreases as we go from the lowest to the highest level transition, as evidenced
+by the decreasingly steep slope from the left-most to the right-most panel.
+
+```{r}
+visreg(m2a, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+       strip.names = TRUE, scale = "linear", 
+       xlab = "Centered OPIC Score (OPIC - 5)", 
+       ylab = "Log odds (Pass)")
+visreg(m2a, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+       strip.names = TRUE, scale = "response", rug = 2,
+       xlab = "Centered OPIC Score (OPIC - 5)", 
+       ylab = "Conditional Pass Rate")
+```
+
+\FloatBarrier
 
 \FloatBarrier
 
