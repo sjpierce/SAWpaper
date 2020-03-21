@@ -2073,7 +2073,34 @@ below.
 brier(m3a, digits = 2)
 ```
 
+\FloatBarrier
 
+### Area Under the Curve (AUC)
+The area under the receiver operating characteristic curve (AUC) measures the
+model's ability to discriminate those who pass from those who fail to pass the
+level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
+poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
+outstanding.
+
+```{r}
+print(roc.m3a)
+plot.roc(roc.m3a, print.auc = TRUE, main = "ROC Curve, Model 3a", 
+         print.thres = "best")
+```
+
+Next we compare the ROC curves for models m3a and m2a using a bootstrap test for
+the difference between the AUC values (Robin et al., 2011). 
+
+```{r}
+set.seed(1346) # For reproducible bootstrap estimates.
+roct.m2a.m3a <- roc.test(roc.m2a, roc.m3a, method = "bootstrap", boot.n = 10000)
+roct.m2a.m3a
+```
+
+```{r}
+# Get the s-value, BFB, and posterior probability of H1. 
+convertp(p = roct.m2a.m3a$p.value, digits = 2)
+```
 
 # MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
 
