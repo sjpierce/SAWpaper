@@ -529,7 +529,12 @@ kable(T07, format = "latex", booktabs = TRUE,
       caption = "Correlations among OPIc, Course, and Level") %>%
 kable_styling(latex_options = c("repeat_header"))
 
-# Use rcorr () function in Hmisc package to obtain Pearson correlations
+# Use rcorr () function in "Hmisc" package to obtain Pearson correlations
+# among two continuous variables, OPIC and Item1_50 (SA sum scores ranging
+# from 1 to 200), and two ordinal variables, Course and Level. Note that it
+# is inappropriate to use Pearson's r for ordinal variables. We include 
+# Pearson's correlations here only for comparison purposes. 
+
 pcorr<-rcorr(as.matrix(df_corr[c("OPIC","Course","Item1_50","Level")]))
 T08<-pearson.format(pcorr,c("OPIC","Course","Item1_50","Level"), 2)
 kable(T08, format = "latex", booktabs = TRUE, 
@@ -565,12 +570,16 @@ m2a <- glm(pass ~ Level + COPIC - 1, data = df_crm, family = "binomial")
 m2b <- glm(pass ~ Level + COPIC + Level*COPIC - 1, data = df_crm, 
            family = "binomial")
 
-# Model 3a: Non-parallel OPIC + parallel course effect
-m3a <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = df_crm, 
+# Model 3a: Parallel OPIC + parallel course effect
+m3a <- glm(pass ~ Level + COPIC + Course - 1, data = df_crm, 
+           family = "binomial")
+
+# Model 3b: Non-parallel OPIC + parallel course effect
+m3b <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = df_crm, 
            family = "binomial")
 
 # Create a list of the model fit objects.
-TModels <- list(m1a, m1b, m2a, m2b, m3a)
+TModels <- list(m1a, m1b, m2a, m2b, m3a, m3b)
 ```
 
 The table below shows the model parameters for the whole set of models.  
@@ -582,7 +591,7 @@ The table below shows the model parameters for the whole set of models.
 texreg(TModels, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
        single.row = TRUE, digits = 3, label = "TModels", 
        custom.model.names = c("Model 1a",  "Model 1b", "Model 2a", "Model 2b",
-                              "Model 3a"), 
+                              "Model 3a", "Model3b"), 
        caption = "Continuation-Ratio Models")
 ```
 
@@ -604,10 +613,10 @@ raw parameter estimates.
 \newpage
 
 ```{r}
-T08 <- summary(m1a)
+T10 <- summary(m1a)
 panderOptions('keep.trailing.zeros', TRUE)
 set.caption("Model 1a Summary")
-pander(T08, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+pander(T10, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
        caption = "Model 1a Summary")
 ```
 
@@ -616,22 +625,22 @@ s-values, BFBs, and posterior probabilities of H1 corresponding to the p-values
 listed above.
 
 ```{r}
-format(convertp(T08$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+format(convertp(T10$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ```
 
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 10 tests the significance of unique additional variance
+Each row in Table 12 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model.
 
 \newpage
 
 ```{r}
-T10 <- anova(m1a, test = "Chisq")
-T10 <- cbind(T10, convertp(T10[,"Pr(>Chi)"]))
-pander(T10, justify = "right", split.tables = Inf, 
+T12 <- anova(m1a, test = "Chisq")
+T12 <- cbind(T12, convertp(T12[,"Pr(>Chi)"]))
+pander(T12, justify = "right", split.tables = Inf, 
        digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
        round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
        caption = "Model 1a Sequential Tests (Type I SS): Analysis of Deviance")
@@ -640,7 +649,7 @@ pander(T10, justify = "right", split.tables = Inf,
 \FloatBarrier
 
 ## Simultaneous Tests of Main Effects via LRT (Type III SS)
-The simultaneous tests in Table 11 are the effects of the indicated terms after
+The simultaneous tests in Table 13 are the effects of the indicated terms after
 controlling for all other terms in the model. They are only computed for terms
 that are not part of a higher-order interaction because it makes no sense to
 test for a main effect when the variable is involved in an interaction. These
@@ -650,9 +659,9 @@ term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
 ```{r}
-T11 <- drop1(m1a, test = "Chisq")   
-T11 <- cbind(T11, convertp(T11[,"Pr(>Chi)"]))
-pander(T11, justify = "right", split.tables = Inf, 
+T13 <- drop1(m1a, test = "Chisq")   
+T13 <- cbind(T13, convertp(T13[,"Pr(>Chi)"]))
+pander(T13, justify = "right", split.tables = Inf, 
        digits = c(5, 8, 8, 8, 3, 4, 3, 3),
        round = c(0, 3, 3, 3, Inf, 2, 2, 2), 
        caption = "Model 1a Simultaneous Tests (Type III SS)")
@@ -697,8 +706,8 @@ m1a.ND$Pass.URate <- c(cumprod(m1a.ND[m1a.ND$Course == "100", "Pass.Rate"]),
                        cumprod(m1a.ND[m1a.ND$Course == "400", "Pass.Rate"]))
 
 ShowVars <- c("Level", "Course", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
-T12 <- m1a.ND[, ShowVars] 
-kable(T12, format = "latex", booktabs = TRUE, digits = 2, 
+T14 <- m1a.ND[, ShowVars] 
+kable(T14, format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates with 95 percent CIs and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>%
@@ -721,7 +730,7 @@ testing via Westfall's (1997) method.
 m1a.ct <- glht(m1a, linfct = mcp(Course = "Tukey"))
 m1a.mc <- summary(m1a.ct, test = adjusted("Westfall"))
 m1a.ci <- confint(m1a.ct, calpha = adjusted_calpha(test = "Westfall"))
-T13 <- data.frame(Est   = m1a.mc$test$coefficients, 
+T15 <- data.frame(Est   = m1a.mc$test$coefficients, 
                   SE    = m1a.mc$test$sigma, 
                   CI.LL = m1a.ci$confint[, "lwr"],
                   CI.UL = m1a.ci$confint[, "upr"],
@@ -733,7 +742,7 @@ T13 <- data.frame(Est   = m1a.mc$test$coefficients,
                   Sval  = p2s(m1a.mc$test$pvalues),
                   BFB   = p2bfb(m1a.mc$test$pvalues),
                   PPH1  = p2pp(m1a.mc$test$pvalues))
-kable(T13, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
+kable(T15, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
       digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2), 
       caption = paste("Multiple Comparisons for Course Effect, Westfall (1997)",
       "Adjustment for Multiplicity")) %>%
@@ -923,7 +932,7 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m1a. 
 
 ```{r}
-F1 <- ggplot(T12, aes(Level, Pass.Rate, group=Course, color=Course))+
+F1 <- ggplot(T14, aes(Level, Pass.Rate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.8))+
       xlab("SA Level Transition")+
       ylab("Conditional Pass Rate")+
@@ -938,7 +947,7 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m1a. 
 
 ```{r}
-F2 <- ggplot(T12, aes(Level, Pass.URate, group=Course, color=Course))+
+F2 <- ggplot(T14, aes(Level, Pass.URate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.65))+
       xlab("SA Level Transition")+
       ylab("Unconditional Pass Rate")+
@@ -1247,8 +1256,52 @@ pander(T22, justify = "right", split.tables = Inf,
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We omit these rates because model 2b is better than model 2a. See the results
-for model 2b instead.
+We use the inverse logit transformation to convert fitted values and associated 
+confidence intervals into the conditional probability of passing a particular 
+level transition given that the student has a particular COPIC score.
+We compute the unconditional pass rates from the conditional pass rates as sets 
+of cumulative products.
+
+```{r}
+# Create a new data frame object for use with predict()
+m2a.ND <- data.frame(Level = gl(n = 4, k = 1, length = 36, 
+                                labels = c("1", "2", "3", "4")),
+                     COPIC = rep(-4:4, each = 4), OPIC = rep(1:9, each = 4))
+
+# Compute predicted mean passing rate at each combination of Level & Course
+m2a.pred <- predict(m2a, newdata = m2a.ND, type = "link", se.fit = TRUE)
+
+# Add fitted values and CIs to the new data frame & display it.
+critval       <- qnorm(0.975) # For Wald 95% CIs
+m2a.ND$fit    <- m2a.pred$fit
+m2a.ND$se.fit <- m2a.pred$se.fit
+m2a.ND$fit.LL <- with(m2a.ND, fit - (critval * se.fit))
+m2a.ND$fit.UL <- with(m2a.ND, fit + (critval * se.fit))
+
+# Convert fitted values and CIs to probabilities. 
+m2a.ND$Pass.Rate <- invlogit(m2a.ND$fit)
+m2a.ND$Pass.LL   <- invlogit(m2a.ND$fit.LL)
+m2a.ND$Pass.UL   <- invlogit(m2a.ND$fit.UL)
+
+# Compute unconditional pass rates.
+m2a.ND$Pass.URate <- c(cumprod(m2a.ND[m2a.ND$COPIC == -4, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == -3, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == -2, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == -1, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 0, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 1, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 2, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 3, "Pass.Rate"]),
+                       cumprod(m2a.ND[m2a.ND$COPIC == 4, "Pass.Rate"]))
+
+ShowVars <- c("Level", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
+T23 <- m2a.ND[, ShowVars] 
+kable(T23, format = "latex", booktabs = TRUE, digits = 2, 
+      format.args = list(nsmall = 2),
+      caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
+                      "Unconditional Pass Rates by Level Transition and Course")) %>% 
+kable_styling(latex_options = c("repeat_header")) 
+```
 
 \FloatBarrier
 
@@ -1375,13 +1428,97 @@ c(PseudoR2 = pseudoR2(m2a, digits = 2), R2Dev = R2Dev(m2a, digits = 2))
 \FloatBarrier
 
 ## Diagnostics
-We omit model diagnostics because model 2b is better than model 2a.
+We need to run model diagnostics to see if there are any obvious problems with 
+the model. First we check for outliers and find that there are none of note.
+
+```{r}
+outlierTest(m2a)
+```
+
+Now we look at some residual plots.
+```{r}
+residualPlots(m2a, layout = c(1,3))
+```
+
+Now we look at some index plots for influence measures. We are looking for
+observations with values exceeding the cutoffs.
+
+```{r}
+# Plot Cook's Distance vs observation index.
+PlotCookD(m2a)
+
+# How many cases have high Cook's Distances (D > cutoff)?
+summary(cooks.distance(m2a))
+addmargins(table(cooks.distance(m2a) > CookDco(m2a)))
+
+# Plot Leverage (hat) values vs. observation index.
+PlotHat(m2a)
+
+# Plot Standardized Pearson Residuals vs Leverage, w/ Cook's D contours.
+plot(m2a, which = 5, id.n = 10, cex.id = .6, 
+     cook.levels = round(CookDco(m2a), digits = 3))
+abline(v = hatco(m2a), lty = 2, col = "blue")
+text(x = hatco(m2a), y = 5.7, pos = 4, col = "blue", cex = .75,
+     labels = paste("Leverage cutoff >", round(hatco(m2a), digits = 3)))
+
+# How many cases have high leverage (hat > cutoff)?
+summary(hatvalues(m2a))
+addmargins(table(hatvalues(m2b) > hatco(m2a)))
+
+# Identify cases w/ high leverage and high Cook's D. 
+InfCases(m2a)
+```
 
 \FloatBarrier
 
 ## Graphs
-We omit graphs because model 2b is better than model 2a. See the graphs for
-model 2b instead.
+
+### COPIC Effect in log odds (logits) and conditional pass rates
+
+We visualize below the level-transition-specific OPIc effect. The effect of OPIc
+decreases as we go from the lowest to the highest level transition, as evidenced
+by the decreasingly steep slope from the left-most to the right-most panel.
+
+```{r}
+visreg(m2a, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+       strip.names = TRUE, scale = "linear", 
+       xlab = "Centered OPIC Score (OPIC - 5)", 
+       ylab = "Log odds (Pass)")
+visreg(m2a, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+       strip.names = TRUE, scale = "response", rug = 2,
+       xlab = "Centered OPIC Score (OPIC - 5)", 
+       ylab = "Conditional Pass Rate")
+```
+
+\FloatBarrier
+
+### Conditional Pass Rates
+Use ggplot to generate the graph for conditional pass rates derived from model
+m2a.
+
+```{r}
+F3 <- ggplot(T23, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
+  geom_line()+ coord_cartesian(ylim = c(0, 1))+
+  xlab("SA Level Transition")+
+  ylab("Conditional Pass Rate")+
+  ggtitle(label="Conditional Pass Rates by OPIC Score and Level Transition")
+direct.label(F3, "first.polygons")
+```
+
+\FloatBarrier
+
+### Unconditional Pass Rates  
+Use ggplot to generate the graph for unconditional pass rates derived from model
+m2a.
+
+```{r}
+F4 <- ggplot(T23, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
+  geom_line()+ coord_cartesian(ylim = c(0, 1))+
+  xlab("SA Level Transition")+
+  ylab("Unconditional Pass Rate")+
+  ggtitle(label="Unconditional Pass Rates by OPIC Score and SA Level Transition")
+direct.label(F4, "first.polygons")
+```
 
 \FloatBarrier
 
@@ -1795,12 +1932,13 @@ improve the model. That will be done in model 3a.
 
 \FloatBarrier
 
-# MODEL 3A: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
+# MODEL 3A: PARALLEL COURSE + PARALLEL OPIC EFFECTS
 
-We finally test a model with a parallel course effect and a non-parallel OPIc
-effect. We add the course effect into the model after the interaction so that a
-sequential test will examine whether it adds any value beyond the non-parallel
-OPIC effect.
+We now test a model with a parallel course effect and a parallel OPIc
+effect. We want to see if course and OPIc are still significant preditors 
+of the condtional pass rates when they are simultaneously included into one 
+regression model. Model 3a tells us to what extent OPIc and Course each predicts
+the conditional pass rates, after controlling for the other predictor's effect. 
 
 ```{r}
 T31 <- summary(m3a)
@@ -1821,8 +1959,7 @@ format(convertp(T31$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 ## Sequential Tests (Type I SS)
 Each row in Table 33 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
-terms. Significant results mean adding that term improved the model. Note that 
-course actually entered the model last. 
+terms. Significant results mean adding that term improved the model. 
 
 ```{r}
 T33 <- anova(m3a, test = "Chisq")
@@ -1832,6 +1969,10 @@ pander(T33, justify = "right", split.tables = Inf,
        round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
        caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
 ```
+
+Note that Course entered the model last, and it was not significant. This 
+indicated that Course did not explain a significant amount of the variance 
+in the conditional pass rates after controlling for COPIC.
 
 \FloatBarrier
 
@@ -1854,19 +1995,23 @@ pander(T34, justify = "right", split.tables = Inf,
        caption = "Model 3a Simultaneous Tests (Type III SS)")
 ```
 
+Results of the simultaneous tests are consistent with those of the sequential 
+tests in showing that Course was no longer a significant predictor of the 
+conditional pass rates after controlling for COPIC.
+
 The fact that the course effect is not significant in Table 34 tells us that we
-can really revert back to model 2b because course doesn't have an effect after
-controlling for level, COPIC, and their interaction.
+can really revert back to model 2a because Course doesn't have an effect after
+controlling for level and COPIC.
 
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We omit calculating these rates because model 3a is not better than model 2b.
+We omit calculating these rates because model 3a is not better than model 2a.
 
 \FloatBarrier
 
 ## Odds-Ratio for COPIC Effect 
-We omit calculating odds-ratios because model 3a is not better than model 2b.
+We omit calculating odds-ratios because model 3a is not better than model 2a.
 
 \FloatBarrier
 
@@ -1909,10 +2054,10 @@ sensitivity, and specificity estimates.
 
 ```{r}
 df_crm$pred.m3a <- predict(m3a, type = "response")
-set.seed(9173) # For reproducibility of bootstrap estimates.
+set.seed(3419) # For reproducibility of bootstrap estimates.
 roc.m3a <- roc(pass ~ pred.m3a, data = df_crm, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m3a, seed = 7146), digits = 3) 
+round(lrcm(roc.m3a, seed = 6342), digits = 3) 
 ```
 
 \FloatBarrier
@@ -1944,11 +2089,11 @@ plot.roc(roc.m3a, print.auc = TRUE, main = "ROC Curve, Model 3a",
          print.thres = "best")
 ```
 
-Next we compare the ROC curves for models m2a and m2b using a bootstrap test for
+Next we compare the ROC curves for models m3a and m2a using a bootstrap test for
 the difference between the AUC values (Robin et al., 2011). 
 
 ```{r}
-set.seed(1128) # For reproducible bootstrap estimates.
+set.seed(1346) # For reproducible bootstrap estimates.
 roct.m2a.m3a <- roc.test(roc.m2a, roc.m3a, method = "bootstrap", boot.n = 10000)
 roct.m2a.m3a
 ```
@@ -1968,6 +2113,199 @@ and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
 
 ```{r}
 c(PsedoR2 = pseudoR2(m3a, digits = 2), R2Dev = R2Dev(m3a, digits = 2))
+```
+
+\FloatBarrier
+
+## Diagnostics
+We omit diagnostics because model 3a is not better than model 2a.
+
+\FloatBarrier
+
+## Graphs
+We omit graphs because model 3a is not better than model 2a. 
+
+\FloatBarrier
+
+## Conclusion
+What distinguished this model from model 2a was inclusion of the parallel course
+effect, but the Type III LRT for that effect is not-significant. We will report
+model 2a over this model on the basis of parsimony.
+
+
+# MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
+
+We finally test a model with a parallel course effect and a non-parallel OPIc
+effect. We add the course effect into the model after the interaction so that a
+sequential test will examine whether it adds any value beyond the non-parallel
+OPIC effect.
+
+```{r}
+T31 <- summary(m3b)
+set.caption("Model 3a Summary")
+pander(T31, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+       caption = "Model 3a Summary")
+```
+
+Post-process the raw model output to get additional information, including 
+s-values, BFBs, and posterior probabilities of H1.
+
+```{r}
+format(convertp(T31$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+```
+
+\FloatBarrier
+
+## Sequential Tests (Type I SS)
+Each row in Table 33 tests the significance of unique additional variance
+explained by the term on that line after controlling for all previously entered
+terms. Significant results mean adding that term improved the model. Note that 
+course actually entered the model last. 
+
+```{r}
+T33 <- anova(m3b, test = "Chisq")
+T33 <- cbind(T33, convertp(T33[,"Pr(>Chi)"]))
+pander(T33, justify = "right", split.tables = Inf, 
+       digits = c(5, 5, 5, 8, 3, 3, 4, 3, 3), 
+       round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
+       caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
+```
+
+\FloatBarrier
+
+## Simultaneous Tests of Main/Interaction Effects via LRT (Type III SS)
+The simultaneous tests in Table 34 are the effects of the indicated terms after
+controlling for all other terms in the model. They are only computed for terms
+that are not part of a higher-order interaction because it makes no sense to
+test for a main effect when the variable is involved in an interaction. These
+should be functionally equivalent to the results you get with *anova()* when you
+feed it a pair of nested models that differ only in that one model includes a
+term that is absent from the other model. They are likelihood ratio tests
+(LRTs).
+
+```{r}
+T34 <- drop1(m3b, test = "Chisq")   
+T34 <- cbind(T34, convertp(T34[,"Pr(>Chi)"]))
+pander(T34, justify = "right", split.tables = Inf, 
+       digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
+       round = c(0, 3, 0, 3, Inf, 2, 2, 2),
+       caption = "Model 3a Simultaneous Tests (Type III SS)")
+```
+
+The fact that the course effect is not significant in Table 34 tells us that we
+can really revert back to model 2b because course doesn't have an effect after
+controlling for level, COPIC, and their interaction.
+
+\FloatBarrier
+
+## Conditional and Unconditional Pass Rates
+We omit calculating these rates because model 3a is not better than model 2b.
+
+\FloatBarrier
+
+## Odds-Ratio for COPIC Effect 
+We omit calculating odds-ratios because model 3a is not better than model 2b.
+
+\FloatBarrier
+
+## Assessing Goodness of Fit, Discrimination, and Calibration
+Since we are running the continuation-ration model as a logistic regression, all
+the stadard methods for assessing goodness of fit for logistic regresion models
+apply.
+
+\FloatBarrier
+
+### Hosmer-Lemeshow goodness of fit test. 
+The null hypothesis for the Hosmer-Lemeshow test is that the data fit the model,
+so a significant result is actually undesirable because it says that the data
+don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
+which can also be examined with a calibration plot like the one shown below.
+
+The calibration plot uses the same set of bins used for the HLT. We used a
+binning method that creates bins by grouping the predicted probabilities into
+bins with a minimum width of 0.10 because that way all the values grouped
+together are quite similar.
+
+```{r}
+HLT.m3b <- HLfit(m3b, bin.method = "prob.bins", min.prob.interval = 0.1, 
+                 main = "Calibration Plot", 
+                 xlab = "Predicted Probability (minimum bin interval = 0.10)",
+                 ylab = "Observed Probability")
+HLT.m3b
+```
+
+```{r}
+# Get the s-value, BFB, and posterior probability of H1. 
+convertp(p = HLT.m3b$p.value, digits = 2)
+```
+
+\FloatBarrier
+
+### Classification 
+Here we want to examine the classification table, plus the overall accuracy,
+sensitivity, and specificity estimates.
+
+```{r}
+df_crm$pred.m3b <- predict(m3b, type = "response")
+set.seed(9173) # For reproducibility of bootstrap estimates.
+roc.m3b <- roc(pass ~ pred.m3b, data = df_crm, ci = TRUE, direction = "<",
+               ci.method = "bootstrap", boot.n = 10000)
+round(lrcm(roc.m3b, seed = 7146), digits = 3) 
+```
+
+\FloatBarrier
+
+### Brier Score
+The unscaled Brier score is an overall measure of accuracy suitable for logistic
+regression models with binary outcomes (Fenlon et al., 2018). It is the average
+prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
+Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
+making it similar to an $R^{2}$ statistic. We report the scaled Brier score 
+below.  
+
+```{r}
+brier(m3b, digits = 2)
+```
+
+\FloatBarrier
+
+### Area Under the Curve (AUC)
+The area under the receiver operating characteristic curve (AUC) measures the
+model's ability to discriminate those who pass from those who fail to pass the
+level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
+poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
+outstanding.
+
+```{r}
+print(roc.m3b)
+plot.roc(roc.m3b, print.auc = TRUE, main = "ROC Curve, Model 3a", 
+         print.thres = "best")
+```
+
+Next we compare the ROC curves for models m2a and m2b using a bootstrap test for
+the difference between the AUC values (Robin et al., 2011). 
+
+```{r}
+set.seed(1128) # For reproducible bootstrap estimates.
+roct.m2a.m3b <- roc.test(roc.m2a, roc.m3b, method = "bootstrap", boot.n = 10000)
+roct.m2a.m3b
+```
+
+```{r}
+# Get the s-value, BFB, and posterior probability of H1. 
+convertp(p = roct.m2a.m3b$p.value, digits = 2)
+```
+
+\FloatBarrier
+
+### $R^{2}$ Measures
+Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
+and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
+182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
+1997, p. 451; Cameron & Windmeijer, 1997).
+
+```{r}
+c(PsedoR2 = pseudoR2(m3b, digits = 2), R2Dev = R2Dev(m3b, digits = 2))
 ```
 
 \FloatBarrier
