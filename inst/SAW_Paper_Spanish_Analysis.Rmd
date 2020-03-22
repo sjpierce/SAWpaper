@@ -52,8 +52,6 @@ that examine the effect of course and OPIc speaking proficiency scores on the
 passing rate for each level of the Can-Do statements self-assessment. The
 objective was to validate the Can-Do test results.
 
-Test commit. Test commit 2. 
-
 \FloatBarrier
 
 ## Target Journal
