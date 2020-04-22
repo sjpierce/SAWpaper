@@ -290,6 +290,7 @@ OPIc scale.
 
 ## Descriptive Statistics
 Here we make some descriptive results reported in the manuscript reproducible. 
+
 ```{r}
 # Frequency table for maximum level achieved. 
 df_corr %>% 
