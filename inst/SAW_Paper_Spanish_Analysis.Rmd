@@ -270,10 +270,10 @@ ordinal variables.
 
 ``` {r }
 # Convert Level and Course to factors
-df_crm$Course<-as.factor(df_crm$Course)
-df_crm$Level<-as.factor(df_crm$Level)
-df_corr$Course<-as.factor(df_corr$Course)
-df_corr$Level<-as.factor(df_corr$Level)
+df_crm$Course  <- as.factor(df_crm$Course)
+df_crm$Level   <- as.factor(df_crm$Level)
+df_corr$Course <- as.factor(df_corr$Course)
+df_corr$Level  <- as.factor(df_corr$Level)
 ```
 
 We treat OPIc speaking test proficiency scores as a continuous covariate that
