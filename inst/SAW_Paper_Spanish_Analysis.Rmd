@@ -145,10 +145,12 @@ knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE,
 
 # LOAD PACKAGES & SET PACKAGE OPTIONS
 Some of the functions we use below come from a personal R package called 
-[piercer](https://github.com/sjpierce/piercer) that is available online from 
+[*piercer*](https://github.com/sjpierce/piercer) that is available online from 
 [GitHub](https://github.com). You can install it by changing the eval option in
 next chunk from FALSE to TRUE, then running that chunk. You should only need to
-do that once, unless you want to update the piercer package.
+do that once, unless you want to update the piercer package. Please read the
+installation instructions for *piercer* at https://github.com/sjpierce/piercer
+before using this next chunk. 
 
 ```{r install_piercer, eval = FALSE}
 install.packages("devtools")
