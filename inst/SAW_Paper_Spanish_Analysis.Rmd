@@ -116,7 +116,7 @@ many learners passed each LTT.
 We use continuation-ratio models to examine the proficiency levels achieved by 
 the learners. These are simply logistic regression models applied to a 
 reorganized dataset with one row of data per LTT attempted by each learner. 
-We are usign a predictive modeling approach here that tests how well OPIc scores
+We are using a predictive modeling approach here that tests how well OPIc scores
 and course predict self-assessed proficiency levels. Therefore, we evaluate the
 models according to both discrimination and calibration criteria relevant to 
 predictive models (Fenlon, O'Grady, Doherty, & Dunnion, 2018). 
@@ -509,10 +509,10 @@ Level.
 
 ```{r}
 # ovars = ordinal variables
-ovars<-c("Level", "Course")
+ovars <- c("Level", "Course")
 
 # cvars = continuous variables
-cvar<-c("OPIC")
+cvars <- c("OPIC", "Item1_50")
 
 # Use the hetcor (heterogenous correlations) in "polycor" package to get a      
 # heterogenous correlation matrix comprising Pearson correlations (if both      
@@ -520,11 +520,11 @@ cvar<-c("OPIC")
 # continuous and the other one is ordinal), and polychoric correlations (if     
 # both variables are ordinal).
 
-HC <- hetcor(as.data.frame(df_corr[, c(cvar, ovars)]),
-             ML=TRUE, use="pairwise.complete.obs")
-T07 <- rbind(r.ps(HC, c("OPIC"), c("Level", "Course"), digits = 2, 
-                  pdigits = NULL),
-             r.pc(HC, c("Level", "Course"), digits = 2, pdigits = NULL))
+HC <- hetcor(as.data.frame(df_corr[, c(cvars, ovars)]), ML=TRUE, 
+             use="pairwise.complete.obs")
+T07 <- rbind(#r.p(HC, cont = cvars, digits = 2, pdigits = NULL),
+             r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
+             r.pc(HC, ord = ovars, digits = 2, pdigits = NULL))
 kable(T07, format = "latex", booktabs = TRUE, 
       caption = "Correlations among OPIc, Course, and Level") %>%
 kable_styling(latex_options = c("repeat_header"))
