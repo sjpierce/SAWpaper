@@ -1,3 +1,15 @@
+# SAWpaper 0.3.1, 2020-04-24
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to estimate Pearson and Spearman 
+  correlations.
+* Package now relies on piercer version 0.3.4
+
+# SAWpaper 0.3.0, 2020-04-22
+* Removed `R/flattenCorrMatrix.R` file and flattenCorrMatrix() function because
+  updates to piercer pacakge make it unnecessary. 
+
+# SAWpaper 0.2.0, 2020-03-18
+* Added flattenCorrMatrix() function and associated draft of help files. 
+
 # SAWpaper 0.1.4, 2020-03-17
 * Updated Description text layout in `DESCTIPTION`. 
 
