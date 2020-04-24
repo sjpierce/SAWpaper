@@ -545,6 +545,58 @@ kable(T08, format = "latex", booktabs = TRUE,
 kable_styling(latex_options = c("repeat_header"))
 ```
 
+```{r polychoric}
+# ovars = ordinal variables
+ovars <- c("Level", "Course")
+HCa <- hetcor(as.data.frame(df_corr[, ovars]), ML=TRUE, 
+              use="pairwise.complete.obs")
+T07a  <- r.pc(HCa, ord = ovars, digits = 2, pdigits = NULL)
+```
+
+```{r polyserial}
+
+```
+
+```{r pearson}
+# Create numeric versions of Level and Course.
+df_corr %>% 
+  mutate(Level.n = as.numeric(Level),
+         Course.n = as.numeric(Course)) ->
+  df_corr
+
+# cvars = continuous variables
+cvars <- c("OPIC", "Item1_50")
+
+T07a <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
+                      method = "pearson"), 
+               n = nrow(df_corr), rn = "r.p: Level and Course")
+T07b <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
+                      method = "pearson"), 
+               n = nrow(df_corr), rn = "r.p: Level and OPIC")
+T07c <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
+                      method = "pearson"), 
+              n = nrow(df_corr), rn = "r.p: Course and OPIC")
+```
+
+```{r spearman}
+T07d <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
+                      method = "spearman"), 
+               n = nrow(df_corr), rn = "r.s: Level and Course")
+T07e <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
+                      method = "spearman"), 
+               n = nrow(df_corr), rn = "r.s: Level and OPIC")
+T07f <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
+                      method = "spearman"), 
+              n = nrow(df_corr), rn = "r.s: Course and OPIC")
+```
+
+```{r show_correlations}
+# Bind into a data frame 
+T07 <- rbind(T07a, T07b, T07c, T07d, T07e, T07f)
+
+
+```
+
 Notice that the Z-statistics are all really large, so the p-values are zero. 
 That causes all the s-values to become infinite, and the BFB values to become
 NaN (not-a-number) because we are dividing by zero in the denominator. You can
