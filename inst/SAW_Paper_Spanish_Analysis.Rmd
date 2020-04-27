@@ -581,10 +581,10 @@ T07c <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC,
 ```{r spearman}
 T07d <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
                       method = "spearman"), 
-               n = nrow(df_corr), rn = "r.s: Level and Course")
+              n = nrow(df_corr), rn = "r.s: Level and Course")
 T07e <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
                       method = "spearman"), 
-               n = nrow(df_corr), rn = "r.s: Level and OPIC")
+              n = nrow(df_corr), rn = "r.s: Level and OPIC")
 T07f <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
                       method = "spearman"), 
               n = nrow(df_corr), rn = "r.s: Course and OPIC")
