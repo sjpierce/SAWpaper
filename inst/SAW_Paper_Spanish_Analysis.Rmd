@@ -508,14 +508,25 @@ the dataset df_corr (not in a long data format). As we mentioned earlier, Level
 represents the highest level that a student reached on the SA. Polyserial
 correlation is calculated for OPIC and Course and for OPIC and Level, whereas
 polychoric correlation is calculated for the two ordinal variables, Course and
-Level.
+Level. We included both ordinal and continuous versions of selected variables to
+simplify getting both polychoric and polyserial correlations and (for comparison
+purposes only) Pearson correlations that are less appropriate for measuring some
+relationships. The names of continuous versions of variables that should be
+treated as ordinal have ".n" suffixes. We also estimated selected Spearman 
+correlations for a similar comparative purpose. 
 
 ```{r}
-# ovars = ordinal variables
-ovars <- c("Level", "Course")
+# Create numeric versions of Level and Course.
+df_corr %>% 
+  mutate(Level.n = as.numeric(Level),
+         Course.n = as.numeric(Course)) ->
+  df_corr
 
 # cvars = continuous variables
-cvars <- c("OPIC", "Item1_50")
+cvars <- c("OPIC", "Item1_50", "Level.n", "Course.n")
+
+# ovars = ordinal variables
+ovars <- c("Level", "Course")
 
 # Use the hetcor (heterogenous correlations) in "polycor" package to get a      
 # heterogenous correlation matrix comprising Pearson correlations (if both      
@@ -528,7 +539,8 @@ HC <- hetcor(as.data.frame(df_corr[, c(cvars, ovars)]), ML=TRUE,
 T07 <- rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
              r.pc(HC, ord = ovars, digits = 2, pdigits = NULL))
 kable(T07, format = "latex", booktabs = TRUE, 
-      caption = "Polychoric and Polyserial Correlations") %>%
+      digits = c(rep(x = 2, times = 5), Inf, c(2, 2, 2)),
+      caption = "Polyserial and Polychoric Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
 ```
 
@@ -538,57 +550,37 @@ Level. Note that it is inappropriate to use Pearson's r for ordinal variables.
 We include them here only for comparison purposes. 
 
 ```{r pearson}
-# Create numeric versions of Level and Course.
-df_corr %>% 
-  mutate(Level.n = as.numeric(Level),
-         Course.n = as.numeric(Course)) ->
-  df_corr
-
-# cvars = continuous variables
-cvars <- c("OPIC", "Item1_50", "Level.n", "Course.n")
-
-T07c <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
-                      method = "pearson"), 
-              n = nrow(df_corr), rn = "r.p: Level and Course")
-T07d <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
-                      method = "pearson"), 
-              n = nrow(df_corr), rn = "r.p: Level and OPIC")
-T07e <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
-                      method = "pearson"), 
-              n = nrow(df_corr), rn = "r.p: Course and OPIC")
+T08a <- r.p(HC, cont = cvars, digits = 2, pdigits = NULL)
 ```
 
 ```{r spearman}
-T07f <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
+T08b <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
                       method = "spearman"), 
               n = nrow(df_corr), rn = "r.s: Level and Course")
-T07g <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
+T08c <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
                       method = "spearman"), 
               n = nrow(df_corr), rn = "r.s: Level and OPIC")
-T07h <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
+T08d <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
                       method = "spearman"), 
               n = nrow(df_corr), rn = "r.s: Course and OPIC")
 ```
 
 ```{r show_correlations}
 # Bind into a data frame 
-rbind(T07a, T07b)
-
-T08 <- rbind(T07c, T07d, T07e, T07f, T07g, T07h) 
+T08 <- rbind(T08a, T08b, T08c, T08d) 
 T08 
 
 kable(T08, format = "latex", booktabs = TRUE, 
+      digits = c(rep(x = 2, times = 6), Inf, c(2, 2, 2)),
       caption = "Pearson and Spearman Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
-
-
 ```
 
-Notice that the Z-statistics are all really large, so the p-values are zero. 
-That causes all the s-values to become infinite, and the BFB values to become
-NaN (not-a-number) because we are dividing by zero in the denominator. You can
-read more about interpreting s-values and BFB values in Greenland (2019),
-Benjamin & Berger (2019), and Wasserstein, Schirm, & Lazar (2019). 
+Notice that the t and z-statistics are all really large, so the p-values are
+zero. That causes all the s-values to become infinite, and the BFB values to
+become NaN (not-a-number) because we are dividing by zero in the denominator.
+You can read more about interpreting s-values and BFB values in Greenland
+(2019), Benjamin & Berger (2019), and Wasserstein, Schirm, & Lazar (2019).
 
 \FloatBarrier
 
