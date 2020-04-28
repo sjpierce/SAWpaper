@@ -448,7 +448,7 @@ scores within each of the four course levels.
 # Smooth loess lines added to jittered and colored-coded scatterplots
 ggplot(df_corr, aes(OPIC,Item1_50))+
   geom_jitter(aes(color=Course))+
-  geom_smooth(method="loess", se=FALSE)+
+  geom_smooth(method="loess", se=FALSE, span = .77)+
   xlim(1,9)+
   scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
                      labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
