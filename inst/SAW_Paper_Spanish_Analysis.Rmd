@@ -456,8 +456,8 @@ ggplot(df_corr, aes(OPIC,Item1_50))+
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
   ylab("Self-assessment can do statements")+
-   ggtitle ("Figure 1")+
-  guides(color = guide_legend(title="course level"))
+  ggtitle ("Figure 1")+
+  guides(color = guide_legend(title="Course level"))
 
 ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
   geom_jitter()+
@@ -469,8 +469,8 @@ ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
   ylab("Self-assessment can do statements")+
-   ggtitle("Figure 2")+
-  guides(color = guide_legend(title="course level"))
+  ggtitle("Figure 2")+
+  guides(color = guide_legend(title="Course level"))
 
 # Linear regression lines added to jittered and colored-coded plots
 ggplot(df_corr, aes(OPIC,Item1_50))+
@@ -483,8 +483,8 @@ ggplot(df_corr, aes(OPIC,Item1_50))+
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
   ylab("Self-assessment can do statements")+
-   ggtitle("Figure 3")+
-  guides(color = guide_legend(title="course level"))
+  ggtitle("Figure 3")+
+  guides(color = guide_legend(title="Course level"))
 
 ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
   geom_jitter()+
@@ -496,8 +496,8 @@ ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
   ylab("Self-assessment can do statements")+
-   ggtitle("Figure 4")
-  guides(color = guide_legend(title="course level"))
+  ggtitle("Figure 4")+
+  guides(color = guide_legend(title="Course level"))
 ```
 
 \FloatBarrier
