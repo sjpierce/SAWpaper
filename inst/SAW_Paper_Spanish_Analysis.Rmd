@@ -594,9 +594,9 @@ T07h <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC,
 
 ```{r show_correlations}
 # Bind into a data frame 
-bind_rows(T07a, T07b, T07c, T07d, T07e, T07f, T07g, T07h) %>% 
-  select(Cor, SE, CI.LL, CI.UL, Z, t, df, Pval, Sval, BFB, PPH1) ->
-  T07
+rbind(T07a, T07b)
+rbind(T07c, T07d, T07e, T07f, T07g, T07h) 
+
 
 ```
 
