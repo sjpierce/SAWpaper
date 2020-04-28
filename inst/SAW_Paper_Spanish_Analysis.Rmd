@@ -554,7 +554,9 @@ T07a  <- r.pc(HCa, ord = ovars)
 ```
 
 ```{r polyserial}
-
+HCb <- hetcor(as.data.frame(df_corr[, c("OPIC", ovars)]), ML=TRUE, 
+              use="pairwise.complete.obs")
+T07b <- r.ps(HCb, cont = c("OPIC"), ord = ovars)
 ```
 
 ```{r pearson}
@@ -567,33 +569,34 @@ df_corr %>%
 # cvars = continuous variables
 cvars <- c("OPIC", "Item1_50")
 
-T07a <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
+T07c <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
                       method = "pearson"), 
               n = nrow(df_corr), rn = "r.p: Level and Course")
-T07b <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
+T07d <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
                       method = "pearson"), 
               n = nrow(df_corr), rn = "r.p: Level and OPIC")
-T07c <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
+T07e <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
                       method = "pearson"), 
               n = nrow(df_corr), rn = "r.p: Course and OPIC")
 ```
 
 ```{r spearman}
-T07d <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
+T07f <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
                       method = "spearman"), 
               n = nrow(df_corr), rn = "r.s: Level and Course")
-T07e <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
+T07g <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
                       method = "spearman"), 
               n = nrow(df_corr), rn = "r.s: Level and OPIC")
-T07f <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
+T07h <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
                       method = "spearman"), 
               n = nrow(df_corr), rn = "r.s: Course and OPIC")
 ```
 
 ```{r show_correlations}
 # Bind into a data frame 
-T07 <- rbind(T07a, T07b, T07c, T07d, T07e, T07f)
-
+bind_rows(T07a, T07b, T07c, T07d, T07e, T07f, T07g, T07h) %>% 
+  select(Cor, SE, CI.LL, CI.UL, Z, t, df, Pval, Sval, BFB, PPH1) ->
+  T07
 
 ```
 
