@@ -1,3 +1,14 @@
+# SAWpaper 0.3.3, 2020-04-28
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
+    * Simplify code for estimating correlations. 
+    * Eliminate loess warning messages from visualization graphs. 
+    * Improved format for correlation tables. 
+* package now relies on piercer v. 0.3.7
+
+# SAWpaper 0.3.2, 2020-04-27
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to estimate polyserial   
+  correlations.
+  
 # SAWpaper 0.3.1, 2020-04-24
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to estimate Pearson and Spearman 
   correlations.
