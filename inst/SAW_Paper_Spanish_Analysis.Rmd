@@ -525,23 +525,10 @@ cvars <- c("OPIC", "Item1_50")
 
 HC <- hetcor(as.data.frame(df_corr[, c(cvars, ovars)]), ML=TRUE, 
              use="pairwise.complete.obs")
-T07 <- rbind(#r.p(HC, cont = cvars, digits = 2, pdigits = NULL),
-             r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
+T07 <- rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
              r.pc(HC, ord = ovars, digits = 2, pdigits = NULL))
 kable(T07, format = "latex", booktabs = TRUE, 
-      caption = "Correlations among OPIc, Course, and Level") %>%
-kable_styling(latex_options = c("repeat_header"))
-
-# Use rcorr () function in "Hmisc" package to obtain Pearson correlations
-# among two continuous variables, OPIC and Item1_50 (SA sum scores ranging
-# from 1 to 200), and two ordinal variables, Course and Level. Note that it
-# is inappropriate to use Pearson's r for ordinal variables. We include 
-# Pearson's correlations here only for comparison purposes. 
-
-pcorr<-rcorr(as.matrix(df_corr[c("OPIC","Course","Item1_50","Level")]))
-T08<-pearson.format(pcorr,c("OPIC","Course","Item1_50","Level"), 2)
-kable(T08, format = "latex", booktabs = TRUE, 
-      caption = "Pearson Correlations among OPIc, Course, Item1_50 Sum, and SA Level") %>%
+      caption = "Polychoric and Polyserial Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
 ```
 
@@ -558,6 +545,11 @@ HCb <- hetcor(as.data.frame(df_corr[, c("OPIC", ovars)]), ML=TRUE,
               use="pairwise.complete.obs")
 T07b <- r.ps(HCb, cont = c("OPIC"), ord = ovars)
 ```
+
+Obtain Pearson correlations among two continuous variables, OPIC and Item1_50 
+(SA sum scores ranging from 1 to 200), and two ordinal variables, Course and 
+Level. Note that it is inappropriate to use Pearson's r for ordinal variables. 
+We include them here only for comparison purposes. 
 
 ```{r pearson}
 # Create numeric versions of Level and Course.
@@ -595,7 +587,13 @@ T07h <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC,
 ```{r show_correlations}
 # Bind into a data frame 
 rbind(T07a, T07b)
-rbind(T07c, T07d, T07e, T07f, T07g, T07h) 
+
+T08 <- rbind(T07c, T07d, T07e, T07f, T07g, T07h) 
+T08 
+
+kable(T08, format = "latex", booktabs = TRUE, 
+      caption = "Pearson and Spearman Correlations") %>%
+kable_styling(latex_options = c("repeat_header"))
 
 
 ```
