@@ -540,8 +540,11 @@ ovars <- c("Level", "Course")
 
 HC <- hetcor(as.data.frame(df_corr[, c(cvars, ovars)]), ML=TRUE, 
              use="pairwise.complete.obs")
-T07 <- rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
-             r.pc(HC, ord = ovars, digits = 2, pdigits = NULL))
+rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
+      r.pc(HC, ord = ovars, digits = 2, pdigits = NULL)) %>% 
+  mutate(Pval = format(Pval, digits = 3)) -> 
+  T07
+
 kable(T07, format = "latex", booktabs = TRUE, 
       digits = c(rep(x = 2, times = 5), Inf, c(2, 2, 2)),
       caption = "Polyserial and Polychoric Correlations") %>%
@@ -571,7 +574,11 @@ T08d <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC,
 
 ```{r show_correlations}
 # Bind into a data frame 
-T08 <- rbind(T08a, T08b, T08c, T08d) 
+rbind(T08a, T08b, T08c, T08d) %>% 
+  mutate(Pval = format(Pval, digits = 3),
+         BFB = format(BFB, digits = 3)) ->
+  T08
+
 kable(T08, format = "latex", booktabs = TRUE, 
       digits = c(rep(x = 2, times = 6), Inf, c(2, 2, 2)),
       caption = "Pearson and Spearman Correlations") %>%
