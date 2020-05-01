@@ -1,3 +1,6 @@
+# SAWpaper 0.3.4, 2020-04-30
+* Updated `DESCRIPTION` file package title by appending "Research Compendium".
+
 # SAWpaper 0.3.3, 2020-04-28
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
     * Simplify code for estimating correlations. 
