@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# SAWpaper: Self-Assessment Works Paper
+# SAWpaper: Self-Assessment Works Paper Research Compendium
 
 <!-- badges: start -->
 
@@ -12,14 +12,15 @@ status](https://www.r-pkg.org/badges/version/cstatops)](https://CRAN.R-project.o
 <!-- badges: end -->
 
 This package and corresponding GitHub repository are intended to enhance
-the reproducibility of a research paper. The principal investigators for
-the study are Dr. Paula Winke (Associate Professor) and Dr. Susan Gass
-(University Distinguished Professor), both of whom belong to the
-Department of Linguistics & Germanic, Slavic, Asian, and African
-Languages at Michigan State University. The paper analyzes data on
-Spanish language learners who took a Can-Do self-assessment test, along
-with the more authoritative OPIc language proficiency test. We did both
-correlation analyses and continuation-ratio models that examine the
+the reproducibility of a research paper by serving as a research
+compendium (Marwick, Boettiger, & Mullen, 2018). The principal
+investigators for the study are Dr. Paula Winke (Associate Professor)
+and Dr. Susan Gass (University Distinguished Professor), both of whom
+belong to the Department of Linguistics & Germanic, Slavic, Asian, and
+African Languages at Michigan State University. The paper analyzes data
+on Spanish language learners who took a Can-Do self-assessment test,
+along with the more authoritative OPIc language proficiency test. We did
+both correlation analyses and continuation-ratio models that examine the
 effect of course and OPIc speaking proficiency scores on the passing
 rate for each level of the Can-Do statements self-assessment. The
 objective was to validate the Can-Do test results.
@@ -66,40 +67,62 @@ Michigan State University, East Lansing, MI.
 
 ## Software Environment
 
-We use R Markdown to enhance reproducibility. Knitting an R Markdown
-script can generate a PDF file containing explanatory text, R code, plus
-R output (text and graphics), although it can also produce HTML or
-Markdown files too depending on the contents of the R Markdown file.
+We use R Markdown to enhance reproducibility because it provides
+excellent support for generating dynamic reports (Mair, 2016). Knitting
+an R Markdown script can generate a PDF output file containing
+explanatory text, R code, plus R output (text and graphics), although it
+can also produce HTML or Markdown files too depending on the contents of
+the R Markdown file.
 
-  - We use [RStudio (version 1.2.5033 or later)](www.rstudio.org) to
-    work with R and R markdown files. The software chain looks like
-    this: **Rmd file -\> RStudio -\> R -\> knitr -\> pandoc -\> TinyTeX
-    -\> PDF file**.
+  - We use [RStudio](www.rstudio.org) to work with R and R Markdown
+    files. The software chain looks like this: **Rmd file -\> RStudio
+    -\> R -\> knitr -\> pandoc -\> TinyTex -\> PDF file**.
+  - A version of [pandoc](https://pandoc.org/) comes bundled with
+    RStudio, but if you want the most recent version, download it from
+    <https://pandoc.org/>.
+  - We use Git (Torvalds et al., 2020) for version control, with the
+    primary (i.e., master) repository hosted online by
+    [GitHub](https://github.com/). For a short introduction to Git, see
+    Bryan (2018). There is a longer, more detailed resource on using Git
+    with R as well (Bryan et al., 2019).
   - We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
-    LaTeX files into PDF files. However, it should be viable to use
-    [MiKTeX version 2.9](https://miktex.org) instead.
+    LaTeX files produced by pandoc into PDF files. However, it may be
+    viable to use [MiKTeX](https://miktex.org) instead.
+  - This package depends on functions from the *piercer* package, which
+    is available from a public GitHub repository at
+    <https://github.com/sjpierce/piercer>. Please read and follow the
+    installation instructions for *piercer* before trying to use this
+    package.
 
 ## Installation
 
 This package is only available from a *private* repository available on
-[GitHub](https://github.com/). It is private for now because we are not
-ready to release this code yet.
-
-The package can be installed with the code shown below. If you don’t
-have *devtools* installed, uncomment that line first.
+[GitHub](https://github.com/) at at
+<https://github.com/sjpierce/SAWpaper>. It is private for now because we
+are not ready to release this code yet. The package can be installed
+with the code shown below. If you don’t have *devtools* installed,
+uncomment that line first.
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("sjpierce/SAWpaper")
 ```
 
-### Install RStudio
+### Obtain the Repository from GitHub
 
-### Install & Configure Git
+If you use Git (Torvalds et al., 2020) and have a GitHub account, either
+clone or fork and clone the package to your computer using the usual Git
+commands (Bryan, 2018; Bryan et al., 2019, Chapters 28 and 32).
+Otherwise, manually download a ZIP file from
+<https://github.com/sjpierce/SAWpaper> and unzip its contents to a
+folder. Either way, the files should end up in a folder called
+*SAWpaper* on your computer. That folder is your local copy of the
+repository.
 
-### Downloading The Repository from GitHub
-
-### Installing the Repository from a Compressed File
+Note that the package code uses relative rather than absolute folder
+path and file name references. Moving or renaming subfolders and/or
+files may cause problems. We have tested it only with the folder
+structure and file naming used in the primary repository on GitHub.
 
 ## Repository Contents
 
@@ -120,7 +143,7 @@ in the *data* folder and stored as comma separated values in text files
 ``` r
 # Load some useful packages.
 library(here)
-#> here() starts at /Users/xiaowanzhang/Desktop/self-assessment CRM 2020/SAWpaper
+#> here() starts at C:/Users/Steve/Documents/CSTAT/Clients/Winke_Paula/18-009/SAWpaper
 library(knitr)
 
 # Read in the included data files. 
@@ -265,3 +288,25 @@ below.
   - *pass*: This binary integer variable is coded 0 when the learner did
     not pass the level transition test shown in the Level variable, and
     1 when the learner pased the test.
+
+# References
+
+Bryan, J. (2018). Excuse me, do you have a moment to talk about version
+control? *The American Statistician, 72*(1), 20-27.
+[doi:10.1080/00031305.2017.1399928](https://doi.org/10.1080/00031305.2017.1399928)
+
+Bryan, J., The STAT 545 TAs, & Hester, J. (2019). Happy Git and GitHub
+for the useR. Retrieved from <https://happygitwithr.com>
+
+Mair, P. (2016). Thou shalt be reproducible\! A technology perspective.
+*Frontiers in Psychology, 7*(1079), 1-17.
+[doi:10.3389/fpsyg.2016.01079](http://dx.doi.org/10.3389/fpsyg.2016.01079)
+
+Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data
+analytical work reproducibly using R (and friends). *The American
+Statistician, 72*(1), 80-88.
+[doi:10.1080/00031305.2017.1375986](https://doi.org/10.1080/00031305.2017.1375986)
+
+Torvalds, L., Hamano, J. C., & other contributors to the Git Project.
+(2020). Git for Windows (Version 2.26.2) \[Computer program\]. Brooklyn,
+NY: Software Freedom Conservancy. Retrieved from <https://git-scm.com>
