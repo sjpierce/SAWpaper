@@ -1,3 +1,6 @@
+# SAWpaper 0.3.5, 2020-05-05
+* Updated `README.Rmd` and `README.md` files.
+
 # SAWpaper 0.3.4, 2020-04-30
 * Updated `DESCRIPTION` file package title by appending "Research Compendium".
 
