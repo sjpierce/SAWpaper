@@ -423,7 +423,7 @@ contrasts(df_crm$Course)
 We visualize the relationship of SA level with OPIc scores and course level 
 using scatterplots. We put students' OPIc scores on the x-axis and their total
 SA scores (ranging from 1 to 200) on the Y-axis. We assigned different colors to
-individual data points based on course level. We also jiggered the data 
+individual data points based on course level. We also jittered the data 
 points so that overlapping points are nudged apart and can be seen more clearly. 
 
 Additionally, we imposed lines onto the scatterplots to better illustrate the 
