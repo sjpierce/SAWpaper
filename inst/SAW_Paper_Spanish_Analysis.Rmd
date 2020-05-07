@@ -436,7 +436,7 @@ variable). It helps one to see the true relationship between two variables.
 In Figure 2, we impose four loess lines to represent the relationship
 between SA level and OPIc scores within each of the four course levels.
 In Figure 3, we impose a linear regression line to visually check to what extent
-the linear line repersents the overall relationship between SA level and OPIc 
+the linear line represents the overall relationship between SA level and OPIc 
 scores.
 In Figure 4, we impose four linear regression lines to visually check to what 
 extent the linear lines represent the relationship between SA level and OPIc 
