@@ -528,14 +528,12 @@ cvars <- c("OPIC", "Item1_50", "Level.n", "Course.n")
 ovars <- c("Level", "Course")
 
 # Use the hetcor (heterogenous correlations) in "polycor" package to get a      
-# heterogenous correlation matrix comprising Pearson correlations (if both      
-# variables are continuous), polyserial correlations (if one variable is         
-# continuous and the other one is ordinal), and polychoric correlations (if     
-# both variables are ordinal). Warning messages from hetcor() are expected in
-# this instance because polyserial correlations between ordinal and continuous 
-# versions of the same variable are not sensible. It was just faster to estimate
-# them as part of a single larger matrix than to write more code to estimate 
-# just the correlations we actually want. 
+# matrix with Pearson correlations (if both variables are continuous), 
+# polyserial correlations (if one is continuous and the other is ordinal), and 
+# polychoric correlations (if both are ordinal). Warning messages from hetcor() 
+# occur because polyserial correlations between ordinal and continuous versions
+# of the same variable are not sensible. It was just faster to estimate them as
+# part of a single larger matrix than individually get the subset we want. 
 
 HC <- hetcor(as.data.frame(df_corr[, c(cvars, ovars)]), ML=TRUE, 
              use="pairwise.complete.obs")
