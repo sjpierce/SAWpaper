@@ -153,9 +153,7 @@ installation instructions for *piercer* at https://github.com/sjpierce/piercer
 before using this next chunk. 
 
 ```{r install_piercer, eval = FALSE}
-install.packages("devtools")
-library(devtools)
-install_github("sjpierce/piercer")
+devtools::install_github("sjpierce/piercer")
 ```
 
 Load contributed R packages that we need to get additional functions. 
@@ -184,7 +182,7 @@ library(kableExtra)        # for kable_styling(), add_header_above(),
                            # column_spec(), collapse_rows(), and landscape()
 library(Hmisc)             # for rcorr()
 library(piercer)           # for p2s(), p2bfb(), p2pp(), convertp(), lrcm(), 
-                           # brier()
+                           # brier(), r.p(), r.pc(), r.pc(), ci.rpc(), ci.rp()
 ```
 
 \FloatBarrier
