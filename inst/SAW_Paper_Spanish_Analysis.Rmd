@@ -560,6 +560,9 @@ We include them here only for comparison purposes.
 T08a <- r.p(HC, cont = cvars, digits = 2, pdigits = NULL)
 ```
 
+Now obtain Spearman correlations for comparison purposes even though they are 
+not technically appropriate for our purpose. 
+
 ```{r spearman}
 T08b <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
                       method = "spearman"), 
