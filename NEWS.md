@@ -1,3 +1,10 @@
+# SAWpaper 0.3.6, 2020-05-07
+* We are now using R 4.0.0 and piercer 4.0.0.
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
+    * Improve correlation & crosstab tables. 
+    * Fix typos.
+    * Load another R package (stringr).
+
 # SAWpaper 0.3.5, 2020-05-05
 * Updated `README.Rmd` and `README.md` files.
 
