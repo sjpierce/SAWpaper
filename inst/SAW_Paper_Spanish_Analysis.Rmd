@@ -368,11 +368,18 @@ Note that Level in df_crm denotes the transitions between SA levels.
 
 ```{r}
 # Crosstab to get a look at how often people pass each level transition.  
-T04 <- addmargins(xtabs(~Level + pass, data = df_crm))
-kable(T04, format = "latex", booktabs = TRUE, 
+addmargins(xtabs(~Level + pass, data = df_crm)) %>% 
+  as_tibble(.) %>% 
+  pivot_wider(names_from = pass, values_from = n) %>% 
+  mutate(CPR = case_when(Level != "Sum" ~ `1`/Sum),
+         UPR = case_when(Level != "Sum" ~ `1`/n_distinct(df_crm$student_id))) ->
+  T04
+
+kable(T04, format = "latex", booktabs = TRUE, digits = 3,
       caption = "Crosstab Self-Assessment Level Transition by Pass") %>%
 kable_styling(latex_options = c("repeat_header")) %>% 
-add_header_above(header = c(" ", "Pass" = 2, " ")) %>% 
+add_header_above(header = c(" ", "Pass" = 2, " ", " ", " ")) %>% 
+add_header_above(header = c(" ", "Counts" = 3, "Pass Rates" = 2)) %>% 
 group_rows(group_label = "Level", bold = FALSE, start_row = 1, 
            end_row = 5) %>% 
 row_spec(row = 5, italic = TRUE) %>%
