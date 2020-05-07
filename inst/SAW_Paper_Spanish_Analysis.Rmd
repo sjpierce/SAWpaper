@@ -577,8 +577,12 @@ T08d <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC,
 ```{r show_correlations}
 # Bind into a data frame 
 rbind(T08a, T08b, T08c, T08d) %>% 
-  mutate(Pval = format(Pval, digits = 3),
-         BFB = format(BFB, digits = 3)) ->
+  mutate(Variables = word(rownames(.), 2, sep = "\\:"),
+         Type = word(rownames(.), 1, sep = "\\:"),
+         Pval = format(Pval, digits = 3),
+         BFB = format(BFB, digits = 3))  %>% 
+  select(Variables, Type, Cor, SE, CI.LL, CI.UL, t, df, Pval, Sval, BFB, 
+         PPH1) -> 
   T08
 
 kable(T08, format = "latex", booktabs = TRUE, 
