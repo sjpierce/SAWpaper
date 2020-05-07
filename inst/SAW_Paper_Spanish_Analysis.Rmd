@@ -287,7 +287,7 @@ OPIc scale.
 
 \FloatBarrier
 
-## Descriptive Statistics
+## Descriptive Statistics (Learner Data)
 Here we make some descriptive results reported in the manuscript reproducible. 
 
 ```{r}
