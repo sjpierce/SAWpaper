@@ -183,6 +183,7 @@ library(kableExtra)        # for kable_styling(), add_header_above(),
 library(Hmisc)             # for rcorr()
 library(piercer)           # for p2s(), p2bfb(), p2pp(), convertp(), lrcm(), 
                            # brier(), r.p(), r.pc(), r.pc(), ci.rpc(), ci.rp()
+library(stringr)           # for word
 ```
 
 \FloatBarrier
@@ -540,11 +541,14 @@ HC <- hetcor(as.data.frame(df_corr[, c(cvars, ovars)]), ML=TRUE,
              use="pairwise.complete.obs")
 rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
       r.pc(HC, ord = ovars, digits = 2, pdigits = NULL)) %>% 
-  mutate(Pval = format(Pval, digits = 3)) -> 
+  mutate(Variables = word(rownames(.), 2, sep = "\\:"),
+         Type = word(rownames(.), 1, sep = "\\:"),
+         Pval = format(Pval, digits = 3)) %>% 
+  select(Variables, Type, Cor, SE, CI.LL, CI.UL, Z, Pval, Sval, BFB, PPH1) -> 
   T07
 
 kable(T07, format = "latex", booktabs = TRUE, 
-      digits = c(rep(x = 2, times = 5), Inf, c(2, 2, 2)),
+      digits = c(Inf, Inf, rep(x = 2, times = 5), Inf, c(2, 2, 2)),
       caption = "Polyserial and Polychoric Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
 ```
