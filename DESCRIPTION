@@ -12,8 +12,8 @@ Authors@R:
       person(given = c("Xiaowan"),
            family = "Zhang",
            role = c("aut"),
-           email = "zhang874@msu.edu"),
-           comment = c(ORCID = "0000-0002-2570-9038"))
+           email = "zhang874@msu.edu",
+           comment = c(ORCID = "0000-0002-2570-9038")))
 Maintainer: Steven J. Pierce <pierces1@msu.edu>
 Description: This package and corresponding GitHub repository are intended to
   enhance the reproducibility of a research paper. The principal investigators 
