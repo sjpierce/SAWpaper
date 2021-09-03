@@ -4,19 +4,19 @@
 \name{SAWpaper-package}
 \alias{SAWpaper}
 \alias{SAWpaper-package}
-\title{SAWpaper: Self-Assessment Works Paper}
+\title{SAWpaper: Self-Assessment Works Paper Research Compendium}
 \description{
 This package and corresponding GitHub repository are intended to
   enhance the reproducibility of a research paper. The principal investigators 
   for the study are Dr. Paula Winke (Associate Professor) and Dr. Susan Gass
- (University Distinguished Professor), both whom are at the Department of 
- Linguistics & Germanic, Slavic, Asian, and African Languages, Michigan State 
- University. The paper analyzes data on Spanish language learners who took a 
- Can-Do self-assessment test, along with the more authoritative OPIc language 
- proficiency test. We did both correlation analyses and continuation-ratio 
- models that examine the effect of course and OPIc speaking proficiency scores 
- on the passing rate for each level of the Can-Do statements self-assessment. 
- The objective was to validate the Can-Do test results.
+  (University Distinguished Professor), both whom are at the Department of 
+  Linguistics & Germanic, Slavic, Asian, and African Languages, Michigan State 
+  University. The paper analyzes data on Spanish language learners who took a 
+  Can-Do self-assessment test, along with the more authoritative OPIc language 
+  proficiency test. We did both correlation analyses and continuation-ratio 
+  models that examine the effect of course and OPIc speaking proficiency scores 
+  on the passing rate for each level of the Can-Do statements self-assessment. 
+  The objective was to validate the Can-Do test results.
 }
 \seealso{
 Useful links:
@@ -30,7 +30,7 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Xiaowan Zhang \email{zhang874@msu.edu}
+  \item Xiaowan Zhang \email{zhang874@msu.edu} (\href{https://orcid.org/0000-0002-2570-9038}{ORCID})
 }
 
 }
