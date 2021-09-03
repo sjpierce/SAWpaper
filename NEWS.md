@@ -1,3 +1,8 @@
+# SAWpaper 0.3.7, 2021-09-03
+* Updated `DESCRIPTION` to:
+    * Fix the authors field. 
+    * Update the Roxygen version number. 
+
 # SAWpaper 0.3.6, 2020-05-07
 * We are now using R 4.0.0 and piercer 4.0.0.
 * Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
