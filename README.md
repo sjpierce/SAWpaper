@@ -27,24 +27,24 @@ objective was to validate the Can-Do test results.
 
 ## Task List
 
-  - Add disclaimer text regarding our results not being the official
+-   Add disclaimer text regarding our results not being the official
     position of the funder?
-  - Add more details about downloading and installing the repository.
-  - Update the data documentation to point toward the published data
+-   Add more details about downloading and installing the repository.
+-   Update the data documentation to point toward the published data
     archive at ICPSR.
-  - Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to integrate code from
+-   Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to integrate code from
     Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`.
-  - Copy Xiaowan’s custom functions from `CRM_Spanish_2020-2-3.Rmd` into
+-   Copy Xiaowan’s custom functions from `CRM_Spanish_2020-2-3.Rmd` into
     R scripts under `R/` folder and add roxygen documentation to
     generate help file.
-  - Fix check() warning about Undocumented data sets: ‘df\_corr’
+-   Fix check() warning about Undocumented data sets: ‘df\_corr’
     ‘df\_crm’. All user-level objects in a package should have
     documentation entries. See chapter ‘Writing R documentation files’
     in the ‘Writing R Extensions’ manual.
 
 ## Associated Research Paper
 
-Winke, P., Zhang, X., & Pierce, S. J. (2019). *Self-assessment works\!
+Winke, P., Zhang, X., & Pierce, S. J. (2019). *Self-assessment works!
 Continuation-ratio models for testing course and OPIc score effects on
 oral proficiency self-assessments*. Michigan State University, East
 Lansing, MI. Manuscript in preparation.
@@ -74,21 +74,21 @@ explanatory text, R code, plus R output (text and graphics), although it
 can also produce HTML or Markdown files too depending on the contents of
 the R Markdown file.
 
-  - We use [RStudio](www.rstudio.org) to work with R and R Markdown
-    files. The software chain looks like this: **Rmd file -\> RStudio
-    -\> R -\> knitr -\> pandoc -\> TinyTex -\> PDF file**.
-  - A version of [pandoc](https://pandoc.org/) comes bundled with
+-   We use [RStudio](www.rstudio.org) to work with R and R Markdown
+    files. The software chain looks like this: **Rmd file -&gt; RStudio
+    -&gt; R -&gt; knitr -&gt; pandoc -&gt; TinyTex -&gt; PDF file**.
+-   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.
-  - We use Git (Torvalds et al., 2020) for version control, with the
+-   We use Git (Torvalds et al., 2020) for version control, with the
     primary (i.e., master) repository hosted online by
     [GitHub](https://github.com/). For a short introduction to Git, see
     Bryan (2018). There is a longer, more detailed resource on using Git
     with R as well (Bryan et al., 2019).
-  - We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
+-   We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
     LaTeX files produced by pandoc into PDF files. However, it may be
     viable to use [MiKTeX](https://miktex.org) instead.
-  - This package depends on functions from the *piercer* package, which
+-   This package depends on functions from the *piercer* package, which
     is available from a public GitHub repository at
     <https://github.com/sjpierce/piercer>. Please read and follow the
     installation instructions for *piercer* before trying to use this
@@ -154,70 +154,70 @@ df_crm  <- read.csv(here::here("./data/DF_CRM.csv"))
 ### Learner Data File: *data/DF\_CORR.csv*
 
 This data file has one row per Spanish language learner in our study,
-with \(N = 807\) observations and 63 variables. The first few rows of
-data are shown below.
+with *N* = 807 observations and 63 variables. The first few rows of data
+are shown below.
 
 ``` r
 # Display top few rows of df_corr.
 kable(head(df_corr))
 ```
 
-| X | student\_id | Gender | Course | OPIc | OPIC | Level | Item1 | Item2 | Item3 | Item4 | Item5 | Item6 | Item7 | Item8 | Item9 | Item10 | Item11 | Item12 | Item13 | Item14 | Item15 | Item16 | Item17 | Item18 | Item19 | Item20 | Item21 | Item22 | Item23 | Item24 | Item25 | Item26 | Item27 | Item28 | Item29 | Item30 | Item31 | Item32 | Item33 | Item34 | Item35 | Item36 | Item37 | Item38 | Item39 | Item40 | Item41 | Item42 | Item43 | Item44 | Item45 | Item46 | Item47 | Item48 | Item49 | Item50 | Item1\_10 | Item11\_20 | Item21\_30 | Item31\_40 | Item41\_50 | Item1\_50 |
-| -: | :---------- | :----- | -----: | :--- | ---: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | --------: | ---------: | ---------: | ---------: | ---------: | --------: |
-| 1 | A12479352   | Female |    100 | NL   |    1 |     1 |     1 |     2 |     1 |     1 |     3 |     1 |     2 |     2 |     1 |      1 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        15 |         NA |         NA |         NA |         NA |        15 |
-| 2 | A12658221   | Male   |    200 | IL   |    4 |     1 |     3 |     4 |     4 |     4 |     3 |     3 |     3 |     3 |     3 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        33 |         NA |         NA |         NA |         NA |        33 |
-| 3 | A12711564   | Female |    200 | IL   |    4 |     2 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |
-| 4 | A12879916   | Female |    200 | IM   |    5 |     5 |     4 |     4 |     3 |     4 |     4 |     4 |     4 |     4 |     4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      3 |      4 |      4 |      3 |      3 |      4 |      3 |      3 |        39 |         40 |         39 |         38 |         34 |       190 |
-| 5 | A13226298   | Male   |    200 | NH   |    3 |     1 |     3 |     4 |     3 |     2 |     2 |     3 |     3 |     2 |     2 |      2 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        26 |         NA |         NA |         NA |         NA |        26 |
-| 6 | A13320012   | Female |    200 | NM   |    2 |     1 |     3 |     3 |     4 |     4 |     3 |     3 |     3 |     3 |     2 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        31 |         NA |         NA |         NA |         NA |        31 |
+|   X | student\_id | Gender | Course | OPIc | OPIC | Level | Item1 | Item2 | Item3 | Item4 | Item5 | Item6 | Item7 | Item8 | Item9 | Item10 | Item11 | Item12 | Item13 | Item14 | Item15 | Item16 | Item17 | Item18 | Item19 | Item20 | Item21 | Item22 | Item23 | Item24 | Item25 | Item26 | Item27 | Item28 | Item29 | Item30 | Item31 | Item32 | Item33 | Item34 | Item35 | Item36 | Item37 | Item38 | Item39 | Item40 | Item41 | Item42 | Item43 | Item44 | Item45 | Item46 | Item47 | Item48 | Item49 | Item50 | Item1\_10 | Item11\_20 | Item21\_30 | Item31\_40 | Item41\_50 | Item1\_50 |
+|----:|:------------|:-------|-------:|:-----|-----:|------:|------:|------:|------:|------:|------:|------:|------:|------:|------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|----------:|-----------:|-----------:|-----------:|-----------:|----------:|
+|   1 | A12479352   | Female |    100 | NL   |    1 |     1 |     1 |     2 |     1 |     1 |     3 |     1 |     2 |     2 |     1 |      1 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        15 |         NA |         NA |         NA |         NA |        15 |
+|   2 | A12658221   | Male   |    200 | IL   |    4 |     1 |     3 |     4 |     4 |     4 |     3 |     3 |     3 |     3 |     3 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        33 |         NA |         NA |         NA |         NA |        33 |
+|   3 | A12711564   | Female |    200 | IL   |    4 |     2 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |
+|   4 | A12879916   | Female |    200 | IM   |    5 |     5 |     4 |     4 |     3 |     4 |     4 |     4 |     4 |     4 |     4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      3 |      4 |      4 |      3 |      3 |      4 |      3 |      3 |        39 |         40 |         39 |         38 |         34 |       190 |
+|   5 | A13226298   | Male   |    200 | NH   |    3 |     1 |     3 |     4 |     3 |     2 |     2 |     3 |     3 |     2 |     2 |      2 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        26 |         NA |         NA |         NA |         NA |        26 |
+|   6 | A13320012   | Female |    200 | NM   |    2 |     1 |     3 |     3 |     4 |     4 |     3 |     3 |     3 |     3 |     2 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        31 |         NA |         NA |         NA |         NA |        31 |
 
 This is the data file to use when examining simple correlations between
 variables like OPIC and Course. The variables are described below.
 Remember that R is case-sensitive with variable names, so OPIc and OPIC
 are different (but related) variables.
 
-  - *id*: An anonymized participant identification number. Each learner
+-   *id*: An anonymized participant identification number. Each learner
     has a unique id value. The values are integer numbers.
 
-  - *Course*: The level of the Spanish language course the learner was
+-   *Course*: The level of the Spanish language course the learner was
     taking at the time of taking the self-assessment test. First year
     courses are coded 100, second year courses are coded 200, third year
     courses are coded 300, and fourth year courses are coded 400. Course
     values are stored as integers.
 
-  - *OPIc*: These two-character alphabetic codes are values for scores
+-   *OPIc*: These two-character alphabetic codes are values for scores
     on the American Council on the Teaching of Foreign Languages (ACTFL)
     Oral Proficiency Interview - Computer (OPIc) test for Spanish
     language proficiency. The possible scores, in increasing level of
     proficiency, are:
-    
-      - *NL*: Novice low.
-      - *NM*: Novice mid.
-      - *NH*: Novice high.
-      - *IL*: Intermediate low.
-      - *IM*: Intermediate mid.
-      - *IH*: Intermediate high.
-      - *AL*: Advanced low.
-      - *AM*: Advanced mid.
-      - *AH*: Advanced high.
-      - *S*: Superior (which does not occur in thie dataset).
 
-  - *OPIC*: These integer values are a simple recode of the OPIc
+    -   *NL*: Novice low.
+    -   *NM*: Novice mid.
+    -   *NH*: Novice high.
+    -   *IL*: Intermediate low.
+    -   *IM*: Intermediate mid.
+    -   *IH*: Intermediate high.
+    -   *AL*: Advanced low.
+    -   *AM*: Advanced mid.
+    -   *AH*: Advanced high.
+    -   *S*: Superior (which does not occur in thie dataset).
+
+-   *OPIC*: These integer values are a simple recode of the OPIc
     variable. The possible scores, in increasing level of proficiency,
     are:
-    
-      - *1*: Novice low.
-      - *2*: Novice mid.
-      - *3*: Novice high.
-      - *4*: Intermediate low.
-      - *5*: Intermediate mid.
-      - *6*: Intermediate high.
-      - *7*: Advanced low.
-      - *8*: Advanced mid.
-      - *9*: Advanced high.
-      - *10*: Superior (which does not occur in thie dataset).
 
-  - *Level*: These integer values show the maximum level the learner
+    -   *1*: Novice low.
+    -   *2*: Novice mid.
+    -   *3*: Novice high.
+    -   *4*: Intermediate low.
+    -   *5*: Intermediate mid.
+    -   *6*: Intermediate high.
+    -   *7*: Advanced low.
+    -   *8*: Advanced mid.
+    -   *9*: Advanced high.
+    -   *10*: Superior (which does not occur in thie dataset).
+
+-   *Level*: These integer values show the maximum level the learner
     reached on the self-assessment test based on 50 Can-Do statements.
     There are five possible levels (1 through 5), with higher values
     indicating greater self-assessed proficiency.
@@ -225,8 +225,8 @@ are different (but related) variables.
 ### Level-Transition Test Data File: *data/DF\_CRM.csv*
 
 This data file has one row per level transition test attempted by a
-learner in our study, with \(N = 1320\) observations and 66 variables.
-The first few rows of data are shown below.
+learner in our study, with *N* = 1320 observations and 66 variables. The
+first few rows of data are shown below.
 
 ``` r
 # Display top few rows of df_crm.
@@ -234,11 +234,11 @@ kable(head(df_crm))
 ```
 
 |   X | student\_id | Gender | Course | OPIc | OPIC | COPIC | Level | pass | Item1 | Item2 | Item3 | Item4 | Item5 | Item6 | Item7 | Item8 | Item9 | Item10 | Item11 | Item12 | Item13 | Item14 | Item15 | Item16 | Item17 | Item18 | Item19 | Item20 | Item21 | Item22 | Item23 | Item24 | Item25 | Item26 | Item27 | Item28 | Item29 | Item30 | Item31 | Item32 | Item33 | Item34 | Item35 | Item36 | Item37 | Item38 | Item39 | Item40 | Item41 | Item42 | Item43 | Item44 | Item45 | Item46 | Item47 | Item48 | Item49 | Item50 | Item1\_10 | Item11\_20 | Item21\_30 | Item31\_40 | Item41\_50 | Item1\_50 | Highest\_level |
-| --: | :---------- | :----- | -----: | :--- | ---: | ----: | ----: | ---: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | ----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | -----: | --------: | ---------: | ---------: | ---------: | ---------: | --------: | -------------: |
-|   1 | A12479352   | Female |    100 | NL   |    1 |   \-4 |     1 |    0 |     1 |     2 |     1 |     1 |     3 |     1 |     2 |     2 |     1 |      1 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        15 |         NA |         NA |         NA |         NA |        15 |              1 |
-|   2 | A12658221   | Male   |    200 | IL   |    4 |   \-1 |     1 |    0 |     3 |     4 |     4 |     4 |     3 |     3 |     3 |     3 |     3 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        33 |         NA |         NA |         NA |         NA |        33 |              1 |
-|   3 | A12711564   | Female |    200 | IL   |    4 |   \-1 |     1 |    1 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |              2 |
-| 810 | A12711564   | Female |    200 | IL   |    4 |   \-1 |     2 |    0 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |              2 |
+|----:|:------------|:-------|-------:|:-----|-----:|------:|------:|-----:|------:|------:|------:|------:|------:|------:|------:|------:|------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|-------:|----------:|-----------:|-----------:|-----------:|-----------:|----------:|---------------:|
+|   1 | A12479352   | Female |    100 | NL   |    1 |    -4 |     1 |    0 |     1 |     2 |     1 |     1 |     3 |     1 |     2 |     2 |     1 |      1 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        15 |         NA |         NA |         NA |         NA |        15 |              1 |
+|   2 | A12658221   | Male   |    200 | IL   |    4 |    -1 |     1 |    0 |     3 |     4 |     4 |     4 |     3 |     3 |     3 |     3 |     3 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        33 |         NA |         NA |         NA |         NA |        33 |              1 |
+|   3 | A12711564   | Female |    200 | IL   |    4 |    -1 |     1 |    1 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |              2 |
+| 810 | A12711564   | Female |    200 | IL   |    4 |    -1 |     2 |    0 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |     4 |      3 |      3 |      4 |      4 |      4 |      3 |      3 |      3 |      3 |      4 |      3 |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |     NA |        39 |         34 |         NA |         NA |         NA |        73 |              2 |
 |   4 | A12879916   | Female |    200 | IM   |    5 |     0 |     1 |    1 |     4 |     4 |     3 |     4 |     4 |     4 |     4 |     4 |     4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      3 |      4 |      4 |      3 |      3 |      4 |      3 |      3 |        39 |         40 |         39 |         38 |         34 |       190 |              5 |
 | 811 | A12879916   | Female |    200 | IM   |    5 |     0 |     2 |    1 |     4 |     4 |     3 |     4 |     4 |     4 |     4 |     4 |     4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      4 |      4 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      4 |      3 |      4 |      3 |      4 |      4 |      3 |      3 |      4 |      3 |      3 |        39 |         40 |         39 |         38 |         34 |       190 |              5 |
 
@@ -249,43 +249,43 @@ from level 1 to level 2, but failed to pass the transition test to get
 from level 2 to level 3. The variables are described in more detail
 below.
 
-  - *id*: An anonymized participant identification number. Each learner
+-   *id*: An anonymized participant identification number. Each learner
     has a unique id value. The values are integer numbers.
 
-  - *Course*: The level of the Spanish language course the learner was
+-   *Course*: The level of the Spanish language course the learner was
     taking at the time of taking the self-assessment test. First year
     courses are coded 100, second year courses are coded 200, third year
     courses are coded 300, and fourth year courses are coded 400. Course
     values are stored as integers.
 
-  - *COPIC*: These integer values are a centered version of the OPIC
+-   *COPIC*: These integer values are a centered version of the OPIC
     variable found in *df\_corr*. We centered around Intermediate-mid
     (OPIC = 5) because it is the level of proficiency expected of
     students exiting the 200-level courses. The centered scores, in
     increasing level of proficiency, are:
-    
-      - *-4*: Novice low.
-      - *-3*: Novice mid.
-      - *-2*: Novice high.
-      - *-1*: Intermediate low.
-      - *0*: Intermediate mid (expected proficiency for students after
-        200-level courses).
-      - *1*: Intermediate high.
-      - *2*: Advanced low.
-      - *3*: Advanced mid.
-      - *4*: Advanced high.
-      - *5*: Superior (which does not occur in thie dataset).
 
-  - *Level*: These integer values show which level transition test from
+    -   *-4*: Novice low.
+    -   *-3*: Novice mid.
+    -   *-2*: Novice high.
+    -   *-1*: Intermediate low.
+    -   *0*: Intermediate mid (expected proficiency for students after
+        200-level courses).
+    -   *1*: Intermediate high.
+    -   *2*: Advanced low.
+    -   *3*: Advanced mid.
+    -   *4*: Advanced high.
+    -   *5*: Superior (which does not occur in thie dataset).
+
+-   *Level*: These integer values show which level transition test from
     the Can-Do self-assessment the learner was attempting pass on a
     given row of data. There are four possible level transition tests:
-    
-      - *1*: Transition from level 1 to level 2.
-      - *2*: Transition from level 2 to level 3.
-      - *3*: Transition from level 3 to level 4.
-      - *4*: Transition from level 4 to level 5.
 
-  - *pass*: This binary integer variable is coded 0 when the learner did
+    -   *1*: Transition from level 1 to level 2.
+    -   *2*: Transition from level 2 to level 3.
+    -   *3*: Transition from level 3 to level 4.
+    -   *4*: Transition from level 4 to level 5.
+
+-   *pass*: This binary integer variable is coded 0 when the learner did
     not pass the level transition test shown in the Level variable, and
     1 when the learner pased the test.
 
@@ -298,7 +298,7 @@ control? *The American Statistician, 72*(1), 20-27.
 Bryan, J., The STAT 545 TAs, & Hester, J. (2019). Happy Git and GitHub
 for the useR. Retrieved from <https://happygitwithr.com>
 
-Mair, P. (2016). Thou shalt be reproducible\! A technology perspective.
+Mair, P. (2016). Thou shalt be reproducible! A technology perspective.
 *Frontiers in Psychology, 7*(1079), 1-17.
 [doi:10.3389/fpsyg.2016.01079](http://dx.doi.org/10.3389/fpsyg.2016.01079)
 
