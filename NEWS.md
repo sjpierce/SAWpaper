@@ -1,3 +1,32 @@
+# SAWpaper 0.3.8, 2021-09-19
+* We are using R 4.1.1 now. 
+* Updated `DESCRIPTION` to:
+    * Correct the department name in the description field. 
+    * Update Paula Winke's title. 
+    * Update the Roxygen version number. 
+* Updated `man/SAWpaper-package.Rd` to:
+    * Correct the department name in the description field. 
+    * Update Paula Winke's title. 
+* Updated `README.Rmd` and `README.md` files to:
+    * Correct the department name in the introductory text. 
+    * Update Paula Winke's title. 
+    * Update the citation for the manuscript. 
+    * Update the citations for the funding sources. 
+    * Simplify paths to data files. ♦
+    * Updated reference for Git software. 
+    * Updated Software Environment section.
+    * Remove duplicate words. 
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
+    * Simplify paths to data files. 
+    * Removed Document Infomation section. 
+    * Removed Funding Sources section to shorten output file. This topic is 
+      covered in `README.Rmd` and `README.md` anyway. 
+    * Updated Software Information section. 
+    * Fix spelling errors.
+    * Updated explanatory text and code comments about piercer package. 
+    * Load additioal packages. 
+* Added `inst/R_Citations.Rmd` script. 
+    
 # SAWpaper 0.3.7, 2021-09-03
 * Updated `DESCRIPTION` to:
     * Fix the authors field. 
