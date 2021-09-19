@@ -2489,35 +2489,32 @@ Youden, W. J. (1950). Index for rating diagnostic tests. *Cancer, 3*(1), 32-35.
 \FloatBarrier
 
 ## Software Information
-We use R Markdown to enhance reproducibility. Knitting the R Markdown script
-generates the PDF file containing explanatory text, R code, plus R output (text
-and graphics) noted in the Document Information section above.
-  
-* We use [RStudio (version 1.2.5019 or later)](www.rstudio.org) to work with 
-  R and R markdown files. The software chain looks like this:
-  **Rmd file -> RStudio -> R -> knitr -> pandoc -> TinyTeX -> PDF file**.
-* We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX files 
+We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
+script *`r knitr:::current_input()`* generates this PDF file containing 
+explanatory text, R code, plus R output (text and graphics).
+
+- We used [RStudio](www.rstudio.org) `r rstudioapi::versionInfo()$version` to 
+  work with R and R markdown files. The software chain looks like this:
+  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX or MiKTeX > PDF file**.
+- We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX files 
   into PDF files. However, it should be viable to use 
   [MiKTeX version 2.9](https://miktex.org) instead. 
-  
-\FloatBarrier
+- We used [pandoc](https://pandoc.org) `r pandoc_version()` for this 
+  document. 
 
-## Show Software Citations & Version Information.
+This document was generated using the following computational environment and 
+dependencies: 
+
 ``` {r show_citations}
-sessionInfo()
-citation("polycor")
-citation("car")
-citation("gtools")
-citation("multcomp")
-citation("visreg")
-citation("knitr")
-citation("texreg")
-citation("pander")
-citation("pROC")
-citation("ggplot2")
-citation("tidyr")
-citation("directlabels")
-citation("lattice")
-citation("modEvA")
-citation("piercer")
+# Check and report whether we used TinyTex or other LaTeX software. 
+which_latex()
+
+# Get R and R package version numbers in use.
+devtools::session_info()
+```
+
+The current Git commit details and status are:
+
+```{r git_details, echo = TRUE, eval=TRUE}
+git_report()
 ```
