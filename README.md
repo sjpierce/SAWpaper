@@ -44,10 +44,10 @@ objective was to validate the Can-Do test results.
 
 ## Associated Research Paper
 
-Winke, P., Zhang, X., & Pierce, S. J. (2019). *Self-assessment works!
-Continuation-ratio models for testing course and OPIc score effects on
-oral proficiency self-assessments*. Michigan State University, East
-Lansing, MI. Manuscript in preparation.
+Winke, P., Zhang, X., & Pierce, S. J. (2021). *A closer look at a
+marginalized test method: Self-assessment as a measure of speaking
+proficiency* \[Manuscript submitted for publication\]. Department of
+Linguistics, Languages, & Cultures, Michigan State University.
 
 ## Funding Sources
 
