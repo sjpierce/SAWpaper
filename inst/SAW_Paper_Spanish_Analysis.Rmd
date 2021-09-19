@@ -2394,21 +2394,6 @@ model 2b over this model on the basis of parsimony.
 
 \FloatBarrier
 
-## Funding Sources
-Winke, P., Gass, S., & Pierce, S. J. (08/01/2017-07/31/2018). Michigan State
-   University Language Flagship Proficiency Initiative Year 4 continuation 
-   proposal. [Award #: 0054-MSU-22-PI-280-PO2, $249,865]. Sponsor: Institute
-   of International Education. Location: Michigan State University, East 
-   Lansing, MI. 
-
-Winke, P., Gass, S., & Pierce, S. J. (01/01/2019–12/31/2019). Michigan State
-   University Language Flagship Proficiency Initiative Year 5 continuation
-   proposal. [Award #: 0054-MSU-22-PI-280-PO2, Awarded, $37,634]. Sponsor:
-   Institute of International Education. Location: Michigan State University, 
-   East Lansing, MI. 
-
-\FloatBarrier
-
 ## References
 Benjamin, D. J., & Berger, J. O. (2019). Three recommendations for improving 
 the use of p-values. *The American Statistician, 73*(Supplement 1), 186-191. 
