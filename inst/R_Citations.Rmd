@@ -1,0 +1,169 @@
+---
+title: \sffamily{\bfseries{\LARGE Self-Assessment Works! Paper (R Citations)}}
+geometry: "left=1.0in,right=1.0in,top=.75in,bottom=.75in"
+author: "Steven J. Pierce"
+output:
+ pdf_document:
+   latex_engine: xelatex
+   number_sections: true
+   toc: yes
+   toc_depth: 3
+urlcolor: blue
+header-includes:
+- \usepackage{fancyhdr}
+- \usepackage[yyyymmdd,hhmmss]{datetime}
+- \usepackage{lastpage}
+- \usepackage{fontspec}
+- \defaultfontfeatures{Ligatures=TeX}
+- \usepackage[font={small}, margin=1cm, skip=2pt]{caption}
+- \usepackage{url}
+- \usepackage{floatrow}
+- \floatplacement{figure}{!ht}
+- \floatplacement{table}{!ht}
+- \usepackage{placeins}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{dcolumn}
+- \usepackage{titling}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \pretitle{\begin{center}\LARGE\bfseries}
+- \posttitle{\end{center}}
+- \pagestyle{fancy}
+- \lhead{SAWpaper R Citations}
+- \rhead{\today\ \currenttime}
+- \lfoot{\texttt{\small \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
+- \cfoot{ }
+- \fancyfoot[R]{\thepage\ of \pageref*{LastPage}}
+- \renewcommand{\headrulewidth}{0.4pt}
+- \renewcommand{\footrulewidth}{0.4pt}
+- \fancypagestyle{plain}{\pagestyle{fancy}}
+---
+
+********************************************************************************  
+\FloatBarrier
+
+# Purpose.
+This file just produces a list of R and R package citations so that we can give 
+appropriate credit to the many people who developed or contributed to the 
+software we relied on in doing this work. It's a separate file so that we can 
+reduce redundancy across other PDF files produced by the various scripts. 
+
+Version numbers in citations will be consistent with those used in other scripts 
+if you knit this document from the same computer used for knitting those other 
+scripts. Do that immediately after knitting all the other scripts. 
+
+\FloatBarrier
+
+# Setup
+Set global R chunk options (local chunk options will over-ride global options). 
+The method for creating a size option that controls font size in code chunks and
+their text output is based on an answer to a question posted on   
+[stackoverflow.com](https://stackoverflow.com/questions/25646333/code-chunk-font-size-in-rmarkdown-with-knitr-and-latex/46526740#46526740). 
+
+``` {r global_options, cfsize = "footnotesize"}
+# Create a custom chunk hook/option for controlling font size in chunk & output.
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$cfsize != "normalsize", paste0("\n \\", options$cfsize,"\n\n", 
+                                              x, "\n\n \\normalsize"), x)
+  })
+
+# Global chunk options (over-ridden by local chunk options)
+knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE, 
+                      message = TRUE, warning = TRUE, cfsize = "footnotesize")
+
+# Declare location of this script relative to the project root directory.
+here::i_am(path = "inst/R_Citations.Rmd")
+```
+
+Load R packages that we need to get additional functions. 
+
+``` {r load_packages}
+library(here)             # for here()
+library(rmarkdown)        # for render()
+library(piercer)          # for git_report(), which_latex()
+```
+
+\FloatBarrier
+
+# Project Information
+These materials are scholarly products based on research funded by the following 
+grants. 
+
+Winke, P., Gass, S., & Pierce, S. J. (08/01/2017–12/31/2018). 
+*Michigan State University Language Flagship Proficiency Initiative Year 4 continuation proposal* 
+(Award #: 0054-MSU-22-PI-280-PO2) [Grant]. Institute of International Education. 
+
+Winke, P., Gass, S., & Pierce, S. J. (01/01/2019–12/31/2019). 
+*Michigan State University Language Flagship Proficiency Initiative Year 5 continuation proposal* 
+(Award #: 0054-MSU-22-PI-280-PO2) [Grant]. Institute of International Education. 
+
+\FloatBarrier
+
+# Software Information
+We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
+script *`r knitr:::current_input()`* generates this PDF file.
+
+- We used [RStudio](www.rstudio.org) `r rstudioapi::versionInfo()$version` to 
+  work with R and R markdown files. The software chain looks like this:
+  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX or MiKTeX > PDF file**.
+- We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
+  files into PDF files. However, it should be viable to use 
+  [MiKTeX](https://miktex.org) instead. 
+- We used [pandoc](https://pandoc.org) `r pandoc_version()` for this 
+  document. 
+
+This document was generated using the following computational environment and 
+dependencies: 
+
+``` {r show_citations}
+# Check and report whether we used TinyTex or other LaTeX software. 
+which_latex()
+
+# RStudio citation.
+rstudioapi::versionInfo()
+
+# Get R citation.
+citation() 
+
+
+# Get package citations.
+
+#citation("assertthat")
+citation("car")
+citation("devtools")
+citation("directlabels")
+citation("dplyr")
+citation("git2r")
+citation("ggplot2")
+citation("haven")
+citation("here")
+citation("Hmisc")
+citation("kableExtra")
+citation("knitr")
+citation("lattice")
+citation("modEvA")
+citation("multcomp")
+citation("pander")
+citation("piercer")
+citation("polycor")
+citation("pROC")
+citation("rmarkdown")
+citation("sjlabelled")
+citation("stringr")
+citation("SAWpaper")
+citation("texreg")
+citation("tidyr")
+citation("tinytex")
+citation("visreg")
+#citation("utils")
+
+```
+
+The current Git commit details and status are:
+
+```{r git_details, echo = TRUE, eval=TRUE}
+git_report()
+```
