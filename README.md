@@ -72,9 +72,10 @@ explanatory text, R code, plus R output (text and graphics), although it
 can also produce HTML or Markdown files too depending on the contents of
 the R Markdown file.
 
--   We use [RStudio](www.rstudio.org) to work with R and R Markdown
-    files. The software chain looks like this: **Rmd file -&gt; RStudio
-    -&gt; R -&gt; knitr -&gt; pandoc -&gt; TinyTex -&gt; PDF file**.
+-   We used [RStudio](www.rstudio.org) 1.4.1717 to work with R and R
+    markdown files. The software chain looks like this: **Rmd file &gt;
+    RStudio &gt; R &gt; rmarkdown &gt; knitr &gt; pandoc &gt; TinyTeX or
+    MiKTeX &gt; PDF file**.
 -   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.

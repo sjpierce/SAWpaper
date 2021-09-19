@@ -70,9 +70,9 @@ script can generate a PDF output file containing explanatory text, R code, plus
 R output (text and graphics), although it can also produce HTML or Markdown
 files too depending on the contents of the R Markdown file.
 
-- We use [RStudio](www.rstudio.org) to work with R and R Markdown files. The 
-  software chain looks like this:
-  **Rmd file -> RStudio -> R -> knitr -> pandoc -> TinyTex -> PDF file**. 
+- We used [RStudio](www.rstudio.org) `r rstudioapi::versionInfo()$version` to 
+  work with R and R markdown files. The software chain looks like this:
+  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX or MiKTeX > PDF file**.
 - A version of [pandoc](https://pandoc.org/) comes bundled with RStudio, but if 
   you want the most recent version, download it from https://pandoc.org/. 
 - We use Git (Torvalds et al., 2021) for version control, with the primary 
