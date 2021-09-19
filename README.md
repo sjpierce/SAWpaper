@@ -141,7 +141,7 @@ in the *data* folder and stored as comma separated values in text files
 ``` r
 # Load some useful packages.
 library(here)
-#> here() starts at C:/Users/Steve/Documents/CSTAT/Clients/Winke_Paula/18-009/SAWpaper
+#> here() starts at P:/Consulting/FY18/Winke_Paula/18-009/SAWpaper
 library(knitr)
 
 # Read in the included data files. 
