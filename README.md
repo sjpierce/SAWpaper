@@ -96,11 +96,10 @@ the R Markdown file.
 ## Installation
 
 This package is only available from a *private* repository available on
-[GitHub](https://github.com/) at at
-<https://github.com/sjpierce/SAWpaper>. It is private for now because we
-are not ready to release this code yet. The package can be installed
-with the code shown below. If you don’t have *devtools* installed,
-uncomment that line first.
+[GitHub](https://github.com/) at <https://github.com/sjpierce/SAWpaper>.
+It is private for now because we are not ready to release this code yet.
+The package can be installed with the code shown below. If you don’t
+have *devtools* installed, uncomment that line first.
 
 ``` r
 # install.packages("devtools")
