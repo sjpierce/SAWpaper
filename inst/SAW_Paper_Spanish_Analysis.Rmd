@@ -2409,14 +2409,6 @@ Winke, P., Gass, S., & Pierce, S. J. (01/01/2019–12/31/2019). Michigan State
 
 \FloatBarrier
 
-## Document Information
-Folder: *`r getwd()`*
-
-* Script: *`r knitr:::current_input()`*
-* Output: *`r sub(".Rmd", ".pdf", knitr:::current_input())`*
-
-\FloatBarrier
-
 ## References
 Benjamin, D. J., & Berger, J. O. (2019). Three recommendations for improving 
 the use of p-values. *The American Statistician, 73*(Supplement 1), 186-191. 
