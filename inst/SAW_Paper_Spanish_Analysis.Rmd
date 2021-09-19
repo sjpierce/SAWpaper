@@ -200,8 +200,8 @@ continuation-ratio models in the context of logistic regression. Other analyses
 (i.e., correlational analyses) are performed based on the data frame of df_corr.
 
 ```{r}
-df_corr <- read.csv(here::here("./data/df_corr.csv"))
-df_crm  <- read.csv(here::here("./data/df_crm.csv"))
+df_corr <- read.csv(here::here("data/df_corr.csv"))
+df_crm  <- read.csv(here::here("data/df_crm.csv"))
 ```
 
 Now explore the structure of the two data frames, df_crm and df_corr. 

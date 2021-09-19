@@ -131,8 +131,8 @@ library(here)
 library(knitr)
 
 # Read in the included data files. 
-df_corr <- read.csv(here::here("./data/DF_CORR.csv"))
-df_crm  <- read.csv(here::here("./data/DF_CRM.csv"))
+df_corr <- read.csv(here::here("data/DF_CORR.csv"))
+df_crm  <- read.csv(here::here("data/DF_CRM.csv"))
 ```
 
 ### Learner Data File: *data/DF_CORR.csv*
