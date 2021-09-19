@@ -161,6 +161,7 @@ library(multcomp)          # for glht()
 library(visreg)            # for visreg()
 # Set package options. 
 # options(knitr.kable.NA = '0.00')
+library(rmarkdown)         # for render(), pandoc_version(). 
 library(knitr)             # for kable()
 library(texreg)            # for texreg()
 library(pander)            # for pander()
