@@ -236,10 +236,10 @@ different denotations in the two data frames. In df_corr, Level denotes the five
 levels of Can-Do statements on the self-assessment, whereas in df_crm, Level
 represents the transitions that exist between every two adjacent
 self-assessment levels. The relationship between the two Level variables is
-illustrated in this disgram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is
+illustrated in this diagram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is
 represented by the numbers, and Level in df_crm is represented by the arrows
 connecting the numbers. In total, there are 4 transitions (Level in df_crm)
-among the 5 levels (Level in df_corr) of can-do statments on the
+among the 5 levels (Level in df_corr) of can-do statements on the
 self-assessment.
 
 Unlike df_corr where there is one row per learner with Level indicating the
@@ -439,7 +439,7 @@ shape of the relationship between SA level and OPI scores.
 
 In Figure 1, we impose a loess line to represent the overall relationship
 between SA level and OPIc scores. A loess line is a smooth line based on local
-regression of a dependent variable (Y-variable) on an indepdent variable (X-
+regression of a dependent variable (Y-variable) on an independent variable (X-
 variable). It helps one to see the true relationship between two variables. 
 In Figure 2, we impose four loess lines to represent the relationship
 between SA level and OPIc scores within each of the four course levels.
