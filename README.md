@@ -78,7 +78,7 @@ the R Markdown file.
 -   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.
--   We use Git (Torvalds et al., 2020) for version control, with the
+-   We use Git (Torvalds et al., 2021) for version control, with the
     primary (i.e., master) repository hosted online by
     [GitHub](https://github.com/). For a short introduction to Git, see
     Bryan (2018). There is a longer, more detailed resource on using Git
@@ -306,5 +306,6 @@ Statistician, 72*(1), 80-88.
 [doi:10.1080/00031305.2017.1375986](https://doi.org/10.1080/00031305.2017.1375986)
 
 Torvalds, L., Hamano, J. C., & other contributors to the Git Project.
-(2020). Git for Windows (Version 2.26.2) \[Computer program\]. Brooklyn,
-NY: Software Freedom Conservancy. Retrieved from <https://git-scm.com>
+(2021). Git for Windows (Version 2.33.0.2) \[Computer program\].
+Brooklyn, NY: Software Freedom Conservancy. Retrieved from
+<https://git-scm.com>
