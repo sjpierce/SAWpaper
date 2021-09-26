@@ -27,13 +27,14 @@ the Can-Do test results.
 
 ## Task List
 
--   Add disclaimer text regarding our results not being the official
-    position of the funder?
--   Add more details about downloading and installing the repository.
+-   Add new script to import data from SPSS files.
+-   Add a script to generate dataset documentation, possibly via the
+    codebook package.
 -   Update the data documentation to point toward the published data
     archive at ICPSR.
--   Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to integrate code from
-    Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`.
+-   Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
+    -   Integrate code from Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`?
+    -   Read data from imported .RData file rather than CSV files.
 -   Copy Xiaowan’s custom functions from `CRM_Spanish_2020-2-3.Rmd` into
     R scripts under `R/` folder and add roxygen documentation to
     generate help file.
@@ -41,6 +42,7 @@ the Can-Do test results.
     ‘df\_crm’. All user-level objects in a package should have
     documentation entries. See chapter ‘Writing R documentation files’
     in the ‘Writing R Extensions’ manual.
+-   Add package citation information.
 
 ## Associated Research Paper
 
