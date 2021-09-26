@@ -113,29 +113,80 @@ our scripts to produce PDF output.
 - We recommend frequently updating your installed R packages. 
 
 ## Installation
-This package is only available from a *private* repository available on 
-[GitHub](https://github.com/) at https://github.com/sjpierce/SAWpaper. It is
-private for now because we are not ready to release this code yet. The package 
-can be installed with the code shown below. If you don't have
-*devtools* installed, uncomment that line first. 
-
-```r
-# install.packages("devtools")
-devtools::install_github("sjpierce/SAWpaper")
-```
+This *SAWpaper* package is only available from a *private* repository available 
+on [GitHub](https://github.com/) at https://github.com/sjpierce/SAWpaper. It 
+will remain private until we are ready to release the code, which will likely
+coincide with publication of the associated paper. After that, we will make it a
+public repository.
 
 ### Obtain the Repository from GitHub
 If you use Git (Torvalds et al., 2020) and have a GitHub account, either clone
 or fork and clone the package to your computer using the usual Git commands
-(Bryan, 2018; Bryan et al., 2019, Chapters 28 and 32). Otherwise, manually
+(Bryan, 2018; Bryan et al., n.d., Chapters 28 and 32). Otherwise, manually
 download a ZIP file from https://github.com/sjpierce/SAWpaper and unzip its
 contents to a folder. Either way, the files should end up in a folder called
-*SAWpaper* on your computer. That folder is your local copy of the repository.
+`SAWpaper` on your computer. That folder is your local copy of the repository.
 
 Note that the package code uses relative rather than absolute folder path and
 file name references. Moving or renaming subfolders and/or files may cause
 problems. We have tested it only with the folder structure and file naming used
 in the primary repository on GitHub.
+
+### Install the *devtools* Package from CRAN
+You will need to install the [*devtools*](https://devtools.r-lib.org/) package 
+before you install *piercer* in the next step. You can find *devtools* 
+[on CRAN](https://cran.r-project.org/web/packages/devtools/index.html) and 
+[on GitHub](https://github.com/r-lib/devtools). The code below will allow you 
+to install the current release version from CRAN. 
+
+```r
+install.packages("devtools")
+```
+
+```{r install-devtools-from-CRAN, echo = FALSE, eval = FALSE}
+install.packages("devtools")
+```
+
+### Install the *piercer* Package from GitHub
+Please read and follow the installation instructions for *piercer* at https://github.com/sjpierce/piercer before trying to use this package. 
+
+### Install the *SAWpaper* Package from GitHub
+Once the steps above are done, use the following code in the R console to 
+install the *SAWpaper* package. This package doesn't have any custom functions,
+so this step is mostly just adds some help system documentation and ensures 
+that the version number for the package will show up in the output files. Note 
+the files this step places on your computer will be in your personal R package
+library rather than in the local repository folder.
+
+```r
+devtools::install_github("sjpierce/SAWpaper")
+```
+
+```{r install-piercer-from-GitHub, echo = FALSE, eval = FALSE}
+devtools::install_github("sjpierce/SAWpaper")
+```
+
+### Install Additional R Packages from CRAN
+Scripts in this R package depend on having a number of other R packages 
+installed. Those packages are available from CRAN and can be installed by 
+running the following code in the R console. 
+
+```r 
+install.packages(pkgs = c("car", "directlabels", "dplyr", "fs", "ggplot2", 
+                          "Hmisc", "here", "kableExtra", "knitr", "lattice", 
+                          "modEVA", "multcomp", "pander", "polycor", "pROC",
+                          "rmarkdown", "stringr", "texreg", "tidyr", "visreg"))
+```
+
+```{r install-pkgs-from-CRAN, echo = FALSE, eval=FALSE}
+install.packages(pkgs = c("car", "directlabels", "dplyr", "fs", "ggplot2", 
+                          "Hmisc", "here", "kableExtra", "knitr", "lattice", 
+                          "modEVA", "multcomp", "pander", "polycor", "pROC",
+                          "rmarkdown", "stringr", "texreg", "tidyr", "visreg"))
+```
+
+Once you have completed this step, you should be ready to use this package to
+reproduce our results. 
 
 ## Repository Contents 
 This repository contains data files, the R markdown scripts used to analyze 
