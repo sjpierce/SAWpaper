@@ -12,6 +12,12 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
+
+```{r load-packages, include = FALSE}
+library(fs)    # for dir_tree()
+library(here)  # for here()
+```
+
 # SAWpaper: Self-Assessment Works Paper Research Compendium
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
