@@ -63,6 +63,13 @@ State University Language Flagship Proficiency Initiative Year 5
 continuation proposal* (Award \#: 0054-MSU-22-PI-280-PO2) \[Grant\].
 Institute of International Education.
 
+## Disclaimer
+
+The opinions or points of view expressed in this research compendium and
+the associated manuscript are solely those of the authors and do not
+reflect the official positions of any organization or the Institute of
+International Education.
+
 ## Software Environment
 
 We use R Markdown to enhance reproducibility because it provides
