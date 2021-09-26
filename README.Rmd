@@ -189,12 +189,60 @@ Once you have completed this step, you should be ready to use this package to
 reproduce our results. 
 
 ## Repository Contents 
+The diagram below shows the subfolders nested under the `SAWpaper` folder 
+when we last knitted the` README.Rmd file`. Individual files are omitted. 
+Our scripts are all designed to use path names relative to the `SAWpaper` 
+folder, usually by calling the `here::here()` function, which locates the
+`SAWpaper` folder on your computer and fills in the path up to that point. That
+increases portability of the repository.
+
+```{r show-folders}
+dir_tree(path = here(), recurse = TRUE, type = "any")
+```
+
+We are aiming for a folder structure that fully complies with the R package 
+structure conventions used on [CRAN](https://cran.r-project.org/) 
+and discussed in Wickham and Bryan (2020, https://r-pkgs.org). Those prescribe
+certain folder names, paths, and contents.
+
+* The `SAWpaper` folder holds some files required for an R package, plus a set 
+  of subfolders.
+* The `data` subfolder holds only .RData and .Rds files 
+  (https://r-pkgs.org/data.html) created by our scripts. It will be empty when
+  you first copy the repository to your computer. 
+* The `inst` subfolder is where we store our R Markdown (.Rmd) scripts 
+  for data management and analysis, associated PDF output files, and other 
+  files. 
+* The `inst/extdata` subfolder is where our scripts will look for 
+  external data files that are not stored in either .RData or .Rds file formats
+  (https://r-pkgs.org/data.html). Thus, this is where you would need to put the 
+  raw data files. 
+* The `man` folder stores R help files associated with the package. 
+  These are generally updated by processes used when building the package such 
+  as running `devtools::document()` and `devtools::check()`. Those commands 
+  read files from the roxygen comments in files stored in `SAWpaper/R` and 
+  extract the help documentation. 
+* The `R` folder normally holds R scripts (.R files) used to define the custom
+  functions developed for and used in the package. These scripts should contain
+  comments formatted for use by the *roxygen2* package that are used to automate 
+  building the help files for the package and its custom functions. *SAWpaper*
+  does not yet contain any custom functions (those got moved over to *piercer*).
+  
+  
 This repository contains data files, the R markdown scripts used to analyze 
 them, plus the output from when we ran the scripts. There is considerably more
 raw statistical output than we could put directly into the resulting manuscript.
 That is preserved here for the sake of reproducibility and completeness of 
 reporting. We also include other files necessary to work with the repository in 
 RStudio and GitHub and to build the R package from the repository files. 
+
+To reproduce our results, use RStudio to open the RStudio project file called
+`SAWpaper/SAWpaper.proj`, which should be in the local repository folder on your
+computer. Then, use RStudio to open and knit the following files in this 
+order.
+
+- `SAWpaper/inst/SAW_Paper_Spanish_Analysis.Rmd`
+- `SAWpaper/inst/R_Citations.Rmd`
 
 ## Data File Documentation
 There are some data files included in this repository. The are located in the
