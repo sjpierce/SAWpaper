@@ -70,20 +70,31 @@ excellent support for generating dynamic reports (Mair, 2016). Knitting
 an R Markdown script can generate a PDF output file containing
 explanatory text, R code, plus R output (text and graphics), although it
 can also produce HTML or Markdown files too depending on the contents of
-the R Markdown file.
+the R Markdown file. We have designed our scripts to produce PDF output.
 
--   We used [RStudio](www.rstudio.org) 1.4.1717 to work with R and R
-    markdown files. The software chain looks like this: **Rmd file &gt;
-    RStudio &gt; R &gt; rmarkdown &gt; knitr &gt; pandoc &gt; TinyTeX or
-    MiKTeX &gt; PDF file**.
+-   We used the [R statistical software](https://www.r-project.org/) to
+    do data management and run our analyses. You will need R to to
+    reproduce our results. We recommend using the most recent stable
+    release of R available from the [Comprehensive R Archive Network
+    (CRAN)](https://cran.r-project.org/).
+-   We used [RStudio](www.rstudio.org) 1.4.1717 (RStudio Team, 2021) to
+    work with R and R Markdown files. RStudio is an excellent integrated
+    development environment (IDE). We recommend using the most recent
+    stable release available. The software chain for R Markdown looks
+    like this: **Rmd file &gt; RStudio &gt; R &gt; rmarkdown &gt;
+    knitr &gt; pandoc &gt; TinyTeX or MiKTeX &gt; PDF file**.
 -   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.
 -   We use Git (Torvalds et al., 2021) for version control, with the
-    primary (i.e., master) repository hosted online by
+    primary (i.e., main) repository hosted online by
     [GitHub](https://github.com/). For a short introduction to Git, see
     Bryan (2018). There is a longer, more detailed resource on using Git
-    with R as well (Bryan et al., 2019).
+    with R at the [Happy Git and GitHub for the
+    userR](https://happygitwithr.com) website (Bryan et al., n.d.).
+    Other useful resources on using Git and GitHub include Bryan
+    2018. and Perez-Riverol et al. (2016). Chacon and Straub (2014) is a
+          full book on using Git for version control.
 -   We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
     LaTeX files produced by pandoc into PDF files. However, it may be
     viable to use [MiKTeX](https://miktex.org) instead.
@@ -92,6 +103,9 @@ the R Markdown file.
     <https://github.com/sjpierce/piercer>. Please read and follow the
     installation instructions for *piercer* before trying to use this
     package.
+-   Wickham and Bryan (n.d.) provides extensive guidance on creating R
+    packages.
+-   We recommend frequently updating your installed R packages.
 
 ## Installation
 
