@@ -270,6 +270,16 @@ following files in this order.
 -   `SAWpaper/inst/SAW_Paper_Spanish_Analysis.Rmd`
 -   `SAWpaper/inst/R_Citations.Rmd`
 
+## Obtaining Data Files
+
+The data files required to use this package are not available in the
+GitHub repository. We plan to deposit them with the [Inter-university
+Consortium for Political and Social
+Research](https://www.icpsr.umich.edu/). Once we have done so, we will
+update this section with the reference and a link to the deposited
+materials. After you get the files, put them all in the subfolder called
+`SAWpaper/inst/extdata`.
+
 ## Data File Documentation
 
 There are some data files included in this repository. The are located
