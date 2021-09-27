@@ -154,7 +154,7 @@ package and various parts of this script will not work.
 Load contributed R packages that we need to get additional functions. 
 
 ``` {r load_packages}
-library(here)         # for here()
+library(here)              # for here()
 library(polycor)           # for hetcor()
 library(car)               # for residualPlots(), influenceIndexPlot(), outlierTest()
 library(multcomp)          # for glht()
