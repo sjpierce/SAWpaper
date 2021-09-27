@@ -1,3 +1,16 @@
+# SAWpaper 0.3.9, 2021-09-26
+* Updated `README.Rmd` and `README.md` files to:
+   * Add a chunk name for global-options chunk.
+   * Load some packages. 
+   * Add a Disclaimer section. 
+   * Improve the Software Environment section.
+   * Improve the Installation section. 
+   * Improve the Repository Contents section.
+   * Add the Obtaining Data Files section.
+   * Update References section. 
+   * Update the Task List section. 
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to fix alignment of a comment. 
+
 # SAWpaper 0.3.8, 2021-09-19
 * We are using R 4.1.1 now. 
 * Updated `DESCRIPTION` to:
