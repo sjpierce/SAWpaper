@@ -159,7 +159,7 @@ library rather than in the local repository folder.
 devtools::install_github("sjpierce/SAWpaper")
 ```
 
-```{r install-piercer-from-GitHub, echo = FALSE, eval = FALSE}
+```{r install-SAWpaper-from-GitHub, echo = FALSE, eval = FALSE}
 devtools::install_github("sjpierce/SAWpaper")
 ```
 
