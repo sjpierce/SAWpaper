@@ -381,8 +381,14 @@ Bryan, J. (2018). Excuse me, do you have a moment to talk about version control?
 *The American Statistician, 72*(1), 20-27. 
 [doi:10.1080/00031305.2017.1399928](https://doi.org/10.1080/00031305.2017.1399928)
 
-Bryan, J., The STAT 545 TAs, & Hester, J. (2019). Happy Git and GitHub for the 
-useR. Retrieved from https://happygitwithr.com
+Bryan, J., & Hester, J. (n.d.). *What they forgot to teach you about R*. 
+https://rstats.wtf
+
+Bryan, J., The STAT 545 TAs, & Hester, J. (n.d.). *Happy Git and GitHub for the 
+useR*. https://happygitwithr.com
+
+Chacon, S., & Straub, B. (2014). *Pro Git* (2nd. ed.) [PDF file]. Apress Media.
+https://git-scm.com/book/en/v2 
 
 Mair, P. (2016). Thou shalt be reproducible! A technology perspective.
 *Frontiers in Psychology, 7*(1079), 1-17. 
@@ -392,6 +398,18 @@ Marwick, B., Boettiger, C., & Mullen, L. (2018). Packaging data analytical work
 reproducibly using R (and friends). *The American Statistician, 72*(1), 80-88.
 [doi:10.1080/00031305.2017.1375986](https://doi.org/10.1080/00031305.2017.1375986)
 
+Perez-Riverol, Y., Gatto, L., Wang, R., Sachsenberg, T., Uszkoreit, J., 
+Leprevost, F. d. V., . . . Vizcaíno, J. A. (2016). Ten simple rules for taking
+advantage of Git and GitHub. *PLoS Computational Biology, 12*(7), e1004947. 
+https://doi.org/10.1371/journal.pcbi.1004947
+
+RStudio Team. (2021). RStudio: Integrated development for R (Version 1.4.1717) 
+[Computer software]. RStudio, Inc. https://rstudio.com
+
 Torvalds, L., Hamano, J. C., & other contributors to the Git Project. (2021).
-Git for Windows (Version 2.33.0.2) [Computer program]. Brooklyn, NY: Software 
-Freedom Conservancy. Retrieved from https://git-scm.com
+Git for Windows (Version 2.33.0.2) [Computer program]. Software Freedom
+Conservancy. Retrieved from https://git-scm.com
+
+Wickham, H., & Bryan, J. (2021). 
+*R packages: Organize, test, document, and share your code* (2nd ed.). 
+[Website, online book in preparation]. O'Reilly Media. https://r-pkgs.org
