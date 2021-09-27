@@ -199,6 +199,11 @@ locates the `SAWpaper` folder on your computer and fills in the path up
 to that point. That increases portability of the repository.
 
 ``` r
+# Load some useful packages. 
+library(fs)    # for dir_tree()
+library(here)  # for here()
+#> here() starts at P:/Consulting/FY18/Winke_Paula/18-009/SAWpaper
+# Show diagram of SAWpaper folder contents.
 dir_tree(path = here(), recurse = TRUE, type = "any")
 #> P:/Consulting/FY18/Winke_Paula/18-009/SAWpaper
 #> +-- data
@@ -291,7 +296,6 @@ in the *data* folder and stored as comma separated values in text files
 ``` r
 # Load some useful packages.
 library(here)
-#> here() starts at P:/Consulting/FY18/Winke_Paula/18-009/SAWpaper
 library(knitr)
 
 # Read in the included data files. 

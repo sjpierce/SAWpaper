@@ -13,11 +13,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r load-packages, include = FALSE}
-library(fs)    # for dir_tree()
-library(here)  # for here()
-```
-
 # SAWpaper: Self-Assessment Works Paper Research Compendium
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -199,6 +194,11 @@ folder, usually by calling the `here::here()` function, which locates the
 increases portability of the repository.
 
 ```{r show-folders}
+# Load some useful packages. 
+library(fs)    # for dir_tree()
+library(here)  # for here()
+
+# Show diagram of SAWpaper folder contents.
 dir_tree(path = here(), recurse = TRUE, type = "any")
 ```
 
