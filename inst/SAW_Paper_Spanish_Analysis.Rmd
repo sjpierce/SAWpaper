@@ -209,30 +209,29 @@ there are `r nrow(df_crm)` rows in df_crm.
 
 # DATA MANAGEMENT & EXPLORATION
 
-Although the variable "Level" exists in both df_corr and df_crm, it has
-different denotations in the two data frames. In df_corr, Level denotes the five
-levels of Can-Do statements on the self-assessment, whereas in df_crm, Level
-represents the transitions that exist between every two adjacent
-self-assessment levels. The relationship between the two Level variables is
-illustrated in this diagram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is
-represented by the numbers, and Level in df_crm is represented by the arrows
+In `df_corr`, `Level` (and `LevelF`, which is just a copy of Level that is stored as a factor instead of a numeric variable) denote the five levels of Can-Do statements on 
+the self-assessment, whereas in `df_crm` the `Testlet` variable represents the
+transition testlets that control passage from one level to the next. The 
+relationship between these variables is illustrated in this diagram: 
+1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is
+represented by the numbers, and Testlet in df_crm is represented by the arrows
 connecting the numbers. In total, there are 4 transitions (Level in df_crm)
 among the 5 levels (Level in df_corr) of can-do statements on the
 self-assessment.
 
 Unlike df_corr where there is one row per learner with Level indicating the
-highest level a learner reached on the self-assessment, df_crm has been expanded
-such that there is one row per learner per transition attempted. The binary
-variable, pass, in df_crm indexes whether a learner passed/failed to pass a
-given transition. For instance, for a learner who reached Level 3 on the
-self-assessment, he would have one row in df_corr with Level equal to 3; in
-contrast, the same learner would have three rows in df_crm, having a 1 on
-"pass"" for the rows representing Transitions 1-2, and a 0 on "pass" for the row
-representing Transition 3, or the highest transition that he/she attempted.
+maximum level a learner reached on the self-assessment, df_crm has been expanded
+such that there is one row per learner per transition testlet attempted. The binary
+variable, Pass, in df_crm indexes whether a learner passed/failed to pass a
+given transition testlet. For instance, a learner who reached Level 3 on the
+self-assessment would have one row in df_corr with Level equal to 3. The same 
+learner would have three rows in df_crm, having a 1 on Pass for the rows 
+representing testlets 1 and 2, and a 0 on Pass = 0 for the row
+representing testlet 3, which was highest transition attempted.
 
 The data in df_crm is set up as described above for the application of
 continuation-ratio modeling, which models the probabilities of passing the four
-transitions (represented by Level in df_crm) as a function of predictors (which,
+transitions (represented by Testlet in df_crm) as a function of predictors (which,
 in the case of our study, are course and OPIc speaking scores). Each of those
 transitions will eventually yield an estimate of the conditional pass rate,
 which is the probability that an individual who reached the level on the left
@@ -241,27 +240,18 @@ Continuation-ratio models can be conducted as logistic regressions where the
 data frame has one row of data per person for each level transition that the
 individual actually attempted.
 
-We convert the variables of Course and Level in both data files from numeric to
-factor variables to indicate that course level and self-assessment level are
-ordinal variables.
-
-``` {r }
-# Convert Level and Course to factors
-df_crm$Course  <- as.factor(df_crm$Course)
-df_crm$Level   <- as.factor(df_crm$Level)
-df_corr$Course <- as.factor(df_corr$Course)
-df_corr$Level  <- as.factor(df_corr$Level)
-```
+We treat the variables of Course, Level, and Testlet in as factor variables that 
+are effectively ordinal variables.
 
 We treat OPIc speaking test proficiency scores as a continuous covariate that
-ranges from Novice-low to Superior. The variable OPIc in df_corr shows the
-actual OPIc ratings. Numerically transfomed OPIc scores are captured by OPIC in
-df_corr (NL = 1, NM = 2, NH = 3, ..., AM = 8, AH = 9, Superior = 10). We removed
-the cases for which the OPIc ratings were not meaningful for this study (AR, BR,
-and UR). To make the model coefficients more interpretable, we included centered
-OPIc scores instead of the original OPIc results in df_crm and stored them as
-COPIC. A score of zero in COPIC represents the level of Intermediate-mid on the
-OPIc scale.
+ranges from Novice-low to Superior ((NL = 1, NM = 2, NH = 3, ..., AM = 8, 
+AH = 9, Superior = 10). The variable `OPICN` in `df_corr` shows the OPIc ratings
+in numeric form and has value labels attached that show the level names. We
+already removed the cases for which the OPIc ratings were not meaningful for
+this study (AR, BR, and UR) before archiving the file. To make model
+coefficients more interpretable, we included centered OPIc scores instead of the
+original OPIc results in `df_crm` and stored them as `COPIC`. A score of zero in
+COPIC represents the Intermediate-mid level on the OPIc scale.
 
 \FloatBarrier
 
