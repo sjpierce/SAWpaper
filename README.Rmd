@@ -243,6 +243,7 @@ To reproduce our results, use RStudio to open the RStudio project file called
 computer. Then, use RStudio to open and knit the following files in this 
 order.
 
+- `SAWpaper/inst/SAW_Paper_Import_Data.Rmd`
 - `SAWpaper/inst/SAW_Paper_Spanish_Analysis.Rmd`
 - `SAWpaper/inst/R_Citations.Rmd`
 
