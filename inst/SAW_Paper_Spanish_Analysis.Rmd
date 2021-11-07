@@ -196,29 +196,10 @@ file for longitudinal analysis. We need the expanded dataset (df_crm) to run
 continuation-ratio models in the context of logistic regression. Other analyses
 (i.e., correlational analyses) are performed based on the data frame of df_corr.
 
-```{r}
-df_corr <- read.csv(here::here("data/df_corr.csv"))
-df_crm  <- read.csv(here::here("data/df_crm.csv"))
+```{r load_data}
+load(file = here::here("data/SAW_Paper_Data.RData"))
 ```
 
-Now explore the structure of the two data frames, df_crm and df_corr. 
-
-```{r}
-# Explore the data structure of df_corr.
-str(df_corr)
-head(df_corr) 
-dim(df_corr) # Rows, columns
-```
-
-Note that there is one row per learner in df_corr, with a total of 
-`r nrow(df_corr)` rows. 
-
-```{r}
-# # Explore the data structure of df_crm.
-str(df_crm)
-head(df_crm)
-dim(df_crm) # Rows, columns
-```
 
 Note that df_crm is an expanded data frame where there is one row per learner
 per level transition attempted in the Can-Do self-assessment test. In total,
