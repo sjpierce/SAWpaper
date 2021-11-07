@@ -207,17 +207,19 @@ there are `r nrow(df_crm)` rows in df_crm.
 
 \FloatBarrier
 
+# CONTINUE HERE
+
 # DATA MANAGEMENT & EXPLORATION
 
-In `df_corr`, `Level` (and `LevelF`, which is just a copy of Level that is stored as a factor instead of a numeric variable) denote the five levels of Can-Do statements on 
-the self-assessment, whereas in `df_crm` the `Testlet` variable represents the
-transition testlets that control passage from one level to the next. The 
-relationship between these variables is illustrated in this diagram: 
-1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is
-represented by the numbers, and Testlet in df_crm is represented by the arrows
-connecting the numbers. In total, there are 4 transitions (Level in df_crm)
-among the 5 levels (Level in df_corr) of can-do statements on the
-self-assessment.
+In `df_corr`, `Level` (and `LevelF`, which is just a copy of Level that is
+stored as a factor instead of a numeric variable) denote the five levels of
+Can-Do statements on the self-assessment, whereas in `df_crm` the `Testlet`
+variable represents the transition testlets that control passage from one level
+to the next. The relationship between these variables is illustrated in this
+diagram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is represented by the
+numbers, and Testlet in df_crm is represented by the arrows connecting the
+numbers. In total, there are 4 transitions (Level in df_crm) among the 5 levels
+(Level in df_corr) of can-do statements on the self-assessment.
 
 Unlike df_corr where there is one row per learner with Level indicating the
 maximum level a learner reached on the self-assessment, df_crm has been expanded
