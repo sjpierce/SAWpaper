@@ -1,0 +1,357 @@
+---
+title: \sffamily{\bfseries{\LARGE Self-Assessment Works! Import Data}}
+geometry: "left=1.0in,right=1.0in,top=.75in,bottom=.75in"
+author: "Steven J. Pierce & Xiaowan Zhang"
+output:
+ pdf_document:
+   latex_engine: xelatex
+   number_sections: true
+   toc: yes
+   toc_depth: 3
+urlcolor: blue
+header-includes:
+- \usepackage{fancyhdr}
+- \usepackage[yyyymmdd,hhmmss]{datetime}
+- \usepackage{lastpage}
+- \usepackage{amsmath,amsthm}
+- \usepackage{unicode-math}
+- \defaultfontfeatures{Ligatures=TeX}
+- \usepackage[font={small}, margin=1cm, skip=2pt]{caption}
+- \usepackage{url}
+- \usepackage{floatrow} 
+- \floatplacement{figure}{!ht}
+- \floatplacement{table}{!ht}
+- \usepackage{placeins}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{dcolumn}
+- \usepackage{titling}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \pretitle{\begin{center}\LARGE\bfseries}
+- \posttitle{\end{center}}
+- \usepackage{lscape}
+- \pagestyle{fancy}
+- \lhead{Self-Assessment Works! (Spanish) Import Data}
+- \rhead{\today\ \currenttime}
+- \cfoot{ }
+- \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
+- \fancyfoot[R]{\thepage\ of \pageref*{LastPage}}
+- \renewcommand{\headrulewidth}{0.4pt}
+- \renewcommand{\footrulewidth}{0.4pt}
+- \fancypagestyle{plain}{\pagestyle{fancy}}
+---
+
+\FloatBarrier
+
+# Purpose
+This file facilitates reproducing the results reported in our manuscript (Winke,
+Zhang, & Pierce, 2019), which was based on a presentation (Winke, Pierce, &
+Zhang 2018). It imports data on Spanish language learners from SPSS data files 
+into R and saves out .RData files for use by subsequent scripts. 
+
+# Setup
+Set global R chunk options (local chunk options will over-ride global options). 
+The method for creating a size option that controls font size in code chunks and
+their text output is based on an answer to a question posted on   
+[stackoverflow.com](https://stackoverflow.com/questions/25646333/code-chunk-font-size-in-rmarkdown-with-knitr-and-latex/46526740#46526740). 
+
+``` {r global-options, cfsize = "footnotesize"}
+# Create a custom chunk hook/option for controlling font size in chunk & output.
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$cfsize != "normalsize", paste0("\n \\", options$cfsize,"\n\n", 
+                                              x, "\n\n \\normalsize"), x)
+  })
+
+# Global chunk options (over-ridden by local chunk options)
+knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE, 
+                      message = TRUE, warning = TRUE, fig.pos = "!ht", 
+                      cfsize = "footnotesize")
+
+# Declare location of this script relative to the project root directory.
+here::i_am(path = "inst/SAW_Paper_Import_Data.Rmd")
+```
+
+Some of the functions we use below come from a personal R package called
+[*piercer*](https://github.com/sjpierce/piercer) that is available online from 
+[GitHub](https://github.com). Please read and follow the installation 
+instructions for *piercer* at https://github.com/sjpierce/piercer
+before knitting this script, otherwise the next chunk will not load that 
+package and various parts of this script will not work.  
+
+Load contributed R packages that we need to get additional functions. 
+
+``` {r load-packages}
+library(here)              # for here()
+library(devtools)          # for session_info()
+# Set package options. 
+# options(knitr.kable.NA = '0.00')
+library(rmarkdown)         # for render(), pandoc_version(). 
+library(knitr)             # for kable()
+library(tidyr)             # for unite()
+library(dplyr)             # for filter(), select(), etc.
+library(sjlabelled)       # For set_label(), get_label()
+library(haven)            # for read_spss()
+# Set package options. 
+options(kableExtra.latex.load_packages = FALSE)
+library(kableExtra)        # for kable_styling(), add_header_above(), 
+                           # column_spec(), collapse_rows(), and landscape()
+library(piercer)           # for git_report(), which_latex()
+```
+
+\FloatBarrier
+
+# Import Data
+Please see the `README.Rmd` and `README.md` files in this package for details 
+on obtaining the SPSS data files referenced by the code below. 
+
+\FloatBarrier
+
+## Student-Level Data (for Correlation Analyses)
+The file `df_corr.sav` has the cleaned self-assessment data on a set of Spanish
+students, with one row per learner. We archived an SPSS file to simplify 
+archiving and attaching meta-data such as variable and value labels, level of 
+measurement, and so on. 
+
+```{r import-student-data}
+df_corr <- read_sav(here::here("inst/extdata/df_corr.sav"), user_na = TRUE) %>% 
+  mutate(Gender = as_factor(Gender),
+         Course = as_factor(Course),
+         LevelF = as_factor(Level, levels = "values"))
+```
+
+There are `r nrow(df_corr)` rows and `r ncol(df_corr)` variables in `df_corr`. 
+
+\FloatBarrier
+
+## Testlet-Level Data (for Continuation-Rato Modeling)
+The file `df_crm.sav` contains data about the same set of students that has been
+expanded to one row per learner per self-assessment testlet attempted. The data
+structure is conceptually similar to a person-period file for longitudinal
+analysis. We need the expanded `df_crm` data frame specifically to run
+continuation-ratio models. Most other analyses are performed based on the
+`df_corr` data frame.
+
+```{r import-crm-testlet-data}
+df_crm <- read_sav(here::here("inst/extdata/df_crm.sav"), user_na = TRUE) %>% 
+  mutate(Gender = as_factor(Gender),
+         Course = as_factor(Course),
+         Testlet = as_factor(Testlet, levels = "values"),
+         MaxLevel = as_factor(MaxLevel, levels = "values"))
+```
+
+There are `r nrow(df_crm)` rows and `r ncol(df_crm)` variables in `df_crm`. 
+
+\FloatBarrier
+
+### Contrast Coding 
+Here we pause to highlight the default contrast coding associated with key
+factor variables in `df_crm` so readers know how to interpret model coefficients
+later. The default for factors should be dummy coding (treatment contrasts) with
+the first level set as the reference group.
+
+```{r Testlet-contrasts}
+# Check the default contrast coding for Level. Reference = "1". 
+contrasts(df_crm$Testlet)
+```
+
+```{r Course-contrasts}
+# Check the default contrast coding for Course. Reference = "100".
+contrasts(df_crm$Course)
+```
+
+### OPIC Scores
+We treat OPIc speaking test proficiency scores as a continuous covariate that
+ranges from Novice-low to Superior ((NL = 1, NM = 2, NH = 3, ..., AM = 8, 
+AH = 9, Superior = 10). The variable `OPICN` in `df_corr` shows the OPIc ratings
+in numeric form and has value labels attached that show the level names. We
+already removed the cases for which the OPIc ratings were not meaningful for
+this study (AR, BR, and UR) before archiving the file. To make model
+coefficients more interpretable, we included centered OPIc scores instead of the
+original OPIc results in `df_crm` and stored them as `COPIC`. A score of zero in
+COPIC represents the Intermediate-mid level on the OPIc scale.
+
+# Exploratory Data Analysis
+
+\FloatBarrier
+
+## Descriptive Statistics (Learner Data)
+Here we make some descriptive results reported in the manuscript reproducible. 
+
+```{r}
+# Frequency table for maximum level achieved. 
+df_corr %>% 
+   group_by(LevelF) %>% 
+   summarise(N = n(),
+             Pct = 100*N/nrow(df_corr)) %>% 
+   ungroup() %>% 
+   mutate(CumN = cumsum(N),
+          CumPct = cumsum(Pct),
+          RemainN = sum(N) - CumN,
+          RemainPct = 100 - CumPct) ->
+   T01
+
+# Extract N and percent of learners with self-assessed level > 1 (i.e., >= 2). 
+N_SA_GE_2   <- T01$RemainN[1]
+Pct_SA_GE_2 <- T01$RemainPct[1]
+
+# Extract N and percent of learners with self-assessed level > 2 (i.e., >= 3). 
+N_SA_GE_3   <- T01$RemainN[2]
+Pct_SA_GE_3 <- T01$RemainPct[2]
+
+# Display formatted table.
+kable(T01, format = "latex", booktabs = TRUE, digits = 0, 
+      col.names = c("Level", "N", "%", "Cumulative N", "Cumulative %", 
+                    "Remaining N", "Remaining %"),
+      caption = "Frequency Table for Maximum Self-Assesment Level Achieved")
+```
+
+Only $N = `r N_SA_GE_2`$ (`r round(Pct_SA_GE_2, digits = 0)`%) of the learners 
+reached level 2 or higher on the self-assessment. Only $N = `r N_SA_GE_3`$ 
+(`r round(Pct_SA_GE_3, digits = 0)`%) learners reached level 3 or higher on the 
+self-assessment. 
+
+\FloatBarrier
+
+## Crosstabulations (Student Data)
+We now examine the relationships among Level, Course, and OPIC by calling for
+crosstabulations. First, we use the data frame df_corr.
+
+```{r}
+# Examine the relationship between SA level and course level. 
+T02 <- addmargins(xtabs(~LevelF + Course, data = df_corr))
+kable(T02, format = "latex", booktabs = TRUE, 
+      caption = "Crosstab Self-Assessment Level by Course") %>%
+kable_styling(latex_options = c("repeat_header"))
+```
+
+\newpage
+
+```{r}
+# Examine the relationship between OPIc scores and SA level.
+T03a <- addmargins(xtabs(~LevelF + OPICN, data = df_corr))
+
+# Examine the relationship between OPIc scores and course level.
+T03b <- addmargins(xtabs(~Course + OPICN, data = df_corr))
+
+# Combine two cross-tabs into a single object. 
+T03  <- rbind(T03a, T03b) 
+
+# Display formatted table. 
+kable(T03, format = "latex", booktabs = TRUE,  
+      caption = "Crosstabs of Self-Assessment Level and Course by OPIc Score") %>% 
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "OPIc Score" = 9, " ")) %>% 
+group_rows(group_label = "SA Level", bold = FALSE, start_row = 1, end_row = 6) %>% 
+group_rows(group_label = "Course", bold = FALSE, start_row = 7, end_row = 11) %>% 
+row_spec(row = c(6, 11), italic = TRUE) %>% 
+column_spec(column = 11, italic = TRUE)
+```
+
+\FloatBarrier
+
+## Crosstabulations (Testlet Data)
+We then examine some additional crosstabulations based on the data frame df_crm.
+Note that Level in df_crm denotes the transitions between SA levels.
+
+```{r}
+# Crosstab to get a look at how often people pass each level transition.  
+addmargins(xtabs(~Testlet + Pass, data = df_crm)) %>% 
+  as_tibble(.) %>% 
+  pivot_wider(names_from = Pass, values_from = n) %>% 
+  mutate(CPR = case_when(Testlet != "Sum" ~ `1`/Sum),
+         UPR = case_when(Testlet != "Sum" ~ `1`/n_distinct(df_crm$StudentID))) ->
+  T04
+
+kable(T04, format = "latex", booktabs = TRUE, digits = 3,
+      caption = "Crosstab Self-Assessment Level Transition Testlet by Pass") %>%
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "Pass" = 2, " ", " ", " ")) %>% 
+add_header_above(header = c(" ", "Counts" = 3, "Pass Rates" = 2)) %>% 
+row_spec(row = 5, italic = TRUE) %>%
+column_spec(column = 4, italic = TRUE)
+```
+
+```{r}
+# Examine the relationship between SA level transition and course level.
+T05 <- addmargins(xtabs(~Testlet + Course, data = df_crm))
+kable(T05, format = "latex", booktabs = TRUE, 
+      caption = "Crosstab Self-Assessment Level Transition Testlet by Course") %>%
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "Course" = 4, " ")) %>% 
+group_rows(group_label = "Testlet", bold = FALSE, start_row = 1, 
+           end_row = 5) %>%
+row_spec(row = 5, italic = TRUE) %>%
+column_spec(column = 6, italic = TRUE)
+```
+
+```{r}
+# Examine the relationship between centered OPIc scores and SA level transition.
+T06 <- addmargins(xtabs(~Testlet + COPIC, data=df_crm)) 
+kable(T06, format = "latex", booktabs = TRUE, 
+      caption="Crosstab Self-Assessment Level Transition Testlet by OPIc rating") %>%
+kable_styling(latex_options = c("repeat_header")) %>% 
+add_header_above(header = c(" ", "Centered OPIc Score (OPIc - 5)" = 9, " ")) %>% 
+group_rows(group_label = "Testlet", bold = FALSE, start_row = 1, 
+           end_row = 5) %>%
+row_spec(row = 5, italic = TRUE) %>%
+column_spec(column = 11, italic = TRUE)
+```
+
+\FloatBarrier
+
+# Save Data 
+The chunks below save the `df_corr` and `df_crm` data frames to an .RData file
+in the local copy of the repository for use by subsequent scripts. 
+
+```{r save-data}
+save(df_corr, df_crm, file = here::here("data/SAW_Paper_Data.RData"))
+```
+
+\FloatBarrier
+
+# References
+Winke, P., Zhang, X., & Pierce, S. J. (2021). 
+*A closer look at a marginalized test method: Self-assessment as a measure of speaking proficiency* 
+[Manuscript submitted for publication]. Department of Linguistics, Languages, & 
+Cultures, Michigan State University. 
+
+Winke, P., Pierce, S. J., & Zhang, X. (2018, October 12-13). 
+*Self-assessment works! Continuation-ratio models for testing course and OPIc score effects on oral proficiency self-assessments* 
+[Paper presentation]. East Coast Organization of Language Testers 2018 
+Conference, Princeton, NJ, United States. 
+
+\FloatBarrier
+
+# Software Information
+We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
+script *`r knitr:::current_input()`* generates this PDF file containing 
+explanatory text, R code, plus R output (text and graphics).
+
+- We used [RStudio](www.rstudio.org) `r rstudioapi::versionInfo()$version` to 
+  work with R and R markdown files. The software chain looks like this:
+  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX or MiKTeX > PDF file**.
+- We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
+  files into PDF files. However, it should be viable to use 
+  [MiKTeX](https://miktex.org) instead. 
+- We used [pandoc](https://pandoc.org) `r pandoc_version()` for this 
+  document. 
+
+This document was generated using the following computational environment and 
+dependencies: 
+
+``` {r show_citations}
+# Check and report whether we used TinyTex or other LaTeX software. 
+which_latex()
+
+# Get R and R package version numbers in use.
+devtools::session_info()
+```
+
+The current Git commit details and status are:
+
+```{r git_details, echo = TRUE, eval=TRUE}
+git_report()
+```
