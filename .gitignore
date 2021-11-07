@@ -33,7 +33,11 @@
 /*_cache/
 /cache/
 
-# Folder
+# Folders containing data we will archive elsewhere, so omit from GitHub
+data
+inst/extdata
+
+# Other folders we don't want to track
 drafts
 inst/doc
 inst/manuscript
