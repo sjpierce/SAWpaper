@@ -1,3 +1,13 @@
+# SAWpaper 0.4.0, 2021-11-07
+* Updated `.gitignore` to stop tracking data files. 
+* Updated `README.Rmd` and `README.md` files to:
+   * Mention a new script. 
+   * Fix a chunk name. 
+* Added `inst/SAW_Paper_Import_Data.Rmd`. 
+* Updated `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
+   * Change how we load data files. 
+   * Improve explanatory text. 
+
 # SAWpaper 0.3.9, 2021-09-26
 * Updated `README.Rmd` and `README.md` files to:
    * Add a chunk name for global-options chunk.
