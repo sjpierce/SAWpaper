@@ -185,14 +185,35 @@ contrasts(df_crm$Course) %>%
 
 ### OPIC Scores
 We treat OPIc speaking test proficiency scores as a continuous covariate that
-ranges from Novice-low to Superior ((NL = 1, NM = 2, NH = 3, ..., AM = 8, 
-AH = 9, Superior = 10). The variable `OPICN` in `df_corr` shows the OPIc ratings
-in numeric form and has value labels attached that show the level names. We
-already removed the cases for which the OPIc ratings were not meaningful for
-this study (AR, BR, and UR) before archiving the file. To make model
-coefficients more interpretable, we included centered OPIc scores instead of the
-original OPIc results in `df_crm` and stored them as `COPIC`. A score of zero in
-COPIC represents the Intermediate-mid level on the OPIc scale.
+ranges from Novice-low to Superior. Table \ref{tab:OPIC-scores} shows the coding
+for the `OPICN` and `COPIC` variables in `df_corr`. The former variable contains
+the OPIc ratings in their original numeric form and has value labels attached
+that show the meaning of scores. We already removed the cases for which the OPIc
+ratings were not meaningful for this study (AR, BR, and UR) before archiving the
+file. To make model coefficients more interpretable, we computed centered OPIc
+scores and stored them as `COPIC`. A score of zero in COPIC represents the
+Intermediate-mid level on the OPIc scale.
+
+```{r OPIC-scores}
+# Table caption and footnote text. 
+TCap <- paste("OPIc Score Labels, Numeric Values, Centered Values, and",
+              "Frequency")
+FN   <- paste("COPIC is a centered form of OPICN (COPIC = OPICN - 5) used to",
+              "make model intercept terms more interpretable.")
+
+data.frame(OPIC_Label = get_labels(df_crm$OPICN), 
+           OPICN = c(as.numeric(sort(unique(df_crm$OPICN))), 10), 
+           COPIC = c(as.numeric(sort(unique(df_crm$COPIC))), 5),
+           Frequency = as.numeric(c(xtabs(~OPICN, data = df_crm), 0))) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+        col.names = c("Score Label", "OPICN", "COPIC", "Frequency"), 
+        caption = TCap) %>% 
+  column_spec(1, width = "4cm") %>% 
+  column_spec(2:4, width = "1.5cm") %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
+```
+
 
 # Exploratory Data Analysis
 
