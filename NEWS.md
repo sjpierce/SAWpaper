@@ -1,3 +1,9 @@
+# SAWpaper 0.5.0, 2021-12-03
+* Updated `inst/SAW_Paper_Import_Data.Rmd`. 
+    * Converted some chunk output for contrast coding to tables. 
+    * Improved explanatory text. 
+    * Added a table showing relation of OPICN an COPIC variables. 
+
 # SAWpaper 0.4.0, 2021-11-07
 * Updated `.gitignore` to stop tracking data files. 
 * Updated `README.Rmd` and `README.md` files to:
