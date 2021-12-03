@@ -149,19 +149,38 @@ There are `r nrow(df_crm)` rows and `r ncol(df_crm)` variables in `df_crm`.
 \FloatBarrier
 
 ### Contrast Coding 
-Here we pause to highlight the default contrast coding associated with key
-factor variables in `df_crm` so readers know how to interpret model coefficients
-later. The default for factors should be dummy coding (treatment contrasts) with
-the first level set as the reference group.
+Tables \ref{tab:Testlet-contrasts} and \ref{tab:Course-contrasts} below show the 
+default contrast coding associated with key factor variables in `df_crm` so 
+readers know how to interpret model coefficients later. The default for factors 
+should be dummy coding (treatment contrasts) with the first level set as the
+reference group. 
 
 ```{r Testlet-contrasts}
-# Check the default contrast coding for Level. Reference = "1". 
-contrasts(df_crm$Testlet)
+# Table caption and footnote text. 
+TCap <- "Default Contrast Dummy Coding for Testlet"
+FN   <- "The reference value is the one always coded as zero."
+
+# Generate a table showing the default contrast coding. 
+contrasts(df_crm$Testlet) %>% 
+  kable(format = "latex", booktabs = TRUE, row.names = TRUE, caption = TCap) %>% 
+  add_header_above(c("Testlet", "Contrast Coding" = 3)) %>% 
+  column_spec(1:3, width = ".5cm") %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
 ```{r Course-contrasts}
-# Check the default contrast coding for Course. Reference = "100".
-contrasts(df_crm$Course)
+# Table caption and footnote text. 
+TCap <- "Default Contrast Dummy Coding for Course"
+FN   <- "The reference value is the one always coded as zero."
+
+# Generate a table showing the default contrast coding. 
+contrasts(df_crm$Course) %>% 
+  kable(format = "latex", booktabs = TRUE, row.names = TRUE, caption = TCap) %>% 
+  add_header_above(c("Course", "Contrast Coding" = 3)) %>% 
+  column_spec(1:3, width = ".5cm") %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
 ### OPIC Scores
