@@ -186,6 +186,8 @@ contrasts(df_crm$Course) %>%
            threeparttable = TRUE)
 ```
 
+\FloatBarrier
+
 ### OPIC Scores
 We treat OPIc speaking test proficiency scores as a continuous covariate that
 ranges from Novice-low to Superior. Table \ref{tab:OPIC-scores} shows the coding
@@ -219,11 +221,10 @@ data.frame(OPIC_Label = get_labels(df_crm$OPICN),
 ```
 
 
-# Exploratory Data Analysis
+# Exploratory Data Analysis (Student-Level Data)
 
 \FloatBarrier
 
-## Descriptive Statistics (Student-Level Data)
 Here we make some descriptive results reported in the manuscript reproducible. 
 
 ```{r}
@@ -261,7 +262,6 @@ self-assessment.
 
 \FloatBarrier
 
-## Crosstabulations (Student Data)
 We now examine the relationships among Level, Course, and OPIC by calling for
 crosstabulations. First, we use the data frame df_corr.
 
@@ -298,7 +298,7 @@ column_spec(column = 11, italic = TRUE)
 
 \FloatBarrier
 
-## Crosstabulations (Testlet Data)
+# Exploratory Data Analysis (Testlet-Level Data)
 We then examine some additional crosstabulations based on the data frame df_crm.
 Note that Level in df_crm denotes the transitions between SA levels.
 
