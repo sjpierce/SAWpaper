@@ -164,6 +164,7 @@ FN   <- "The reference value is the one always coded as zero."
 # Generate a table showing the default contrast coding. 
 contrasts(df_crm$Testlet) %>% 
   kable(format = "latex", booktabs = TRUE, row.names = TRUE, caption = TCap) %>% 
+  kable_styling(latex_options = c("repeat_header")) %>% 
   add_header_above(c("Testlet", "Contrast Coding" = 3)) %>% 
   column_spec(1:3, width = ".5cm") %>% 
   footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
@@ -178,6 +179,7 @@ FN   <- "The reference value is the one always coded as zero."
 # Generate a table showing the default contrast coding. 
 contrasts(df_crm$Course) %>% 
   kable(format = "latex", booktabs = TRUE, row.names = TRUE, caption = TCap) %>% 
+  kable_styling(latex_options = c("repeat_header")) %>% 
   add_header_above(c("Course", "Contrast Coding" = 3)) %>% 
   column_spec(1:3, width = ".5cm") %>% 
   footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
@@ -209,6 +211,7 @@ data.frame(OPIC_Label = get_labels(df_crm$OPICN),
   kable(format = "latex", booktabs = TRUE, 
         col.names = c("Score Label", "OPICN", "COPIC", "Frequency"), 
         caption = TCap) %>% 
+  kable_styling(latex_options = c("repeat_header")) %>% 
   column_spec(1, width = "4cm") %>% 
   column_spec(2:4, width = "1.5cm") %>% 
   footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
@@ -267,7 +270,7 @@ crosstabulations. First, we use the data frame df_corr.
 T02 <- addmargins(xtabs(~LevelF + Course, data = df_corr))
 kable(T02, format = "latex", booktabs = TRUE, 
       caption = "Crosstab Self-Assessment Level by Course") %>%
-kable_styling(latex_options = c("repeat_header"))
+  kable_styling(latex_options = c("repeat_header")) %>% 
 ```
 
 \newpage
@@ -285,12 +288,12 @@ T03  <- rbind(T03a, T03b)
 # Display formatted table. 
 kable(T03, format = "latex", booktabs = TRUE,  
       caption = "Crosstabs of Self-Assessment Level and Course by OPIc Score") %>% 
-kable_styling(latex_options = c("repeat_header")) %>% 
 add_header_above(header = c(" ", "OPIc Score" = 9, " ")) %>% 
 group_rows(group_label = "SA Level", bold = FALSE, start_row = 1, end_row = 6) %>% 
 group_rows(group_label = "Course", bold = FALSE, start_row = 7, end_row = 11) %>% 
 row_spec(row = c(6, 11), italic = TRUE) %>% 
 column_spec(column = 11, italic = TRUE)
+  kable_styling(latex_options = c("repeat_header")) %>% 
 ```
 
 \FloatBarrier
