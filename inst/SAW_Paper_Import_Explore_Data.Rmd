@@ -283,7 +283,7 @@ self-assessment.
 \FloatBarrier
 
 We now examine the relationships among Level, Course, and OPIC by calling for
-crosstabulations. First, we use the data frame SData.
+crosstabulations. First, we use the data frame `SData`.
 
 ```{r Table-LevelF-Course}
 # Table caption and footnote text. 
@@ -327,8 +327,8 @@ rbind(addmargins(xtabs(~LevelF + OPICN, data = SData)),
 
 ## Testlet-Level Data
 
-We then examine some additional crosstabulations based on the data frame TAData.
-Note that Level in TAData denotes the transitions between SA levels.
+We then examine some additional crosstabulations based on the data frame `TAData`.
+Note that Level in `TAData` denotes the transitions between SA levels.
 
 ```{r}
 # Crosstab to get a look at how often people pass each level transition.  
