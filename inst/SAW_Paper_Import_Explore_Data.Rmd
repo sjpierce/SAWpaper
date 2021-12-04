@@ -71,7 +71,7 @@ knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE,
                       cfsize = "footnotesize")
 
 # Declare location of this script relative to the project root directory.
-here::i_am(path = "inst/SAW_Paper_Import_Data.Rmd")
+here::i_am(path = "inst/SAW_Paper_Import_Explore_Data.Rmd")
 ```
 
 Some of the functions we use below come from a personal R package called
