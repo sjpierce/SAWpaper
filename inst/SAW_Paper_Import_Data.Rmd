@@ -99,6 +99,7 @@ options(kableExtra.latex.load_packages = FALSE)
 library(kableExtra)        # for kable_styling(), add_header_above(), 
                            # column_spec(), collapse_rows(), and landscape()
 library(piercer)           # for git_report(), which_latex()
+library(SAWpaper)          # for package version number via session_info()
 ```
 
 \FloatBarrier
