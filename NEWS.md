@@ -1,3 +1,17 @@
+# SAWpaper 0.6.0, 2021-12-04
+* Renamed external data files to clarify what kind of data they contain. 
+    * `inst/extdata/df_corr.sav` to `inst/extdata/Students.sav`. 
+    * `inst/extdata/df_crm.sav` to `inst/extdata/Testlet_Attempts.sav`. 
+* Renamed `inst/SAW_Paper_Import_Data.Rmd` to 
+  `inst/SAW_Paper_Import_Explore_Data.Rmd`.
+* Updated `inst/SAW_Paper_Import_Explore_Data.Rmd`.
+    * Fix filename in here::i_am() call. 
+    * Renamed data frames read in from external data files. 
+    * Improved heading structure and added/improved explanatory text.
+    * Format object names used in explanatory text. 
+    * Improve table captions, construction, formatting, and footnotes. 
+    * Update in-text citation for the manuscript. 
+
 # SAWpaper 0.5.1, 2021-12-03
 * Updated `inst/SAW_Paper_Import_Data.Rmd`. 
     * Search & replace word "learner" with "student" for consistency.
