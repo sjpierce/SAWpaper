@@ -11,7 +11,7 @@
     * Format object names used in explanatory text. 
     * Improve table captions, construction, formatting, and footnotes. 
     * Update in-text citation for the manuscript. 
-
+    
 # SAWpaper 0.5.1, 2021-12-03
 * Updated `inst/SAW_Paper_Import_Data.Rmd`. 
     * Search & replace word "learner" with "student" for consistency.
