@@ -227,18 +227,19 @@ data.frame(OPIC_Label = get_labels(TAData$OPICN),
            threeparttable = TRUE)
 ```
 
+\FloatBarrier
 
 # Explore Data 
 This section of the script performs some initial data analyses that explore 
 variable distributions and provide descriptive summaries we may use in the
 manuscript. 
 
-## Student-Level Data
-
 \FloatBarrier
 
-Table \ref{tab:Table-LevelF} below summarizes the univariate distribution for 
-maximum self-assesssment level achieved by the students. 
+## Student-Level Data
+We start by examining the student-level data in `SData`. Table 
+\ref{tab:Table-LevelF} below summarizes the univariate distribution for 
+maximum self-assessment level achieved by the students. 
 
 ```{r Table-LevelF}
 # Table caption and footnote text. 
@@ -280,10 +281,9 @@ reached level 2 or higher on the self-assessment. Only $N = `r N_SA_GE_3`$
 (`r round(Pct_SA_GE_3, digits = 0)`%) students reached level 3 or higher on the 
 self-assessment. 
 
-\FloatBarrier
-
-We now examine the relationships among Level, Course, and OPIC by calling for
-crosstabulations. First, we use the data frame `SData`.
+We now examine the relationships among Level, Course, and OPIC by creating 
+crosstabulations. Table \ref{tab:Table-LevelF-Course} shows the two-way 
+contingency table for Level and Course. 
 
 ```{r Table-LevelF-Course}
 # Table caption and footnote text. 
@@ -295,8 +295,6 @@ addmargins(xtabs(~LevelF + Course, data = SData)) %>%
   kable_styling(latex_options = c("repeat_header")) %>% 
   add_header_above(c("Level", "Course" = 4, " ")) 
 ```
-
-\newpage
 
 Table \ref{tab:Table-LevelF-OPICN-Course} summarizes the cross-tabulations 
 between OPIc scores and two other variables: maximum self-assessment level
@@ -326,9 +324,19 @@ rbind(addmargins(xtabs(~LevelF + OPICN, data = SData)),
 \FloatBarrier
 
 ## Testlet-Level Data
+Now we examine some additional crosstabulations based on the testlet-level data
+frame `TAData`. Note that the Testlet variable in `TAData` records the level
+transition testlet used to determine whether a student could move on from one 
+self-assessment level to the next. Thus, Testlet = 1 pertains to the attempt to transition from level 1 to level 2, Testlet = 2 pertains to the transition from 
+level 2 to level 3, and so on.  
 
-We then examine some additional crosstabulations based on the data frame `TAData`.
-Note that Level in `TAData` denotes the transitions between SA levels.
+Table \ref{tab:Table-Testlet-Pass} shows the contingency table between Testlet 
+and Pass, which we can use to get crude estimates of conditional and 
+unconditional pass rates (albeit without confidence intervals). The conditional
+pass rate uses a denominator comprised of only students who took the given
+testlet, whereas the the unconditional pass rate uses the total number of 
+students in the sample as the denominator.
+
 
 ```{r}
 # Crosstab to get a look at how often people pass each level transition.  
@@ -349,6 +357,9 @@ column_spec(column = 4, italic = TRUE)
 ```
 
 ```{r}
+Table \ref{tab:Table-Testlet-Course} shows the contingency table between Testlet
+and Course. 
+
 # Examine the relationship between SA level transition and course level.
 T05 <- addmargins(xtabs(~Testlet + Course, data = TAData))
 kable(T05, format = "latex", booktabs = TRUE, 
@@ -362,6 +373,9 @@ column_spec(column = 6, italic = TRUE)
 ```
 
 ```{r}
+Table \ref{tab:Table-Testlet-COPIC} summarizes the cross-tabulations 
+between Testlet and centered OPIc scores. 
+
 # Examine the relationship between centered OPIc scores and SA level transition.
 T06 <- addmargins(xtabs(~Testlet + COPIC, data=TAData)) 
 kable(T06, format = "latex", booktabs = TRUE, 
