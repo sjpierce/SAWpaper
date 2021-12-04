@@ -105,8 +105,13 @@ library(SAWpaper)          # for package version number via session_info()
 \FloatBarrier
 
 # Import Data
+This section of the script imports the required data from SPSS data files into
+R data frames and saves out an .RData file. 
+
 Please see the `README.Rmd` or `README.md` files in this *SAWpaper* package for
-details on obtaining the SPSS data files referenced by the code below. 
+details on obtaining the SPSS data files referenced by the code below. The code
+chunks show the relative file paths for where you need to put the files in order
+for the script to work as intended. 
 
 \FloatBarrier
 
@@ -221,7 +226,12 @@ data.frame(OPIC_Label = get_labels(df_crm$OPICN),
 ```
 
 
-# Exploratory Data Analysis (Student-Level Data)
+# Explore Data 
+This section of the script performs some initial data analyses that explore 
+variable distributions and provide descriptive summaries we may use in the
+manuscript. 
+
+## Student-Level Data
 
 \FloatBarrier
 
@@ -313,7 +323,8 @@ rbind(addmargins(xtabs(~LevelF + OPICN, data = df_corr)),
 
 \FloatBarrier
 
-# Exploratory Data Analysis (Testlet-Level Data)
+## Testlet-Level Data
+
 We then examine some additional crosstabulations based on the data frame df_crm.
 Note that Level in df_crm denotes the transitions between SA levels.
 
