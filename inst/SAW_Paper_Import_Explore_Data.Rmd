@@ -120,16 +120,16 @@ The file `Students.sav` has the cleaned self-assessment data on a set of Spanish
 students, with one row per student. We prepared an SPSS file to simplify 
 archiving and attaching meta-data such as variable and value labels, level of 
 measurement, and so on. The chunk below reads that file into a data frame called 
-`df_corr`, then converts a couple variables to proper factors. 
+`SData`, then converts a couple variables to proper factors. 
 
 ```{r import-student-data}
-df_corr <- read_sav(here::here("inst/extdata/Students.sav"), user_na = TRUE) %>% 
+SData <- read_sav(here::here("inst/extdata/Students.sav"), user_na = TRUE) %>% 
   mutate(Gender = as_factor(Gender),
          Course = as_factor(Course),
          LevelF = as_factor(Level, levels = "values"))
 ```
 
-There are `r nrow(df_corr)` rows and `r ncol(df_corr)` variables in `df_corr`. 
+There are `r nrow(SData)` rows and `r ncol(SData)` variables in `SData`. 
 
 \FloatBarrier
 
@@ -137,26 +137,27 @@ There are `r nrow(df_corr)` rows and `r ncol(df_corr)` variables in `df_corr`.
 The file `Testlet_Attempts.sav` contains data about the same set of students that has been
 expanded to one row per student per self-assessment testlet attempted. This data
 structure is conceptually similar to a person-period file for longitudinal
-analysis. The chunk below reads that file into a data frame called `df_crm`, 
+analysis. The chunk below reads that file into a data frame called `TAData`, 
 then converts a couple variables to proper factors. We need the expanded 
-`df_crm` data frame specifically to run continuation-ratio models. Most other 
-analyses are performed based on the `df_corr` data frame. 
+`TAData` data frame specifically to run continuation-ratio models. Most other 
+analyses are performed based on the `SData` data frame. 
 
 ```{r import-crm-testlet-data}
-df_crm <- read_sav(here::here("inst/extdata/Testlet_Attempts.sav"), user_na = TRUE) %>% 
+TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts.sav"), 
+                   user_na = TRUE) %>% 
   mutate(Gender = as_factor(Gender),
          Course = as_factor(Course),
          Testlet = as_factor(Testlet, levels = "values"),
          MaxLevel = as_factor(MaxLevel, levels = "values"))
 ```
 
-There are `r nrow(df_crm)` rows and `r ncol(df_crm)` variables in `df_crm`. 
+There are `r nrow(TAData)` rows and `r ncol(TAData)` variables in `TAData`. 
 
 \FloatBarrier
 
 ### Contrast Coding 
 Tables \ref{tab:Testlet-contrasts} and \ref{tab:Course-contrasts} below show the 
-default contrast coding associated with key factor variables in `df_crm` so 
+default contrast coding associated with key factor variables in `TAData` so 
 readers know how to interpret model coefficients later. The default for factors 
 should be dummy coding (treatment contrasts) with the first level set as the
 reference group. 
@@ -167,7 +168,7 @@ TCap <- "Default Contrast Dummy Coding for Testlet"
 FN   <- "The reference value is the one always coded as zero."
 
 # Generate a table showing the default contrast coding. 
-contrasts(df_crm$Testlet) %>% 
+contrasts(TAData$Testlet) %>% 
   kable(format = "latex", booktabs = TRUE, row.names = TRUE, caption = TCap) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
   add_header_above(c("Testlet", "Contrast Coding" = 3)) %>% 
@@ -182,7 +183,7 @@ TCap <- "Default Contrast Dummy Coding for Course"
 FN   <- "The reference value is the one always coded as zero."
 
 # Generate a table showing the default contrast coding. 
-contrasts(df_crm$Course) %>% 
+contrasts(TAData$Course) %>% 
   kable(format = "latex", booktabs = TRUE, row.names = TRUE, caption = TCap) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
   add_header_above(c("Course", "Contrast Coding" = 3)) %>% 
@@ -196,7 +197,7 @@ contrasts(df_crm$Course) %>%
 ### OPIC Scores
 We treat OPIc speaking test proficiency scores as a continuous covariate that
 ranges from Novice-low to Superior. Table \ref{tab:OPIC-scores} shows the coding
-for the `OPICN` and `COPIC` variables in `df_corr`. The former variable contains
+for the `OPICN` and `COPIC` variables in `SData`. The former variable contains
 the OPIc ratings in their original numeric form and has value labels attached
 that show the meaning of scores. We already removed the cases for which the OPIc
 ratings were not meaningful for this study (AR, BR, and UR) before archiving the
@@ -211,10 +212,10 @@ TCap <- paste("OPIc Score Labels, Numeric Values, Centered Values, and",
 FN   <- paste("COPIC is a centered form of OPICN (COPIC = OPICN - 5) used to",
               "make model intercept terms more interpretable.")
 
-data.frame(OPIC_Label = get_labels(df_crm$OPICN), 
-           OPICN = c(as.numeric(sort(unique(df_crm$OPICN))), 10), 
-           COPIC = c(as.numeric(sort(unique(df_crm$COPIC))), 5),
-           Frequency = as.numeric(c(xtabs(~OPICN, data = df_crm), 0))) %>% 
+data.frame(OPIC_Label = get_labels(TAData$OPICN), 
+           OPICN = c(as.numeric(sort(unique(TAData$OPICN))), 10), 
+           COPIC = c(as.numeric(sort(unique(TAData$COPIC))), 5),
+           Frequency = as.numeric(c(xtabs(~OPICN, data = TAData), 0))) %>% 
   kable(format = "latex", booktabs = TRUE, 
         col.names = c("Score Label", "OPICN", "COPIC", "Frequency"), 
         caption = TCap) %>% 
@@ -245,10 +246,10 @@ FN   <- paste("Remaining N is the number of students who reached a level above",
               "the one associated with the current row in the table.")
 
 # Frequency table for maximum level achieved. 
-df_corr %>% 
+SData %>% 
    group_by(LevelF) %>% 
    summarise(N = n(),
-             Pct = 100*N/nrow(df_corr)) %>% 
+             Pct = 100*N/nrow(SData)) %>% 
    ungroup() %>% 
    mutate(CumN = cumsum(N),
           CumPct = cumsum(Pct),
@@ -281,14 +282,14 @@ self-assessment.
 \FloatBarrier
 
 We now examine the relationships among Level, Course, and OPIC by calling for
-crosstabulations. First, we use the data frame df_corr.
+crosstabulations. First, we use the data frame SData.
 
 ```{r Table-LevelF-Course}
 # Table caption and footnote text. 
 TCap <- "Crosstab Maximum Self-Assessment Level by Course, With Marginal Sums"
 
 # Examine the relationship between SA level and course level. 
-addmargins(xtabs(~LevelF + Course, data = df_corr)) %>% 
+addmargins(xtabs(~LevelF + Course, data = SData)) %>% 
   kable(format = "latex", booktabs = TRUE, caption = TCap) %>%
   kable_styling(latex_options = c("repeat_header")) %>% 
   add_header_above(c("Level", "Course" = 4, " ")) 
@@ -307,8 +308,8 @@ TCap <- paste("Crosstabs of Self-Assessment Level and Course by OPIc Score,",
 # Combine two crosstab outputs into a single table: 
 # Examine the relationship between OPIc scores and SA level.
 # Examine the relationship between OPIc scores and course level.
-rbind(addmargins(xtabs(~LevelF + OPICN, data = df_corr)),
-      addmargins(xtabs(~Course + OPICN, data = df_corr))) %>% 
+rbind(addmargins(xtabs(~LevelF + OPICN, data = SData)),
+      addmargins(xtabs(~Course + OPICN, data = SData))) %>% 
   kable(format = "latex", booktabs = TRUE,  
       caption = TCap) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
@@ -325,16 +326,16 @@ rbind(addmargins(xtabs(~LevelF + OPICN, data = df_corr)),
 
 ## Testlet-Level Data
 
-We then examine some additional crosstabulations based on the data frame df_crm.
-Note that Level in df_crm denotes the transitions between SA levels.
+We then examine some additional crosstabulations based on the data frame TAData.
+Note that Level in TAData denotes the transitions between SA levels.
 
 ```{r}
 # Crosstab to get a look at how often people pass each level transition.  
-addmargins(xtabs(~Testlet + Pass, data = df_crm)) %>% 
+addmargins(xtabs(~Testlet + Pass, data = TAData)) %>% 
   as_tibble(.) %>% 
   pivot_wider(names_from = Pass, values_from = n) %>% 
   mutate(CPR = case_when(Testlet != "Sum" ~ `1`/Sum),
-         UPR = case_when(Testlet != "Sum" ~ `1`/n_distinct(df_crm$StudentID))) ->
+         UPR = case_when(Testlet != "Sum" ~ `1`/n_distinct(TAData$StudentID))) ->
   T04
 
 kable(T04, format = "latex", booktabs = TRUE, digits = 3,
@@ -348,7 +349,7 @@ column_spec(column = 4, italic = TRUE)
 
 ```{r}
 # Examine the relationship between SA level transition and course level.
-T05 <- addmargins(xtabs(~Testlet + Course, data = df_crm))
+T05 <- addmargins(xtabs(~Testlet + Course, data = TAData))
 kable(T05, format = "latex", booktabs = TRUE, 
       caption = "Crosstab Self-Assessment Level Transition Testlet by Course") %>%
 kable_styling(latex_options = c("repeat_header")) %>% 
@@ -361,7 +362,7 @@ column_spec(column = 6, italic = TRUE)
 
 ```{r}
 # Examine the relationship between centered OPIc scores and SA level transition.
-T06 <- addmargins(xtabs(~Testlet + COPIC, data=df_crm)) 
+T06 <- addmargins(xtabs(~Testlet + COPIC, data=TAData)) 
 kable(T06, format = "latex", booktabs = TRUE, 
       caption="Crosstab Self-Assessment Level Transition Testlet by OPIc rating") %>%
 kable_styling(latex_options = c("repeat_header")) %>% 
@@ -375,11 +376,11 @@ column_spec(column = 11, italic = TRUE)
 \FloatBarrier
 
 # Save Data 
-The chunks below save the `df_corr` and `df_crm` data frames to an .RData file
+The chunks below save the `SData` and `TAData` data frames to an .RData file
 in the local copy of the repository for use by subsequent scripts. 
 
 ```{r save-data}
-save(df_corr, df_crm, file = here::here("data/SAW_Paper_Data.RData"))
+save(SData, TAData, file = here::here("data/SAW_Paper_Data.RData"))
 ```
 
 \FloatBarrier
