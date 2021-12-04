@@ -48,7 +48,8 @@ header-includes:
 This file facilitates reproducing the results reported in our manuscript (Winke,
 Zhang, & Pierce, 2021), which was based on a presentation (Winke, Pierce, &
 Zhang 2018). It imports data on Spanish language students from SPSS data files 
-into R and saves out .RData files for use by subsequent scripts. 
+into R, runs some initial data analyses to explore key variables, and saves out 
+an `.RData` file for use by subsequent scripts. 
 
 # Setup
 Set global R chunk options (local chunk options will over-ride global options). 
@@ -421,7 +422,7 @@ addmargins(xtabs(~Testlet + COPIC, data=TAData)) %>%
 \FloatBarrier
 
 # Save Data 
-The chunks below save the `SData` and `TAData` data frames to an .RData file
+The chunks below save the `SData` and `TAData` data frames to an `.RData` file
 in the local copy of the repository for use by subsequent scripts. 
 
 ```{r save-data}
