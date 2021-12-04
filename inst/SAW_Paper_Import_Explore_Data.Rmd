@@ -204,8 +204,8 @@ the OPIc ratings in their original numeric form and has value labels attached
 that show the meaning of scores. We already removed the cases for which the OPIc
 ratings were not meaningful for this study (AR, BR, and UR) before archiving the
 file. To make model coefficients more interpretable, we computed centered OPIc
-scores and stored them as `COPIC`. A score of zero in COPIC represents the
-Intermediate-mid level on the OPIc scale.
+scores and stored them in a variable named COPIC. A score of zero in COPIC 
+represents the Intermediate-mid level on the OPIc scale.
 
 ```{r OPIC-scores}
 # Table caption and footnote text. 
@@ -446,12 +446,14 @@ Conference, Princeton, NJ, United States.
 
 # Software Information
 We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
-script *`r knitr:::current_input()`* generates this PDF file containing 
-explanatory text, R code, plus R output (text and graphics).
+script generates the PDF file containing explanatory text, R code, and R output.
 
 - We used [RStudio](www.rstudio.org) `r rstudioapi::versionInfo()$version` to 
-  work with R and R markdown files. The software chain looks like this:
-  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX or MiKTeX > PDF file**.
+  work with R and R markdown files. 
+- Our software chain looks like this:
+  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX > PDF file**.
+- Source script: *`r knitr:::current_input()`*
+- Output file: *`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`*
 - We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
   files into PDF files. However, it should be viable to use 
   [MiKTeX](https://miktex.org) instead. 
