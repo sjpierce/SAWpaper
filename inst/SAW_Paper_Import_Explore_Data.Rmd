@@ -211,7 +211,8 @@ Intermediate-mid level on the OPIc scale.
 TCap <- paste("OPIc Score Labels, Numeric Values, Centered Values, and",
               "Frequency")
 FN   <- paste("COPIC is a centered form of OPICN (COPIC = OPICN - 5) used to",
-              "make model intercept terms more interpretable.")
+              "make model intercept terms more interpretable.",
+              "OPICN, numeric ACTFL Oral Proficiency Interview – computer score")
 
 data.frame(OPIC_Label = get_labels(TAData$OPICN), 
            OPICN = c(as.numeric(sort(unique(TAData$OPICN))), 10), 
@@ -288,12 +289,18 @@ contingency table for Level and Course.
 ```{r Table-LevelF-Course}
 # Table caption and footnote text. 
 TCap <- "Crosstab Maximum Self-Assessment Level by Course, With Marginal Sums"
+FN   <- paste("Course, type of Spanish course the student was enrolled in;",
+              "Level, maximum self-assessment level achieved by the student.")
 
 # Examine the relationship between SA level and course level. 
 addmargins(xtabs(~LevelF + Course, data = SData)) %>% 
   kable(format = "latex", booktabs = TRUE, caption = TCap) %>%
   kable_styling(latex_options = c("repeat_header")) %>% 
-  add_header_above(c("Level", "Course" = 4, " ")) 
+  add_header_above(c("Level", "Course" = 4, " ")) %>% 
+  row_spec(row = 6, italic = TRUE) %>%
+  column_spec(column = 6, italic = TRUE) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
 Table \ref{tab:Table-LevelF-OPICN-Course} summarizes the cross-tabulations 
@@ -301,8 +308,12 @@ between OPIc scores and two other variables: maximum self-assessment level
 achieved and course. 
 
 ```{r Table-LevelF-OPICN-Course}
-TCap <- paste("Crosstabs of Self-Assessment Level and Course by OPIc Score,", 
-              "With Marginal Sums")
+# Table caption and footnote text. 
+TCap <- paste("Crosstabs of Maximum Self-Assessment Level and Course by OPIc", 
+              "Score, With Marginal Sums")
+FN   <- paste("Course, type of Spanish course the student was enrolled in;",
+              "Level, maximum self-assessment level achieved by the student;",
+              "OPIc, ACTFL Oral Proficiency Interview – computer.")
 
 # Combine two crosstab outputs into a single table: 
 # Examine the relationship between OPIc scores and SA level.
@@ -313,12 +324,14 @@ rbind(addmargins(xtabs(~LevelF + OPICN, data = SData)),
       caption = TCap) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
   add_header_above(header = c(" ", "OPIc Score" = 9, " ")) %>% 
-  group_rows(group_label = "SA Level", bold = FALSE, start_row = 1, 
+  group_rows(group_label = "Level", bold = FALSE, start_row = 1, 
              end_row = 6) %>% 
   group_rows(group_label = "Course", bold = FALSE, start_row = 7, 
              end_row = 11) %>% 
   row_spec(row = c(6, 11), italic = TRUE) %>% 
-  column_spec(column = 11, italic = TRUE)
+  column_spec(column = 11, italic = TRUE) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
 \FloatBarrier
@@ -337,55 +350,72 @@ pass rate uses a denominator comprised of only students who took the given
 testlet, whereas the the unconditional pass rate uses the total number of 
 students in the sample as the denominator.
 
+```{r Table-Testlet-Pass}
+# Table caption and footnote text. 
+TCap <- "Crosstab Self-Assessment Level Transition Testlet by Pass"
+FN   <- paste("CPR, conditional pass rate;",
+              "Pass, whether student passed the testlet (0 = No, 1 = Yes);",
+              "Testlet, level transition testlet attempted by student;",
+              "UPR, unconditional pass rate.")
 
-```{r}
 # Crosstab to get a look at how often people pass each level transition.  
 addmargins(xtabs(~Testlet + Pass, data = TAData)) %>% 
   as_tibble(.) %>% 
   pivot_wider(names_from = Pass, values_from = n) %>% 
   mutate(CPR = case_when(Testlet != "Sum" ~ `1`/Sum),
-         UPR = case_when(Testlet != "Sum" ~ `1`/n_distinct(TAData$StudentID))) ->
-  T04
-
-kable(T04, format = "latex", booktabs = TRUE, digits = 3,
-      caption = "Crosstab Self-Assessment Level Transition Testlet by Pass") %>%
-kable_styling(latex_options = c("repeat_header")) %>% 
-add_header_above(header = c(" ", "Pass" = 2, " ", " ", " ")) %>% 
-add_header_above(header = c(" ", "Counts" = 3, "Pass Rates" = 2)) %>% 
-row_spec(row = 5, italic = TRUE) %>%
-column_spec(column = 4, italic = TRUE)
+         UPR = case_when(Testlet != "Sum" ~ `1`/n_distinct(TAData$StudentID))) %>% 
+  kable(format = "latex", booktabs = TRUE, digits = 3, caption = TCap) %>%
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  add_header_above(header = c(" ", "Pass" = 2, " ", " ", " ")) %>% 
+  add_header_above(header = c(" ", "Counts" = 3, "Pass Rates" = 2)) %>% 
+  row_spec(row = 5, italic = TRUE) %>%
+  column_spec(column = 4, italic = TRUE) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
-```{r}
 Table \ref{tab:Table-Testlet-Course} shows the contingency table between Testlet
 and Course. 
 
+```{r Table-Testlet-Course}
+# Table caption and footnote text. 
+TCap <- "Crosstab Self-Assessment Level Transition Testlet by Course"
+FN   <- paste("Course, type of Spanish course the student was enrolled in;",
+              "Testlet, level transition testlet attempted by student.")
+
 # Examine the relationship between SA level transition and course level.
-T05 <- addmargins(xtabs(~Testlet + Course, data = TAData))
-kable(T05, format = "latex", booktabs = TRUE, 
-      caption = "Crosstab Self-Assessment Level Transition Testlet by Course") %>%
-kable_styling(latex_options = c("repeat_header")) %>% 
-add_header_above(header = c(" ", "Course" = 4, " ")) %>% 
-group_rows(group_label = "Testlet", bold = FALSE, start_row = 1, 
-           end_row = 5) %>%
-row_spec(row = 5, italic = TRUE) %>%
-column_spec(column = 6, italic = TRUE)
+addmargins(xtabs(~Testlet + Course, data = TAData)) %>% 
+  kable(format = "latex", booktabs = TRUE, caption = TCap) %>%
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  add_header_above(header = c("Testlet ", "Course" = 4, " ")) %>% 
+  row_spec(row = 5, italic = TRUE) %>%
+  column_spec(column = 6, italic = TRUE) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
-```{r}
 Table \ref{tab:Table-Testlet-COPIC} summarizes the cross-tabulations 
 between Testlet and centered OPIc scores. 
 
+```{r Table-Testlet-COPIC}
+# Table caption and footnote text. 
+TCap <- paste("Crosstab Self-Assessment Level Transition Testlet by Centered", 
+              "OPIc Score")
+FN   <- paste("COPIC is a centered form of OPICN (COPIC = OPICN - 5) used to",
+              "make model intercept terms more interpretable.",
+              "OPICN, numeric ACTFL Oral Proficiency Interview – computer score;",
+              "Testlet, level transition testlet attempted by student.")
+
 # Examine the relationship between centered OPIc scores and SA level transition.
-T06 <- addmargins(xtabs(~Testlet + COPIC, data=TAData)) 
-kable(T06, format = "latex", booktabs = TRUE, 
-      caption="Crosstab Self-Assessment Level Transition Testlet by OPIc rating") %>%
-kable_styling(latex_options = c("repeat_header")) %>% 
-add_header_above(header = c(" ", "Centered OPIc Score (OPIc - 5)" = 9, " ")) %>% 
-group_rows(group_label = "Testlet", bold = FALSE, start_row = 1, 
-           end_row = 5) %>%
-row_spec(row = 5, italic = TRUE) %>%
-column_spec(column = 11, italic = TRUE)
+addmargins(xtabs(~Testlet + COPIC, data=TAData)) %>% 
+  kable(format = "latex", booktabs = TRUE, caption=TCap) %>%
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  add_header_above(header = c("Testlet", "COPIC" = 9, 
+                              " ")) %>% 
+  row_spec(row = 5, italic = TRUE) %>%
+  column_spec(column = 11, italic = TRUE) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
 \FloatBarrier
