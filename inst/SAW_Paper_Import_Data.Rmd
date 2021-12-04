@@ -225,9 +225,15 @@ data.frame(OPIC_Label = get_labels(df_crm$OPICN),
 
 \FloatBarrier
 
-Here we make some descriptive results reported in the manuscript reproducible. 
+Table \ref{tab:Table-LevelF} below summarizes the univariate distribution for 
+maximum self-assesssment level achieved by the students. 
 
-```{r}
+```{r Table-LevelF}
+# Table caption and footnote text. 
+TCap <- "Frequency Table for Maximum Self-Assesment Level Achieved"
+FN   <- paste("Remaining N is the number of students who reached a level above",
+              "the one associated with the current row in the table.")
+
 # Frequency table for maximum level achieved. 
 df_corr %>% 
    group_by(LevelF) %>% 
@@ -238,21 +244,23 @@ df_corr %>%
           CumPct = cumsum(Pct),
           RemainN = sum(N) - CumN,
           RemainPct = 100 - CumPct) ->
-   T01
+   TLevelF
 
 # Extract N and percent of students with self-assessed level > 1 (i.e., >= 2). 
-N_SA_GE_2   <- T01$RemainN[1]
-Pct_SA_GE_2 <- T01$RemainPct[1]
+N_SA_GE_2   <- TLevelF$RemainN[1]
+Pct_SA_GE_2 <- TLevelF$RemainPct[1]
 
 # Extract N and percent of students with self-assessed level > 2 (i.e., >= 3). 
-N_SA_GE_3   <- T01$RemainN[2]
-Pct_SA_GE_3 <- T01$RemainPct[2]
+N_SA_GE_3   <- TLevelF$RemainN[2]
+Pct_SA_GE_3 <- TLevelF$RemainPct[2]
 
 # Display formatted table.
-kable(T01, format = "latex", booktabs = TRUE, digits = 0, 
+kable(TLevelF, format = "latex", booktabs = TRUE, digits = 0, 
       col.names = c("Level", "N", "%", "Cumulative N", "Cumulative %", 
                     "Remaining N", "Remaining %"),
-      caption = "Frequency Table for Maximum Self-Assesment Level Achieved")
+      caption = TCap) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
 ```
 
 Only $N = `r N_SA_GE_2`$ (`r round(Pct_SA_GE_2, digits = 0)`%) of the students 
@@ -265,35 +273,42 @@ self-assessment.
 We now examine the relationships among Level, Course, and OPIC by calling for
 crosstabulations. First, we use the data frame df_corr.
 
-```{r}
+```{r Table-LevelF-Course}
+# Table caption and footnote text. 
+TCap <- "Crosstab Maximum Self-Assessment Level by Course, With Marginal Sums"
+
 # Examine the relationship between SA level and course level. 
-T02 <- addmargins(xtabs(~LevelF + Course, data = df_corr))
-kable(T02, format = "latex", booktabs = TRUE, 
-      caption = "Crosstab Self-Assessment Level by Course") %>%
+addmargins(xtabs(~LevelF + Course, data = df_corr)) %>% 
+  kable(format = "latex", booktabs = TRUE, caption = TCap) %>%
   kable_styling(latex_options = c("repeat_header")) %>% 
+  add_header_above(c("Level", "Course" = 4, " ")) 
 ```
 
 \newpage
 
-```{r}
+Table \ref{tab:Table-LevelF-OPICN-Course} summarizes the cross-tabulations 
+between OPIc scores and two other variables: maximum self-assessment level
+achieved and course. 
+
+```{r Table-LevelF-OPICN-Course}
+TCap <- paste("Crosstabs of Self-Assessment Level and Course by OPIc Score,", 
+              "With Marginal Sums")
+
+# Combine two crosstab outputs into a single table: 
 # Examine the relationship between OPIc scores and SA level.
-T03a <- addmargins(xtabs(~LevelF + OPICN, data = df_corr))
-
 # Examine the relationship between OPIc scores and course level.
-T03b <- addmargins(xtabs(~Course + OPICN, data = df_corr))
-
-# Combine two cross-tabs into a single object. 
-T03  <- rbind(T03a, T03b) 
-
-# Display formatted table. 
-kable(T03, format = "latex", booktabs = TRUE,  
-      caption = "Crosstabs of Self-Assessment Level and Course by OPIc Score") %>% 
-add_header_above(header = c(" ", "OPIc Score" = 9, " ")) %>% 
-group_rows(group_label = "SA Level", bold = FALSE, start_row = 1, end_row = 6) %>% 
-group_rows(group_label = "Course", bold = FALSE, start_row = 7, end_row = 11) %>% 
-row_spec(row = c(6, 11), italic = TRUE) %>% 
-column_spec(column = 11, italic = TRUE)
+rbind(addmargins(xtabs(~LevelF + OPICN, data = df_corr)),
+      addmargins(xtabs(~Course + OPICN, data = df_corr))) %>% 
+  kable(format = "latex", booktabs = TRUE,  
+      caption = TCap) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
+  add_header_above(header = c(" ", "OPIc Score" = 9, " ")) %>% 
+  group_rows(group_label = "SA Level", bold = FALSE, start_row = 1, 
+             end_row = 6) %>% 
+  group_rows(group_label = "Course", bold = FALSE, start_row = 7, 
+             end_row = 11) %>% 
+  row_spec(row = c(6, 11), italic = TRUE) %>% 
+  column_spec(column = 11, italic = TRUE)
 ```
 
 \FloatBarrier
