@@ -134,13 +134,14 @@ There are `r nrow(SData)` rows and `r ncol(SData)` variables in `SData`.
 \FloatBarrier
 
 ## Testlet-Level Data (for Continuation-Rato Modeling)
-The file `Testlet_Attempts.sav` contains data about the same set of students that has been
-expanded to one row per student per self-assessment testlet attempted. This data
-structure is conceptually similar to a person-period file for longitudinal
-analysis. The chunk below reads that file into a data frame called `TAData`, 
-then converts a couple variables to proper factors. We need the expanded 
-`TAData` data frame specifically to run continuation-ratio models. Most other 
-analyses are performed based on the `SData` data frame. 
+The file `Testlet_Attempts.sav` contains data about the same set of students 
+(those identified in `Students.sav`) that has been expanded to one row per
+student per self-assessment testlet attempted. This data structure is
+conceptually similar to a person-period file for longitudinal analysis. The
+chunk below reads that file into a data frame called `TAData`, then converts a
+couple variables to proper factors. We need the expanded `TAData` data frame
+specifically to run continuation-ratio models. Most other analyses are performed
+based on the `SData` data frame.
 
 ```{r import-crm-testlet-data}
 TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts.sav"), 
