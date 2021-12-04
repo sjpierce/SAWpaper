@@ -1,3 +1,11 @@
+# SAWpaper 0.5.1, 2021-12-03
+* Updated `inst/SAW_Paper_Import_Data.Rmd`. 
+    * Search & replace word "learner" with "student" for consistency.
+    * Load SAWpaper package. 
+    * Ensure tables will repeat headers if they break across pages.
+    * Improve heading structure and ensure tables stay in their own sections. 
+    * Improve table designs. 
+
 # SAWpaper 0.5.0, 2021-12-03
 * Updated `inst/SAW_Paper_Import_Data.Rmd`. 
     * Converted some chunk output for contrast coding to tables. 
