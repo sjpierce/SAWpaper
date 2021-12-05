@@ -188,16 +188,14 @@ library(SAWpaper)          # for package version number via session_info()
 
 \FloatBarrier
 
-# LOAD DATA
+# Load Data
 
-The file df_corr has the cleaned self-assesment data of 820 Spanish students,
-one row per learner. The file df_crm comprises the same but expanded data with
-one row per learner per level of self-assessed Spanish proficiency reached via
-testing with Can-Do statements (see below for more information on the expanded
-dataset). The data format of df_crm is conceptually similar to a person-period
-file for longitudinal analysis. We need the expanded dataset (df_crm) to run
-continuation-ratio models in the context of logistic regression. Other analyses
-(i.e., correlational analyses) are performed based on the data frame of df_corr.
+The file `SAW_Paper_Data.RData` contains two data frames: `SData` and `TAData`.
+The former has the cleaned student-level data for Spanish students that is 
+suitable for use in correlational analyses. The latter data frame contains data
+about the same set of students but has been expanded to one row per student per
+self-assessment testlet attempted. This is suitable for use in 
+continuation-ratio models. 
 
 ```{r load_data}
 load(file = here::here("data/SAW_Paper_Data.RData"))
