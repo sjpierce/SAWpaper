@@ -221,29 +221,29 @@ There are `r nrow(SData)` rows and `r ncol(SData)` variables in `SData`, but
 
 # DATA MANAGEMENT & EXPLORATION
 
-In `df_corr`, `Level` (and `LevelF`, which is just a copy of Level that is
+In `SData`, `Level` (and `LevelF`, which is just a copy of Level that is
 stored as a factor instead of a numeric variable) denote the five levels of
-Can-Do statements on the self-assessment, whereas in `df_crm` the `Testlet`
+Can-Do statements on the self-assessment, whereas in `TAData` the `Testlet`
 variable represents the transition testlets that control passage from one level
 to the next. The relationship between these variables is illustrated in this
-diagram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is represented by the
-numbers, and Testlet in df_crm is represented by the arrows connecting the
-numbers. In total, there are 4 transitions (Level in df_crm) among the 5 levels
-(Level in df_corr) of can-do statements on the self-assessment.
+diagram: 1 --> 2 --> 3 --> 4 --> 5. Level in `SData` is represented by the
+numbers, and Testlet in `TAData` is represented by the arrows connecting the
+numbers. In total, there are 4 transitions (Level in `TAData`) among the 5 levels
+(Level in `SData`) of can-do statements on the self-assessment.
 
-Unlike df_corr where there is one row per learner with Level indicating the
-maximum level a learner reached on the self-assessment, df_crm has been expanded
+Unlike `SData` where there is one row per learner with Level indicating the
+maximum level a learner reached on the self-assessment, `TAData` has been expanded
 such that there is one row per learner per transition testlet attempted. The binary
-variable, Pass, in df_crm indexes whether a learner passed/failed to pass a
+variable, Pass, in `TAData` indexes whether a learner passed/failed to pass a
 given transition testlet. For instance, a learner who reached Level 3 on the
-self-assessment would have one row in df_corr with Level equal to 3. The same 
-learner would have three rows in df_crm, having a 1 on Pass for the rows 
+self-assessment would have one row in `SData` with Level equal to 3. The same 
+learner would have three rows in `TAData`, having a 1 on Pass for the rows 
 representing testlets 1 and 2, and a 0 on Pass = 0 for the row
 representing testlet 3, which was highest transition attempted.
 
-The data in df_crm is set up as described above for the application of
+The data in `TAData` is set up as described above for the application of
 continuation-ratio modeling, which models the probabilities of passing the four
-transitions (represented by Testlet in df_crm) as a function of predictors (which,
+transitions (represented by Testlet in `TAData`) as a function of predictors (which,
 in the case of our study, are course and OPIc speaking scores). Each of those
 transitions will eventually yield an estimate of the conditional pass rate,
 which is the probability that an individual who reached the level on the left
@@ -257,12 +257,12 @@ are effectively ordinal variables.
 
 We treat OPIc speaking test proficiency scores as a continuous covariate that
 ranges from Novice-low to Superior ((NL = 1, NM = 2, NH = 3, ..., AM = 8, 
-AH = 9, Superior = 10). The variable `OPICN` in `df_corr` shows the OPIc ratings
+AH = 9, Superior = 10). The variable `OPICN` in `SData` shows the OPIc ratings
 in numeric form and has value labels attached that show the level names. We
 already removed the cases for which the OPIc ratings were not meaningful for
 this study (AR, BR, and UR) before archiving the file. To make model
 coefficients more interpretable, we included centered OPIc scores instead of the
-original OPIc results in `df_crm` and stored them as `COPIC`. A score of zero in
+original OPIc results in `TAData` and stored them as `COPIC`. A score of zero in
 COPIC represents the Intermediate-mid level on the OPIc scale.
 
 \FloatBarrier
@@ -292,7 +292,7 @@ scores within each of the four course levels.
 
 ```{r}
 # Smooth loess lines added to jittered and colored-coded scatterplots
-ggplot(df_corr, aes(OPIC,Item1_50))+
+ggplot(SData, aes(OPIC,Item1_50))+
   geom_jitter(aes(color=Course))+
   geom_smooth(method="loess", se=FALSE, span = .77)+
   xlim(1,9)+
@@ -305,7 +305,7 @@ ggplot(df_corr, aes(OPIC,Item1_50))+
   ggtitle ("Figure 1")+
   guides(color = guide_legend(title="Course level"))
 
-ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
+ggplot(SData, aes(OPIC,Item1_50, color=Course))+
   geom_jitter()+
   geom_smooth(method="loess", se=FALSE, span = .93)+
   xlim(1,9)+
@@ -319,7 +319,7 @@ ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
   guides(color = guide_legend(title="Course level"))
 
 # Linear regression lines added to jittered and colored-coded plots
-ggplot(df_corr, aes(OPIC,Item1_50))+
+ggplot(SData, aes(OPIC,Item1_50))+
   geom_jitter(aes(color=Course))+
   geom_smooth(method="lm", se=FALSE)+
   xlim(1,9)+
@@ -332,7 +332,7 @@ ggplot(df_corr, aes(OPIC,Item1_50))+
   ggtitle("Figure 3")+
   guides(color = guide_legend(title="Course level"))
 
-ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
+ggplot(SData, aes(OPIC,Item1_50, color=Course))+
   geom_jitter()+
   geom_smooth(method="lm", se=FALSE)+
   xlim(1,9)+
@@ -350,7 +350,7 @@ ggplot(df_corr, aes(OPIC,Item1_50, color=Course))+
 
 # CORRELATIONS
 We examine the correlations among course level, OPIc scores, and SA level using
-the dataset df_corr (not in a long data format). As we mentioned earlier, Level
+the dataset `SData` (not in a long data format). As we mentioned earlier, Level
 represents the highest level that a student reached on the SA. Polyserial
 correlation is calculated for OPIC and Course and for OPIC and Level, whereas
 polychoric correlation is calculated for the two ordinal variables, Course and
@@ -363,10 +363,10 @@ correlations for a similar comparative purpose.
 
 ```{r}
 # Create numeric versions of Level and Course.
-df_corr %>% 
+SData %>% 
   mutate(Level.n = as.numeric(Level),
          Course.n = as.numeric(Course)) ->
-  df_corr
+  SData
 
 # cvars = continuous variables
 cvars <- c("OPIC", "Item1_50", "Level.n", "Course.n")
@@ -382,7 +382,7 @@ ovars <- c("Level", "Course")
 # of the same variable are not sensible. It was just faster to estimate them as
 # part of a single larger matrix than individually get the subset we want. 
 
-HC <- hetcor(as.data.frame(df_corr[, c(cvars, ovars)]), ML=TRUE, 
+HC <- hetcor(as.data.frame(SData[, c(cvars, ovars)]), ML=TRUE, 
              use="pairwise.complete.obs")
 rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
       r.pc(HC, ord = ovars, digits = 2, pdigits = NULL)) %>% 
@@ -411,15 +411,15 @@ Now obtain Spearman correlations for comparison purposes even though they are
 not technically appropriate for our purpose. 
 
 ```{r spearman}
-T08b <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$Course.n, 
+T08b <- ci.rp(r = cor(x = SData$Level.n, y = SData$Course.n, 
                       method = "spearman"), 
-              n = nrow(df_corr), rn = "r.s: Level and Course")
-T08c <- ci.rp(r = cor(x = df_corr$Level.n, y = df_corr$OPIC, 
+              n = nrow(SData), rn = "r.s: Level and Course")
+T08c <- ci.rp(r = cor(x = SData$Level.n, y = SData$OPIC, 
                       method = "spearman"), 
-              n = nrow(df_corr), rn = "r.s: Level and OPIC")
-T08d <- ci.rp(r = cor(x = df_corr$Course.n, y = df_corr$OPIC, 
+              n = nrow(SData), rn = "r.s: Level and OPIC")
+T08d <- ci.rp(r = cor(x = SData$Course.n, y = SData$OPIC, 
                       method = "spearman"), 
-              n = nrow(df_corr), rn = "r.s: Course and OPIC")
+              n = nrow(SData), rn = "r.s: Course and OPIC")
 ```
 
 ```{r show_correlations}
@@ -454,25 +454,25 @@ each of the fitted models in detail.
 
 ```{r fit_models}
 # Model 1a: Parallel course effect
-m1a <- glm(pass ~ Level + Course - 1, data = df_crm, family = "binomial")
+m1a <- glm(pass ~ Level + Course - 1, data = TAData, family = "binomial")
 
 # Model 1b: Non-parallel course effect
-m1b <- glm(pass ~ Level + Course + Level*Course - 1, data = df_crm, 
+m1b <- glm(pass ~ Level + Course + Level*Course - 1, data = TAData, 
            family = "binomial")
 
 # Model 2a: Parallel OPIC effect
-m2a <- glm(pass ~ Level + COPIC - 1, data = df_crm, family = "binomial")
+m2a <- glm(pass ~ Level + COPIC - 1, data = TAData, family = "binomial")
 
 # Model 2b: Non-parallel OPIC effect
-m2b <- glm(pass ~ Level + COPIC + Level*COPIC - 1, data = df_crm, 
+m2b <- glm(pass ~ Level + COPIC + Level*COPIC - 1, data = TAData, 
            family = "binomial")
 
 # Model 3a: Parallel OPIC + parallel course effect
-m3a <- glm(pass ~ Level + COPIC + Course - 1, data = df_crm, 
+m3a <- glm(pass ~ Level + COPIC + Course - 1, data = TAData, 
            family = "binomial")
 
 # Model 3b: Non-parallel OPIC + parallel course effect
-m3b <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = df_crm, 
+m3b <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = TAData, 
            family = "binomial")
 
 # Create a list of the model fit objects.
@@ -497,7 +497,7 @@ texreg(TModels, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE,
 \FloatBarrier
 
 # MODEL 1A: PARALLEL COURSE EFFECT
-We fit a series of continuation-ratio models to df_crm to see whether course
+We fit a series of continuation-ratio models to `TAData` to see whether course
 level and OPIc scores significantly predict the pass rate for each transition on
 the SA. We first fit a basic model that omits the intercept term in order to
 simplify post-processing of the model results into interpretable estimates. We
@@ -710,9 +710,9 @@ classification measures given that we use the optimal cutpoint based on the
 Youden index. 
 
 ```{r}
-df_crm$pred.m1a <- predict(m1a, type = "response")
+TAData$pred.m1a <- predict(m1a, type = "response")
 set.seed(4921) # For reproducibility of bootstrap estimates.
-roc.m1a <- roc(pass ~ pred.m1a, data = df_crm, ci = TRUE, direction = "<",
+roc.m1a <- roc(pass ~ pred.m1a, data = TAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m1a, seed = 4684), digits = 3)
 ```
@@ -1013,9 +1013,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-df_crm$pred.m1b <- predict(m1b, type = "response")
+TAData$pred.m1b <- predict(m1b, type = "response")
 set.seed(1574) # For reproducible bootstrap estimates.
-roc.m1b <- roc(pass ~ pred.m1b, data = df_crm, ci = TRUE, direction = "<",
+roc.m1b <- roc(pass ~ pred.m1b, data = TAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m1b, seed = 6711), digits = 3)
 ```
@@ -1274,9 +1274,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-df_crm$pred.m2a <- predict(m2a, type = "response")
+TAData$pred.m2a <- predict(m2a, type = "response")
 set.seed(5378) # For reproducible bootstrap estimates.
-roc.m2a <- roc(pass ~ pred.m2a, data = df_crm, ci = TRUE, direction = "<",
+roc.m2a <- roc(pass ~ pred.m2a, data = TAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m2a, seed = 9825), digits = 3)
 ```
@@ -1674,9 +1674,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-df_crm$pred.m2b <- predict(m2b, type = "response")
+TAData$pred.m2b <- predict(m2b, type = "response")
 set.seed(3179) # For reproducible bootstrap estimates.
-roc.m2b <- roc(pass ~ pred.m2b, data = df_crm, ci = TRUE, direction = "<",
+roc.m2b <- roc(pass ~ pred.m2b, data = TAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m2b, seed = 7146), digits = 3)
 ```
@@ -1950,9 +1950,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-df_crm$pred.m3a <- predict(m3a, type = "response")
+TAData$pred.m3a <- predict(m3a, type = "response")
 set.seed(3419) # For reproducibility of bootstrap estimates.
-roc.m3a <- roc(pass ~ pred.m3a, data = df_crm, ci = TRUE, direction = "<",
+roc.m3a <- roc(pass ~ pred.m3a, data = TAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m3a, seed = 6342), digits = 3) 
 ```
@@ -2143,9 +2143,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-df_crm$pred.m3b <- predict(m3b, type = "response")
+TAData$pred.m3b <- predict(m3b, type = "response")
 set.seed(9173) # For reproducibility of bootstrap estimates.
-roc.m3b <- roc(pass ~ pred.m3b, data = df_crm, ci = TRUE, direction = "<",
+roc.m3b <- roc(pass ~ pred.m3b, data = TAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m3b, seed = 7146), digits = 3) 
 ```
