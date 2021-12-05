@@ -181,6 +181,7 @@ library(piercer)           # for p2s(), p2bfb(), p2pp(), convertp(), lrcm(),
                            # brier(), r.p(), r.pc(), r.pc(), ci.rpc(), ci.rp(),
                            # git_report(), which_latex()
 library(stringr)           # for word
+library(SAWpaper)          # for package version number via session_info()
 ```
 
 \FloatBarrier
