@@ -290,9 +290,9 @@ In Figure 4, we impose four linear regression lines to visually check to what
 extent the linear lines represent the relationship between SA level and OPIc 
 scores within each of the four course levels. 
 
-```{r}
+```{r plot-SAScore-OPICN}
 # Smooth loess lines added to jittered and colored-coded scatterplots
-ggplot(SData, aes(OPIC,Item1_50))+
+ggplot(SData, aes(OPICN, Item1_50))+
   geom_jitter(aes(color=Course))+
   geom_smooth(method="loess", se=FALSE, span = .77)+
   xlim(1,9)+
@@ -301,11 +301,12 @@ ggplot(SData, aes(OPIC,Item1_50))+
   scale_y_continuous(breaks=c(40,80,120,160,200),
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
-  ylab("Self-assessment can do statements")+
-  ggtitle ("Figure 1")+
+  ylab("Self-Assessment total score")+
   guides(color = guide_legend(title="Course level"))
+```
 
-ggplot(SData, aes(OPIC,Item1_50, color=Course))+
+```{r plot-SAScore-OPICN-by-Course}
+ggplot(SData, aes(OPICN, Item1_50, color=Course))+
   geom_jitter()+
   geom_smooth(method="loess", se=FALSE, span = .93)+
   xlim(1,9)+
@@ -315,11 +316,12 @@ ggplot(SData, aes(OPIC,Item1_50, color=Course))+
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
   ylab("Self-assessment can do statements")+
-  ggtitle("Figure 2")+
   guides(color = guide_legend(title="Course level"))
+```
 
+```{r plot-SAScore-OPICN-linear}
 # Linear regression lines added to jittered and colored-coded plots
-ggplot(SData, aes(OPIC,Item1_50))+
+ggplot(SData, aes(OPICN, Item1_50))+
   geom_jitter(aes(color=Course))+
   geom_smooth(method="lm", se=FALSE)+
   xlim(1,9)+
@@ -329,10 +331,11 @@ ggplot(SData, aes(OPIC,Item1_50))+
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
   ylab("Self-assessment can do statements")+
-  ggtitle("Figure 3")+
   guides(color = guide_legend(title="Course level"))
+```
 
-ggplot(SData, aes(OPIC,Item1_50, color=Course))+
+```{r plot-SAScore-OPICN-by-Course-linear}
+ggplot(SData, aes(OPICN, Item1_50, color=Course))+
   geom_jitter()+
   geom_smooth(method="lm", se=FALSE)+
   xlim(1,9)+
@@ -342,7 +345,6 @@ ggplot(SData, aes(OPIC,Item1_50, color=Course))+
                      labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
   xlab("OPIc")+
   ylab("Self-assessment can do statements")+
-  ggtitle("Figure 4")+
   guides(color = guide_legend(title="Course level"))
 ```
 
