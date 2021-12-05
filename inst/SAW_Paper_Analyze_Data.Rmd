@@ -42,7 +42,7 @@ header-includes:
 
 \FloatBarrier
 
-# PURPOSE
+# Purpose
 This file facilitates reproducing the results reported in our manuscript (Winke,
 Zhang, & Pierce, 2021), which was based on a presentation (Winke, Pierce, &
 Zhang 2018). It analyzes data on Spanish language learners who took a Can-Do
@@ -2357,17 +2357,7 @@ model 2b over this model on the basis of parsimony.
 
 \FloatBarrier
 
-# WRAP UP
-
-\FloatBarrier
-
-## Project Information
-* CSTAT Client: Paula Winke
-* CSTAT CaseID: 18-009
-
-\FloatBarrier
-
-## References
+# References
 Benjamin, D. J., & Berger, J. O. (2019). Three recommendations for improving 
 the use of p-values. *The American Statistician, 73*(Supplement 1), 186-191. 
 [doi:10.1080/00031305.2018.1543135](https://doi.org/10.1080/00031305.2018.1543135)
@@ -2446,7 +2436,7 @@ Youden, W. J. (1950). Index for rating diagnostic tests. *Cancer, 3*(1), 32-35.
 
 \FloatBarrier
 
-## Software Information
+# Software Information
 We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
 script generates the PDF file containing explanatory text, R code, and R output.
 
