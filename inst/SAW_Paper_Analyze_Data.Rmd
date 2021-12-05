@@ -277,18 +277,20 @@ points so that overlapping points are nudged apart and can be seen more clearly.
 Additionally, we imposed lines onto the scatterplots to better illustrate the 
 shape of the relationship between SA level and OPI scores.
 
-In Figure 1, we impose a loess line to represent the overall relationship
-between SA level and OPIc scores. A loess line is a smooth line based on local
-regression of a dependent variable (Y-variable) on an independent variable (X-
-variable). It helps one to see the true relationship between two variables. 
-In Figure 2, we impose four loess lines to represent the relationship
-between SA level and OPIc scores within each of the four course levels.
-In Figure 3, we impose a linear regression line to visually check to what extent
-the linear line represents the overall relationship between SA level and OPIc 
-scores.
-In Figure 4, we impose four linear regression lines to visually check to what 
-extent the linear lines represent the relationship between SA level and OPIc 
-scores within each of the four course levels. 
+In Figure \ref{fig:plot-SAScore-OPICN}, we impose a loess line to represent the
+overall relationship between SA level and OPIc scores. A loess line is a smooth
+line based on local regression of a dependent variable (Y-variable) on an
+independent variable (X- variable). It helps one to see the true relationship
+between two variables. In Figure \ref{fig:plot-SAScore-OPICN-by-Course}, we
+impose four loess lines to represent the relationship between SA level and OPIc
+scores within each of the four course levels. In Figure
+\ref{fig:plot-SAScore-OPICN-linear}, we impose a linear regression line to
+visually check to what extent the linear line represents the overall
+relationship between SA level and OPIc scores. In Figure
+\ref{fig:plot-SAScore-OPICN-by-Course-linear}, we impose four linear regression
+lines to visually check to what extent the linear lines represent the
+relationship between SA level and OPIc scores within each of the four course
+levels.
 
 ```{r plot-SAScore-OPICN}
 # Smooth loess lines added to jittered and colored-coded scatterplots
