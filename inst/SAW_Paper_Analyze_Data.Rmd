@@ -1,5 +1,5 @@
 ---
-title: \sffamily{\bfseries{\LARGE Self-Assessment Works! Paper Spanish Analysis}}
+title: \sffamily{\bfseries{\LARGE Self-Assessment Works! Paper Analyze Data}}
 geometry: "left=1.0in,right=1.0in,top=.75in,bottom=.75in"
 author: "Steven J. Pierce & Xiaowan Zhang"
 output:
@@ -30,7 +30,7 @@ header-includes:
 - \usepackage{threeparttablex}
 - \usepackage{lscape}
 - \pagestyle{fancy}
-- \lhead{Self-Assessment Works! (Spanish)}
+- \lhead{Self-Assessment Works! Analyze Data}
 - \rhead{\today\ \currenttime}
 - \cfoot{ }
 - \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
