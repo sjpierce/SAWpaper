@@ -55,7 +55,7 @@ objective was to validate the Can-Do test results.
 \FloatBarrier
 
 ## Target Journal
-We currently plan to submit this as a "Research Report" to a journal called 
+We submitted this as a "Research Report" to a journal called 
 Studies in Second Language Acquisition (SSLA), 
 https://www.cambridge.org/core/journals/studies-in-second-language-acquisition.
 The author instructions are at
@@ -64,9 +64,11 @@ https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/i
 We will consider applying for the SSLA *Open Data Badge* and the 
 *Open Materials Badge* described at 
 https://www.cambridge.org/core/journals/studies-in-second-language-acquisition/open-science-badges
-. Note that hosting a public Github repository should meet the requirements for 
+. Hosting a public Github repository should meet the requirements for 
 both badges because GitHub is on the 
-[Registry of Research Data Repositories](https://www.re3data.org). 
+[Registry of Research Data Repositories](https://www.re3data.org). However, we
+may put the actual data in another public repository and just use GitHub for the
+code. 
 
 \FloatBarrier
 
