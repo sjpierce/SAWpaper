@@ -44,7 +44,7 @@ header-includes:
 
 # PURPOSE
 This file facilitates reproducing the results reported in our manuscript (Winke,
-Zhang, & Pierce, 2019), which was based on a presentation (Winke, Pierce, &
+Zhang, & Pierce, 2021), which was based on a presentation (Winke, Pierce, &
 Zhang 2018). It analyzes data on Spanish language learners who took a Can-Do
 self-assessment test, along with the more authoritative OPIc language
 proficiency test. We did both correlation analyses and continuation-ratio models
@@ -2428,10 +2428,10 @@ constraints and correlations. *Journal of the American Statistical Association,
 92*(437), 299-306. 
 [doi:10.1080/01621459.1997.10473627](https://doi.org/10.1080/01621459.1997.10473627)
 
-Winke, P., Zhang, X., & Pierce, S. J. (2019). *Self-assessment works! 
-Continuation-ratio models for testing course and OPIc score effects on oral
-proficiency self-assessments*. Michigan State University, East Lansing, MI.
-Manuscript in preparation.
+Winke, P., Zhang, X., & Pierce, S. J. (2021). 
+*A closer look at a marginalized test method: Self-assessment as a measure of speaking proficiency* 
+[Manuscript submitted for publication]. Department of Linguistics, Languages, & 
+Cultures, Michigan State University. 
 
 Winke, P., Pierce, S. J., & Zhang, X. (2018, October). Self-assessment works! 
 Continuation-ratio models for testing course and OPIc score effects on oral 
