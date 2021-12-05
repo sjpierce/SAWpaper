@@ -168,7 +168,7 @@ package and various parts of this script will not work.
 
 Load contributed R packages that we need to get additional functions. 
 
-``` {r load_packages}
+``` {r load-packages}
 library(here)              # for here()
 library(polycor)           # for hetcor()
 library(car)               # for residualPlots(), influenceIndexPlot(), outlierTest()
@@ -210,7 +210,7 @@ about the same set of students but has been expanded to one row per student per
 self-assessment testlet attempted. This is suitable for use in 
 continuation-ratio models. 
 
-```{r load_data}
+```{r load-data}
 load(file = here::here("data/SAW_Paper_Data.RData"))
 ```
 
@@ -422,7 +422,7 @@ T08d <- ci.rp(r = cor(x = SData$Course.n, y = SData$OPIC,
               n = nrow(SData), rn = "r.s: Course and OPIC")
 ```
 
-```{r show_correlations}
+```{r show-correlations}
 # Bind into a data frame 
 rbind(T08a, T08b, T08c, T08d) %>% 
   mutate(Variables = word(rownames(.), 2, sep = "\\:"),
@@ -452,7 +452,7 @@ Here we fit a series of continuation-ratio models and display a combined table
 summarizing them for comparison purposes. In subsequent sections, we examine 
 each of the fitted models in detail. 
 
-```{r fit_models}
+```{r fit-models}
 # Model 1a: Parallel course effect
 m1a <- glm(pass ~ Level + Course - 1, data = TAData, family = "binomial")
 
@@ -483,7 +483,7 @@ The table below shows the model parameters for the whole set of models.
 
 \begin{landscape}
 
-```{r display_models, results='asis'} 
+```{r display-models, results='asis'} 
 
 texreg(TModels, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
        single.row = TRUE, digits = 3, label = "TModels", 
@@ -2322,7 +2322,7 @@ script generates the PDF file containing explanatory text, R code, and R output.
 This document was generated using the following computational environment and 
 dependencies: 
 
-``` {r show_citations}
+``` {r show-citations}
 # Check and report whether we used TinyTex or other LaTeX software. 
 which_latex()
 
@@ -2332,6 +2332,6 @@ devtools::session_info()
 
 The current Git commit details and status are:
 
-```{r git_details, echo = TRUE, eval=TRUE}
+```{r git-details, echo = TRUE, eval=TRUE}
 git_report()
 ```
