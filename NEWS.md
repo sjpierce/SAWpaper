@@ -1,3 +1,21 @@
+# SAWpaper 0.7.0, 2021-12-04
+* Renamed `inst/SAW_Paper_Spanish_Analysis.Rmd` to 
+  `inst/SAW_Paper_Analyze_Data.Rmd`.
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd`.
+    * Updated title & left header. 
+    * Improve Software Information section.
+    * Load additional package. 
+    * Updated citation for the manuscript.
+    * Updated Target Journal section. 
+    * Improve heading structure.
+    * Improve Setup section.
+    * Improve Load Data section.
+    * Delete content that is now in `inst/SAW_Paper_Import_Explore_Data.Rmd`. 
+    * Renamed data frames to match revised data being loaded. 
+    * Renamed code chunks.
+    * Split figures into separate chunks. 
+    * Improve figure referencing. 
+    
 # SAWpaper 0.6.0, 2021-12-04
 * Renamed external data files to clarify what kind of data they contain. 
     * `inst/extdata/df_corr.sav` to `inst/extdata/Students.sav`. 
