@@ -214,14 +214,10 @@ continuation-ratio models.
 load(file = here::here("data/SAW_Paper_Data.RData"))
 ```
 
-
-Note that df_crm is an expanded data frame where there is one row per learner
-per level transition attempted in the Can-Do self-assessment test. In total,
-there are `r nrow(df_crm)` rows in df_crm.
+There are `r nrow(SData)` rows and `r ncol(SData)` variables in `SData`, but 
+`r nrow(TAData)` rows and `r ncol(TAData)` variables in `TAData`. 
 
 \FloatBarrier
-
-# CONTINUE HERE
 
 # DATA MANAGEMENT & EXPLORATION
 
