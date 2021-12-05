@@ -133,14 +133,27 @@ predictive models (Fenlon, O'Grady, Doherty, & Dunnion, 2018).
 * Review and update interpretation text and conclusions. 
 * Add code to export figures that will be submitted with the manuscript. 
 
+\FloatBarrier
 
-# SETUP
+# Setup
 Set global R chunk options (local chunk options will over-ride global options). 
 
-``` {r global_options}
+``` {r global-options, cfsize = "footnotesize"}
+# Create a custom chunk hook/option for controlling font size in chunk & output.
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$cfsize != "normalsize", paste0("\n \\", options$cfsize,"\n\n", 
+                                              x, "\n\n \\normalsize"), x)
+  })
+
 # Global chunk options (over-ridden by local chunk options)
 knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE, 
-                      message = TRUE, warning = TRUE, fig.pos = "!ht")
+                      message = TRUE, warning = TRUE, fig.pos = "!ht", 
+                      cfsize = "footnotesize")
+
+# Declare location of this script relative to the project root directory.
+here::i_am(path = "inst/SAW_Paper_Analyze_Data.Rmd")
 ```
 
 \FloatBarrier
