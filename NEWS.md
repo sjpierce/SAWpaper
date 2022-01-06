@@ -1,3 +1,6 @@
+# SAWpaper 0.7.1, 2022-01-06
+* Updated `DESCRIPTION` to add Paula Winke as author. 
+
 # SAWpaper 0.7.0, 2021-12-04
 * Renamed `inst/SAW_Paper_Spanish_Analysis.Rmd` to 
   `inst/SAW_Paper_Analyze_Data.Rmd`.
