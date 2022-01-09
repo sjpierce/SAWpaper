@@ -190,71 +190,71 @@ library(stringr)           # for word
 
 # LOAD DATA
 
-The file df_corr has the cleaned self-assesment data of 820 Spanish students,
-one row per learner. The file df_crm comprises the same but expanded data with
+The file df_corr_full has the cleaned self-assesment data of 871 Spanish students,
+one row per learner. The file df_crm_full comprises the same but expanded data with
 one row per learner per level of self-assessed Spanish proficiency reached via
 testing with Can-Do statements (see below for more information on the expanded
-dataset). The data format of df_crm is conceptually similar to a person-period
-file for longitudinal analysis. We need the expanded dataset (df_crm) to run
+dataset). The data format of df_crm_full is conceptually similar to a person-period
+file for longitudinal analysis. We need the expanded dataset (df_crm_full) to run
 continuation-ratio models in the context of logistic regression. Other analyses
-(i.e., correlational analyses) are performed based on the data frame of df_corr.
+(i.e., correlational analyses) are performed based on the data frame of df_corr_full.
 
 ```{r}
-df_corr <- read.csv(here::here("./data/df_corr.csv"))
-df_crm  <- read.csv(here::here("./data/df_crm.csv"))
+df_corr_full <- read.csv(here::here("./Sawpaper/data/df_corr_full.csv"))
+df_crm_full  <- read.csv(here::here("./Sawpaper/data/df_crm_full.csv"))
 ```
 
-Now explore the structure of the two data frames, df_crm and df_corr. 
+Now explore the structure of the two data frames, df_crm_full and df_corr_full. 
 
 ```{r}
 # Explore the data structure of df_corr.
-str(df_corr)
-head(df_corr) 
-dim(df_corr) # Rows, columns
+str(df_corr_full)
+head(df_corr_full) 
+dim(df_corr_full) # Rows, columns
 ```
 
-Note that there is one row per learner in df_corr, with a total of 
-`r nrow(df_corr)` rows. 
+Note that there is one row per learner in df_corr_full, with a total of 
+`r nrow(df_corr_full)` rows. 
 
 ```{r}
-# # Explore the data structure of df_crm.
-str(df_crm)
-head(df_crm)
-dim(df_crm) # Rows, columns
+# # Explore the data structure of df_crm_full.
+str(df_crm_full)
+head(df_crm_full)
+dim(df_crm_full) # Rows, columns
 ```
 
-Note that df_crm is an expanded data frame where there is one row per learner
+Note that df_crm_full is an expanded data frame where there is one row per learner
 per level transition attempted in the Can-Do self-assessment test. In total,
-there are `r nrow(df_crm)` rows in df_crm.
+there are `r nrow(df_crm_full)` rows in df_crm.
 
 \FloatBarrier
 
 # DATA MANAGEMENT & EXPLORATION
 
-Although the variable "Level" exists in both df_corr and df_crm, it has
-different denotations in the two data frames. In df_corr, Level denotes the five
-levels of Can-Do statements on the self-assessment, whereas in df_crm, Level
+Although the variable "Level" exists in both df_corr_full and df_crm_full, it has
+different denotations in the two data frames. In df_corr_full, Level denotes the five
+levels of Can-Do statements on the self-assessment, whereas in df_crm_full, Level
 represents the transitions that exist between every two adjacent
 self-assessment levels. The relationship between the two Level variables is
-illustrated in this disgram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr is
-represented by the numbers, and Level in df_crm is represented by the arrows
-connecting the numbers. In total, there are 4 transitions (Level in df_crm)
-among the 5 levels (Level in df_corr) of can-do statments on the
+illustrated in this disgram: 1 --> 2 --> 3 --> 4 --> 5. Level in df_corr_full is
+represented by the numbers, and Level in df_crm_full is represented by the arrows
+connecting the numbers. In total, there are 4 transitions (Level in df_crm_full)
+among the 5 levels (Level in df_corr_full) of can-do statments on the
 self-assessment.
 
-Unlike df_corr where there is one row per learner with Level indicating the
-highest level a learner reached on the self-assessment, df_crm has been expanded
+Unlike df_corr_full where there is one row per learner with Level indicating the
+highest level a learner reached on the self-assessment, df_crm_full has been expanded
 such that there is one row per learner per transition attempted. The binary
-variable, pass, in df_crm indexes whether a learner passed/failed to pass a
+variable, pass, in df_crm_full indexes whether a learner passed/failed to pass a
 given transition. For instance, for a learner who reached Level 3 on the
-self-assessment, he would have one row in df_corr with Level equal to 3; in
-contrast, the same learner would have three rows in df_crm, having a 1 on
+self-assessment, he would have one row in df_corr_full with Level equal to 3; in
+contrast, the same learner would have three rows in df_crm_full, having a 1 on
 "pass"" for the rows representing Transitions 1-2, and a 0 on "pass" for the row
 representing Transition 3, or the highest transition that he/she attempted.
 
-The data in df_crm is set up as described above for the application of
+The data in df_crm_full is set up as described above for the application of
 continuation-ratio modeling, which models the probabilities of passing the four
-transitions (represented by Level in df_crm) as a function of predictors (which,
+transitions (represented by Level in df_crm_full) as a function of predictors (which,
 in the case of our study, are course and OPIc speaking scores). Each of those
 transitions will eventually yield an estimate of the conditional pass rate,
 which is the probability that an individual who reached the level on the left
@@ -269,21 +269,53 @@ ordinal variables.
 
 ``` {r }
 # Convert Level and Course to factors
-df_crm$Course  <- as.factor(df_crm$Course)
-df_crm$Level   <- as.factor(df_crm$Level)
-df_corr$Course <- as.factor(df_corr$Course)
-df_corr$Level  <- as.factor(df_corr$Level)
+df_crm_full$Course  <- as.factor(df_crm_full$Course)
+df_crm_full$Level   <- as.factor(df_crm_full$Level)
+df_corr_full$Course <- as.factor(df_corr_full$Course)
+df_corr_full$Level  <- as.factor(df_corr_full$Level)
 ```
 
 We treat OPIc speaking test proficiency scores as a continuous covariate that
-ranges from Novice-low to Superior. The variable OPIc in df_corr shows the
+ranges from Novice-low to Superior. The variable OPIc in df_corr_full shows the
 actual OPIc ratings. Numerically transfomed OPIc scores are captured by OPIC in
-df_corr (NL = 1, NM = 2, NH = 3, ..., AM = 8, AH = 9, Superior = 10). We removed
+df_corr_full (NL = 1, NM = 2, NH = 3, ..., AM = 8, AH = 9, Superior = 10). We removed
 the cases for which the OPIc ratings were not meaningful for this study (AR, BR,
 and UR). To make the model coefficients more interpretable, we included centered
-OPIc scores instead of the original OPIc results in df_crm and stored them as
+OPIc scores instead of the original OPIc results in df_crm_full and stored them as
 COPIC. A score of zero in COPIC represents the level of Intermediate-mid on the
 OPIc scale.
+
+As readers may have noticed, some students with OPIc scores did not have any 
+numerically transformed OPIc values (i.e., NA). This is because these students 
+did not receive a valid score on the test. Specifically, these students received 
+either above range (AR), below range (BR), or unratable (UR) on the OPIc. AR 
+was most likely awarded when a student selected an test form that was well below 
+their oral proficiency level. BR was most likely awarded when a student selected 
+a test form that was well above their proficiency level. And UR was given when a
+student's oral response was not ratable due to one of a variety of reasons 
+(e.g., no response, technology failure). For transparency purposes, we include
+those students with non-scored OPIc tests in the starting datasets, but we have 
+to exclude them from the main analyses because their proficiency levels as 
+measured by the OPIc were unknown. In total, 64 students were excluded (4 AR, 
+59 BR, and 1 UR). The final analytic sample was composed of 807 students. 
+
+```{r}
+# Obtain descriptive statistics for students with non-scored OPIc tests
+df_corr_full %>%
+  count (OPIc) %>%
+  mutate (percentage = paste0(round(n/871, 4)*100, '%'))
+```
+
+Next, we obtain the final analytic samples by excluding students with invalid
+OPIc scores.
+
+```{r}
+# Final analytic dataset for obtaining descriptive statistics and correaltions
+df_corr <- df_corr_full %>% filter (!OPIc %in% c("AR","BR","UR"))
+# Final analytic dataset for conducting continuation-ratio modeling
+df_crm <- df_crm_full %>% filter (!OPIc %in% c("AR","BR","UR"))
+```
+
 
 \FloatBarrier
 
@@ -1556,10 +1588,12 @@ m2a.
 ```{r}
 F3 <- ggplot(T25, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
-  xlab("SA Level Transition")+
+  xlab("Self-assessment Threshold")+
   ylab("Conditional Pass Rate")+
-  ggtitle(label="Conditional Pass Rates by OPIC Score and Level Transition")
+  ggtitle(label="Conditional Pass Rates by OPIc Score and Self-assessment Threshold")
 direct.label(F3, "first.polygons")
+# for the manuscript
+ggsave("F4.png",plot=direct.label(F3, "first.polygons"), width = 6.5, height = 8.5, dpi = 300)
 ```
 
 \FloatBarrier
@@ -1571,10 +1605,12 @@ m2a.
 ```{r}
 F4 <- ggplot(T25, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
-  xlab("SA Level Transition")+
+  xlab("Self-assessment Threshold")+
   ylab("Unconditional Pass Rate")+
-  ggtitle(label="Unconditional Pass Rates by OPIC Score and SA Level Transition")
+  ggtitle(label="Unconditional Pass Rates by OPIc Score and Self-assessment Threshold")
 direct.label(F4, "first.polygons")
+# for the manuscript
+ggsave("F5.png",plot=direct.label(F4, "first.polygons"), width = 9, height = 5.5, dpi = 300)
 ```
 
 \FloatBarrier
