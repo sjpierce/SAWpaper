@@ -367,16 +367,16 @@ correlations for a similar comparative purpose.
 
 ```{r}
 # Create numeric versions of Level and Course.
-SData %>% 
-  mutate(Level.n = as.numeric(Level),
-         Course.n = as.numeric(Course)) ->
-  SData
+SData <- SData %>% 
+  mutate(OPIC.n = as.numeric(OPICN),
+         Level.n = as.numeric(Level),
+         Course.n = as.numeric(Course))
 
 # cvars = continuous variables
-cvars <- c("OPIC", "Item1_50", "Level.n", "Course.n")
+cvars <- c("OPIC.n", "Item1_50", "Level.n", "Course.n")
 
 # ovars = ordinal variables
-ovars <- c("Level", "Course")
+ovars <- c("LevelF", "Course")
 
 # Use the hetcor (heterogenous correlations) in "polycor" package to get a      
 # matrix with Pearson correlations (if both variables are continuous), 
@@ -418,10 +418,10 @@ not technically appropriate for our purpose.
 T08b <- ci.rp(r = cor(x = SData$Level.n, y = SData$Course.n, 
                       method = "spearman"), 
               n = nrow(SData), rn = "r.s: Level and Course")
-T08c <- ci.rp(r = cor(x = SData$Level.n, y = SData$OPIC, 
+T08c <- ci.rp(r = cor(x = SData$Level.n, y = SData$OPIC.n, 
                       method = "spearman"), 
               n = nrow(SData), rn = "r.s: Level and OPIC")
-T08d <- ci.rp(r = cor(x = SData$Course.n, y = SData$OPIC, 
+T08d <- ci.rp(r = cor(x = SData$Course.n, y = SData$OPIC.n, 
                       method = "spearman"), 
               n = nrow(SData), rn = "r.s: Course and OPIC")
 ```
