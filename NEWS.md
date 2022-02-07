@@ -1,3 +1,29 @@
+# SAWpaper 0.8.0, 2022-01-06
+* We have resubmitted the manuscript and expect that it will be accepted this 
+  time. Therefore, we are doing final cleanup and formatting to ensure 
+  reproducibility of all reported results.
+    * Updated SPSS data files to correct one case where the student had actually 
+      reached Level 5 (by passing Testlet 4) but had been inaccuratel recorded 
+      as having only reached Level 4 and not passing Testlet 4). We discovered 
+      this while updating data files into more convenient form for archiving at 
+      ICPSR. The fixes to the data make no substantive difference in our 
+      conclusions, but do change some estimates by a small amount in the 
+      decimal places.
+        * `inst/extdata/Students.sav` 
+        * `inst/extdata/Testlet_Attempts.sav`
+    * We need to add tables to one of the scripts to ensure users can reproduce 
+      information about students where were excluded from the analysis because
+      they got OPIc scores that were above range (AR), below range (BR), or 
+      unratable (UR). This was added to the paper to respond to a peer review 
+      comment. It will require updating the SPSS data files again too. 
+* Updated `DESCRIPTION` to remove Paula Winke as author, per conversation we 
+  had after I had added her. 
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd`: 
+    * Updated Correlations section to use additional variables and reflect 
+      updated input data frame. 
+    * We still have to revise this script further to simplify and prepare for 
+      publishing the research compendium. 
+
 # SAWpaper 0.7.1, 2022-01-06
 * Updated `DESCRIPTION` to add Paula Winke as author. 
 
