@@ -220,7 +220,6 @@ There are `r nrow(SData)` rows and `r ncol(SData)` variables in `SData`, but
 \FloatBarrier
 
 # DATA MANAGEMENT & EXPLORATION
-
 In `SData`, `Level` (and `LevelF`, which is just a copy of Level that is
 stored as a factor instead of a numeric variable) denote the five levels of
 Can-Do statements on the self-assessment, whereas in `TAData` the `Testlet`
@@ -251,6 +250,56 @@ end of the arrow succeeds in passing on to the level on the right end.
 Continuation-ratio models can be conducted as logistic regressions where the
 data frame has one row of data per person for each level transition that the
 individual actually attempted.
+
+We treat OPIc speaking test proficiency scores as a continuous covariate that
+ranges from Novice-low to Superior. The variable OPIc in df_corr_full shows the
+actual OPIc ratings. Numerically transfomed OPIc scores are captured by OPIC in
+df_corr_full (NL = 1, NM = 2, NH = 3, ..., AM = 8, AH = 9, Superior = 10). We removed
+the cases for which the OPIc ratings were not meaningful for this study (AR, BR,
+and UR). To make the model coefficients more interpretable, we included centered
+OPIc scores instead of the original OPIc results in df_crm_full and stored them as
+COPIC. A score of zero in COPIC represents the level of Intermediate-mid on the
+OPIc scale.
+
+As readers may have noticed, some students with OPIc scores did not have any 
+numerically transformed OPIc values (i.e., NA). This is because these students 
+did not receive a valid score on the test. Specifically, these students received 
+either above range (AR), below range (BR), or unratable (UR) on the OPIc. AR 
+was most likely awarded when a student selected an test form that was well below 
+their oral proficiency level. BR was most likely awarded when a student selected 
+a test form that was well above their proficiency level. And UR was given when a
+student's oral response was not ratable due to one of a variety of reasons 
+(e.g., no response, technology failure). For transparency purposes, we include
+those students with non-scored OPIc tests in the starting datasets, but we have 
+to exclude them from the main analyses because their proficiency levels as 
+measured by the OPIc were unknown. In total, 64 students were excluded (4 AR, 
+59 BR, and 1 UR). The final analytic sample was composed of 807 students. 
+
+```{r}
+# Obtain descriptive statistics for students with non-scored OPIc tests
+df_corr_full %>%
+  count (OPIc) %>%
+  mutate (percentage = paste0(round(n/871, 4)*100, '%'))
+
+# Look at the self-assessment levels of students who got AR, BR, or UR
+df_corr_full %>%
+  filter (OPIc %in% c("AR", "BR","UR")) %>%
+  group_by(OPIc) %>%
+  count(Level)
+```
+
+Next, we obtain the final analytic samples by excluding students with invalid
+OPIc scores.
+
+```{r}
+# Final analytic dataset for obtaining descriptive statistics and correaltions
+df_corr <- df_corr_full %>% filter (!OPIc %in% c("AR","BR","UR"))
+# Final analytic dataset for conducting continuation-ratio modeling
+df_crm <- df_crm_full %>% filter (!OPIc %in% c("AR","BR","UR"))
+```
+
+
+\FloatBarrier
 
 We treat the variables of Course, Level, and Testlet in as factor variables that 
 are effectively ordinal variables.
@@ -1400,10 +1449,12 @@ m2a.
 ```{r}
 F3 <- ggplot(T25, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
-  xlab("SA Level Transition")+
+  xlab("Self-assessment Threshold")+
   ylab("Conditional Pass Rate")+
-  ggtitle(label="Conditional Pass Rates by OPIC Score and Level Transition")
+  ggtitle(label="Conditional Pass Rates by OPIc Score and Self-assessment Threshold")
 direct.label(F3, "first.polygons")
+# for the manuscript
+ggsave("F4.png",plot=direct.label(F3, "first.polygons"), width = 6.5, height = 8.5, dpi = 300)
 ```
 
 \FloatBarrier
@@ -1415,10 +1466,12 @@ m2a.
 ```{r}
 F4 <- ggplot(T25, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
-  xlab("SA Level Transition")+
+  xlab("Self-assessment Threshold")+
   ylab("Unconditional Pass Rate")+
-  ggtitle(label="Unconditional Pass Rates by OPIC Score and SA Level Transition")
+  ggtitle(label="Unconditional Pass Rates by OPIc Score and Self-assessment Threshold")
 direct.label(F4, "first.polygons")
+# for the manuscript
+ggsave("F5.png",plot=direct.label(F4, "first.polygons"), width = 9, height = 5.5, dpi = 300)
 ```
 
 \FloatBarrier
