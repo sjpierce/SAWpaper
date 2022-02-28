@@ -1,9 +1,28 @@
-# SAWpaper 0.8.0, 2022-01-06
+# SAWpaper 0.9.0, 2022-02-27
+* We still need to finish final cleanup. The package is not ready for publishing
+  yet because we need to finish the process of splitting the analyses into 
+  multiple scripts. 
+* Updated SPSS data files to improve metadata and include additional variables. 
+    * `inst/extdata/Students_Data.sav` 
+    * `inst/extdata/Testlet_Attempts_Data.sav`
+* Updated `inst/SAW_Paper_Import_Explore_Data.Rmd` to: 
+    * Use the updated data files.
+    * Improve explanatory text. 
+    * Improve table showing OPIC variable coding and frequency. 
+    * Split exploration of student data into sections for all students versus 
+      the subset of students with valid OPIC scores. 
+    * Improve table captions and footnotes.
+    * Update exploration of testlet-level data to focus on data from students 
+      with valid OPIC scores.
+    * Update paper citation. 
+    * Update data saaved out. 
+
+# SAWpaper 0.8.0, 2022-02-06
 * We have resubmitted the manuscript and expect that it will be accepted this 
   time. Therefore, we are doing final cleanup and formatting to ensure 
   reproducibility of all reported results.
     * Updated SPSS data files to correct one case where the student had actually 
-      reached Level 5 (by passing Testlet 4) but had been inaccuratel recorded 
+      reached Level 5 (by passing Testlet 4) but had been inaccurately recorded 
       as having only reached Level 4 and not passing Testlet 4). We discovered 
       this while updating data files into more convenient form for archiving at 
       ICPSR. The fixes to the data make no substantive difference in our 
