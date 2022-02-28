@@ -48,3 +48,6 @@ Thumbs.db
 # Omit PDF output files from knitting .Rmd files in selected folders.
 # This is to keep report results off of GitHub.
 inst/*.pdf
+
+# Windows batch file only useful on my computer.
+inst/Delete_nul_file.bat
