@@ -167,7 +167,7 @@ unratable). The latter is the set we used for most analyses. We need the
 `VTAData` data frame specifically to run continuation-ratio models. Most other 
 analyses are performed based on the `VSData` data frame.
 
-```{r subset-student-data}
+```{r subset-crm-testlet-data}
 VTAData <- VTAData %>% filter(OPICA >= 1)
 ```
 
