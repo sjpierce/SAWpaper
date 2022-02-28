@@ -168,7 +168,7 @@ unratable). The latter is the set we used for most analyses. We need the
 analyses are performed based on the `VSData` data frame.
 
 ```{r subset-crm-testlet-data}
-VTAData <- VTAData %>% filter(OPICA >= 1)
+VTAData <- TAData %>% filter(OPICA >= 1)
 ```
 
 The `TAData` data frame contains `r nrow(TAData)` rows and `r ncol(TAData)` 
