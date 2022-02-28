@@ -130,7 +130,17 @@ SData <- read_sav(here::here("inst/extdata/Students_Data.sav"), user_na = TRUE) 
          LevelF = as_factor(Level, levels = "values"))
 ```
 
-There are `r nrow(SData)` rows and `r ncol(SData)` variables in `SData`. 
+Next, we create a smaller data frame called `VSData` containing only students 
+who had valid OPIC scores (i.e., that were not above or below range or 
+unratable). The latter is the set we used for most analyses.  
+
+```{r subset-student-data}
+VSData <- SData %>% filter(OPICA >= 1)
+```
+
+The `SData` data frame contains `r nrow(SData)` rows and `r ncol(SData)` 
+variables, while the `VSData` data frame contains `r nrow(VSData)` rows and 
+`r ncol(VSData)` variables. 
 
 \FloatBarrier
 
@@ -151,7 +161,19 @@ TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts_Data.sav"),
          MaxLevel = as_factor(MaxLevel, levels = "values"))
 ```
 
-There are `r nrow(TAData)` rows and `r ncol(TAData)` variables in `TAData`. 
+Next, we create a smaller data frame called `VTAData` containing only data students 
+who had valid OPIC scores (i.e., that were not above or below range or 
+unratable). The latter is the set we used for most analyses. We need the 
+`VTAData` data frame specifically to run continuation-ratio models. Most other 
+analyses are performed based on the `VSData` data frame.
+
+```{r subset-student-data}
+VTAData <- VTAData %>% filter(OPICA >= 1)
+```
+
+The `TAData` data frame contains `r nrow(TAData)` rows and `r ncol(TAData)` 
+variables, while the `VTAData` data frame contains `r nrow(VTAData)` rows and 
+`r ncol(VTAData)` variables. 
 
 \FloatBarrier
 
