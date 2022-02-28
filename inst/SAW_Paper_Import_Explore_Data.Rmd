@@ -269,36 +269,27 @@ manuscript.
 
 \FloatBarrier
 
-## Student-Level Data
+## Student-Level Data (All Students)
 We start by examining the student-level data in `SData`. Table 
 \ref{tab:Table-LevelF} below summarizes the univariate distribution for 
 maximum self-assessment level achieved by the students. 
 
 ```{r Table-LevelF}
 # Table caption and footnote text. 
-TCap <- "Frequency Table for Maximum Self-Assesment Level Achieved"
+TCap <- "Frequency Table for Maximum Self-Assesment Level Achieved (All Students)"
 FN   <- paste("Remaining N is the number of students who reached a level above",
               "the one associated with the current row in the table.")
 
-# Frequency table for maximum level achieved. 
-SData %>% 
-   group_by(LevelF) %>% 
-   summarise(N = n(),
-             Pct = 100*N/nrow(SData)) %>% 
-   ungroup() %>% 
-   mutate(CumN = cumsum(N),
-          CumPct = cumsum(Pct),
-          RemainN = sum(N) - CumN,
-          RemainPct = 100 - CumPct) ->
-   TLevelF
-
-# Extract N and percent of students with self-assessed level > 1 (i.e., >= 2). 
-N_SA_GE_2   <- TLevelF$RemainN[1]
-Pct_SA_GE_2 <- TLevelF$RemainPct[1]
-
-# Extract N and percent of students with self-assessed level > 2 (i.e., >= 3). 
-N_SA_GE_3   <- TLevelF$RemainN[2]
-Pct_SA_GE_3 <- TLevelF$RemainPct[2]
+# Frequency table for maximum level achieved (All Students). 
+TLevelF <- SData %>% 
+  group_by(LevelF) %>% 
+  summarise(N = n(),
+            Pct = 100*N/Total.N) %>% 
+  ungroup() %>% 
+  mutate(CumN = cumsum(N),
+         CumPct = cumsum(Pct),
+         RemainN = sum(N) - CumN,
+         RemainPct = 100 - CumPct)
 
 # Display formatted table.
 kable(TLevelF, format = "latex", booktabs = TRUE, digits = 0, 
@@ -309,18 +300,14 @@ kable(TLevelF, format = "latex", booktabs = TRUE, digits = 0,
            threeparttable = TRUE)
 ```
 
-Only $N = `r N_SA_GE_2`$ (`r round(Pct_SA_GE_2, digits = 0)`%) of the students 
-reached level 2 or higher on the self-assessment. Only $N = `r N_SA_GE_3`$ 
-(`r round(Pct_SA_GE_3, digits = 0)`%) students reached level 3 or higher on the 
-self-assessment. 
-
 We now examine the relationships among Level, Course, and OPIC by creating 
 crosstabulations. Table \ref{tab:Table-LevelF-Course} shows the two-way 
 contingency table for Level and Course. 
 
 ```{r Table-LevelF-Course}
 # Table caption and footnote text. 
-TCap <- "Crosstab Maximum Self-Assessment Level by Course, With Marginal Sums"
+TCap <- paste("Crosstab Maximum Self-Assessment Level by Course, With Marginal", 
+              "Sums (All Students)")
 FN   <- paste("Course, type of Spanish course the student was enrolled in;",
               "Level, maximum self-assessment level achieved by the student.")
 
@@ -335,23 +322,131 @@ addmargins(xtabs(~LevelF + Course, data = SData)) %>%
            threeparttable = TRUE)
 ```
 
-Table \ref{tab:Table-LevelF-OPICN-Course} summarizes the cross-tabulations 
+Table \ref{tab:Table-LevelF-OPICA-Course} summarizes the cross-tabulations 
 between OPIc scores and two other variables: maximum self-assessment level
 achieved and course. 
 
-```{r Table-LevelF-OPICN-Course}
+```{r Table-LevelF-OPICA-Course}
 # Table caption and footnote text. 
 TCap <- paste("Crosstabs of Maximum Self-Assessment Level and Course by OPIc", 
-              "Score, With Marginal Sums")
+              "Score, With Marginal  (All Students)")
 FN   <- paste("Course, type of Spanish course the student was enrolled in;",
+              "Level, maximum self-assessment level achieved by the student;",
+              "OPIc, ACTFL Oral Proficiency Interview – computer.",
+              "The invalid OPIc scores are: -2 = above range (AR), -1 = below",
+              "range (BR), and 0 = unratable (UR).")
+
+# Combine two crosstab outputs into a single table: 
+# Examine the relationship between OPIc scores and SA level.
+# Examine the relationship between OPIc scores and course level.
+rbind(addmargins(xtabs(~LevelF + OPICA, addNA = TRUE, data = SData)),
+      addmargins(xtabs(~Course + OPICA, addNA = TRUE, data = SData))) %>% 
+  kable(format = "latex", booktabs = TRUE,  
+      caption = TCap) %>% 
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  add_header_above(header = c(" ", "Invalid" = 3, "Valid" = 9, " ")) %>% 
+  add_header_above(header = c(" ", "OPIc Score" = 12, " ")) %>% 
+  group_rows(group_label = "Level", bold = FALSE, start_row = 1, 
+             end_row = 6) %>% 
+  group_rows(group_label = "Course", bold = FALSE, start_row = 7, 
+             end_row = 11) %>% 
+  row_spec(row = c(6, 11), italic = TRUE) %>% 
+  column_spec(column = 14, italic = TRUE) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
+```
+
+\FloatBarrier
+
+## Student-Level Data (Students with Valid OPIc Scores)
+We start by examining the student-level data in `VSData` because those are the 
+data we used in most of the analyses reported in our published manuscript. Table 
+\ref{tab:Table-LevelFV} below summarizes the univariate distribution for maximum 
+self-assessment level achieved by the students who had valid OPIC scores. 
+
+```{r Table-LevelFV}
+# Table caption and footnote text. 
+TCap <- paste("Frequency Table for Maximum Self-Assesment Level Achieved",
+              "(Students with Valid OPIc Scores)")
+FN   <- paste("Only students with valid OPIc scores (OPICA > 0) were included.",
+              "Remaining N is the number of students who reached a level above",
+              "the one associated with the current row in the table.")
+
+# Frequency table for maximum level achieved (Students with Valid OPIC). 
+TLevelFV <- VSData %>% 
+  group_by(LevelF) %>% 
+  summarise(N = n(),
+            Pct = 100*N/Valid.N) %>% 
+  ungroup() %>% 
+  mutate(CumN = cumsum(N),
+         CumPct = cumsum(Pct),
+         RemainN = sum(N) - CumN,
+         RemainPct = 100 - CumPct)
+
+# Extract N and percent of students with self-assessed level > 1 (i.e., >= 2). 
+N_SA_GE_2   <- TLevelFV$RemainN[1]
+Pct_SA_GE_2 <- TLevelFV$RemainPct[1]
+
+# Extract N and percent of students with self-assessed level > 2 (i.e., >= 3). 
+N_SA_GE_3   <- TLevelFV$RemainN[2]
+Pct_SA_GE_3 <- TLevelFV$RemainPct[2]
+
+
+# Display formatted table.
+kable(TLevelFV, format = "latex", booktabs = TRUE, digits = 0, 
+      col.names = c("Level", "N", "%", "Cumulative N", "Cumulative %", 
+                    "Remaining N", "Remaining %"),
+      caption = TCap) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
+```
+
+Only $N = `r N_SA_GE_2`$ (`r round(Pct_SA_GE_2, digits = 0)`%) of the students 
+reached level 2 or higher on the self-assessment. Only $N = `r N_SA_GE_3`$ 
+(`r round(Pct_SA_GE_3, digits = 0)`%) students reached level 3 or higher on the 
+self-assessment. 
+
+We now examine the relationships among Level, Course, and OPIC by creating 
+crosstabulations. Table \ref{tab:Table-LevelF-CourseV} shows the two-way 
+contingency table for Level and Course. 
+
+```{r Table-LevelF-CourseV}
+# Table caption and footnote text. 
+TCap <- paste("Crosstab Maximum Self-Assessment Level by Course, With Marginal",
+              "Sums (Students with Valid OPIc Scores)")
+FN   <- paste("Only students with valid OPIc scores (OPICA > 0) were included.",
+              "Course, type of Spanish course the student was enrolled in;",
+              "Level, maximum self-assessment level achieved by the student.")
+
+# Examine the relationship between SA level and course level. 
+addmargins(xtabs(~LevelF + Course, data = VSData)) %>% 
+  kable(format = "latex", booktabs = TRUE, caption = TCap) %>%
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  add_header_above(c("Level", "Course" = 4, " ")) %>% 
+  row_spec(row = 6, italic = TRUE) %>%
+  column_spec(column = 6, italic = TRUE) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+           threeparttable = TRUE)
+```
+
+Table \ref{tab:Table-LevelF-OPICV-CourseV} summarizes the cross-tabulations 
+between OPIc scores and two other variables: maximum self-assessment level
+achieved and course. 
+
+```{r Table-LevelF-OPICV-CourseV}
+# Table caption and footnote text. 
+TCap <- paste("Crosstabs of Maximum Self-Assessment Level and Course by OPIc", 
+              "Score, With Marginal Sums (Students with Valid OPIc Scores)")
+FN   <- paste("Only students with valid OPIc scores (OPICA > 0) were included.",
+              "Course, type of Spanish course the student was enrolled in;",
               "Level, maximum self-assessment level achieved by the student;",
               "OPIc, ACTFL Oral Proficiency Interview – computer.")
 
 # Combine two crosstab outputs into a single table: 
 # Examine the relationship between OPIc scores and SA level.
 # Examine the relationship between OPIc scores and course level.
-rbind(addmargins(xtabs(~LevelF + OPICN, data = SData)),
-      addmargins(xtabs(~Course + OPICN, data = SData))) %>% 
+rbind(addmargins(xtabs(~LevelF + OPICV, data = VSData)),
+      addmargins(xtabs(~Course + OPICV, data = VSData))) %>% 
   kable(format = "latex", booktabs = TRUE,  
       caption = TCap) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
