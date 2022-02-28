@@ -554,11 +554,13 @@ addmargins(xtabs(~Testlet + COPIC, data = VTAData)) %>%
 \FloatBarrier
 
 # Save Data 
-The chunks below save the `SData` and `TAData` data frames to an `.RData` file
-in the local copy of the repository for use by subsequent scripts. 
+The chunks below save the `SData`, `VSData`, `TAData`, and `VTAData` data frames 
+to an `.RData` file in the local copy of the repository for use by subsequent 
+scripts. 
 
 ```{r save-data}
-save(SData, TAData, file = here::here("data/SAW_Paper_Data.RData"))
+save(SData, VSData, TAData, VTAData, 
+     file = here::here("data/SAW_Paper_Data.RData"))
 ```
 
 \FloatBarrier
