@@ -564,9 +564,9 @@ save(SData, TAData, file = here::here("data/SAW_Paper_Data.RData"))
 \FloatBarrier
 
 # References
-Winke, P., Zhang, X., & Pierce, S. J. (2021). 
+Winke, P., Zhang, X., & Pierce, S. J. (2022). 
 *A closer look at a marginalized test method: Self-assessment as a measure of speaking proficiency* 
-[Manuscript submitted for publication]. Department of Linguistics, Languages, & 
+[Manuscript accepted for publication]. Department of Linguistics, Languages, & 
 Cultures, Michigan State University. 
 
 Winke, P., Pierce, S. J., & Zhang, X. (2018, October 12-13). 
