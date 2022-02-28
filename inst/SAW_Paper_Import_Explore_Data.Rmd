@@ -124,7 +124,7 @@ measurement, and so on. The chunk below reads that file into a data frame called
 `SData`, then converts a couple variables to proper factors. 
 
 ```{r import-student-data}
-SData <- read_sav(here::here("inst/extdata/Students.sav"), user_na = TRUE) %>% 
+SData <- read_sav(here::here("inst/extdata/Students_Data.sav"), user_na = TRUE) %>% 
   mutate(Gender = as_factor(Gender),
          Course = as_factor(Course),
          LevelF = as_factor(Level, levels = "values"))
@@ -145,7 +145,7 @@ specifically to run continuation-ratio models. Most other analyses are performed
 based on the `SData` data frame.
 
 ```{r import-crm-testlet-data}
-TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts.sav"), 
+TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts_Data.sav"), 
                    user_na = TRUE) %>% 
   mutate(Gender = as_factor(Gender),
          Course = as_factor(Course),
