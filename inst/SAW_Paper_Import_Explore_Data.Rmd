@@ -219,28 +219,39 @@ contrasts(TAData$Course) %>%
 ### OPIC Scores
 We treat OPIc speaking test proficiency scores as a continuous covariate that
 ranges from Novice-low to Superior. Table \ref{tab:OPIC-scores} shows the coding
-for the `OPICN` and `COPIC` variables in `SData`. The former variable contains
-the OPIc ratings in their original numeric form and has value labels attached
-that show the meaning of scores. We already removed the cases for which the OPIc
-ratings were not meaningful for this study (AR, BR, and UR) before archiving the
-file. To make model coefficients more interpretable, we computed centered OPIc
-scores and stored them in a variable named COPIC. A score of zero in COPIC 
-represents the Intermediate-mid level on the OPIc scale.
+for the `OPICA`, `OPICV`, and `COPIC` variables in `SData`. The `OPICA` variable 
+contains all possible OPIc ratings, including those for individuals who were 
+identified as above or below range or unratable (AR, BR, or UR) in numeric form 
+and has value labels attached that show the meaning of scores. Meanwhile, 
+`OPICV` is a transformation of `OPICA` that replaced the AR, BR, and UR values
+with missing values. To make model coefficients more interpretable, we computed
+centered OPIc scores from `OPICV` and stored them in a variable named `COPIC`. A 
+score of zero in `COPIC` represents the Intermediate-mid level on the OPIc 
+scale.
 
 ```{r OPIC-scores}
-# Table caption and footnote text. 
-TCap <- paste("OPIc Score Labels, Numeric Values, Centered Values, and",
-              "Frequency")
-FN   <- paste("COPIC is a centered form of OPICN (COPIC = OPICN - 5) used to",
-              "make model intercept terms more interpretable.",
-              "OPICN, numeric ACTFL Oral Proficiency Interview – computer score")
+Total.N <- nrow(SData)
+Valid.N <- nrow(VSData)
 
-data.frame(OPIC_Label = get_labels(TAData$OPICN), 
-           OPICN = c(as.numeric(sort(unique(TAData$OPICN))), 10), 
-           COPIC = c(as.numeric(sort(unique(TAData$COPIC))), 5),
-           Frequency = as.numeric(c(xtabs(~OPICN, data = TAData), 0))) %>% 
-  kable(format = "latex", booktabs = TRUE, 
-        col.names = c("Score Label", "OPICN", "COPIC", "Frequency"), 
+# Table caption and footnote text. 
+TCap <- paste0("OPIc Score Variables: Coding and Frequency Distribution (",
+              "Total N = ", Total.N, ", Valid N = ", Valid.N, ")")
+FN   <- paste("COPIC is a centered form of OPICV (COPIC = OPICV - 5) used to",
+              "make model intercept terms more interpretable.",
+              "OPICA, numeric ACTFL Oral Proficiency Interview – computer score",
+              "OPICV, valid numeric ACTFL Oral Proficiency Interview – computer score.")
+
+data.frame(OPIC_Label = get_labels(SData$OPICA), 
+           OPICA = c(as.numeric(sort(unique(SData$OPICA))), 10), 
+           OPICV = c(NA, NA, NA, as.numeric(sort(unique(SData$OPICV))), 10), 
+           COPIC = c(NA, NA, NA, as.numeric(sort(unique(SData$COPIC))), 5),
+           Frequency = as.numeric(c(xtabs(~OPICA, addNA = TRUE, data = SData), 
+                                    0))) %>% 
+  mutate(Percent = 100*Frequency/Total.N,
+         Valid = if_else(OPICA >= 1, true = 100*Frequency/Valid.N, false = 0)) %>% 
+  kable(format = "latex", booktabs = TRUE, digits = 2, 
+        col.names = c("Score Label", "OPICA", "OPICV", "COPIC", "Frequency",
+                      "Percent", "Valid Percent"), 
         caption = TCap) %>% 
   kable_styling(latex_options = c("repeat_header")) %>% 
   column_spec(1, width = "4cm") %>% 
