@@ -572,9 +572,9 @@ save(SData, VSData, TAData, VTAData,
 
 # References
 Winke, P., Zhang, X., & Pierce, S. J. (2022). 
-*A closer look at a marginalized test method: Self-assessment as a measure of speaking proficiency* 
-[Manuscript accepted for publication]. Department of Linguistics, Languages, & 
-Cultures, Michigan State University. 
+A closer look at a marginalized test method: Self-assessment as a measure of 
+speaking proficiency [Manuscript accepted for publication]. 
+*Studies in Second Language Acquisition*.
 
 Winke, P., Pierce, S. J., & Zhang, X. (2018, October 12-13). 
 *Self-assessment works! Continuation-ratio models for testing course and OPIc score effects on oral proficiency self-assessments* 
