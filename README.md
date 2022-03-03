@@ -1,8 +1,8 @@
+SAWpaper: Self-Assessment Works Paper Research Compendium
+================
+Steven J. Pierce & Xiaowan Zhang
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# SAWpaper: Self-Assessment Works Paper Research Compendium
-
 <!-- badges: start -->
 
 [![Lifecycle:

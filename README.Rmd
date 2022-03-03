@@ -1,4 +1,6 @@
 ---
+title: "SAWpaper: Self-Assessment Works Paper Research Compendium"
+author: "Steven J. Pierce & Xiaowan Zhang"
 output: github_document
 ---
 
@@ -13,7 +15,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-# SAWpaper: Self-Assessment Works Paper Research Compendium
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN status](https://www.r-pkg.org/badges/version/cstatops)](https://CRAN.R-project.org/package=SAWpaper)
