@@ -206,20 +206,18 @@ library(here)  # for here()
 dir_tree(path = here(), recurse = TRUE, type = "any")
 #> P:/Consulting/FY18/Winke_Paula/18-009/SAWpaper
 #> +-- data
-#> |   +-- DF_CORR.csv
-#> |   +-- DF_CRM.csv
 #> |   \-- SAW_Paper_Data.RData
 #> +-- DESCRIPTION
 #> +-- inst
+#> |   +-- Delete_nul_file.bat
 #> |   +-- Development_Tools.R
 #> |   +-- extdata
-#> |   |   +-- df_corr.sav
-#> |   |   \-- df_crm.sav
+#> |   |   +-- Students_Data.sav
+#> |   |   \-- Testlet_Attempts_Data.sav
 #> |   +-- R_Citations.Rmd
-#> |   +-- SAW_Paper_Import_Data.pdf
-#> |   +-- SAW_Paper_Import_Data.Rmd
-#> |   +-- SAW_Paper_Spanish_Analysis.pdf
-#> |   \-- SAW_Paper_Spanish_Analysis.Rmd
+#> |   +-- SAW_Paper_Analyze_Data.Rmd
+#> |   +-- SAW_Paper_Import_Explore_Data.pdf
+#> |   \-- SAW_Paper_Import_Explore_Data.Rmd
 #> +-- LICENSE
 #> +-- man
 #> |   \-- SAWpaper-package.Rd
