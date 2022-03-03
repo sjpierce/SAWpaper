@@ -283,8 +283,8 @@ https://doi.org/10.1371/journal.pcbi.1004947
 RStudio Team. (2021). RStudio: Integrated development for R (Version 1.4.1717) 
 [Computer software]. RStudio, Inc. https://rstudio.com
 
-Torvalds, L., Hamano, J. C., & other contributors to the Git Project. (2021).
-Git for Windows (Version 2.33.0.2) [Computer program]. Software Freedom
+Torvalds, L., Hamano, J. C., & other contributors to the Git Project. (2022).
+Git for Windows (Version 2.35.1(2)) [Computer program]. Software Freedom
 Conservancy. Retrieved from https://git-scm.com
 
 Wickham, H., & Bryan, J. (2021). 

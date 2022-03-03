@@ -94,7 +94,7 @@ output.
 -   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.
--   We use Git (Torvalds et al., 2021) for version control, with the
+-   We use Git (Torvalds et al., 2022) for version control, with the
     primary (i.e., main) repository hosted online by
     [GitHub](https://github.com/). For a short introduction to Git, see
     Bryan (2018). There is a longer, more detailed resource on using Git
@@ -324,7 +324,7 @@ RStudio Team. (2021). RStudio: Integrated development for R (Version
 1.4.1717) \[Computer software\]. RStudio, Inc. <https://rstudio.com>
 
 Torvalds, L., Hamano, J. C., & other contributors to the Git Project.
-(2021). Git for Windows (Version 2.33.0.2) \[Computer program\].
+(2022). Git for Windows (Version 2.35.1(2)) \[Computer program\].
 Software Freedom Conservancy. Retrieved from <https://git-scm.com>
 
 Wickham, H., & Bryan, J. (2021). *R packages: Organize, test, document,
