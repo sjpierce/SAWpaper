@@ -89,8 +89,7 @@ output.
     integrated development environment (IDE). We recommend using the
     most recent stable release available. The software chain for R
     Markdown looks like this: **Rmd file > RStudio > R > rmarkdown >
-    knitr > md file > pandoc > tex file > TinyTeX or MiKTeX > PDF
-    file**.
+    knitr > md file > pandoc > tex file > TinyTeX > PDF file**.
 -   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.
