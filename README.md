@@ -27,9 +27,6 @@ the Can-Do test results.
 
 ## Task List
 
--   Add new script to import data from SPSS files.
--   Add a script to generate dataset documentation, possibly via the
-    codebook package.
 -   Update the data documentation to point toward the published data
     archive at ICPSR.
 -   Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
