@@ -76,19 +76,21 @@ excellent support for generating dynamic reports (Mair, 2016). Knitting
 an R Markdown script can generate a PDF output file containing
 explanatory text, R code, plus R output (text and graphics), although it
 can also produce HTML or Markdown files too depending on the contents of
-the R Markdown file. We have designed our scripts to produce PDF output.
+the R Markdown file. We have designed most of our scripts to produce PDF
+output.
 
 -   We used the [R statistical software](https://www.r-project.org/) to
     do data management and run our analyses. You will need R to to
     reproduce our results. We recommend using the most recent stable
     release of R available from the [Comprehensive R Archive Network
     (CRAN)](https://cran.r-project.org/).
--   We used [RStudio](www.rstudio.org) 2021.9.0.351 (RStudio Team, 2021)
+-   We used [RStudio](www.rstudio.org) 2021.9.1.372 (RStudio Team, 2021)
     to work with R and R Markdown files. RStudio is an excellent
     integrated development environment (IDE). We recommend using the
     most recent stable release available. The software chain for R
     Markdown looks like this: **Rmd file > RStudio > R > rmarkdown >
-    knitr > pandoc > TinyTeX or MiKTeX > PDF file**.
+    knitr > md file > pandoc > tex file > TinyTeX or MiKTeX > PDF
+    file**.
 -   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.
