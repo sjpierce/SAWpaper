@@ -32,7 +32,7 @@ header-includes:
 - \posttitle{\end{center}}
 - \usepackage{lscape}
 - \pagestyle{fancy}
-- \lhead{Self-Assessment Works! (Spanish) Import Data}
+- \lhead{Self-Assessment Works! Import Data}
 - \rhead{\today\ \currenttime}
 - \cfoot{ }
 - \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
