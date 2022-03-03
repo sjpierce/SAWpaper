@@ -1,3 +1,26 @@
+# SAWpaper 0.10.0, 2022-03-02
+* Updated `inst/SAW_Paper_Import_Explore_Data.Rmd` to: 
+    * Improve Software Information section.
+    * Updated References section.
+    * Update left header. 
+    * Improve explanatory text.
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Improve Software Information section.
+    * Updated References section.
+    * Improve explanatory text.
+* Updated `README.Rmd` and `README.Rmd` to:
+    * Add title and authors. 
+    * Update task list.
+    * Update paper citation and references.
+    * Improve explanatory text. 
+    * Remove data documentation that will be archived separately.
+    * Updated folder tree diagram. 
+    * Improved heading structure.
+* Removed outdated data files. We now read in from SPSS data files that will be
+  be archived separately. 
+    * `data/DF_CORR.csv`
+    * `data/DF_CRM.csv`
+
 # SAWpaper 0.9.0, 2022-02-27
 * We still need to finish final cleanup. The package is not ready for publishing
   yet because we need to finish the process of splitting the analyses into 
