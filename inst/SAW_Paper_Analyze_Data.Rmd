@@ -43,8 +43,8 @@ header-includes:
 \FloatBarrier
 
 # Purpose
-This file facilitates reproducing the results reported in our manuscript (Winke,
-Zhang, & Pierce, 2022), which was based on a presentation (Winke, Pierce, &
+This file reproduces the results reported in our manuscript (Winke, Zhang, & 
+Pierce, 2022), which was based on a presentation (Winke, Pierce, &
 Zhang 2018). It analyzes data on Spanish language learners who took a Can-Do
 self-assessment test, along with the more authoritative OPIc language
 proficiency test. We did both correlation analyses and continuation-ratio models
@@ -73,31 +73,30 @@ code.
 \FloatBarrier
 
 ## Comment on Statistical Methodology
-We have begun trying to apply ideas discussed in Wasserstein, Schirm, and Lazar
-(2019) about abandoning declarations of statstical significance. This landmark
+We experimented with applying ideas discussed in Wasserstein, Schirm, and Lazar
+(2019) about abandoning declarations of statistical significance. This landmark
 editorial paper produced by the American Statistical Association discussed
-various proposed ways to supplement p-values with additional statistics or
-replace them altogether. We are still refining how to update our statistical
-approaches in light of those ideas. 
+various ways to supplement p-values with additional statistics or replace them 
+altogether. We computed some supplemental statistics and include them in this 
+set of materials but omitted them from the manuscript. 
 
-One of the things we are doing is reporting Shannon information values
-(s-values; Greenland, 2019; Wasserstein, Schirm, & Lazar, 2019). S-values are a
-rescaling of p-values, such that $s = - log_2(p)$. They can range from $s = 0$
-when $p = 1$ to $s = \infty$ when $p = 0$. Larger s-values correspond to greater
-evidence against the null hypothesis. An s-value can be interpreted as how many
-bits of information there are against the hypothesis. To make that easier to
-understand, suppose you want to flip a coin repeatedly to determine whether it
-is a fair coin rather than one biased toward landing on heads. Each flip
-provides one bit of information, but only those resulting in heads are
-information against the null hypothesis. A fair coin should yield heads half of
-the time and tails the other half (independent with probability = .50 for each
-outcome on each flip). The null hypothesis is that the coin is fair. Seeing 2
-consecutive heads come up in a set of 2 flips ($p = 0.5^{2} = 0.25, s = 2$)
-would be weak evidence against fairness but an s-value of 10 would be more
-persuasive, like getting 10 heads from a set of 10 coin flips 
-($p = 0.5^{10} = 0.0009765625, s = 10$).
+We computed Shannon information values (s-values; Greenland, 2019; Wasserstein,
+Schirm, & Lazar, 2019). S-values are a rescaling of p-values, such that 
+$s = -log_2(p)$. They can range from $s = 0$ when $p = 1$ to $s = \infty$ when 
+$p = 0$. Larger s-values correspond to greater evidence against the null 
+hypothesis. An s-value can be interpreted as how many bits of information there
+are against the hypothesis. To make that easier to understand, suppose you want
+to flip a coin repeatedly to determine whether it is a fair coin rather than one
+biased toward landing on heads. Each flip provides one bit of information, but
+only those resulting in heads are information against the null hypothesis. A
+fair coin should yield heads half of the time and tails the other half
+(independent with probability = .50 for each outcome on each flip). The null
+hypothesis is that the coin is fair. Seeing 2 consecutive heads come up in a set
+of 2 flips ($p = 0.5^{2} = 0.25, s = 2$) would be weak evidence against fairness 
+but an s-value of 10 would be more persuasive, like getting 10 heads from a set 
+of 10 coin flips ($p = 0.5^{10} = 0.0009765625, s = 10$).
 
-Other ideas that look viable to use are reporting mimimum false positive risk
+Other ideas that look viable to use are reporting minimum false positive risk
 (mFPR; Colquhoun, 2009), Bayes Factor Bounds (BFB; Benjamin & Berger, 2019), and 
 the upper bound for the posterior probability that that alternate hypothesis
 (H1) is true (Benjamin & Berger, 2019). We have opted to use the latter two 
@@ -107,7 +106,7 @@ Taking the Can-Do self-assessment yields an ordinal score ranging from 1-5 that
 represents the proficiency level of the learner who took the test. Higher levels
 indicate greater proficiency. We can conceptualize the process that yields that
 score as a sequential selection process comprised of a set of four level
-transition tests (LTTs) that must be passed in strict order. Every learner
+transition testlets (LTTs) that must be passed in strict order. Every learner
 starts at level 1 and only advances to level 2 by passing the first LTT. The
 learner's proficiency level is incremented for each LTT passed. The
 self-assessment ends as soon as the learner fails to pass an LTT, or reaches the
