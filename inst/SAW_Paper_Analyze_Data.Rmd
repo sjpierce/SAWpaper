@@ -2367,7 +2367,7 @@ script generates the PDF file containing explanatory text, R code, and R output.
 - We used [RStudio](www.rstudio.org) `r rstudioapi::versionInfo()$version` to 
   work with R and R markdown files. 
 - Our software chain looks like this:
-  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX > PDF file**.
+  **Rmd file > RStudio > R > rmarkdown > knitr > md file > pandoc > tex file > TinyTeX > PDF file**.
 - Source script: *`r knitr:::current_input()`*
 - Output file: *`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`*
 - We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
