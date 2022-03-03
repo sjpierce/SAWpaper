@@ -43,10 +43,10 @@ the Can-Do test results.
 
 ## Associated Research Paper
 
-Winke, P., Zhang, X., & Pierce, S. J. (2021). *A closer look at a
+Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a
 marginalized test method: Self-assessment as a measure of speaking
-proficiency* \[Manuscript submitted for publication\]. Department of
-Linguistics, Languages, & Cultures, Michigan State University.
+proficiency \[Manuscript accepted for publication\]. *Studies in Second
+Language Acquisition*.
 
 ## Funding Sources
 
