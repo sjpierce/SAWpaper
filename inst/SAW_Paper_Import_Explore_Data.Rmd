@@ -161,10 +161,10 @@ TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts_Data.sav"),
          MaxLevel = as_factor(MaxLevel, levels = "values"))
 ```
 
-Next, we create a smaller data frame called `VTAData` containing only data students 
-who had valid OPIC scores (i.e., that were not above or below range or 
-unratable). The latter is the set we used for most analyses. We need the 
-`VTAData` data frame specifically to run continuation-ratio models. Most other 
+Next, we create a smaller data frame called `VTAData` containing only data from
+students who had valid OPIC scores (i.e., that were not above or below range or
+unratable). The latter is the set we used for most analyses. We need the
+`VTAData` data frame specifically to run continuation-ratio models. Most other
 analyses are performed based on the `VSData` data frame.
 
 ```{r subset-crm-testlet-data}
