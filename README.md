@@ -25,7 +25,7 @@ and OPIc speaking proficiency scores on the passing rate for each level
 of the Can-Do statements self-assessment. The objective was to validate
 the Can-Do test results.
 
-## Task List
+# Task List
 
 -   Update the data documentation to point toward the published data
     archive at ICPSR.
@@ -41,14 +41,14 @@ the Can-Do test results.
     in the ‘Writing R Extensions’ manual.
 -   Add package citation information.
 
-## Associated Research Paper
+# Associated Research Paper
 
 Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a
 marginalized test method: Self-assessment as a measure of speaking
 proficiency \[Manuscript accepted for publication\]. *Studies in Second
 Language Acquisition*.
 
-## Funding Sources
+# Funding Sources
 
 Funding for this research was provided by the following grants.
 
@@ -62,14 +62,14 @@ State University Language Flagship Proficiency Initiative Year 5
 continuation proposal* (Award #: 0054-MSU-22-PI-280-PO2) \[Grant\].
 Institute of International Education.
 
-## Disclaimer
+# Disclaimer
 
 The opinions or points of view expressed in this research compendium and
 the associated manuscript are solely those of the authors and do not
 reflect the official positions of any organization or the Institute of
 International Education.
 
-## Software Environment
+# Software Environment
 
 We use R Markdown to enhance reproducibility because it provides
 excellent support for generating dynamic reports (Mair, 2016). Knitting
@@ -114,7 +114,7 @@ output.
     packages.
 -   We recommend frequently updating your installed R packages.
 
-## Installation
+# Installation
 
 This *SAWpaper* package is only available from a *private* repository
 available on [GitHub](https://github.com/) at
@@ -123,7 +123,7 @@ are ready to release the code, which will likely coincide with
 publication of the associated paper. After that, we will make it a
 public repository.
 
-### Obtain the Repository from GitHub
+## Obtain the Repository from GitHub
 
 If you use Git (Torvalds et al., 2020) and have a GitHub account, either
 clone or fork and clone the package to your computer using the usual Git
@@ -139,7 +139,7 @@ path and file name references. Moving or renaming subfolders and/or
 files may cause problems. We have tested it only with the folder
 structure and file naming used in the primary repository on GitHub.
 
-### Install the *devtools* Package from CRAN
+## Install the *devtools* Package from CRAN
 
 You will need to install the [*devtools*](https://devtools.r-lib.org/)
 package before you install *piercer* in the next step. You can find
@@ -152,12 +152,12 @@ allow you to install the current release version from CRAN.
 install.packages("devtools")
 ```
 
-### Install the *piercer* Package from GitHub
+## Install the *piercer* Package from GitHub
 
 Please read and follow the installation instructions for *piercer* at
 <https://github.com/sjpierce/piercer> before trying to use this package.
 
-### Install the *SAWpaper* Package from GitHub
+## Install the *SAWpaper* Package from GitHub
 
 Once the steps above are done, use the following code in the R console
 to install the *SAWpaper* package. This package doesn’t have any custom
@@ -171,7 +171,7 @@ local repository folder.
 devtools::install_github("sjpierce/SAWpaper")
 ```
 
-### Install Additional R Packages from CRAN
+## Install Additional R Packages from CRAN
 
 Scripts in this R package depend on having a number of other R packages
 installed. Those packages are available from CRAN and can be installed
@@ -187,7 +187,7 @@ install.packages(pkgs = c("car", "directlabels", "dplyr", "fs", "ggplot2",
 Once you have completed this step, you should be ready to use this
 package to reproduce our results.
 
-## Repository Contents
+# Repository Contents
 
 The diagram below shows the subfolders nested under the `SAWpaper`
 folder when we last knitted the`README.Rmd file`. Individual files are
@@ -278,7 +278,7 @@ following files in this order.
 -   `SAWpaper/inst/SAW_Paper_Spanish_Analysis.Rmd`
 -   `SAWpaper/inst/R_Citations.Rmd`
 
-## Obtaining Data Files
+# Obtaining Data Files
 
 The data files required to use this package are not available in the
 GitHub repository. We plan to deposit them with the [Inter-university
