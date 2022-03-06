@@ -43,14 +43,14 @@ header-includes:
 \FloatBarrier
 
 # Purpose
-This file reproduces the results reported in our manuscript (Winke, Zhang, & 
-Pierce, 2022), which was based on a presentation (Winke, Pierce, &
-Zhang 2018). It analyzes data on Spanish language learners who took a Can-Do
-self-assessment test, along with the more authoritative OPIc language
-proficiency test. We did both correlation analyses and continuation-ratio models
-that examine the effect of course and OPIc speaking proficiency scores on the
-passing rate for each level of the Can-Do statements self-assessment. The
-objective was to validate the Can-Do test results.
+This file reproduces the results reported in our manuscript (Winke, Zhang, &
+Pierce, 2022), which was based on a presentation (Winke, Pierce, & Zhang 2018).
+It analyzes data on Spanish language learners who took a Can-Do self-assessment
+test, along with the more authoritative OPIc language proficiency test. We did
+both correlation analyses and continuation-ratio models that examine the effect
+of course and OPIc speaking proficiency scores on the passing rate for each
+level of the Can-Do statements self-assessment. The objective was to validate
+the Can-Do test results.
 
 \FloatBarrier
 
