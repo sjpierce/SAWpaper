@@ -2283,21 +2283,20 @@ model 2b over this model on the basis of parsimony.
 # References
 Benjamin, D. J., & Berger, J. O. (2019). Three recommendations for improving 
 the use of p-values. *The American Statistician, 73*(Supplement 1), 186-191. 
-[doi:10.1080/00031305.2018.1543135](https://doi.org/10.1080/00031305.2018.1543135)
+https://doi.org/10.1080/00031305.2018.1543135
 
 Cameron, A. C., & Windmeijer, F. A. G. (1997). An R-squared measure of goodness
 of fit for some common nonlinear regression models. *Journal of Econometrics,
-77*(2), 329-342. 
-[doi:10.1016/S0304-4076(96)01818-0](https://doi.org/10.1016/S0304-4076(96)01818-0)
+77*(2), 329-342. https://doi.org/10.1016/S0304-4076(96)01818-0
 
 Colquhoun, D. (2019). The false positive risk: A proposal concerning what to 
 do about p-values. *The American Statistician, 73*(Supplement 1), 192-201. 
-[doi:10.1080/00031305.2018.1529622](https://doi-org/10.1080/00031305.2018.1529622)
+https://doi-org/10.1080/00031305.2018.1529622
 
 Fenlon, C., O’Grady, L., Doherty, M. L., & Dunnion, J. (2018). A discussion of 
 calibration techniques for evaluating binary and categorical predictive models.
 *Preventive Veterinary Medicine, 149*, 107-114. 
-[doi:10.1016/j.prevetmed.2017.11.018](https://doi.org/10.1016/j.prevetmed.2017.11.018)
+https://doi.org/10.1016/j.prevetmed.2017.11.018
 
 Fox, J. (1997). *Applied regression analysis, linear models, and related
 methods*. Thousand Oaks, CA: Sage Publications.
@@ -2305,7 +2304,7 @@ methods*. Thousand Oaks, CA: Sage Publications.
 Greenland, S. (2019). Valid p-values behave exactly as they should: Some 
 misleading criticisms of p-values and their resolution with s-values. 
 *The American Statistician, 73*(Supplement 1), 106-114. 
-[doi:10.1080/00031305.2018.1529625](https://doi.org/10.1080/00031305.2018.1529625)
+https://doi.org/10.1080/00031305.2018.1529625
 
 Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X. (2013). *Applied logistic
 regression* (3rd ed.). Hoboken, NJ: John Wiley & Sons, Inc.
@@ -2313,35 +2312,34 @@ regression* (3rd ed.). Hoboken, NJ: John Wiley & Sons, Inc.
 Perkins, N. J., & Schisterman, E. F. (2006). The inconsistency of “optimal”
 cutpoints obtained using two criteria based on the receiver operating
 characteristic curve. *American Journal of Epidemiology, 163*(7), 670-675.
-[doi:10.1093/aje/kwj063](https://doi-org/10.1093/aje/kwj063)
+https://doi-org/10.1093/aje/kwj063
 
 Raykov, T., & Marcoulides, G. A. (2011). *Introduction to psychometric theory*.
 New York, NY: Routledge.
 
 Robin, X., Turck, N., Hainard, A., Tiberti, N., Lisacek, F., Sanchez, J.-C., & 
 Müller, M. (2011). pROC: an open-source package for R and S+ to analyze and 
-compare ROC curves. *BMC Bioinformatics, 12*, 77. doi:10.1186/1471-2105-12-77
+compare ROC curves. *BMC Bioinformatics, 12*, 77. 
+https://doi.org/10.1186/1471-2105-12-77
 
 Steyerberg, E. W., Harrell Jr., F. E., Borsboom, G. J. J. M., Eijkemans, M. J. 
 C., Vergouwe, Y., & Habbema, J. D. F. (2001). Internal validation of predictive 
 models: Efficiency of some procedures for logistic regression analysis. Journal 
 of Clinical Epidemiology, 54(8), 774-781. 
-[doi:10.1016/S0895-4356(01)00341-9](https://doi.org/10.1016/S0895-4356(01)00341-9)
+https://doi.org/10.1016/S0895-4356(01)00341-9
 
 Steyerberg, E. W., Vickers, A. J., Cook, N. R., Gerds, T., Gonen, M., 
 Obuchowski, N. A., . . . Kattan, M. W. (2010). Assessing the performance of 
 prediction models : A framework for traditional and novel measures. 
-Epidemiology, 21(1), 128-138. 
-[doi:10.1097/EDE.0b013e3181c30fb2](http://doi.org/10.1097/EDE.0b013e3181c30fb2)
+Epidemiology, 21(1), 128-138. http://doi.org/10.1097/EDE.0b013e3181c30fb2
 
 Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a world 
 beyond "p < .05". *The American Statistician, 73*(Supplement 1), 1-19. 
-[doi:10.1080/00031305.2019.1583913](https://doi.org/10.1080/00031305.2019.1583913)
+https://doi.org/10.1080/00031305.2019.1583913
 
 Westfall, P. H. (1997). Multiple testing of general contrasts using logical 
 constraints and correlations. *Journal of the American Statistical Association, 
-92*(437), 299-306. 
-[doi:10.1080/01621459.1997.10473627](https://doi.org/10.1080/01621459.1997.10473627)
+92*(437), 299-306. https://doi.org/10.1080/01621459.1997.10473627
 
 Winke, P., Zhang, X., & Pierce, S. J. (2022). 
 A closer look at a marginalized test method: Self-assessment as a measure of 
@@ -2355,7 +2353,7 @@ of Language Testers 2018 conference, hosted by the Educational Testing Service,
 Princeton, NJ. https://sites.google.com/site/ecoltaelrc/home
 
 Youden, W. J. (1950). Index for rating diagnostic tests. *Cancer, 3*(1), 32-35.
-[doi:10.1002/1097-0142(1950)3%3A1%3C32%3A%3AAID-CNCR2820030106%3E3.0.CO%3B2-3](http://dx.doi.org/10.1002/1097-0142(1950)3%3A1%3C32%3A%3AAID-CNCR2820030106%3E3.0.CO%3B2-3)
+https://doi.org/10.1002/1097-0142(1950)3%3A1%3C32%3A%3AAID-CNCR2820030106%3E3.0.CO%3B2-3
 
 \FloatBarrier
 
