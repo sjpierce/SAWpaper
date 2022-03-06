@@ -2286,8 +2286,9 @@ the use of p-values. *The American Statistician, 73*(Supplement 1), 186-191.
 https://doi.org/10.1080/00031305.2018.1543135
 
 Cameron, A. C., & Windmeijer, F. A. G. (1997). An R-squared measure of goodness
-of fit for some common nonlinear regression models. *Journal of Econometrics,
-77*(2), 329-342. https://doi.org/10.1016/S0304-4076(96)01818-0
+of fit for some common nonlinear regression models. 
+*Journal of Econometrics, 77*(2), 329-342. 
+https://doi.org/10.1016/S0304-4076(96)01818-0
 
 Colquhoun, D. (2019). The false positive risk: A proposal concerning what to 
 do about p-values. *The American Statistician, 73*(Supplement 1), 192-201. 
@@ -2298,16 +2299,16 @@ calibration techniques for evaluating binary and categorical predictive models.
 *Preventive Veterinary Medicine, 149*, 107-114. 
 https://doi.org/10.1016/j.prevetmed.2017.11.018
 
-Fox, J. (1997). *Applied regression analysis, linear models, and related
-methods*. Thousand Oaks, CA: Sage Publications.
+Fox, J. (1997). *Applied regression analysis, linear models, and related methods*. 
+Thousand Oaks, CA: Sage Publications.
 
 Greenland, S. (2019). Valid p-values behave exactly as they should: Some 
 misleading criticisms of p-values and their resolution with s-values. 
 *The American Statistician, 73*(Supplement 1), 106-114. 
 https://doi.org/10.1080/00031305.2018.1529625
 
-Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X. (2013). *Applied logistic
-regression* (3rd ed.). Hoboken, NJ: John Wiley & Sons, Inc.
+Hosmer, D. W., Lemeshow, S., & Sturdivant, R. X. (2013). 
+*Applied logistic regression* (3rd ed.). Hoboken, NJ: John Wiley & Sons, Inc.
 
 Perkins, N. J., & Schisterman, E. F. (2006). The inconsistency of “optimal”
 cutpoints obtained using two criteria based on the receiver operating
@@ -2324,14 +2325,14 @@ https://doi.org/10.1186/1471-2105-12-77
 
 Steyerberg, E. W., Harrell Jr., F. E., Borsboom, G. J. J. M., Eijkemans, M. J. 
 C., Vergouwe, Y., & Habbema, J. D. F. (2001). Internal validation of predictive 
-models: Efficiency of some procedures for logistic regression analysis. Journal 
-of Clinical Epidemiology, 54(8), 774-781. 
+models: Efficiency of some procedures for logistic regression analysis. 
+*Journal of Clinical Epidemiology, 54*(8), 774-781. 
 https://doi.org/10.1016/S0895-4356(01)00341-9
 
 Steyerberg, E. W., Vickers, A. J., Cook, N. R., Gerds, T., Gonen, M., 
 Obuchowski, N. A., Pencina, M. J., Kattan, M. W. (2010). Assessing the 
 performance of prediction models: A framework for traditional and novel 
-measures. Epidemiology, 21(1), 128-138. 
+measures. *Epidemiology, 21*(1), 128-138. 
 http://doi.org/10.1097/EDE.0b013e3181c30fb2
 
 Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a world 
@@ -2339,8 +2340,8 @@ beyond "p < .05". *The American Statistician, 73*(Supplement 1), 1-19.
 https://doi.org/10.1080/00031305.2019.1583913
 
 Westfall, P. H. (1997). Multiple testing of general contrasts using logical 
-constraints and correlations. *Journal of the American Statistical Association, 
-92*(437), 299-306. https://doi.org/10.1080/01621459.1997.10473627
+constraints and correlations. 
+*Journal of the American Statistical Association, 92*(437), 299-306. https://doi.org/10.1080/01621459.1997.10473627
 
 Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a marginalized 
 test method: Self-assessment as a measure of speaking proficiency [Manuscript 
