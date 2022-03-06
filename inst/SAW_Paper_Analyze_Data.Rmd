@@ -2342,10 +2342,9 @@ Westfall, P. H. (1997). Multiple testing of general contrasts using logical
 constraints and correlations. *Journal of the American Statistical Association, 
 92*(437), 299-306. https://doi.org/10.1080/01621459.1997.10473627
 
-Winke, P., Zhang, X., & Pierce, S. J. (2022). 
-A closer look at a marginalized test method: Self-assessment as a measure of 
-speaking proficiency [Manuscript accepted for publication]. 
-*Studies in Second Language Acquisition*.
+Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a marginalized 
+test method: Self-assessment as a measure of speaking proficiency [Manuscript 
+accepted for publication]. *Studies in Second Language Acquisition*.
 
 Winke, P., Pierce, S. J., & Zhang, X. (2018, October). Self-assessment works! 
 Continuation-ratio models for testing course and OPIc score effects on oral 
