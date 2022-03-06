@@ -202,19 +202,41 @@ library(SAWpaper)          # for package version number via session_info()
 
 # Load Data
 
-The file `SAW_Paper_Data.RData` contains two data frames: `SData` and `TAData`.
-The former has the cleaned student-level data for Spanish students that is 
-suitable for use in correlational analyses. The latter data frame contains data
-about the same set of students but has been expanded to one row per student per
-self-assessment testlet attempted. This is suitable for use in 
-continuation-ratio models. 
+The file `SAW_Paper_Data.RData` contains four data frames: `SData`, `TAData`,
+`VSData`, and `VTAData`. Table \ref{tab:data-frame-sizes} shows the number of
+observations (rows) and variables in each of these datasets.
 
 ```{r load-data}
 load(file = here::here("data/SAW_Paper_Data.RData"))
 ```
 
-There are `r nrow(SData)` rows and `r ncol(SData)` variables in `SData`, but 
-`r nrow(TAData)` rows and `r ncol(TAData)` variables in `TAData`. 
+```{r data-frame-sizes}
+data.frame(Dataset = c("SData", "VSData", "TAData", "VTAData"),
+           N.Rows = c(nrow(SData), nrow(VSData), nrow(TAData), nrow(VTAData)),
+           N.Vars = c(ncol(SData), ncol(VSData), ncol(TAData), ncol(VTAData))) %>% 
+  kable(format = "latex", booktabs = TRUE, digits = 0,
+        col.names = c("Data Frame", "Rows", "Variables"),
+        caption = "Data Frame Sizes") %>%
+  add_header_above(header = c("", "Number of ..." = 2)) %>% 
+  group_rows(group_label = "Student data", start_row = 1, end_row = 2) %>% 
+  group_rows(group_label = "Testlet attempt data", start_row = 3, end_row = 4)
+```
+
+The `SData` data frame contains the cleaned student-level data for all Spanish
+students in the same, including those with invalid OPIc scores, while the
+`VSData` data frame is the subset of data from `SData` containing only data from
+students who had valid OPIc score. We use the latter for our correlation
+analyses. 
+
+Meanwhile, the `TAData` data frame contains data about the same set of students 
+shown in `SData` but has been expanded to one row per student per 
+self-assessment testlet attempted. This corresponds to taking the variables
+`Pass1`, `Pass2`, `Pass3`, and `Pass4` from the wide-format for repeated 
+measures seen in `SData` and stacking it into to a long-format instead with a 
+pair of variables called `Testlet` and `Pass` variable, then removing rows with 
+missing valus for `Pass`. The `VTAData` data frame is the subset of `TAData`
+containing only data for the students included in `VSDdata`. Therefore, we use
+`VTAData` in our continuation-ratio models.
 
 \FloatBarrier
 
