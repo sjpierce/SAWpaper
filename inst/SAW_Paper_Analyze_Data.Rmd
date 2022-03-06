@@ -2329,9 +2329,10 @@ of Clinical Epidemiology, 54(8), 774-781.
 https://doi.org/10.1016/S0895-4356(01)00341-9
 
 Steyerberg, E. W., Vickers, A. J., Cook, N. R., Gerds, T., Gonen, M., 
-Obuchowski, N. A., . . . Kattan, M. W. (2010). Assessing the performance of 
-prediction models : A framework for traditional and novel measures. 
-Epidemiology, 21(1), 128-138. http://doi.org/10.1097/EDE.0b013e3181c30fb2
+Obuchowski, N. A., Pencina, M. J., Kattan, M. W. (2010). Assessing the 
+performance of prediction models: A framework for traditional and novel 
+measures. Epidemiology, 21(1), 128-138. 
+http://doi.org/10.1097/EDE.0b013e3181c30fb2
 
 Wasserstein, R. L., Schirm, A. L., & Lazar, N. A. (2019). Moving to a world 
 beyond "p < .05". *The American Statistician, 73*(Supplement 1), 1-19. 
