@@ -1,3 +1,15 @@
+# SAWpaper 0.11.0, 2022-03-06
+* Updated `inst/SAW_Paper_Import_Explore_Data.Rmd` to: 
+    * Simplify Setup section.
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Reformat line breaks for readability. 
+    * Reformat References in APA 7th Ed. style.
+    * Updated explanation of data read in and added a table summarizing data 
+      frame sizes. 
+    * Simplify Setup section.
+    * Deleted code for output that is already provided in the data import script. 
+    * Improved Data Structure Comments section.
+
 # SAWpaper 0.10.0, 2022-03-02
 * Updated `inst/SAW_Paper_Import_Explore_Data.Rmd` to: 
     * Improve Software Information section.
