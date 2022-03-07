@@ -289,32 +289,6 @@ to exclude them from the main analyses because their proficiency levels as
 measured by the OPIc were unknown. In total, 64 students were excluded (4 AR, 
 59 BR, and 1 UR). The final analytic sample was composed of 807 students. 
 
-```{r}
-# Obtain descriptive statistics for students with non-scored OPIc tests
-df_corr_full %>%
-  count (OPIc) %>%
-  mutate (percentage = paste0(round(n/871, 4)*100, '%'))
-
-# Look at the self-assessment levels of students who got AR, BR, or UR
-df_corr_full %>%
-  filter (OPIc %in% c("AR", "BR","UR")) %>%
-  group_by(OPIc) %>%
-  count(Level)
-```
-
-Next, we obtain the final analytic samples by excluding students with invalid
-OPIc scores.
-
-```{r}
-# Final analytic dataset for obtaining descriptive statistics and correaltions
-df_corr <- df_corr_full %>% filter (!OPIc %in% c("AR","BR","UR"))
-# Final analytic dataset for conducting continuation-ratio modeling
-df_crm <- df_crm_full %>% filter (!OPIc %in% c("AR","BR","UR"))
-```
-
-
-\FloatBarrier
-
 We treat the variables of Course, Level, and Testlet in as factor variables that 
 are effectively ordinal variables.
 
