@@ -219,88 +219,78 @@ The `SData` data frame contains the cleaned student-level data for all Spanish
 students in the same, including those with invalid OPIc scores, while the
 `VSData` data frame is the subset of data from `SData` containing only data from
 students who had valid OPIc score. We use the latter for our correlation
-analyses. 
-
-Meanwhile, the `TAData` data frame contains data about the same set of students 
-shown in `SData` but has been expanded to one row per student per 
-self-assessment testlet attempted. This corresponds to taking the variables
-`Pass1`, `Pass2`, `Pass3`, and `Pass4` from the wide-format for repeated 
-measures seen in `SData` and stacking it into to a long-format instead with a 
-pair of variables called `Testlet` and `Pass` variable, then removing rows with 
-missing valus for `Pass`. The `VTAData` data frame is the subset of `TAData`
-containing only data for the students included in `VSDdata`. Therefore, we use
-`VTAData` in our continuation-ratio models.
+analyses. Meanwhile, the `TAData` data frame contains data about the same set of
+students shown in `SData` but has been expanded to one row per student per
+self-assessment testlet attempted. The `VTAData` data frame is the subset of
+`TAData` containing only data for the students included in `VSDdata`. Therefore,
+we use `VTAData` in our continuation-ratio models.
 
 \FloatBarrier
 
-# DATA MANAGEMENT & EXPLORATION
-In `SData`, `Level` (and `LevelF`, which is just a copy of Level that is
-stored as a factor instead of a numeric variable) denote the five levels of
-Can-Do statements on the self-assessment, whereas in `TAData` the `Testlet`
-variable represents the transition testlets that control passage from one level
-to the next. The relationship between these variables is illustrated in this
-diagram: 1 --> 2 --> 3 --> 4 --> 5. Level in `SData` is represented by the
-numbers, and Testlet in `TAData` is represented by the arrows connecting the
-numbers. In total, there are 4 transitions (Level in `TAData`) among the 5 levels
-(Level in `SData`) of can-do statements on the self-assessment.
+## Data Structure Comments
+In `SData` (and thus also in `VSData`), `Level` (and `LevelF`, which is just a
+copy of Level that is stored as a factor instead of a numeric variable) denote
+the five levels of Can-Do statements on the self-assessment, whereas in `TAData`
+(and thus also in `VTAData`) the `Testlet` variable represents the transition
+testlets that control passage from one level to the next. The relationship
+between these variables is illustrated in this diagram:
+$1 \rightarrow 2 \rightarrow 3 \rightarrow 4 \rightarrow 5$. `Level` in `SData`
+is represented by the numbers, and `Testlet` in `TAData` is represented by the
+arrows, which can be numbered 1-4 sequentially from left to right. 
 
-Unlike `SData` where there is one row per learner with Level indicating the
-maximum level a learner reached on the self-assessment, `TAData` has been expanded
-such that there is one row per learner per transition testlet attempted. The binary
-variable, Pass, in `TAData` indexes whether a learner passed/failed to pass a
-given transition testlet. For instance, a learner who reached Level 3 on the
-self-assessment would have one row in `SData` with Level equal to 3. The same 
-learner would have three rows in `TAData`, having a 1 on Pass for the rows 
-representing testlets 1 and 2, and a 0 on Pass = 0 for the row
-representing testlet 3, which was highest transition attempted.
+Unlike `SData` and `VSData` where there is one row per learner with `Level`
+indicating the maximum level a learner reached on the self-assessment, `TAData`
+and `VTAData` have been expanded such that there is one row per learner per
+transition testlet attempted. The binary variable, `Pass`, in `VTAData` indexes
+whether a learner passed/failed to pass a given transition testlet. For
+instance, a learner who reached Level 3 on the self-assessment would have one
+row in `VSData` with Level equal to 3. The same learner would have three rows in
+`VTAData`, having a 1 on `Pass` for the rows representing testlets 1 and 2, and
+a 0 on `Pass` for the row representing testlet 3, which was highest transition
+attempted.
 
-The data in `TAData` is set up as described above for the application of
+The data in `VTAData` is set up as described above for the application of
 continuation-ratio modeling, which models the probabilities of passing the four
-transitions (represented by Testlet in `TAData`) as a function of predictors (which,
-in the case of our study, are course and OPIc speaking scores). Each of those
-transitions will eventually yield an estimate of the conditional pass rate,
-which is the probability that an individual who reached the level on the left
-end of the arrow succeeds in passing on to the level on the right end.
+transitions (represented by `Testlet` in `VTAData`) as a function of predictors
+(which, in the case of our study, are course and OPIc speaking scores). Each of
+those transitions will eventually yield an estimate of the conditional pass
+rate, which is the probability that an individual who reached the level on the
+left end of the arrow succeeds in passing on to the level on the right end.
 Continuation-ratio models can be conducted as logistic regressions where the
 data frame has one row of data per person for each level transition that the
 individual actually attempted.
 
 We treat OPIc speaking test proficiency scores as a continuous covariate that
-ranges from Novice-low to Superior. The variable OPIc in df_corr_full shows the
-actual OPIc ratings. Numerically transfomed OPIc scores are captured by OPIC in
-df_corr_full (NL = 1, NM = 2, NH = 3, ..., AM = 8, AH = 9, Superior = 10). We removed
-the cases for which the OPIc ratings were not meaningful for this study (AR, BR,
-and UR). To make the model coefficients more interpretable, we included centered
-OPIc scores instead of the original OPIc results in df_crm_full and stored them as
-COPIC. A score of zero in COPIC represents the level of Intermediate-mid on the
-OPIc scale.
+ranges from Novice-low to Superior. The variable `OPICA` in `VSData` shows the
+actual OPIc ratings. Numerically transfomed OPIc scores are captured by `OPICV`
+in `VSData` (NL = 1, NM = 2, NH = 3, ..., AM = 8, AH = 9, Superior = 10). We
+removed the cases for which the OPIc ratings were not meaningful for this study
+(AR, BR, and UR). To make the model coefficients more interpretable, we included
+centered OPIc scores instead of the original OPIc results in `VSData` and stored
+them as `COPIC`. A score of zero in `COPIC` represents the level of
+Intermediate-mid on the OPIc scale.
 
-As readers may have noticed, some students with OPIc scores did not have any 
-numerically transformed OPIc values (i.e., NA). This is because these students 
-did not receive a valid score on the test. Specifically, these students received 
-either above range (AR), below range (BR), or unratable (UR) on the OPIc. AR 
-was most likely awarded when a student selected an test form that was well below 
-their oral proficiency level. BR was most likely awarded when a student selected 
-a test form that was well above their proficiency level. And UR was given when a
-student's oral response was not ratable due to one of a variety of reasons 
-(e.g., no response, technology failure). For transparency purposes, we include
-those students with non-scored OPIc tests in the starting datasets, but we have 
-to exclude them from the main analyses because their proficiency levels as 
-measured by the OPIc were unknown. In total, 64 students were excluded (4 AR, 
-59 BR, and 1 UR). The final analytic sample was composed of 807 students. 
+As readers may have noticed, some students with OPIc scores did not have any
+numerically transformed OPIc values (i.e., `OPICV` = NA in `SData`). This is
+because these students did not receive a valid score on the test. Specifically,
+these students received either above range (AR), below range (BR), or unratable
+(UR) on the OPIc. AR was most likely awarded when a student selected an test
+form that was well below their oral proficiency level. BR was most likely
+awarded when a student selected a test form that was well above their
+proficiency level. And UR was given when a student's oral response was not
+ratable due to one of a variety of reasons (e.g., no response, technology
+failure). For transparency purposes, we include those students with non-scored
+OPIc tests in the starting datasets, but we have to exclude them from the main
+analyses because their proficiency levels as measured by the OPIc were unknown.
+See the output from our `inst/SAW_Paper_Import_Explore_Data.Rmd` script for
+descriptive data on the students with invalid OPIc scores.
 
-We treat the variables of Course, Level, and Testlet in as factor variables that 
-are effectively ordinal variables.
-
-We treat OPIc speaking test proficiency scores as a continuous covariate that
-ranges from Novice-low to Superior ((NL = 1, NM = 2, NH = 3, ..., AM = 8, 
-AH = 9, Superior = 10). The variable `OPICN` in `SData` shows the OPIc ratings
-in numeric form and has value labels attached that show the level names. We
-already removed the cases for which the OPIc ratings were not meaningful for
-this study (AR, BR, and UR) before archiving the file. To make model
-coefficients more interpretable, we included centered OPIc scores instead of the
-original OPIc results in `TAData` and stored them as `COPIC`. A score of zero in
-COPIC represents the Intermediate-mid level on the OPIc scale.
+For analysis purposes, we treat the variables of `Course`, `Level`, and
+`Testlet` as factors that are effectively ordinal variables and we treat `OPICV`
+as a continuous variable. To make model coefficients more interpretable, we
+included the centered form of OPIc scores stored in `COPIC` instead of `OPICV` 
+in the continuation-ratio models. A score of zero in `COPIC` represents the 
+Intermediate-mid level on the OPIc scale.
 
 \FloatBarrier
 
