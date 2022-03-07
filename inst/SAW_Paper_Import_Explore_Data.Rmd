@@ -75,13 +75,6 @@ knitr::opts_chunk$set(include  = TRUE, echo = TRUE, error = TRUE,
 here::i_am(path = "inst/SAW_Paper_Import_Explore_Data.Rmd")
 ```
 
-Some of the functions we use below come from a personal R package called
-[*piercer*](https://github.com/sjpierce/piercer) that is available online from 
-[GitHub](https://github.com). Please read and follow the installation 
-instructions for *piercer* at https://github.com/sjpierce/piercer
-before knitting this script, otherwise the next chunk will not load that 
-package and various parts of this script will not work.  
-
 Load contributed R packages that we need to get additional functions. 
 
 ``` {r load-packages}

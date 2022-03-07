@@ -157,14 +157,7 @@ here::i_am(path = "inst/SAW_Paper_Analyze_Data.Rmd")
 
 \FloatBarrier
 
-# LOAD PACKAGES & SET PACKAGE OPTIONS
-Some of the functions we use below come from a personal R package called 
-[*piercer*](https://github.com/sjpierce/piercer) that is available online from 
-[GitHub](https://github.com). Please read and follow the installation 
-instructions for *piercer* at https://github.com/sjpierce/piercer
-before knitting this script, otherwise the next chunk will not load that 
-package and various parts of this script will not work.  
-
+## Load Packages and Set Package Options
 Load contributed R packages that we need to get additional functions. 
 
 ``` {r load-packages}
@@ -200,7 +193,7 @@ library(SAWpaper)          # for package version number via session_info()
 
 \FloatBarrier
 
-# Load Data
+## Load Data
 
 The file `SAW_Paper_Data.RData` contains four data frames: `SData`, `TAData`,
 `VSData`, and `VTAData`. Table \ref{tab:data-frame-sizes} shows the number of
