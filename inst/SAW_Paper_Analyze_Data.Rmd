@@ -388,23 +388,23 @@ ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
 
 \FloatBarrier
 
-# CORRELATIONS
+# Correlations
 We examine the correlations among course level, OPIc scores, and SA level using
-the dataset `SData` (not in a long data format). As we mentioned earlier, Level
+the student-level dataset (`VSData`). As we mentioned earlier, `Level`
 represents the highest level that a student reached on the SA. Polyserial
-correlation is calculated for OPIC and Course and for OPIC and Level, whereas
-polychoric correlation is calculated for the two ordinal variables, Course and
-Level. We included both ordinal and continuous versions of selected variables to
-simplify getting both polychoric and polyserial correlations and (for comparison
-purposes only) Pearson correlations that are less appropriate for measuring some
-relationships. The names of continuous versions of variables that should be
-treated as ordinal have ".n" suffixes. We also estimated selected Spearman 
-correlations for a similar comparative purpose. 
+correlation is calculated for `OPICV` and `Course` and for `OPICV` and `Level`,
+whereas polychoric correlation is calculated for the two ordinal variables,
+`Course` and `Level`. We included both ordinal and continuous versions of
+selected variables to simplify getting both polychoric and polyserial
+correlations and (for comparison purposes only) Pearson correlations that are
+less appropriate for measuring some relationships. The names of continuous
+versions of variables that should be treated as ordinal have ".n" suffixes. We
+also estimated selected Spearman correlations for a similar comparative purpose.
 
-```{r}
-# Create numeric versions of Level and Course.
-SData <- SData %>% 
-  mutate(OPIC.n = as.numeric(OPICN),
+```{r hetcor-output}
+# Create numeric versions of variables to meet hetcor() function requirements.
+VSData <- VSData %>% 
+  mutate(OPIC.n = as.numeric(OPICV),
          Level.n = as.numeric(Level),
          Course.n = as.numeric(Course))
 
@@ -422,7 +422,7 @@ ovars <- c("LevelF", "Course")
 # of the same variable are not sensible. It was just faster to estimate them as
 # part of a single larger matrix than individually get the subset we want. 
 
-HC <- hetcor(as.data.frame(SData[, c(cvars, ovars)]), ML=TRUE, 
+HC <- hetcor(as.data.frame(VSData[, c(cvars, ovars)]), ML=TRUE, 
              use="pairwise.complete.obs")
 rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
       r.pc(HC, ord = ovars, digits = 2, pdigits = NULL)) %>% 
@@ -451,15 +451,15 @@ Now obtain Spearman correlations for comparison purposes even though they are
 not technically appropriate for our purpose. 
 
 ```{r spearman}
-T08b <- ci.rp(r = cor(x = SData$Level.n, y = SData$Course.n, 
+T08b <- ci.rp(r = cor(x = VSData$Level.n, y = VSData$Course.n, 
                       method = "spearman"), 
-              n = nrow(SData), rn = "r.s: Level and Course")
-T08c <- ci.rp(r = cor(x = SData$Level.n, y = SData$OPIC.n, 
+              n = nrow(VSData), rn = "r.s: Level and Course")
+T08c <- ci.rp(r = cor(x = VSData$Level.n, y = VSData$OPIC.n, 
                       method = "spearman"), 
-              n = nrow(SData), rn = "r.s: Level and OPIC")
-T08d <- ci.rp(r = cor(x = SData$Course.n, y = SData$OPIC.n, 
+              n = nrow(VSData), rn = "r.s: Level and OPIC")
+T08d <- ci.rp(r = cor(x = VSData$Course.n, y = VSData$OPIC.n, 
                       method = "spearman"), 
-              n = nrow(SData), rn = "r.s: Course and OPIC")
+              n = nrow(VSData), rn = "r.s: Course and OPIC")
 ```
 
 ```{r show-correlations}
