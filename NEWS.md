@@ -1,3 +1,10 @@
+# SAWpaper 0.12.0, 2022-03-07
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Updated Data Visualization section to use new data frame and variable 
+      names, add subheadings, update chunk names, improve explanatory text, and 
+      present figures in a better order.
+    * Updated Correlations section to use new data and improve text. 
+
 # SAWpaper 0.11.0, 2022-03-06
 * Updated `inst/SAW_Paper_Import_Explore_Data.Rmd` to: 
     * Simplify Setup section.
