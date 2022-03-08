@@ -294,86 +294,95 @@ Intermediate-mid level on the OPIc scale.
 
 \FloatBarrier
 
-# DATA VISUALIZATION
-We visualize the relationship of SA level with OPIc scores and course level 
-using scatterplots. We put students' OPIc scores on the x-axis and their total
-SA scores (ranging from 1 to 200) on the Y-axis. We assigned different colors to
-individual data points based on course level. We also jittered the data 
-points so that overlapping points are nudged apart and can be seen more clearly. 
+# Data Visualization
+We visualized the relationship of SA total scores with OPIc scores and course
+level in the `VSData` dataset using scatterplots. We put students' OPIc scores
+on the x-axis and their total SA scores (ranging from 1 to 200) on the Y-axis.
+We assigned different colors to individual data points based on course level. We
+also jittered the data points so that overlapping points are nudged apart and
+can be seen more clearly. We added fit lines to the scatterplots to examine the
+shape of the relationship between SA level and OPI scores. These results are not
+discussed in the manuscript but were part of our preliminary examination of the
+data.
 
-Additionally, we imposed lines onto the scatterplots to better illustrate the 
-shape of the relationship between SA level and OPI scores.
+## Overall Relationship
+In Figure \ref{fig:plot-SAScore-OPICN-linear}, we start with a linear regression
+line to visually check how well a simple parametric form represents the overall
+relationship. Then in Figure \ref{fig:plot-SAScore-OPICN-loess}, we added a loess
+curve instead. A loess curve is a smooth fit line based on local regression of a
+dependent variable (Y-variable) on an independent variable (X- variable). It
+helps one to see non-linearity in the relationship between variables. Here we 
+substantial evidence if non-linearity because the loess fit line is quite bowed
+rather than mostly straight. 
 
-In Figure \ref{fig:plot-SAScore-OPICN}, we impose a loess line to represent the
-overall relationship between SA level and OPIc scores. A loess line is a smooth
-line based on local regression of a dependent variable (Y-variable) on an
-independent variable (X- variable). It helps one to see the true relationship
-between two variables. In Figure \ref{fig:plot-SAScore-OPICN-by-Course}, we
-impose four loess lines to represent the relationship between SA level and OPIc
-scores within each of the four course levels. In Figure
-\ref{fig:plot-SAScore-OPICN-linear}, we impose a linear regression line to
-visually check to what extent the linear line represents the overall
-relationship between SA level and OPIc scores. In Figure
-\ref{fig:plot-SAScore-OPICN-by-Course-linear}, we impose four linear regression
-lines to visually check to what extent the linear lines represent the
-relationship between SA level and OPIc scores within each of the four course
-levels.
+```{r plot-SAScore-OPICV-linear}
+# Linear regression lines added to jittered and colored-coded plots
+ggplot(VSData, aes(OPICV, Item1_50))+
+  geom_jitter(aes(color=Course))+
+  geom_smooth(method="lm", se=FALSE)+
+  xlim(1,9)+
+  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
+                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
+  scale_y_continuous(breaks=c(40,80,120,160,200),
+                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
+                              "160 (Level 4)", "200 (Level 5)"))+
+  xlab("OPIc")+
+  ylab("Self-assessment can do statements total score")+
+  guides(color = guide_legend(title="Course level"))
+```
 
-```{r plot-SAScore-OPICN}
+```{r plot-SAScore-OPICV-loess}
 # Smooth loess lines added to jittered and colored-coded scatterplots
-ggplot(SData, aes(OPICN, Item1_50))+
+ggplot(VSData, aes(OPICV, Item1_50))+
   geom_jitter(aes(color=Course))+
   geom_smooth(method="loess", se=FALSE, span = .77)+
   xlim(1,9)+
   scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
                      labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
   scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
-  xlab("OPIc")+
-  ylab("Self-Assessment total score")+
+                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
+                              "160 (Level 4)", "200 (Level 5)"))+
+  xlab("OPIc Score")+
+  ylab("Self-assessment can do statements total score")+
   guides(color = guide_legend(title="Course level"))
 ```
 
-```{r plot-SAScore-OPICN-by-Course}
-ggplot(SData, aes(OPICN, Item1_50, color=Course))+
+\FloatBarrier
+
+## Relationships Stratified by Course
+Next, we tried stratifying the relationships by course. Figure
+\ref{fig:plot-SAScore-OPICN-by-Course-linear} shows four linear regression
+lines: one for each course level. Compare that to Figure
+\ref{fig:plot-SAScore-OPICN-by-Course-loess} where we show separate loess curves for 
+each of the four course levels instead.  
+
+```{r plot-SAScore-OPICV-by-Course-linear}
+ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
+  geom_jitter()+
+  geom_smooth(method="lm", se=FALSE)+
+  xlim(1,9)+
+  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
+                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
+  scale_y_continuous(breaks=c(40,80,120,160,200),
+                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
+                              "160 (Level 4)", "200 (Level 5)"))+
+  xlab("OPIc")+
+  ylab("Self-assessment can do statements total score")+
+  guides(color = guide_legend(title="Course level"))
+```
+
+```{r plot-SAScore-OPICV-by-Course-loess}
+ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
   geom_jitter()+
   geom_smooth(method="loess", se=FALSE, span = .93)+
   xlim(1,9)+
   scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
                      labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
   scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
+                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
+                              "160 (Level 4)", "200 (Level 5)"))+
   xlab("OPIc")+
-  ylab("Self-assessment can do statements")+
-  guides(color = guide_legend(title="Course level"))
-```
-
-```{r plot-SAScore-OPICN-linear}
-# Linear regression lines added to jittered and colored-coded plots
-ggplot(SData, aes(OPICN, Item1_50))+
-  geom_jitter(aes(color=Course))+
-  geom_smooth(method="lm", se=FALSE)+
-  xlim(1,9)+
-  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
-                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
-  scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
-  xlab("OPIc")+
-  ylab("Self-assessment can do statements")+
-  guides(color = guide_legend(title="Course level"))
-```
-
-```{r plot-SAScore-OPICN-by-Course-linear}
-ggplot(SData, aes(OPICN, Item1_50, color=Course))+
-  geom_jitter()+
-  geom_smooth(method="lm", se=FALSE)+
-  xlim(1,9)+
-  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
-                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
-  scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("Level 1","Level 2","Level 3","Level 4","Level 5"))+
-  xlab("OPIc")+
-  ylab("Self-assessment can do statements")+
+  ylab("Self-assessment can do statements total score")+
   guides(color = guide_legend(title="Course level"))
 ```
 
