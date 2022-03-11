@@ -502,25 +502,25 @@ each of the fitted models in detail.
 
 ```{r fit-models}
 # Model 1a: Parallel course effect
-m1a <- glm(pass ~ Level + Course - 1, data = TAData, family = "binomial")
+m1a <- glm(Pass ~ Testlet + Course - 1, data = VTAData, family = "binomial")
 
 # Model 1b: Non-parallel course effect
-m1b <- glm(pass ~ Level + Course + Level*Course - 1, data = TAData, 
+m1b <- glm(Pass ~ Testlet + Course + Testlet*Course - 1, data = VTAData, 
            family = "binomial")
 
 # Model 2a: Parallel OPIC effect
-m2a <- glm(pass ~ Level + COPIC - 1, data = TAData, family = "binomial")
+m2a <- glm(Pass ~ Testlet + COPIC - 1, data = VTAData, family = "binomial")
 
 # Model 2b: Non-parallel OPIC effect
-m2b <- glm(pass ~ Level + COPIC + Level*COPIC - 1, data = TAData, 
+m2b <- glm(Pass ~ Testlet + COPIC + Testlet*COPIC - 1, data = VTAData, 
            family = "binomial")
 
 # Model 3a: Parallel OPIC + parallel course effect
-m3a <- glm(pass ~ Level + COPIC + Course - 1, data = TAData, 
+m3a <- glm(Pass ~ Testlet + COPIC + Course - 1, data = VTAData, 
            family = "binomial")
 
 # Model 3b: Non-parallel OPIC + parallel course effect
-m3b <- glm(pass ~ Level + COPIC + Level:COPIC + Course - 1, data = TAData, 
+m3b <- glm(Pass ~ Testlet + COPIC + Testlet:COPIC + Course - 1, data = VTAData, 
            family = "binomial")
 
 # Create a list of the model fit objects.
@@ -624,10 +624,10 @@ of cumulative products.
 
 ```{r}
 # Create a new data frame object for use with predict()
-m1a.ND <- data.frame(Level = gl(n = 4, k = 1, length = 16,
-                               labels = c("1", "2", "3", "4")), 
-                    Course = gl(n = 4, k = 4, length = 16, 
-                                labels = c("100", "200", "300", "400")))
+m1a.ND <- data.frame(Testlet = gl(n = 4, k = 1, length = 16,
+                                  labels = c("1", "2", "3", "4")), 
+                     Course = gl(n = 4, k = 4, length = 16, 
+                                 labels = c("100", "200", "300", "400")))
 
 # Compute predicted mean passing rate at each combination of Level & Course
 m1a.pred <- predict(m1a, newdata = m1a.ND, type = "link", se.fit = TRUE)
@@ -650,7 +650,8 @@ m1a.ND$Pass.URate <- c(cumprod(m1a.ND[m1a.ND$Course == "100", "Pass.Rate"]),
                        cumprod(m1a.ND[m1a.ND$Course == "300", "Pass.Rate"]),
                        cumprod(m1a.ND[m1a.ND$Course == "400", "Pass.Rate"]))
 
-ShowVars <- c("Level", "Course", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
+ShowVars <- c("Testlet", "Course", "Pass.Rate", "Pass.LL", "Pass.UL",
+              "Pass.URate")
 T14 <- m1a.ND[, ShowVars] 
 kable(T14, format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
@@ -877,7 +878,7 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m1a. 
 
 ```{r}
-F1 <- ggplot(T14, aes(Level, Pass.Rate, group=Course, color=Course))+
+F1 <- ggplot(T14, aes(Testlet, Pass.Rate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.8))+
       xlab("SA Level Transition")+
       ylab("Conditional Pass Rate")+
@@ -892,7 +893,7 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m1a. 
 
 ```{r}
-F2 <- ggplot(T14, aes(Level, Pass.URate, group=Course, color=Course))+
+F2 <- ggplot(T14, aes(Testlet, Pass.URate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.65))+
       xlab("SA Level Transition")+
       ylab("Unconditional Pass Rate")+
@@ -1209,8 +1210,8 @@ of cumulative products.
 
 ```{r}
 # Create a new data frame object for use with predict()
-m2a.ND <- data.frame(Level = gl(n = 4, k = 1, length = 36, 
-                                labels = c("1", "2", "3", "4")),
+m2a.ND <- data.frame(Testlet = gl(n = 4, k = 1, length = 36, 
+                                  labels = c("1", "2", "3", "4")),
                      COPIC = rep(-4:4, each = 4), OPIC = rep(1:9, each = 4))
 
 # Compute predicted mean passing rate at each combination of Level & Course
@@ -1239,7 +1240,8 @@ m2a.ND$Pass.URate <- c(cumprod(m2a.ND[m2a.ND$COPIC == -4, "Pass.Rate"]),
                        cumprod(m2a.ND[m2a.ND$COPIC == 3, "Pass.Rate"]),
                        cumprod(m2a.ND[m2a.ND$COPIC == 4, "Pass.Rate"]))
 
-ShowVars <- c("Level", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
+ShowVars <- c("Testlet", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL",
+              "Pass.URate")
 T25 <- m2a.ND[, ShowVars] 
 kable(T25, format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
@@ -1425,11 +1427,11 @@ decreases as we go from the lowest to the highest level transition, as evidenced
 by the decreasingly steep slope from the left-most to the right-most panel.
 
 ```{r}
-visreg(m2a, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+visreg(m2a, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
        strip.names = TRUE, scale = "linear", 
        xlab = "Centered OPIC Score (OPIC - 5)", 
        ylab = "Log odds (Pass)")
-visreg(m2a, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+visreg(m2a, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
        strip.names = TRUE, scale = "response", rug = 2,
        xlab = "Centered OPIC Score (OPIC - 5)", 
        ylab = "Conditional Pass Rate")
@@ -1442,7 +1444,7 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m2a.
 
 ```{r}
-F3 <- ggplot(T25, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
+F3 <- ggplot(T25, aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("Self-assessment Threshold")+
   ylab("Conditional Pass Rate")+
@@ -1459,7 +1461,7 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m2a.
 
 ```{r}
-F4 <- ggplot(T25, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
+F4 <- ggplot(T25, aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("Self-assessment Threshold")+
   ylab("Unconditional Pass Rate")+
@@ -1573,8 +1575,8 @@ of cumulative products.
 
 ```{r}
 # Create a new data frame object for use with predict()
-m2b.ND <- data.frame(Level = gl(n = 4, k = 1, length = 36,
-                               labels = c("1", "2", "3", "4")), 
+m2b.ND <- data.frame(Testlet = gl(n = 4, k = 1, length = 36,
+                                  labels = c("1", "2", "3", "4")), 
                      COPIC = rep(-4:4, each = 4),
                      OPIC = rep(1:9, each = 4))
 
@@ -1604,7 +1606,8 @@ m2b.ND$Pass.URate <- c(cumprod(m2b.ND[m2b.ND$COPIC == -4, "Pass.Rate"]),
                        cumprod(m2b.ND[m2b.ND$COPIC == 3, "Pass.Rate"]),
                        cumprod(m2b.ND[m2b.ND$COPIC == 4, "Pass.Rate"]))
 
-ShowVars <- c("Level", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL", "Pass.URate")
+ShowVars <- c("Testlet", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL",
+              "Pass.URate")
 T32 <- m2b.ND[, ShowVars] 
 kable(T32, format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
@@ -1785,6 +1788,7 @@ outlierTest(m2b)
 ```
 
 Now we look at some residual plots.
+
 ```{r}
 residualPlots(m2b, layout = c(1,3))
 ```
@@ -1831,11 +1835,11 @@ decreases as we go from the lowest to the highest level transition, as evidenced
 by the decreasingly steep slope from the left-most to the right-most panel.
 
 ```{r}
-visreg(m2b, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+visreg(m2b, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
        strip.names = TRUE, scale = "linear", 
        xlab = "Centered OPIC Score (OPIC - 5)", 
        ylab = "Log odds (Pass)")
-visreg(m2b, xvar = "COPIC", by = "Level", layout = c(4, 1), jitter = TRUE,
+visreg(m2b, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
        strip.names = TRUE, scale = "response", rug = 2,
        xlab = "Centered OPIC Score (OPIC - 5)", 
        ylab = "Conditional Pass Rate")
@@ -1848,7 +1852,7 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m2b.
 
 ```{r}
-F3 <- ggplot(T32, aes(Level, Pass.Rate, group=OPIC, color=OPIC))+
+F3 <- ggplot(T32, aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
       xlab("SA Level Transition")+
       ylab("Conditional Pass Rate")+
@@ -1863,7 +1867,7 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m2b.
 
 ```{r}
-F4 <- ggplot(T32, aes(Level, Pass.URate, group=OPIC, color=OPIC))+
+F4 <- ggplot(T32, aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
       xlab("SA Level Transition")+
       ylab("Unconditional Pass Rate")+
