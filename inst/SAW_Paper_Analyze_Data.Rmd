@@ -315,36 +315,44 @@ helps one to see non-linearity in the relationship between variables. Here we
 substantial evidence if non-linearity because the loess fit line is quite bowed
 rather than mostly straight. 
 
-```{r plot-SAScore-OPICV-linear}
+```{r plot-SAScore-OPICV-linear, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("Self-Assessment Total Score as a function of OPIc Score,", 
+              "With Linear Fit Line.")
+
+# Objects to store settings for plots.
+opic.breaks <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+opic.labels <- c("NL\n1", "NM\n2", "NH\n3", "IL\n4", "IM\n5", "IH\n6", 
+                 "AL\n7", "AM\n8", "AH\n9")
+sata.breaks <- c(40, 80, 120, 160, 200)
+sata.labels <- c("40\n(Level 1)", "80 \n(Level 2)", "120\n(Level 3)", 
+                 "160\n(Level 4)", "200\n(Level 5)")
+  
 # Linear regression lines added to jittered and colored-coded plots
 ggplot(VSData, aes(OPICV, Item1_50))+
   geom_jitter(aes(color=Course))+
   geom_smooth(method="lm", se=FALSE)+
   xlim(1,9)+
-  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
-                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
-  scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
-                              "160 (Level 4)", "200 (Level 5)"))+
-  xlab("OPIc")+
-  ylab("Self-assessment can do statements total score")+
-  guides(color = guide_legend(title="Course level"))
+  scale_x_continuous(breaks = opic.breaks, labels = opic.labels)+
+  scale_y_continuous(breaks = sata.breaks, labels = sata.labels)+
+  xlab("OPIc score")+
+  ylab("Self-assessment total score")+
+  guides(color = guide_legend(title="Course"))
 ```
 
-```{r plot-SAScore-OPICV-loess}
+```{r plot-SAScore-OPICV-loess, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("Self-Assessment Total Score as a function of OPIc Score,", 
+              "With Loess Fit Line.")
+
 # Smooth loess lines added to jittered and colored-coded scatterplots
 ggplot(VSData, aes(OPICV, Item1_50))+
   geom_jitter(aes(color=Course))+
   geom_smooth(method="loess", se=FALSE, span = .77)+
   xlim(1,9)+
-  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
-                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
-  scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
-                              "160 (Level 4)", "200 (Level 5)"))+
-  xlab("OPIc Score")+
-  ylab("Self-assessment can do statements total score")+
-  guides(color = guide_legend(title="Course level"))
+  scale_x_continuous(breaks = opic.breaks, labels = opic.labels)+
+  scale_y_continuous(breaks = sata.breaks, labels = sata.labels)+
+  xlab("OPIc score")+
+  ylab("Self-assessment total score")+
+  guides(color = guide_legend(title="Course"))
 ```
 
 \FloatBarrier
@@ -356,34 +364,34 @@ lines: one for each course level. Compare that to Figure
 \ref{fig:plot-SAScore-OPICN-by-Course-loess} where we show separate loess curves for 
 each of the four course levels instead.  
 
-```{r plot-SAScore-OPICV-by-Course-linear}
+```{r plot-SAScore-OPICV-by-Course-linear, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("Self-Assessment Total Score as a function of OPIc Score and", 
+              "Course, With Linear Fit Lines.")
+
 ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
   geom_jitter()+
   geom_smooth(method="lm", se=FALSE)+
   xlim(1,9)+
-  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
-                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
-  scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
-                              "160 (Level 4)", "200 (Level 5)"))+
-  xlab("OPIc")+
-  ylab("Self-assessment can do statements total score")+
-  guides(color = guide_legend(title="Course level"))
+  scale_x_continuous(breaks = opic.breaks, labels = opic.labels)+
+  scale_y_continuous(breaks = sata.breaks, labels = sata.labels)+
+  xlab("OPIc score")+
+  ylab("Self-assessment total score")+
+  guides(color = guide_legend(title="Course"))
 ```
 
-```{r plot-SAScore-OPICV-by-Course-loess}
+```{r plot-SAScore-OPICV-by-Course-loess, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("Self-Assessment Total Score as a function of OPIc Score and", 
+              "Course, With Loess Fit Lines.")
+
 ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
   geom_jitter()+
   geom_smooth(method="loess", se=FALSE, span = .93)+
   xlim(1,9)+
-  scale_x_continuous(breaks=c(1,2,3,4,5,6,7,8,9),
-                     labels=c("NL","NM","NH","IL","IM","IH","AL","AM","AH"))+
-  scale_y_continuous(breaks=c(40,80,120,160,200),
-                     labels=c("40 (Level 1)", "80 (Level 2)", "120 (Level 3)",
-                              "160 (Level 4)", "200 (Level 5)"))+
-  xlab("OPIc")+
-  ylab("Self-assessment can do statements total score")+
-  guides(color = guide_legend(title="Course level"))
+  scale_x_continuous(breaks = opic.breaks, labels = opic.labels)+
+  scale_y_continuous(breaks = sata.breaks, labels = sata.labels)+
+  xlab("OPIc score")+
+  ylab("Self-assessment total score")+
+  guides(color = guide_legend(title="Course"))
 ```
 
 \FloatBarrier
