@@ -1,3 +1,17 @@
+# SAWpaper 0.13.0, 2022-03-11
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Improve plot labeling and appearance, plus add figure captions. 
+    * Updated variable names in code to match naming in updated data.
+    * Load the broom pacakge to simplify some code later. 
+    * Suppress hetcor() warnings in output (they are mentioned in the code 
+      comments). 
+    * Split code into multiple chunks.
+    * Add dynamic table referencing in the text and improve table appearance.
+    * Set number of digits in regression models table to match what we report 
+      in manuscript.
+    * Add dynamic table referencing and use pipes to simplify getting tables.
+    * Add chunk names.
+    
 # SAWpaper 0.12.0, 2022-03-07
 * Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
     * Updated Data Visualization section to use new data frame and variable 
