@@ -628,7 +628,7 @@ level transition given that the student is in a particular Spanish course.
 We compute the unconditional pass rates from the conditional pass rates as sets
 of cumulative products.
 
-```{r}
+```{r m1a-pass-rates}
 # Create a new data frame object for use with predict()
 m1a.ND <- data.frame(Testlet = gl(n = 4, k = 1, length = 16,
                                   labels = c("1", "2", "3", "4")), 
@@ -677,7 +677,7 @@ is reasonable in another model later. We are using contrasts to do pairwise
 comparisons and get simultaneous 95% CIs that are both adjusted for multiple
 testing via Westfall's (1997) method.
 
-```{r}
+```{r ma1-ORs-Course}
 # Run multiple comparisons examine the course effect & get adjusted 95% CIs. 
 m1a.ct <- glht(m1a, linfct = mcp(Course = "Tukey"))
 m1a.mc <- summary(m1a.ct, test = adjusted("Westfall"))
