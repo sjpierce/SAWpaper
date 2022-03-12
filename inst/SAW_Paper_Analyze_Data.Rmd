@@ -564,64 +564,58 @@ simplify post-processing of the model results into interpretable estimates. We
 focus here on a model examining whether the course a learner is taking affects
 the pass rate for each level transition. This model assumes that the higher
 level courses have a constant effect on the pass rates across all level
-transitions. The summary below shows the actual model fit information and the
-raw parameter estimates.
+transitions. Table \ref{tab:m1a-coef} below shows the raw parameter estimates,
+confidence intervals, s-values, BFBs, and posterior probabilities of H1 
+corresponding to the p-values.
 
-\newpage
-
-```{r}
-T10 <- summary(m1a)
-panderOptions('keep.trailing.zeros', TRUE)
-set.caption("Model 1a Summary")
-pander(T10, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
-       caption = "Model 1a Summary")
-```
-
-Post-process the raw model output to get additional information, including 
-s-values, BFBs, and posterior probabilities of H1 corresponding to the p-values 
-listed above.
-
-```{r}
-format(convertp(T10$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+```{r m1a-coef}
+cbind(tidy(m1a, conf.int = TRUE, conf.level = .95), 
+      convertp(tidy(m1a)$p.value, digits = 2)) %>% 
+  kable(format = "latex", booktabs = TRUE, format.args = list(digits = 3), 
+        digits = c(2, 2, 2, 2, Inf, 2, 2, 2, 2, 2), 
+        col.names = c("Term", "Estimate", "SE", "z-value", "p-value", "CI.LL", 
+                      "CI.UL", "S", "BFB", "PPH1"),
+        caption = "Model 1a Coefficients")
 ```
 
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 12 tests the significance of unique additional variance
-explained by the term on that line after controlling for all previously entered
-terms. Significant results mean adding that term improved the model.
+Each row in Table \ref{tab:m1a-Type-I} tests the significance of unique 
+additional variance explained by the term on that line after controlling for all
+previously entered terms. Significant results mean adding that term improved the
+model.
 
-\newpage
-
-```{r}
-T12 <- anova(m1a, test = "Chisq")
-T12 <- cbind(T12, convertp(T12[,"Pr(>Chi)"]))
-pander(T12, justify = "right", split.tables = Inf, 
-       digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
-       caption = "Model 1a Sequential Tests (Type I SS): Analysis of Deviance")
+```{r m1a-Type-I}
+m1a %>% 
+  anova(., test = "Chisq") %>% 
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  pander(., justify = "right", split.tables = Inf, 
+         digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
+         round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
+         caption = "Model 1a Sequential Tests (Type I SS): Analysis of Deviance")
 ```
 
 \FloatBarrier
 
 ## Simultaneous Tests of Main Effects via LRT (Type III SS)
-The simultaneous tests in Table 13 are the effects of the indicated terms after
-controlling for all other terms in the model. They are only computed for terms
-that are not part of a higher-order interaction because it makes no sense to
-test for a main effect when the variable is involved in an interaction. These
-should be functionally equivalent to the results you get with *anova()* when you
-feed it a pair of nested models that differ only in that one model includes a
-term that is absent from the other model. They are likelihood ratio tests
-(LRTs).
+The simultaneous tests in Table \ref{tab:m1a-Type-III} are the effects of the
+indicated terms after controlling for all other terms in the model. They are
+only computed for terms that are not part of a higher-order interaction because
+it makes no sense to test for a main effect when the variable is involved in an
+interaction. These should be functionally equivalent to the results you get with
+*anova()* when you feed it a pair of nested models that differ only in that one
+model includes a term that is absent from the other model. They are likelihood
+ratio tests (LRTs).
 
-```{r}
-T13 <- drop1(m1a, test = "Chisq")   
-T13 <- cbind(T13, convertp(T13[,"Pr(>Chi)"]))
-pander(T13, justify = "right", split.tables = Inf, 
-       digits = c(5, 8, 8, 8, 3, 4, 3, 3),
-       round = c(0, 3, 3, 3, Inf, 2, 2, 2), 
-       caption = "Model 1a Simultaneous Tests (Type III SS)")
+```{r m1a-Type-III}
+m1a %>% 
+  drop1(., test = "Chisq") %>%
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  pander(., justify = "right", split.tables = Inf, 
+         digits = c(5, 8, 8, 8, 3, 4, 3, 3),
+         round = c(0, 3, 3, 3, Inf, 2, 2, 2), 
+         caption = "Model 1a Simultaneous Tests (Type III SS)")
 ```
 
 \FloatBarrier
