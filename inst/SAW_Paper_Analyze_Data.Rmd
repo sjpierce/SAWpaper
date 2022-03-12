@@ -436,6 +436,9 @@ HC <- hetcor(as.data.frame(VSData[, c(cvars, ovars)]), ML=TRUE,
              use="pairwise.complete.obs")
 ```
 
+Table \ref{tab:show-rps-rpc} shows the polyserial and polychoric correlations,
+along with confidence intervals and associated statistics.
+
 
 ```{r show-rps-rpc}
 rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
@@ -446,7 +449,7 @@ rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
   select(Variables, Type, Cor, SE, CI.LL, CI.UL, Z, Pval, Sval, BFB, PPH1) -> 
   T07
 
-kable(T07, format = "latex", booktabs = TRUE, 
+kable(T07, format = "latex", booktabs = TRUE, row.names = FALSE,
       digits = c(Inf, Inf, rep(x = 2, times = 5), Inf, c(2, 2, 2)),
       caption = "Polyserial and Polychoric Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
@@ -476,7 +479,11 @@ T08d <- ci.rp(r = cor(x = VSData$Course.n, y = VSData$OPIC.n,
               n = nrow(VSData), rn = "r.s: Course and OPIC")
 ```
 
-```{r show-correlations}
+Table \ref{tab:show-rp-rs} shows the Pearson and Spearman correlations,
+along with confidence intervals and associated statistics. 
+
+
+```{r show-rp-rs}
 # Bind into a data frame 
 rbind(T08a, T08b, T08c, T08d) %>% 
   mutate(Variables = word(rownames(.), 2, sep = "\\:"),
@@ -487,8 +494,8 @@ rbind(T08a, T08b, T08c, T08d) %>%
          PPH1) -> 
   T08
 
-kable(T08, format = "latex", booktabs = TRUE, 
-      digits = c(rep(x = 2, times = 6), Inf, c(2, 2, 2)),
+kable(T08, format = "latex", booktabs = TRUE, row.names = FALSE,
+      digits = c(rep(x = 2, times = 8), Inf, c(2, 2, 2)),
       caption = "Pearson and Spearman Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
 ```
