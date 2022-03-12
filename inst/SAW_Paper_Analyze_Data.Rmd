@@ -410,7 +410,7 @@ less appropriate for measuring some relationships. The names of continuous
 versions of variables that should be treated as ordinal have ".n" suffixes. We
 also estimated selected Spearman correlations for a similar comparative purpose.
 
-```{r hetcor-output}
+```{r hetcor-output, warning = FALSE}
 # Create numeric versions of variables to meet hetcor() function requirements.
 VSData <- VSData %>% 
   mutate(OPIC.n = as.numeric(OPICV),
@@ -430,6 +430,7 @@ ovars <- c("LevelF", "Course")
 # occur because polyserial correlations between ordinal and continuous versions
 # of the same variable are not sensible. It was just faster to estimate them as
 # part of a single larger matrix than individually get the subset we want. 
+# So, we disabled reporting warnings from this chunk.
 
 HC <- hetcor(as.data.frame(VSData[, c(cvars, ovars)]), ML=TRUE, 
              use="pairwise.complete.obs")
