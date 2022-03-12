@@ -434,6 +434,10 @@ ovars <- c("LevelF", "Course")
 
 HC <- hetcor(as.data.frame(VSData[, c(cvars, ovars)]), ML=TRUE, 
              use="pairwise.complete.obs")
+```
+
+
+```{r show-rps-rpc}
 rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
       r.pc(HC, ord = ovars, digits = 2, pdigits = NULL)) %>% 
   mutate(Variables = word(rownames(.), 2, sep = "\\:"),
