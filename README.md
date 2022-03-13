@@ -156,6 +156,7 @@ install.packages("devtools")
 
 Please read and follow the installation instructions for *piercer* at
 <https://github.com/sjpierce/piercer> before trying to use this package.
+You need version 0.11.0 or higher.
 
 ## Install the *SAWpaper* Package from GitHub
 
@@ -213,11 +214,19 @@ dir_tree(path = here(), recurse = TRUE, type = "any")
 #> |   +-- Development_Tools.R
 #> |   +-- extdata
 #> |   |   +-- Students_Data.sav
-#> |   |   \-- Testlet_Attempts_Data.sav
+#> |   |   +-- Students_Data_old.sav
+#> |   |   +-- Testlet_Attempts_Data.sav
+#> |   |   \-- Testlet_Attempts_Data_old.sav
+#> |   +-- F4.png
+#> |   +-- F5.png
+#> |   +-- nul
 #> |   +-- R_Citations.Rmd
+#> |   +-- SAW_Paper_Analyze_Data.log
+#> |   +-- SAW_Paper_Analyze_Data.pdf
 #> |   +-- SAW_Paper_Analyze_Data.Rmd
 #> |   +-- SAW_Paper_Import_Explore_Data.pdf
-#> |   \-- SAW_Paper_Import_Explore_Data.Rmd
+#> |   +-- SAW_Paper_Import_Explore_Data.Rmd
+#> |   \-- SAW_Paper_Import_Explore_Data_2022-03-06.pdf
 #> +-- LICENSE
 #> +-- man
 #> |   \-- SAWpaper-package.Rd

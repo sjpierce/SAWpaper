@@ -143,7 +143,8 @@ install.packages("devtools")
 ```
 
 ## Install the *piercer* Package from GitHub
-Please read and follow the installation instructions for *piercer* at https://github.com/sjpierce/piercer before trying to use this package. 
+Please read and follow the installation instructions for *piercer* at https://github.com/sjpierce/piercer before trying to use this package. You need 
+version 0.11.0 or higher. 
 
 ## Install the *SAWpaper* Package from GitHub
 Once the steps above are done, use the following code in the R console to 
