@@ -508,7 +508,7 @@ You can read more about interpreting s-values and BFB values in Greenland
 
 \FloatBarrier
 
-# FIT CONTINUATION-RATIO MODELS
+# Fit Continuation-Ratio Models
 Here we fit a series of continuation-ratio models and display a combined table
 summarizing them for comparison purposes. In subsequent sections, we examine 
 each of the fitted models in detail. 
@@ -556,7 +556,7 @@ texreg(TModels, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE,
 
 \FloatBarrier
 
-# MODEL 1A: PARALLEL COURSE EFFECT
+# Model 1a: Paralell Course Effect 
 We fit a series of continuation-ratio models to `TAData` to see whether course
 level and OPIc scores significantly predict the pass rate for each transition on
 the SA. We first fit a basic model that omits the intercept term in order to
@@ -929,7 +929,7 @@ We can probably do better by considering another predictor.
 
 \FloatBarrier
 
-# MODEL 1B: NON-PARALLEL COURSE EFFECT
+# Model 1b: Non-parallel Course Effect
 We again omit the intercept term in order to simplify post-processing of the
 model results into interpretable estimates. We continue to focus on a model
 examining whether the course a learner is taking affects the pass rate, but
@@ -1145,7 +1145,7 @@ also test COPIC as an alternative to course. We turn to that next in model 2a.
 
 \FloatBarrier
 
-# MODEL 2A: PARALLEL OPIC EFFECT
+# Model 2a: Parallel OPIc Effect 
 We now want to look at a different covariate, namely OPIc speaking proficiency
 scores. We again fit a model that omits the intercept term in order to simplify
 post-processing of the model results into interpretable estimates. We start by
@@ -1170,7 +1170,7 @@ format(convertp(T21$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
 
 \FloatBarrier
 
-# Sequential Tests (Type I SS)
+## Sequential Tests (Type I SS)
 Each row in Table 23 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model.
@@ -1490,7 +1490,7 @@ that in model 2b.
 
 \FloatBarrier
 
-# MODEL 2B: NON-PARALLEL OPIC EFFECT
+# Model 2b: Non-parallel OPIc Effect 
 We now relax the assumption that the OPIC effect is constant across level
 transitions. We again fit a model that omits the intercept term in order to
 simplify post-processing of the model results into interpretable estimates. We
@@ -1891,7 +1891,7 @@ improve the model. That will be done in model 3a.
 
 \FloatBarrier
 
-# MODEL 3A: PARALLEL COURSE + PARALLEL OPIC EFFECTS
+# Model 3a: Parallel Course + Parallel OPIc Effects 
 
 We now test a model with a parallel course effect and a parallel OPIc
 effect. We want to see if course and OPIc are still significant preditors 
@@ -2092,8 +2092,7 @@ effect, but the Type III LRT for that effect is not-significant. We will report
 model 2a over this model on the basis of parsimony.
 
 
-# MODEL 3B: PARALLEL COURSE + NON-PARALLEL OPIC EFFECTS
-
+# Model 3b: Parallel Course + Non-parallel OPIc Effects
 We finally test a model with a parallel course effect and a non-parallel OPIc
 effect. We add the course effect into the model after the interaction so that a
 sequential test will examine whether it adds any value beyond the non-parallel
