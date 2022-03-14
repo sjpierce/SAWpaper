@@ -538,18 +538,33 @@ m3b <- glm(Pass ~ Testlet + COPIC + Testlet:COPIC + Course - 1, data = VTAData,
 
 # Create a list of the model fit objects.
 TModels <- list(m1a, m1b, m2a, m2b, m3a, m3b)
+
+# Create a list of texreg objects for the models.
+TModels.TR <- lapply(X = TModels, FUN = extract_glm)
 ```
 
 The table below shows the model parameters for the whole set of models.  
 
 \begin{landscape}
 
-```{r display-models, results='asis'} 
-texreg(TModels, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
-       single.row = TRUE, digits = 2, label = "TModels", 
+```{r show-models, results='asis'} 
+texreg(TModels.TR, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
+       single.row = TRUE, digits = 2, label = "tab:show-models", 
        custom.model.names = c("Model 1a",  "Model 1b", "Model 2a", "Model 2b",
-                              "Model 3a", "Model3b"), 
-       caption = "Continuation-Ratio Models")
+                              "Model 3a", "Model 3b"), 
+       custom.gof.names = c("Null model deviance",
+                            "Null model $df$",
+                            "Log Likelihood",
+                            "$AIC$",
+                            "$BIC$",
+                            "Deviance", 
+                            "Residual $df$",
+                            "No. observations", 
+                            "Brier score",
+                            "Pseudo-$R^{2}$ ($R^{2}_p$)",
+                            "$R^{2}_{Dev}$"),
+       caption = paste("Continuation-Ratio Model Parameter Estimates,",
+       "Standard Errors, and Goodness of Fit Statistics"))
 ```
 
 \end{landscape}
