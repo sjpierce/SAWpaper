@@ -777,9 +777,9 @@ classification measures given that we use the optimal cutpoint based on the
 Youden index. 
 
 ```{r}
-TAData$pred.m1a <- predict(m1a, type = "response")
+VTAData$pred.m1a <- predict(m1a, type = "response")
 set.seed(4921) # For reproducibility of bootstrap estimates.
-roc.m1a <- roc(pass ~ pred.m1a, data = TAData, ci = TRUE, direction = "<",
+roc.m1a <- roc(Pass ~ pred.m1a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m1a, seed = 4684), digits = 3)
 ```
@@ -1059,9 +1059,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-TAData$pred.m1b <- predict(m1b, type = "response")
+VTAData$pred.m1b <- predict(m1b, type = "response")
 set.seed(1574) # For reproducible bootstrap estimates.
-roc.m1b <- roc(pass ~ pred.m1b, data = TAData, ci = TRUE, direction = "<",
+roc.m1b <- roc(Pass ~ pred.m1b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m1b, seed = 6711), digits = 3)
 ```
@@ -1301,9 +1301,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-TAData$pred.m2a <- predict(m2a, type = "response")
+VTAData$pred.m2a <- predict(m2a, type = "response")
 set.seed(5378) # For reproducible bootstrap estimates.
-roc.m2a <- roc(pass ~ pred.m2a, data = TAData, ci = TRUE, direction = "<",
+roc.m2a <- roc(Pass ~ pred.m2a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m2a, seed = 9825), digits = 3)
 ```
@@ -1685,9 +1685,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-TAData$pred.m2b <- predict(m2b, type = "response")
+VTAData$pred.m2b <- predict(m2b, type = "response")
 set.seed(3179) # For reproducible bootstrap estimates.
-roc.m2b <- roc(pass ~ pred.m2b, data = TAData, ci = TRUE, direction = "<",
+roc.m2b <- roc(Pass ~ pred.m2b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m2b, seed = 7146), digits = 3)
 ```
@@ -1957,9 +1957,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-TAData$pred.m3a <- predict(m3a, type = "response")
+VTAData$pred.m3a <- predict(m3a, type = "response")
 set.seed(3419) # For reproducibility of bootstrap estimates.
-roc.m3a <- roc(pass ~ pred.m3a, data = TAData, ci = TRUE, direction = "<",
+roc.m3a <- roc(Pass ~ pred.m3a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m3a, seed = 6342), digits = 3) 
 ```
@@ -2130,9 +2130,9 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r}
-TAData$pred.m3b <- predict(m3b, type = "response")
+VTAData$pred.m3b <- predict(m3b, type = "response")
 set.seed(9173) # For reproducibility of bootstrap estimates.
-roc.m3b <- roc(pass ~ pred.m3b, data = TAData, ci = TRUE, direction = "<",
+roc.m3b <- roc(Pass ~ pred.m3b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
 round(lrcm(roc.m3b, seed = 7146), digits = 3) 
 ```
