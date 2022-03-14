@@ -1,8 +1,22 @@
+# SAWpaper 0.14.0, 2022-03-13
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Update comments about loaded packages. 
+    * Updated headings.
+    * Add more fit statistics to table of regression models (Brier scores, 
+      pseudo-R^2, R^2_Dev).
+    * Move discussion of Brier scores, pseudo-R^2, and R^_Dev. Reduce 
+      commentary on them in the model-specific sections.
+    * Update classification code to use revised data frame and variable. 
+    * Fixed figure referencing. 
+* Updated `DESCRIPTION` to add Depends field. 
+* Updated `README.Rmd` and `README.md`.
+    * SAWpaper now depends on piercer version 0.11.0 or later.
+
 # SAWpaper 0.13.0, 2022-03-11
 * Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
     * Improve plot labeling and appearance, plus add figure captions. 
     * Updated variable names in code to match naming in updated data.
-    * Load the broom pacakge to simplify some code later. 
+    * Load the broom package to simplify some code later. 
     * Suppress hetcor() warnings in output (they are mentioned in the code 
       comments). 
     * Split code into multiple chunks.
