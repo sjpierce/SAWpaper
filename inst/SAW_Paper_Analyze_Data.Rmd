@@ -543,7 +543,18 @@ TModels <- list(m1a, m1b, m2a, m2b, m3a, m3b)
 TModels.TR <- lapply(X = TModels, FUN = extract_glm)
 ```
 
-The table below shows the model parameters for the whole set of models.  
+Table \ref{tab:show-models} shows the model parameters for the whole set of
+models, along with various goodness of fit statistics. The Brier score is an
+overall measure of accuracy suitable for logistic regression models with binary
+outcomes (Fenlon et al., 2018). It is the average prediction error (Steyerberg
+et al., 2001; Steyerberg et al., 2010). The scaled Brier score adjusts the
+unscaled version to have a range of from 0 to 1, thereby making it similar to an
+$R^{2}$ statistic. Values close to 1 are desirable and indicate good
+calibration. We report the scaled Brier score below. Pseudo-$R^{2}$ ($R^{2}_p$)
+is the squared Pearson correlation between observed and predicted values, as
+suggested in Hosmer, Lemeshow, & Sturdivant (2013, p. 182). Meanwhile,
+$R^{2}_{Dev}$ is a measure based on deviance residuals (Fox, 1997, p. 451;
+Cameron & Windmeijer, 1997).
 
 \begin{landscape}
 
@@ -754,20 +765,6 @@ convertp(p = HLT.m1a$p.value, digits = 2)
 
 \FloatBarrier
 
-### Brier Score
-The Brier score is an overall measure of accuracy suitable for logistic 
-regression models with binary outcomes (Fenlon et al., 2018). It is the average
-prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
-Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
-making it similar to an $R^{2}$ statistic. Values close to 1 are desirable and 
-indicate good calibration. We report the scaled Brier score below.
-
-```{r}
-brier(m1a, digits = 2)
-```
-
-\FloatBarrier
-
 ### Classification 
 Below, we use functions from the pROC package to identify the optimal cutpoint 
 $c$ to use when converting fitted probabilities of passing a LTT into a binary
@@ -820,16 +817,9 @@ testing results show.
 \FloatBarrier
 
 ### $R^{2}$ Measures
-Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
-and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
-182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
-1997, p. 451; Cameron & Windmeijer, 1997).
-
-```{r}
-c(PseudoR2 = pseudoR2(m1a, digits = 2), R2Dev = R2Dev(m1a, digits = 2))
-```
-
-The low $R^{2}$ is not very encouraging about this model. 
+The low values for $R^{2}_p = `r pseudoR2(m1a, digits = 2)`$ and 
+$R^{2}_{Dev} = `r R2Dev(m1a, digits = 2)`$ are not very encouraging about this 
+model. 
 
 \FloatBarrier
 
@@ -1064,20 +1054,6 @@ convertp(p = HLT.m1b$p.value, digits = 2)
 
 \FloatBarrier
 
-### Brier Score
-The unscaled Brier score is an overall measure of accuracy suitable for logistic
-regression models with binary outcomes (Fenlon et al., 2018). It is the average
-prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
-Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
-making it similar to an $R^{2}$ statistic. We report the scaled Brier score 
-below.  
-
-```{r}
-brier(m1b, digits = 2)
-```
-
-\FloatBarrier
-
 ### Classification 
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
@@ -1130,15 +1106,9 @@ convertp(p = roct.m1a.m1b$p.value, digits = 2)
 \FloatBarrier
 
 ### $R^{2}$ Measures
-Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
-and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
-182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
-1997, p. 451; Cameron & Windmeijer, 1997). The result for model 1b is no better
-than it was for model 1a.
-
-```{r}
-c(PseudoR2 = pseudoR2(m1b, digits = 2), R2Dev = R2Dev(m1b, digits = 2))
-```
+The results for model 1b are no better than they were for model 1a: 
+$R^{2}_p = `r pseudoR2(m1b, digits = 2)`$ and 
+$R^{2}_{Dev} = `r R2Dev(m1b, digits = 2)`$. 
 
 \FloatBarrier
 
@@ -1326,20 +1296,6 @@ convertp(p = HLT.m2a$p.value, digits = 2)
 
 \FloatBarrier
 
-### Brier Score
-The unscaled Brier score is an overall measure of accuracy suitable for logistic
-regression models with binary outcomes (Fenlon et al., 2018). It is the average
-prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
-Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
-making it similar to an $R^{2}$ statistic. We report the scaled Brier score 
-below.  
-
-```{r}
-brier(m2a, digits = 2)
-```
-
-\FloatBarrier
-
 ### Classification 
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
@@ -1384,16 +1340,9 @@ convertp(p = roct.m1a.m2a$p.value, digits = 2)
 \FloatBarrier
 
 ### $R^{2}$ Measures
-Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
-and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
-182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
-1997, p. 451; Cameron & Windmeijer, 1997).
-
-```{r}
-c(PseudoR2 = pseudoR2(m2a, digits = 2), R2Dev = R2Dev(m2a, digits = 2))
-```
-
-\FloatBarrier
+The values for $R^{2}_p = `r pseudoR2(m2a, digits = 2)`$ and 
+$R^{2}_{Dev} = `r R2Dev(m2a, digits = 2)`$ are more encouraging than those from 
+models 1a and 1b. 
 
 ## Diagnostics
 We need to run model diagnostics to see if there are any obvious problems with 
@@ -1731,20 +1680,6 @@ convertp(p = HLT.m2b$p.value, digits = 2)
 
 \FloatBarrier
 
-### Brier Score
-The unscaled Brier score is an overall measure of accuracy suitable for logistic
-regression models with binary outcomes (Fenlon et al., 2018). It is the average
-prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
-Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
-making it similar to an $R^{2}$ statistic. We report the scaled Brier score 
-below.  
-
-```{r}
-brier(m2b, digits = 2)
-```
-
-\FloatBarrier
-
 ### Classification 
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
@@ -1789,14 +1724,9 @@ convertp(p = roct.m2a.m2b$p.value, digits = 2)
 \FloatBarrier
 
 ### $R^{2}$ Measures
-Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
-and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
-182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
-1997, p. 451; Cameron & Windmeijer, 1997).
-
-```{r}
-c(PseudoR2 = pseudoR2(m2b, digits = 2), R2Dev = R2Dev(m2b, digits = 2))
-```
+The values for $R^{2}_p = `r pseudoR2(m2b, digits = 2)`$ and 
+$R^{2}_{Dev} = `r R2Dev(m2b, digits = 2)`$ are more encouraging than those from 
+models 1a and 1b, but idetical to those from model 2a. 
 
 \FloatBarrier
 
@@ -2036,20 +1966,6 @@ round(lrcm(roc.m3a, seed = 6342), digits = 3)
 
 \FloatBarrier
 
-### Brier Score
-The unscaled Brier score is an overall measure of accuracy suitable for logistic
-regression models with binary outcomes (Fenlon et al., 2018). It is the average
-prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
-Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
-making it similar to an $R^{2}$ statistic. We report the scaled Brier score 
-below.  
-
-```{r}
-brier(m3a, digits = 2)
-```
-
-\FloatBarrier
-
 ### Area Under the Curve (AUC)
 The area under the receiver operating characteristic curve (AUC) measures the
 model's ability to discriminate those who pass from those who fail to pass the
@@ -2080,14 +1996,9 @@ convertp(p = roct.m2a.m3a$p.value, digits = 2)
 \FloatBarrier
 
 ### $R^{2}$ Measures
-Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
-and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
-182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
-1997, p. 451; Cameron & Windmeijer, 1997).
-
-```{r}
-c(PsedoR2 = pseudoR2(m3a, digits = 2), R2Dev = R2Dev(m3a, digits = 2))
-```
+The values for $R^{2}_p = `r pseudoR2(m3a, digits = 2)`$ and 
+$R^{2}_{Dev} = `r R2Dev(m3a, digits = 2)`$ are more encouraging than those from 
+models 1a and 1b, but identical to those from models 2a and 2b. 
 
 \FloatBarrier
 
@@ -2228,20 +2139,6 @@ round(lrcm(roc.m3b, seed = 7146), digits = 3)
 
 \FloatBarrier
 
-### Brier Score
-The unscaled Brier score is an overall measure of accuracy suitable for logistic
-regression models with binary outcomes (Fenlon et al., 2018). It is the average
-prediction error (Steyerberg et al., 2001; Steyerberg et al., 2010). The scaled 
-Brier score adjusts for unscaled version to have a range of from 0 to 1, thereby
-making it similar to an $R^{2}$ statistic. We report the scaled Brier score 
-below.  
-
-```{r}
-brier(m3b, digits = 2)
-```
-
-\FloatBarrier
-
 ### Area Under the Curve (AUC)
 The area under the receiver operating characteristic curve (AUC) measures the
 model's ability to discriminate those who pass from those who fail to pass the
@@ -2272,14 +2169,9 @@ convertp(p = roct.m2a.m3b$p.value, digits = 2)
 \FloatBarrier
 
 ### $R^{2}$ Measures
-Pseudo-$R^{2}$ ($R^{2}_p$) is the squared Pearson correlation between observed
-and predicted values, as suggested in Hosmer, Lemeshow, & Sturdivant (2013, p.
-182). Meanwhile, $R^{2}_{Dev}$ is a measure based on deviance residuals (Fox,
-1997, p. 451; Cameron & Windmeijer, 1997).
-
-```{r}
-c(PsedoR2 = pseudoR2(m3b, digits = 2), R2Dev = R2Dev(m3b, digits = 2))
-```
+The values for $R^{2}_p = `r pseudoR2(m3b, digits = 2)`$ and 
+$R^{2}_{Dev} = `r R2Dev(m3b, digits = 2)`$ are more encouraging than those from 
+models 1a and 1b, but identical to those from models 2a, 2b, and 3a.
 
 \FloatBarrier
 
