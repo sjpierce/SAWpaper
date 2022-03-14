@@ -307,9 +307,9 @@ discussed in the manuscript but were part of our preliminary examination of the
 data.
 
 ## Overall Relationship
-In Figure \ref{fig:plot-SAScore-OPICN-linear}, we start with a linear regression
+In Figure \ref{fig:plot-SAScore-OPICV-linear}, we start with a linear regression
 line to visually check how well a simple parametric form represents the overall
-relationship. Then in Figure \ref{fig:plot-SAScore-OPICN-loess}, we added a loess
+relationship. Then in Figure \ref{fig:plot-SAScore-OPICV-loess}, we added a loess
 curve instead. A loess curve is a smooth fit line based on local regression of a
 dependent variable (Y-variable) on an independent variable (X- variable). It
 helps one to see non-linearity in the relationship between variables. Here we 
@@ -317,7 +317,8 @@ substantial evidence if non-linearity because the loess fit line is quite bowed
 rather than mostly straight. 
 
 ```{r plot-SAScore-OPICV-linear, fig.height=3, fig.width=5, fig.cap=FCap}
-FCap <- paste("Self-Assessment Total Score as a function of OPIc Score,", 
+FCap <- paste("\\label{fig:plot-SAScore-OPICV-linear}",
+              "Self-Assessment Total Score as a function of OPIc Score,", 
               "With Linear Fit Line.")
 
 # Objects to store settings for plots.
@@ -341,7 +342,8 @@ ggplot(VSData, aes(OPICV, Item1_50))+
 ```
 
 ```{r plot-SAScore-OPICV-loess, fig.height=3, fig.width=5, fig.cap=FCap}
-FCap <- paste("Self-Assessment Total Score as a function of OPIc Score,", 
+FCap <- paste("\\label{fig:plot-SAScore-OPICV-loess}",
+              "Self-Assessment Total Score as a function of OPIc Score,", 
               "With Loess Fit Line.")
 
 # Smooth loess lines added to jittered and colored-coded scatterplots
@@ -360,13 +362,14 @@ ggplot(VSData, aes(OPICV, Item1_50))+
 
 ## Relationships Stratified by Course
 Next, we tried stratifying the relationships by course. Figure
-\ref{fig:plot-SAScore-OPICN-by-Course-linear} shows four linear regression
+\ref{fig:plot-SAScore-OPICV-by-Course-linear} shows four linear regression
 lines: one for each course level. Compare that to Figure
-\ref{fig:plot-SAScore-OPICN-by-Course-loess} where we show separate loess curves for 
+\ref{fig:plot-SAScore-OPICV-by-Course-loess} where we show separate loess curves for 
 each of the four course levels instead.  
 
 ```{r plot-SAScore-OPICV-by-Course-linear, fig.height=3, fig.width=5, fig.cap=FCap}
-FCap <- paste("Self-Assessment Total Score as a function of OPIc Score and", 
+FCap <- paste("\\label{fig:plot-SAScore-OPICV-by-Course-linear}",
+              "Self-Assessment Total Score as a function of OPIc Score and", 
               "Course, With Linear Fit Lines.")
 
 ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
@@ -381,7 +384,8 @@ ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
 ```
 
 ```{r plot-SAScore-OPICV-by-Course-loess, fig.height=3, fig.width=5, fig.cap=FCap}
-FCap <- paste("Self-Assessment Total Score as a function of OPIc Score and", 
+FCap <- paste("\\label{fig:plot-SAScore-OPICV-by-Course-loess}",
+              "Self-Assessment Total Score as a function of OPIc Score and", 
               "Course, With Loess Fit Lines.")
 
 ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
