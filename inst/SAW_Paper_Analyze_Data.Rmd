@@ -755,9 +755,14 @@ the sample size for the bin. Ideally, the point estimate for each bin is close
 to the dashed line, but at a minimum we want all the confidence intervals to
 overlap that dashed line.
 
-```{r}
+Figure \ref{fig:m1a-calib-plot} shows a calibration plot for this model that has 
+been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
+
+```{r m1a-calib-plot, fig.height=4, fig.width=6, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-calib-plot}",
+              "Model 1a Calibration Plot with Bin Sample Sizes and",
+              "Hosmer-Lemeshow Test")
 HLT.m1a <- HLfit(m1a, bin.method = "prob.bins", min.prob.interval = 0.1, 
-                 main = "Calibration Plot", 
                  xlab = "Predicted Probability (minimum bin interval = 0.10)",
                  ylab = "Observed Probability")
 HLT.m1a
@@ -1030,9 +1035,14 @@ binning method that creates bins by grouping the predicted probabilities into
 bins with a minimum width of 0.10 because that way all the values grouped
 together are quite similar.
 
-```{r}
+Figure \ref{fig:m1b-calib-plot} shows a calibration plot for this model that has 
+been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
+
+```{r m1b-calib-plot, fig.height=4, fig.width=6, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1b-calib-plot}",
+              "Model 1b Calibration Plot with Bin Sample Sizes and",
+              "Hosmer-Lemeshow Test")
 HLT.m1b <- HLfit(m1b, bin.method = "prob.bins", min.prob.interval = 0.1, 
-                 main = "Calibration Plot", 
                  xlab = "Predicted Probability (minimum bin interval = 0.10)",
                  ylab = "Observed Probability")
 HLT.m1b
@@ -1278,9 +1288,14 @@ binning method that creates bins by grouping the predicted probabilities into
 bins with a minimum width of 0.10 because that way all the values grouped
 together are quite similar.
 
-```{r}
+Figure \ref{fig:m2a-calib-plot} shows a calibration plot for this model that has 
+been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
+
+```{r m2a-calib-plot, fig.height=4, fig.width=6, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-calib-plot}",
+              "Model 2a Calibration Plot with Bin Sample Sizes and",
+              "Hosmer-Lemeshow Test")
 HLT.m2a <- HLfit(m2a, bin.method = "prob.bins", min.prob.interval = 0.1, 
-                 main = "Calibration Plot", 
                  xlab = "Predicted Probability (minimum bin interval = 0.10)",
                  ylab = "Observed Probability")
 HLT.m2a
@@ -1655,14 +1670,19 @@ The calibration plot uses the same set of bins used for the HLT. We used a
 binning method that creates bins by grouping the predicted probabilities into
 bins with a minimum width of 0.17 because that way all the values grouped
 together are quite similar. We tried a bin width of 0.10 as with the other 
-models, Unlikebut that yielded bins with fewwer than 15 observations, for which
+models, but that yielded bins with fewer than 15 observations, for which
 comparisons may not be meaningful. We aimed for the narrowest bins that had 
 adequate size by adding 0.01 to the minimum bin width at each step until all 
 bins had $N \ge 15$ observations.
 
-```{r}
+Figure \ref{fig:m2b-calib-plot} shows a calibration plot for this model that has 
+been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
+
+```{r m2b-calib-plot, fig.height=4, fig.width=6, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2b-calib-plot}",
+              "Model 2b Calibration Plot with Bin Sample Sizes and",
+              "Hosmer-Lemeshow Test.")
 HLT.m2b <- HLfit(m2b, bin.method = "prob.bins", min.prob.interval = 0.17, 
-                 main = "Calibration Plot", 
                  xlab = "Predicted Probability (minimum bin interval = 0.17)",
                  ylab = "Observed Probability")
 HLT.m2b
@@ -1933,9 +1953,14 @@ binning method that creates bins by grouping the predicted probabilities into
 bins with a minimum width of 0.10 because that way all the values grouped
 together are quite similar.
 
-```{r}
+Figure \ref{fig:m3a-calib-plot} shows a calibration plot for this model that has 
+been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
+
+```{r m3a-calib-plot, fig.height=4, fig.width=6, fig.cap=FCap}
+FCap <- paste("\\label{fig:m3a-calib-plot}",
+              "Model 3a Calibration Plot with Bin Sample Sizes and",
+              "Hosmer-Lemeshow Test.")
 HLT.m3a <- HLfit(m3a, bin.method = "prob.bins", min.prob.interval = 0.1, 
-                 main = "Calibration Plot", 
                  xlab = "Predicted Probability (minimum bin interval = 0.10)",
                  ylab = "Observed Probability")
 HLT.m3a
@@ -2110,9 +2135,14 @@ binning method that creates bins by grouping the predicted probabilities into
 bins with a minimum width of 0.10 because that way all the values grouped
 together are quite similar.
 
-```{r}
+Figure \ref{fig:m3b-calib-plot} shows a calibration plot for this model that has 
+been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
+
+```{r m3b-calib-plot, fig.height=4, fig.width=6, fig.cap=FCap}
+FCap <- paste("\\label{fig:m3b-calib-plot}",
+              "Model 3b Calibration Plot with Bin Sample Sizes and",
+              "Hosmer-Lemeshow Test.")
 HLT.m3b <- HLfit(m3b, bin.method = "prob.bins", min.prob.interval = 0.1, 
-                 main = "Calibration Plot", 
                  xlab = "Predicted Probability (minimum bin interval = 0.10)",
                  ylab = "Observed Probability")
 HLT.m3b
