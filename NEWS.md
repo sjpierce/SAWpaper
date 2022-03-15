@@ -1,3 +1,10 @@
+# SAWpaper 0.15.0, 2022-03-14
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Simplify code for getting and referencing tables of model coefficients 
+      with s-values, BFB, and PPH1 statistics. 
+    * Fix spelling. 
+    * Improve calibration plots and figure referencing.
+
 # SAWpaper 0.14.0, 2022-03-13
 * Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
     * Update comments about loaded packages. 
