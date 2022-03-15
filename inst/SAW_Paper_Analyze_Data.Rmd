@@ -599,8 +599,9 @@ confidence intervals, s-values, BFBs, and posterior probabilities of H1
 corresponding to the p-values.
 
 ```{r m1a-coef}
-cbind(tidy(m1a, conf.int = TRUE, conf.level = .95), 
-      convertp(tidy(m1a)$p.value, digits = 2)) %>% 
+m1a %>% 
+  tidy(., conf.int = TRUE, conf.level = .95) %>% 
+  cbind(., convertp(.$p.value, digits = 2)) %>% 
   kable(format = "latex", booktabs = TRUE, format.args = list(digits = 3), 
         digits = c(2, 2, 2, 2, Inf, 2, 2, 2, 2, 2), 
         col.names = c("Term", "Estimate", "SE", "z-value", "p-value", "CI.LL", 
@@ -943,35 +944,21 @@ We again omit the intercept term in order to simplify post-processing of the
 model results into interpretable estimates. We continue to focus on a model
 examining whether the course a learner is taking affects the pass rate, but
 relax the assumption that it has a constant effect across all level transitions.
-This model allows course to have a level-specific effect on the pass rates. The
-summary below shows the actual model fit information and the raw parameter
-estimates.
+This model allows course to have a level-specific effect on the pass rates.
+Table \ref{tab:m1b-coef} below shows the raw parameter estimates, confidence
+intervals, s-values, BFBs, and posterior probabilities of H1 corresponding to
+the p-values.
 
-```{r}
-T16 <- summary(m1b)
-set.caption("Model 1b Summary")
-pander(T16, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
-       caption = "Model 1b Summary")
+```{r m1b-coef}
+m1b %>% 
+  tidy(., conf.int = TRUE, conf.level = .95) %>% 
+  cbind(., convertp(.$p.value, digits = 2)) %>% 
+  kable(format = "latex", booktabs = TRUE, format.args = list(digits = 3), 
+        digits = c(2, 2, 2, 2, Inf, 2, 2, 2, 2, 2), 
+        col.names = c("Term", "Estimate", "SE", "z-value", "p-value", "CI.LL", 
+                      "CI.UL", "S", "BFB", "PPH1"),
+        caption = "Model 1b Coefficients")
 ```
-
-Post-process the raw model output to get additional information, including 
-s-values, BFBs, and posterior probabilities of H1.
-
-```{r}
-format(convertp(T16$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
-```
-
-Let's show models 1a and 1b side by side. 
-
-```{r, results='asis'} 
-T18 <- list(m1a, m1b)
-texreg(T18, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
-       single.row = TRUE, digits = 3, label = "T18", 
-       custom.model.names = c("Model 1a Parallel",  "Model 1b Non-Parallel"), 
-       caption = "Parallel vs. Non-Parallel Course Effect")
-```
-
-\newpage
 
 \FloatBarrier
 
@@ -1140,14 +1127,20 @@ scores. We again fit a model that omits the intercept term in order to simplify
 post-processing of the model results into interpretable estimates. We start by
 assuming that the OPIc scores have a constant effect on the pass rates across
 all level transitions. We are using the centered version of OPIc in the model.
-The summary below shows the actual model fit information and the raw parameter
-estimates.
+Table \ref{tab:m2a-coef} below shows the raw parameter estimates, confidence
+intervals, s-values, BFBs, and posterior probabilities of H1 corresponding to
+the p-values.
 
-```{r}
-T21 <- summary(m2a)
-set.caption("Model 2a Summary")
-pander(T21, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
-       caption = "Model 2a Summary")
+
+```{r m2a-coef}
+m2a %>% 
+  tidy(., conf.int = TRUE, conf.level = .95) %>% 
+  cbind(., convertp(.$p.value, digits = 2)) %>% 
+  kable(format = "latex", booktabs = TRUE, format.args = list(digits = 3), 
+        digits = c(2, 2, 2, 2, Inf, 2, 2, 2, 2, 2), 
+        col.names = c("Term", "Estimate", "SE", "z-value", "p-value", "CI.LL", 
+                      "CI.UL", "S", "BFB", "PPH1"),
+        caption = "Model 2a Coefficients")
 ```
 
 Post-process the raw model output to get additional information, including 
@@ -1462,21 +1455,20 @@ that in model 2b.
 We now relax the assumption that the OPIC effect is constant across level
 transitions. We again fit a model that omits the intercept term in order to
 simplify post-processing of the model results into interpretable estimates. We
-are still using the centered version of OPIC in the model. The summary below
-shows the actual model fit information and the raw parameter estimates.
+are still using the centered version of OPIC in the model. Table
+\ref{tab:m2b-coef} below shows the raw parameter estimates, confidence
+intervals, s-values, BFBs, and posterior probabilities of H1 corresponding to
+the p-values.
 
-```{r}
-T27 <- summary(m2b)
-set.caption("Model 2b Summary")
-pander(T27, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
-       caption = "Model 2b Summary")
-```
-
-Post-process the raw model output to get additional information, including 
-s-values, BFBs, and posterior probabilities of H1.
-
-```{r}
-format(convertp(T27$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+```{r m2b-coef}
+m2b %>% 
+  tidy(., conf.int = TRUE, conf.level = .95) %>% 
+  cbind(., convertp(.$p.value, digits = 2)) %>% 
+  kable(format = "latex", booktabs = TRUE, format.args = list(digits = 3), 
+        digits = c(2, 2, 2, 2, Inf, 2, 2, 2, 2, 2), 
+        col.names = c("Term", "Estimate", "SE", "z-value", "p-value", "CI.LL", 
+                      "CI.UL", "S", "BFB", "PPH1"),
+        caption = "Model 2b Coefficients")
 ```
 
 Let's show the models 2a and 2b side by side. 
@@ -1847,19 +1839,19 @@ effect. We want to see if course and OPIc are still significant preditors
 of the condtional pass rates when they are simultaneously included into one 
 regression model. Model 3a tells us to what extent OPIc and Course each predicts
 the conditional pass rates, after controlling for the other predictor's effect. 
+Table \ref{tab:m3a-coef} below shows the raw parameter estimates, confidence
+intervals, s-values, BFBs, and posterior probabilities of H1 corresponding to
+the p-values.
 
-```{r}
-T34 <- summary(m3a)
-set.caption("Model 3a Summary")
-pander(T34, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
-       caption = "Model 3a Summary")
-```
-
-Post-process the raw model output to get additional information, including 
-s-values, BFBs, and posterior probabilities of H1.
-
-```{r}
-format(convertp(T34$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+```{r m3a-coef}
+m3a %>% 
+  tidy(., conf.int = TRUE, conf.level = .95) %>% 
+  cbind(., convertp(.$p.value, digits = 2)) %>% 
+  kable(format = "latex", booktabs = TRUE, format.args = list(digits = 3), 
+        digits = c(2, 2, 2, 2, Inf, 2, 2, 2, 2, 2), 
+        col.names = c("Term", "Estimate", "SE", "z-value", "p-value", "CI.LL", 
+                      "CI.UL", "S", "BFB", "PPH1"),
+        caption = "Model 3a Coefficients")
 ```
 
 \FloatBarrier
@@ -2026,20 +2018,24 @@ model 2a over this model on the basis of parsimony.
 We finally test a model with a parallel course effect and a non-parallel OPIc
 effect. We add the course effect into the model after the interaction so that a
 sequential test will examine whether it adds any value beyond the non-parallel
-OPIC effect.
+OPIC effect. Table \ref{tab:m3b-coef} below shows the raw parameter estimates,
+confidence intervals, s-values, BFBs, and posterior probabilities of H1 
+corresponding to the p-values.
 
-```{r}
-T38 <- summary(m3b)
-set.caption("Model 3a Summary")
-pander(T38, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
-       caption = "Model 3a Summary")
-```
+```{r m3b-coef}
+# T38 <- summary(m3b)
+# set.caption("Model 3a Summary")
+# pander(T38, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
+#        caption = "Model 3a Summary")
 
-Post-process the raw model output to get additional information, including 
-s-values, BFBs, and posterior probabilities of H1.
-
-```{r}
-format(convertp(T38$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
+m3b %>% 
+  tidy(., conf.int = TRUE, conf.level = .95) %>% 
+  cbind(., convertp(.$p.value, digits = 2)) %>% 
+  kable(format = "latex", booktabs = TRUE, format.args = list(digits = 3), 
+        digits = c(2, 2, 2, 2, Inf, 2, 2, 2, 2, 2), 
+        col.names = c("Term", "Estimate", "SE", "z-value", "p-value", "CI.LL", 
+                      "CI.UL", "S", "BFB", "PPH1"),
+        caption = "Model 3b Coefficients")
 ```
 
 \FloatBarrier
