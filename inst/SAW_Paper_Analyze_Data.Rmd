@@ -586,7 +586,7 @@ texreg(TModels.TR, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE,
 
 \FloatBarrier
 
-# Model 1a: Paralell Course Effect 
+# Model 1a: Parallel Course Effect 
 We fit a series of continuation-ratio models to `TAData` to see whether course
 level and OPIc scores significantly predict the pass rate for each transition on
 the SA. We first fit a basic model that omits the intercept term in order to
