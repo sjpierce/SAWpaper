@@ -813,10 +813,19 @@ poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
 outstanding. These interpretive heuristics come from Hosmer, Lemeshow, &
 Sturdivant (2013, p. 177).
 
-```{r}
+Figure \ref{fig:m1a-auc-plot} shows the ROC curve for the model, annotated with 
+the best classification threshold for balancing sensitivity versus specificity 
+and the area under the curve (AUC). 
+
+```{r m1a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-auc-plot}",
+              "Model 1a Receiver Operating Characteristic (ROC) Curve.",
+              "The dot marks the best classification threshold.",
+              "AUC 95% confidence interval obtained via stratified bootstrap",
+              "with 10,000 replicates.")
 print(roc.m1a)
-plot.roc(roc.m1a, print.auc = TRUE, main = "ROC Curve, Model 1a", 
-         print.thres = "best")
+plot.roc(roc.m1a, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
+         print.thres.cex = .8)
 ```
 
 Based on this AUC result, we conclude that model 1a is generally poor at
@@ -1080,10 +1089,19 @@ level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
 poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
 outstanding.
 
-```{r}
+Figure \ref{fig:m1b-auc-plot} shows the ROC curve for the model, annotated with 
+the best classification threshold for balancing sensitivity versus specificity 
+and the area under the curve (AUC). 
+
+```{r m1b-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1b-auc-plot}",
+              "Model 1b Receiver Operating Characteristic (ROC) Curve.",
+              "The dot marks the best classification threshold.",
+              "AUC 95% confidence interval obtained via stratified bootstrap",
+              "with 10,000 replicates.")
 print(roc.m1b)
-plot.roc(roc.m1b, print.auc = TRUE, main = "ROC Curve, Model 1b", 
-         print.thres = "best")
+plot.roc(roc.m1b, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
+         print.thres.cex = .8)
 ```
 
 Based on this AUC result, we conclude that model 1b does a poor job of
@@ -1329,10 +1347,15 @@ level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
 poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
 outstanding.
 
-```{r}
+```{r m2a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-auc-plot}",
+              "Model 2a Receiver Operating Characteristic (ROC) Curve.",
+              "The dot marks the best classification threshold.",
+              "AUC 95% confidence interval obtained via stratified bootstrap",
+              "with 10,000 replicates.")
 print(roc.m2a)
-plot.roc(roc.m2a, print.auc = TRUE, main = "ROC Curve, Model 2a", 
-         print.thres = "best")
+plot.roc(roc.m2a, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
+         print.thres.cex = .8)
 ```
 
 Next we compare the ROC curves for models m1a and m2a using a bootstrap test for
@@ -1717,10 +1740,15 @@ level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
 poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
 outstanding.
 
-```{r}
+```{r m2b-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2b-auc-plot}",
+              "Model 2b Receiver Operating Characteristic (ROC) Curve.",
+              "The dot marks the best classification threshold.",
+              "AUC 95% confidence interval obtained via stratified bootstrap",
+              "with 10,000 replicates.")
 print(roc.m2b)
-plot.roc(roc.m2b, print.auc = TRUE, main = "ROC Curve, Model 2b", 
-         print.thres = "best")
+plot.roc(roc.m2b, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
+         print.thres.cex = .8)
 ```
 
 Next we compare the ROC curves for models m2a and m2b using a bootstrap test for
@@ -1994,10 +2022,15 @@ level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
 poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
 outstanding.
 
-```{r}
+```{r m3a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m3a-auc-plot}",
+              "Model 3a Receiver Operating Characteristic (ROC) Curve.",
+              "The dot marks the best classification threshold.",
+              "AUC 95% confidence interval obtained via stratified bootstrap",
+              "with 10,000 replicates.")
 print(roc.m3a)
-plot.roc(roc.m3a, print.auc = TRUE, main = "ROC Curve, Model 3a", 
-         print.thres = "best")
+plot.roc(roc.m3a, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
+         print.thres.cex = .8)
 ```
 
 Next we compare the ROC curves for models m3a and m2a using a bootstrap test for
@@ -2176,10 +2209,15 @@ level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
 poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
 outstanding.
 
-```{r}
+```{r m3b-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m3b-auc-plot}",
+              "Model 3b Receiver Operating Characteristic (ROC) Curve.",
+              "The dot marks the best classification threshold.",
+              "AUC 95% confidence interval obtained via stratified bootstrap",
+              "with 10,000 replicates.")
 print(roc.m3b)
-plot.roc(roc.m3b, print.auc = TRUE, main = "ROC Curve, Model 3a", 
-         print.thres = "best")
+plot.roc(roc.m3b, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
+         print.thres.cex = .8)
 ```
 
 Next we compare the ROC curves for models m2a and m3b using a bootstrap test for
