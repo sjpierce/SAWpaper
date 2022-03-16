@@ -1173,13 +1173,6 @@ m2a %>%
         caption = "Model 2a Coefficients")
 ```
 
-Post-process the raw model output to get additional information, including 
-s-values, BFBs, and posterior probabilities of H1.
-
-```{r}
-format(convertp(T21$coefficients[,"Pr(>|z|)"], digits = 2), digits = 3)
-```
-
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
