@@ -1778,7 +1778,7 @@ convertp(p = roct.m2a.m2b$p.value, digits = 2)
 ### $R^{2}$ Measures
 The values for $R^{2}_p = `r pseudoR2(m2b, digits = 2)`$ and 
 $R^{2}_{Dev} = `r R2Dev(m2b, digits = 2)`$ are more encouraging than those from 
-models 1a and 1b, but idetical to those from model 2a. 
+models 1a and 1b, but identical to those from model 2a. 
 
 \FloatBarrier
 
