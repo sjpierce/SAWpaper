@@ -562,7 +562,7 @@ Cameron & Windmeijer, 1997).
 
 \begin{landscape}
 
-```{r show-models, results='asis'} 
+```{r show-models, echo = FALSE, results='asis'} 
 texreg(TModels.TR, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
        single.row = TRUE, digits = 2, label = "tab:show-models", 
        custom.model.names = c("Model 1a",  "Model 1b", "Model 2a", "Model 2b",
