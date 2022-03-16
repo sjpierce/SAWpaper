@@ -618,13 +618,14 @@ previously entered terms. Significant results mean adding that term improved the
 model.
 
 ```{r m1a-Type-I}
-m1a %>% 
-  anova(., test = "Chisq") %>% 
-  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
-  pander(., justify = "right", split.tables = Inf, 
-         digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
-         round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
-         caption = "Model 1a Sequential Tests (Type I SS): Analysis of Deviance")
+m1a %>%
+ anova(., test = "Chisq") %>%
+ cbind(., convertp(.[,"Pr(>Chi)"])) %>%
+ kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "Resid. DF", "Resid. Dev", "p-value",
+                     "S", "BFB", "PPH1"),
+       caption = "Model 1a Sequential Tests (Type I SS): Analysis of Deviance")
 ```
 
 \FloatBarrier
@@ -643,10 +644,11 @@ ratio tests (LRTs).
 m1a %>% 
   drop1(., test = "Chisq") %>%
   cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
-  pander(., justify = "right", split.tables = Inf, 
-         digits = c(5, 8, 8, 8, 3, 4, 3, 3),
-         round = c(0, 3, 3, 3, Inf, 2, 2, 2), 
-         caption = "Model 1a Simultaneous Tests (Type III SS)")
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 2, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "AIC", "LRT", "p-value", "S", "BFB",
+                     "PPH1"),
+       caption = "Model 1a Simultaneous Tests (Type III SS)")
 ```
 
 \FloatBarrier
@@ -981,12 +983,14 @@ Here, we want to focus on the result for the interaction effect. That tells us
 whether allowing course to have a level-specific effect instead of a constant
 effect across levels improved the model.
 
-```{r}
-T19 <- anova(m1b, test = "Chisq")
-T19 <- cbind(T19, convertp(T19[,"Pr(>Chi)"]))
-pander(T19, justify = "right", split.tables = Inf, 
-       digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
+```{r m1b-Type-I}
+m1b %>%
+ anova(., test = "Chisq") %>%
+ cbind(., convertp(.[,"Pr(>Chi)"])) %>%
+ kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "Resid. DF", "Resid. Dev", "p-value",
+                     "S", "BFB", "PPH1"),
        caption = "Model 1b Sequential Tests (Type I SS): Analysis of Deviance")
 ```
 
@@ -999,15 +1003,13 @@ via a likelihood ratio test (LRT). We can do that by feeding the *anova()*
 function two model fit objects. The models must be nested (one contains only a
 subset of the parameters in the other model).
 
-\newpage
-
-```{r}
-#CONTINUE  HERE
-T20 <- anova(m1a, m1b, test = "Chisq")
-T20 <- cbind(T20, convertp(T20[,"Pr(>Chi)"]))
-pander(T20, justify = "right", split.tables = Inf, 
-       digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2),
+```{r m1a-m1b-LRT}
+anova(m1a, m1b, test = "Chisq") %>%  
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("Resid. Df", "Resid. Deviance", "Df", "Deviance", 
+                     "p-value", "S", "BFB", "PPH1"),
        caption = "Model 1a vs 1b: Likelihood Ratio Test for Interaction")
 ```
 
@@ -1185,12 +1187,14 @@ Each row in Table 23 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model.
 
-```{r}
-T23 <- anova(m2a, test = "Chisq")
-T23 <- cbind(T23, convertp(T23[,"Pr(>Chi)"]))
-pander(T23, justify = "right", split.tables = Inf, 
-       digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2),
+```{r m2a-Type-I}
+m2a %>%
+ anova(., test = "Chisq") %>%
+ cbind(., convertp(.[,"Pr(>Chi)"])) %>%
+ kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "Resid. DF", "Resid. Dev", "p-value",
+                     "S", "BFB", "PPH1"),
        caption = "Model 2a Sequential Tests (Type I SS): Analysis of Deviance")
 ```
 
@@ -1206,12 +1210,14 @@ feed it a pair of nested models that differ only in that one model includes a
 term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
-```{r}
-T24 <- drop1(m2a, test = "Chisq") 
-T24 <- cbind(T24, convertp(T24[,"Pr(>Chi)"]))
-pander(T24, justify = "right", split.tables = Inf, 
-       digits = c(5, 8, 8, 8, 3, 4, 3, 3),
-       round = c(0, 3, 3, 3, Inf, 2, 2, 2), 
+```{r m2a-Type-III}
+m2a %>% 
+  drop1(., test = "Chisq") %>%
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 2, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "AIC", "LRT", "p-value", "S", "BFB",
+                     "PPH1"),
        caption = "Model 2a Simultaneous Tests (Type III SS)")
 ```
 
@@ -1539,16 +1545,16 @@ want to focus on the result for the interaction effect. That tells us whether
 allowing OPIc to have a level-specific effect instead of a constant effect
 across levels improved the model.
 
-```{r}
-T30 <- anova(m2b, test = "Chisq")
-T30 <- cbind(T30, convertp(T30[,"Pr(>Chi)"]))
-pander(T30, justify = "right", split.tables = Inf, 
-       digits = c(5, 5, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
+```{r m2b-Type-I}
+m2b %>%
+ anova(., test = "Chisq") %>%
+ cbind(., convertp(.[,"Pr(>Chi)"])) %>%
+ kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "Resid. DF", "Resid. Dev", "p-value",
+                     "S", "BFB", "PPH1"),
        caption = "Model 2b Sequential Tests (Type I SS): Analysis of Deviance")
 ```
-
-\newpage
 
 \FloatBarrier
 
@@ -1558,13 +1564,14 @@ via a likelihood ratio test (LRT). We can do that by feeding the *anova()*
 function two model fit objects. The models must be nested (one contains only a
 subset of the parameters in the other model).
 
-```{r}
-T31 <- anova(m2a, m2b, test = "Chisq")   
-T31 <- cbind(T31, convertp(T31[,"Pr(>Chi)"]))
-pander(T31, justify = "right", split.tables = Inf, 
-       digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2),
-       caption = "Model 2b Simultaneous Tests (Type III SS)")
+```{r m2a-m2b-LRT}
+anova(m2a, m2b, test = "Chisq") %>%  
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("Resid. Df", "Resid. Deviance", "Df", "Deviance", 
+                     "p-value", "S", "BFB", "PPH1"),
+       caption = "Model 2a vs 2b: Likelihood Ratio Test for Interaction")
 ```
 
 \FloatBarrier
@@ -1909,12 +1916,14 @@ Each row in Table 36 tests the significance of unique additional variance
 explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model. 
 
-```{r}
-T36 <- anova(m3a, test = "Chisq")
-T36 <- cbind(T36, convertp(T36[,"Pr(>Chi)"]))
-pander(T36, justify = "right", split.tables = Inf, 
-       digits = c(5, 5, 5, 8, 3, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
+```{r m3a-Type-I}
+m3a %>%
+ anova(., test = "Chisq") %>%
+ cbind(., convertp(.[,"Pr(>Chi)"])) %>%
+ kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "Resid. DF", "Resid. Dev", "p-value",
+                     "S", "BFB", "PPH1"),
        caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
 ```
 
@@ -1934,12 +1943,14 @@ feed it a pair of nested models that differ only in that one model includes a
 term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
-```{r}
-T37 <- drop1(m3a, test = "Chisq")   
-T37 <- cbind(T37, convertp(T37[,"Pr(>Chi)"]))
-pander(T37, justify = "right", split.tables = Inf, 
-       digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2),
+```{r m3a-Type-III}
+m3a %>% 
+  drop1(., test = "Chisq") %>%
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 2, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "AIC", "LRT", "p-value", "S", "BFB",
+                     "PPH1"),
        caption = "Model 3a Simultaneous Tests (Type III SS)")
 ```
 
@@ -2104,13 +2115,15 @@ explained by the term on that line after controlling for all previously entered
 terms. Significant results mean adding that term improved the model. Note that 
 course actually entered the model last. 
 
-```{r}
-T40 <- anova(m3b, test = "Chisq")
-T40 <- cbind(T40, convertp(T40[,"Pr(>Chi)"]))
-pander(T40, justify = "right", split.tables = Inf, 
-       digits = c(5, 5, 5, 8, 3, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2), 
-       caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
+```{r m3b-Type-I}
+m3b %>%
+ anova(., test = "Chisq") %>%
+ cbind(., convertp(.[,"Pr(>Chi)"])) %>%
+ kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "Resid. DF", "Resid. Dev", "p-value",
+                     "S", "BFB", "PPH1"),
+       caption = "Model 3b Sequential Tests (Type I SS): Analysis of Deviance")
 ```
 
 \FloatBarrier
@@ -2125,13 +2138,25 @@ feed it a pair of nested models that differ only in that one model includes a
 term that is absent from the other model. They are likelihood ratio tests
 (LRTs).
 
-```{r}
-T41 <- drop1(m3b, test = "Chisq")   
-T41 <- cbind(T41, convertp(T41[,"Pr(>Chi)"]))
-pander(T41, justify = "right", split.tables = Inf, 
-       digits = c(5, 8, 5, 8, 3, 4, 3, 3), 
-       round = c(0, 3, 0, 3, Inf, 2, 2, 2),
-       caption = "Model 3a Simultaneous Tests (Type III SS)")
+```{r m3b-Type-III}
+m3b %>% 
+  drop1(., test = "Chisq") %>%
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 2, 2, Inf, 2, 2, 2),
+       col.names = c("DF", "Deviance", "AIC", "LRT", "p-value", "S", "BFB",
+                     "PPH1"),
+       caption = "Model 3b Simultaneous Tests (Type III SS)")
+```
+
+```{r m3a-m3b-LRT}
+anova(m3a, m3b, test = "Chisq") %>%  
+  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
+       col.names = c("Resid. Df", "Resid. Deviance", "Df", "Deviance", 
+                     "p-value", "S", "BFB", "PPH1"),
+       caption = "Model 3a vs 3b: Likelihood Ratio Test for Interaction")
 ```
 
 The fact that the course effect is not significant in Table 41 tells us that we
