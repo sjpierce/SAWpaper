@@ -1,3 +1,12 @@
+# SAWpaper 0.16.0, 2022-03-15
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Improved AUC plots and figure referencing. 
+    * Stopped echoing code for show-models chunk.
+    * Improved table formatting. 
+    * Delete redundant text and output.
+    * Improve figures exported for manuscript. 
+    * Fix spelling.
+
 # SAWpaper 0.15.0, 2022-03-14
 * Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
     * Simplify code for getting and referencing tables of model coefficients 
