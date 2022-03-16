@@ -1447,15 +1447,19 @@ visreg(m2a, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
 Use ggplot to generate the graph for conditional pass rates derived from model
 m2a.
 
-```{r}
-F3 <- ggplot(T25, aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
+```{r m2a-plot-cond-pass, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-cond-pass}",
+              "Model 2a Conditional Pass Rates by OPIc Score and",
+              "Self-Assessment Testlet.",
+              "Lines are labeled with OPIc score.")
+FCPR <- ggplot(T25, aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
-  xlab("Self-assessment Threshold")+
-  ylab("Conditional Pass Rate")+
-  ggtitle(label="Conditional Pass Rates by OPIc Score and Self-assessment Threshold")
-direct.label(F3, "first.polygons")
+  xlab("Self-assessment Testlet")+
+  ylab("Conditional Pass Rate")
+  direct.label(FCPR, "first.points")
 # for the manuscript
-ggsave("F4.png",plot=direct.label(F3, "first.polygons"), width = 6.5, height = 8.5, dpi = 300)
+ggsave("F4.png", plot=direct.label(FCPR, "first.points"), 
+       width = 6.5, height = 8.5, dpi = 300)
 ```
 
 \FloatBarrier
@@ -1464,15 +1468,19 @@ ggsave("F4.png",plot=direct.label(F3, "first.polygons"), width = 6.5, height = 8
 Use ggplot to generate the graph for unconditional pass rates derived from model
 m2a.
 
-```{r}
-F4 <- ggplot(T25, aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
+```{r m2a-plot-uncond-pass, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-uncond-pass}",
+              "Model 2a Unconditional Pass Rates by OPIc Score and",
+              "Self-Assessment Testlet.",
+              "Lines are labeled with OPIc score.")
+FUPR <- ggplot(T25, aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
-  xlab("Self-assessment Threshold")+
-  ylab("Unconditional Pass Rate")+
-  ggtitle(label="Unconditional Pass Rates by OPIc Score and Self-assessment Threshold")
-direct.label(F4, "first.polygons")
+  xlab("Self-assessment Testlet")+
+  ylab("Unconditional Pass Rate")
+  direct.label(FUPR, "first.points")
 # for the manuscript
-ggsave("F5.png",plot=direct.label(F4, "first.polygons"), width = 9, height = 5.5, dpi = 300)
+ggsave("F5.png", plot=direct.label(FUPR, "first.points"), 
+       width = 9, height = 5.5, dpi = 300)
 ```
 
 \FloatBarrier
