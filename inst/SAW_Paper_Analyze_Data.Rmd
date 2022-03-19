@@ -1071,7 +1071,7 @@ p-value, so we will only use one of them from here on out.
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We omit these rates because model 1b is not better than model 1a. 
+We omit these rates because Model 1b is not better than Model 1a. 
 
 \FloatBarrier
 
