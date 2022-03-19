@@ -2273,7 +2273,7 @@ convertp(p = HLT.m3b$p.value, digits = 2)
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
-```{r m3a-classification}
+```{r m3b-classification}
 VTAData$pred.m3b <- predict(m3b, type = "response")
 set.seed(9173) # For reproducibility of bootstrap estimates.
 roc.m3b <- roc(Pass ~ pred.m3b, data = VTAData, ci = TRUE, direction = "<",
