@@ -584,6 +584,10 @@ texreg(TModels.TR, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE,
                             "Brier score",
                             "Pseudo-$R^{2}$ ($R^{2}_p$)",
                             "$R^{2}_{Dev}$"),
+       threeparttable = TRUE,
+       custom.note = paste("\\item %stars" , 
+                           "\\item Only models 2a and 2b were reported in",
+                           "our paper."),
        caption = paste("Continuation-Ratio Model Parameter Estimates,",
        "Standard Errors, and Goodness of Fit Statistics"))
 ```
