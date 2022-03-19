@@ -843,7 +843,7 @@ misclassification rate for a given weighting of sensitivity and specificity
 classification measures given that we use the optimal cutpoint based on the 
 Youden index. 
 
-```{r}
+```{r m1a-classification}
 VTAData$pred.m1a <- predict(m1a, type = "response")
 set.seed(4921) # For reproducibility of bootstrap estimates.
 roc.m1a <- roc(Pass ~ pred.m1a, data = VTAData, ci = TRUE, direction = "<",
@@ -887,40 +887,50 @@ model.
 We need to run model diagnostics to see if there are any obvious problems with
 the model. First we check for outliers and find that there are none of note.
 
-```{r}
+```{r m1a-outlier-test}
 outlierTest(m1a)
 ```
 
 Now we look at some residual plots.
-```{r}
+```{r m1a-resid-plots}
 residualPlots(m1a, layout = c(1,3))
 ```
 
 Now we look at some index plots for influence measures. We are looking for
 observations with values exceeding the cutoffs.
 
-```{r}
+```{r m1a-plotCookD}
 # Plot Cook's Distance vs observation index.
 PlotCookD(m1a)
+```
 
+```{r m1a-high-CookD}
 # How many cases have high Cook's Distances (D > cutoff)?
 summary(cooks.distance(m1a))
 addmargins(table(cooks.distance(m1a) > CookDco(m1a)))
+```
 
+```{r m1a-plot-leverage}
 # Plot Leverage (hat) values vs. observation index.
 PlotHat(m1a)
+```
 
+```{r m1a-plot-Pearson-leverage}
 # Plot Standardized Pearson Residuals vs Leverage, w/ Cook's D contours.
 plot(m1a, which = 5, id.n = 10, cex.id = .6, 
      cook.levels = round(CookDco(m1a), digits = 3))
 abline(v = hatco(m1a), lty = 2, col = "blue")
 text(x = hatco(m1a), y = 3.3, pos = 4, col = "blue", cex = .75,
      labels = paste("Leverage cutoff >", round(hatco(m1a), digits = 3)))
+```
 
+```{r m1a-high-leverage}
 # How many cases have high leverage (hat > cutoff)?
 summary(hatvalues(m1a))
 addmargins(table(hatvalues(m1a) > hatco(m1a)))
+```
 
+```{r m1a-influential-cases}
 # Identify cases w/ high leverage and high Cook's D. 
 InfCases(m1a)
 ```
@@ -1109,7 +1119,7 @@ convertp(p = HLT.m1b$p.value, digits = 2)
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
-```{r}
+```{r m1b-classification}
 VTAData$pred.m1b <- predict(m1b, type = "response")
 set.seed(1574) # For reproducible bootstrap estimates.
 roc.m1b <- roc(Pass ~ pred.m1b, data = VTAData, ci = TRUE, direction = "<",
@@ -1251,7 +1261,7 @@ m2a %>%
 
 ## Conditional and Unconditional Pass Rates
 
-```{r}
+```{r m2a-pass-rates}
 # Create a new data frame object for use with predict()
 m2a.ND <- data.frame(Testlet = gl(n = 4, k = 1, length = 36, 
                                   labels = c("1", "2", "3", "4")),
@@ -1357,7 +1367,7 @@ convertp(p = HLT.m2a$p.value, digits = 2)
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
-```{r}
+```{r m2a-classification}
 VTAData$pred.m2a <- predict(m2a, type = "response")
 set.seed(5378) # For reproducible bootstrap estimates.
 roc.m2a <- roc(Pass ~ pred.m2a, data = VTAData, ci = TRUE, direction = "<",
@@ -1405,40 +1415,50 @@ models 1a and 1b.
 We need to run model diagnostics to see if there are any obvious problems with 
 the model. First we check for outliers and find that there are none of note.
 
-```{r}
+```{r m2a-outlier-test}
 outlierTest(m2a)
 ```
 
 Now we look at some residual plots.
-```{r}
+```{r m2a-resid-plots}
 residualPlots(m2a, layout = c(1,3))
 ```
 
 Now we look at some index plots for influence measures. We are looking for
 observations with values exceeding the cutoffs.
 
-```{r}
+```{r m2a-plot-CookD}
 # Plot Cook's Distance vs observation index.
 PlotCookD(m2a)
+```
 
+```{r m2a-high-CookD}
 # How many cases have high Cook's Distances (D > cutoff)?
 summary(cooks.distance(m2a))
 addmargins(table(cooks.distance(m2a) > CookDco(m2a)))
+```
 
+```{r m2a-plot-leverage}
 # Plot Leverage (hat) values vs. observation index.
 PlotHat(m2a)
+```
 
+```{r m2a-plot-Pearson-leverage}
 # Plot Standardized Pearson Residuals vs Leverage, w/ Cook's D contours.
 plot(m2a, which = 5, id.n = 10, cex.id = .6, 
      cook.levels = round(CookDco(m2a), digits = 3))
 abline(v = hatco(m2a), lty = 2, col = "blue")
 text(x = hatco(m2a), y = 5.7, pos = 4, col = "blue", cex = .75,
      labels = paste("Leverage cutoff >", round(hatco(m2a), digits = 3)))
+```
 
+```{r m2a-high-leverage}
 # How many cases have high leverage (hat > cutoff)?
 summary(hatvalues(m2a))
 addmargins(table(hatvalues(m2b) > hatco(m2a)))
+```
 
+```{r m2a-influential-cases}
 # Identify cases w/ high leverage and high Cook's D. 
 InfCases(m2a)
 ```
@@ -1754,7 +1774,7 @@ convertp(p = HLT.m2b$p.value, digits = 2)
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
-```{r}
+```{r m2b-classification}
 VTAData$pred.m2b <- predict(m2b, type = "response")
 set.seed(3179) # For reproducible bootstrap estimates.
 roc.m2b <- roc(Pass ~ pred.m2b, data = VTAData, ci = TRUE, direction = "<",
@@ -1804,41 +1824,51 @@ models 1a and 1b, but identical to those from model 2a.
 We need to run model diagnostics to see if there are any obvious problems with
 the model. First we check for outliers and find that there are none of note.
 
-```{r}
+```{r m2b-outlier-test}
 outlierTest(m2b)
 ```
 
 Now we look at some residual plots.
 
-```{r}
+```{r m2b-resid-plots}
 residualPlots(m2b, layout = c(1,3))
 ```
 
 Now we look at some index plots for influence measures. We are looking for
 observations with values exceeding the cutoffs.
 
-```{r}
+```{r m2b-plot-CookD}
 # Plot Cook's Distance vs observation index.
 PlotCookD(m2b)
+```
 
+```{r m2b-high-CookD}
 # How many cases have high Cook's Distances (D > cutoff)?
 summary(cooks.distance(m2b))
 addmargins(table(cooks.distance(m2b) > CookDco(m2b)))
+```
 
+```{r m2b-plot-leverage}
 # Plot Leverage (hat) values vs. observation index.
 PlotHat(m2b)
+```
 
+```{r m2b-plot-Pearson-leverage}
 # Plot Standardized Pearson Residuals vs Leverage, w/ Cook's D contours.
 plot(m2b, which = 5, id.n = 10, cex.id = .6, 
      cook.levels = round(CookDco(m2b), digits = 3))
 abline(v = hatco(m2b), lty = 2, col = "blue")
 text(x = hatco(m2b), y = 5.7, pos = 4, col = "blue", cex = .75,
      labels = paste("Leverage cutoff >", round(hatco(m2b), digits = 3)))
+```
 
+```{r m2b-high-leverage}
 # How many cases have high leverage (hat > cutoff)?
 summary(hatvalues(m2b))
 addmargins(table(hatvalues(m2b) > hatco(m2b)))
+```
 
+```{r m2b-influential-cases}
 # Identify cases w/ high leverage and high Cook's D. 
 InfCases(m2b)
 ```
@@ -2035,7 +2065,7 @@ convertp(p = HLT.m3a$p.value, digits = 2)
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
-```{r}
+```{r m3a-classification}
 VTAData$pred.m3a <- predict(m3a, type = "response")
 set.seed(3419) # For reproducibility of bootstrap estimates.
 roc.m3a <- roc(Pass ~ pred.m3a, data = VTAData, ci = TRUE, direction = "<",
@@ -2228,7 +2258,7 @@ convertp(p = HLT.m3b$p.value, digits = 2)
 Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
-```{r}
+```{r m3a-classification}
 VTAData$pred.m3b <- predict(m3b, type = "response")
 set.seed(9173) # For reproducibility of bootstrap estimates.
 roc.m3b <- roc(Pass ~ pred.m3b, data = VTAData, ci = TRUE, direction = "<",
