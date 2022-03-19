@@ -1384,6 +1384,9 @@ round(lrcm(roc.m2a, seed = 9825), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
+Figure \ref{fig:m2a-auc-plot} shows the ROC curve for the model, annotated with 
+the best classification threshold for balancing sensitivity versus specificity 
+and the area under the curve (AUC). 
 
 ```{r m2a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2a-auc-plot}",
@@ -1791,6 +1794,9 @@ round(lrcm(roc.m2b, seed = 7146), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
+Figure \ref{fig:m2b-auc-plot} shows the ROC curve for the model, annotated with 
+the best classification threshold for balancing sensitivity versus specificity 
+and the area under the curve (AUC). 
 
 ```{r m2b-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2b-auc-plot}",
@@ -2082,6 +2088,9 @@ round(lrcm(roc.m3a, seed = 6342), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
+Figure \ref{fig:m3a-auc-plot} shows the ROC curve for the model, annotated with 
+the best classification threshold for balancing sensitivity versus specificity 
+and the area under the curve (AUC). 
 
 ```{r m3a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m3a-auc-plot}",
@@ -2275,6 +2284,9 @@ round(lrcm(roc.m3b, seed = 7146), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
+Figure \ref{fig:m3b-auc-plot} shows the ROC curve for the model, annotated with 
+the best classification threshold for balancing sensitivity versus specificity 
+and the area under the curve (AUC). 
 
 ```{r m3b-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m3b-auc-plot}",
