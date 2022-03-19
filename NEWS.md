@@ -1,3 +1,13 @@
+# SAWpaper 0.17.0, 2022-03-18
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Collect descriptions of statistical methods and model diagnostics together 
+      in one place to reduce redundancy and shorten the document. 
+    * Improve headings.
+    * Add footnote to regression models table.
+    * Split code into more chunks and add chunk names.
+    * Add more dynamic table and figure referencing. 
+    * Fix typos. 
+
 # SAWpaper 0.16.0, 2022-03-15
 * Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
     * Improved AUC plots and figure referencing. 
