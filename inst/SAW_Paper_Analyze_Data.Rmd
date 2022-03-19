@@ -513,9 +513,15 @@ You can read more about interpreting s-values and BFB values in Greenland
 \FloatBarrier
 
 # Fit Continuation-Ratio Models
-Here we fit a series of continuation-ratio models and display a combined table
-summarizing them for comparison purposes. In subsequent sections, we examine 
-each of the fitted models in detail. 
+Here we fit a series of continuation-ratio models to `VTAData` to see whether
+course level and OPIc scores significantly predict the conditional pass rate for
+each transition on the SA. A parallel effect for a predictor is one where the
+predictor's effect is constant across the transition testlets while a
+non-parallel effect allows it to vary across testlets. Models 1a and 1b focus
+primarily on whether there is a parallel or non-parallel course effect. Models 2a
+and 2b primarily test whether there is a parallel or non-parallel effect of OPIc
+score *and are the models report in our published manuscript*. Finally, models
+3a and 3b include both course and OPIc score as predictors.
 
 ```{r fit-models}
 # Model 1a: Parallel course effect
@@ -584,12 +590,82 @@ texreg(TModels.TR, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE,
 
 \end{landscape}
 
+In subsequent sections, we examine each of the fitted models in detail by
+extracting, post-processing, and displaying model parameters, predicted values,
+and supplemental statistics, hypothesis tests, and model diagnostics. For
+example, we examine sequential tests of model terms based on Type I sums of
+squares. Those test the significance of unique additional variance explained by
+the term on that line after controlling for all previously entered terms (but 
+ignoring terms that enter the model later). Significant results mean adding that
+term improved the model.
+
+We also examine simultaneous tests of predictors, which are the effects of the
+indicated terms after controlling for all other terms in the model. They are
+only computed for terms that are not part of a higher-order interaction because
+it makes no sense to test for a main effect when the variable is involved in an
+interaction. These should be functionally equivalent to the results you get with
+*anova()* when you feed it a pair of nested models that differ only in that one
+model includes a term that is absent from the other model. They are likelihood
+ratio tests (LRTs).
+
+We used the inverse logit transformation to convert fitted values and associated
+confidence intervals into the conditional probability of passing a particular
+level transition given that specific values on the predictors. We computed the
+unconditional pass rates from the conditional pass rates as sets of cumulative
+products. Tabulating and plotting these conditional and unconditional rates
+provides deeper understanding of the model results.
+
+Since we are running the continuation-ration models as logistic regressions, all
+the standard methods for assessing goodness of fit for logistic regresion models
+apply. We applied the Hosmer-Lemeshow test (HLT), wherein the null hypothesis is
+that the data fit the model. Thus, for the HLT a significant result is actually
+undesirable because it says that the data don't fit the model. This is a measure
+of calibration (Fenlon et al., 2018), which can also be examined with
+calibration plots. These plot split the data into the same set of bins used for
+the HLT, by grouping the predicted probabilities into bins with a minimum width
+(typically 0.10 because that way all the values grouped together are quite
+similar). The confidence interval for each bin is labeled with the bin's sample
+size for the bin. Ideally, the point estimate for each bin is close to the
+dashed line, but at a minimum we want all the confidence intervals to overlap
+that dashed line.
+
+We also use functions from the pROC package to identify the optimal cutpoint $c$
+to use when converting fitted probabilities of passing a testlet into a binary
+prediction of whether the individual will pass it. The naieve cutpoint would be
+$c = 0.5$, but that is not necessarily the optimal cutpoint. Choosing a cutpoint
+via use of the Youden index (Youden, 1950) is optimal with respect to overall
+misclassification rate for a given weighting of sensitivity and specificity
+(Perkins & Schisterman, 2006). Thus, we show the results of various
+classification measures given that we use the optimal cutpoint based on the
+Youden index. Here are short definitions of what some of these statistics 
+measure. 
+
+* Accuracy is the model's overall ability to correctly classify learners
+  according to whether they pass vs fail the level transitions. 
+* Sensitivity is the ability of the model to correctly identify learners who 
+  passed level transitions. 
+* Specificity is the ability of the model to correctly identify learners who 
+  fail the level transitions. 
+
+The area under the receiver operating characteristic curve (AUC) measures the
+model's ability to discriminate those who pass from those who fail to pass the
+level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
+poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
+outstanding. These interpretive heuristics come from Hosmer, Lemeshow, &
+Sturdivant (2013, p. 177). Thus, for each model we plot the ROC curve for the
+model and annotate it with the best classification threshold, plus the
+corresponding values of sensitivity and specificity, the AUC, and the 95%
+confidence interval for the AUC.
+
+Finally, we run model diagnostics to see if there are any obvious problems with
+each model. First we check for outliers, examine residual plots and index plots
+for a couple influence measures to look for observations with values exceeding 
+the cutoffs.
+
 \FloatBarrier
 
 # Model 1a: Parallel Course Effect 
-We fit a series of continuation-ratio models to `TAData` to see whether course
-level and OPIc scores significantly predict the pass rate for each transition on
-the SA. We first fit a basic model that omits the intercept term in order to
+We first fit a basic model that omits the intercept term in order to
 simplify post-processing of the model results into interpretable estimates. We
 focus here on a model examining whether the course a learner is taking affects
 the pass rate for each level transition. This model assumes that the higher
@@ -632,13 +708,7 @@ m1a %>%
 
 ## Simultaneous Tests of Main Effects via LRT (Type III SS)
 The simultaneous tests in Table \ref{tab:m1a-Type-III} are the effects of the
-indicated terms after controlling for all other terms in the model. They are
-only computed for terms that are not part of a higher-order interaction because
-it makes no sense to test for a main effect when the variable is involved in an
-interaction. These should be functionally equivalent to the results you get with
-*anova()* when you feed it a pair of nested models that differ only in that one
-model includes a term that is absent from the other model. They are likelihood
-ratio tests (LRTs).
+indicated terms after controlling for all other terms in the model. 
 
 ```{r m1a-Type-III}
 m1a %>% 
@@ -654,12 +724,6 @@ m1a %>%
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We use the inverse logit transformation to convert fitted values and associated
-confidence intervals into the conditional probability of passing a particular
-level transition given that the student is in a particular Spanish course.
-
-We compute the unconditional pass rates from the conditional pass rates as sets
-of cumulative products.
 
 ```{r m1a-pass-rates}
 # Create a new data frame object for use with predict()
@@ -744,19 +808,6 @@ apply.
 \FloatBarrier
 
 ### Hosmer-Lemeshow goodness of fit test. 
-The null hypothesis for the Hosmer-Lemeshow test (HLT) is that the data fit the model,
-so a significant result is actually undesirable because it says that the data
-don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
-which can also be examined with a calibration plot like the one shown below.
-
-The calibration plot uses the same set of bins used for the HLT. We used a
-binning method that creates bins by grouping the predicted probabilities into
-bins with a minimum width of 0.10 because that way all the values grouped
-together are quite similar. The confidence interval for each bin is labeled with
-the sample size for the bin. Ideally, the point estimate for each bin is close
-to the dashed line, but at a minimum we want all the confidence intervals to
-overlap that dashed line.
-
 Figure \ref{fig:m1a-calib-plot} shows a calibration plot for this model that has 
 been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
 
@@ -796,25 +847,9 @@ roc.m1a <- roc(Pass ~ pred.m1a, data = VTAData, ci = TRUE, direction = "<",
 round(lrcm(roc.m1a, seed = 4684), digits = 3)
 ```
 
-Here are short definitions of what some of these statistics measure. 
-
-* Accuracy is the model's overall ability to correctly classify learners
-  according to whether they pass vs fail the level transitions. 
-* Sensitivity is the ability of the model to correctly identify learners who 
-  passed level transitions. 
-* Specificity is the ability of the model to correctly identify learners who 
-  fail the level transitions. 
-
 \FloatBarrier
 
 ### Area Under the Curve (AUC) 
-The area under the receiver operating characteristic curve (AUC) measures the
-model's ability to discriminate those who pass from those who fail to pass the
-level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
-poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
-outstanding. These interpretive heuristics come from Hosmer, Lemeshow, &
-Sturdivant (2013, p. 177).
-
 Figure \ref{fig:m1a-auc-plot} shows the ROC curve for the model, annotated with 
 the best classification threshold for balancing sensitivity versus specificity 
 and the area under the curve (AUC). 
@@ -1085,12 +1120,6 @@ that it does a good job of identifying those who fail to pass level transitions.
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
-The area under the receiver operating characteristic curve (AUC) measures the
-model's ability to discriminate those who pass from those who fail to pass the
-level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
-poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
-outstanding.
-
 Figure \ref{fig:m1b-auc-plot} shows the ROC curve for the model, annotated with 
 the best classification threshold for balancing sensitivity versus specificity 
 and the area under the curve (AUC). 
@@ -1217,11 +1246,6 @@ m2a %>%
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We use the inverse logit transformation to convert fitted values and associated 
-confidence intervals into the conditional probability of passing a particular 
-level transition given that the student has a particular COPIC score.
-We compute the unconditional pass rates from the conditional pass rates as sets 
-of cumulative products.
 
 ```{r}
 # Create a new data frame object for use with predict()
@@ -1340,11 +1364,6 @@ round(lrcm(roc.m2a, seed = 9825), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
-The area under the receiver operating characteristic curve (AUC) measures the
-model's ability to discriminate those who pass from those who fail to pass the
-level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
-poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
-outstanding.
 
 ```{r m2a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2a-auc-plot}",
@@ -1742,11 +1761,6 @@ round(lrcm(roc.m2b, seed = 7146), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
-The area under the receiver operating characteristic curve (AUC) measures the
-model's ability to discriminate those who pass from those who fail to pass the
-level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
-poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
-outstanding.
 
 ```{r m2b-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2b-auc-plot}",
@@ -2028,11 +2042,6 @@ round(lrcm(roc.m3a, seed = 6342), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
-The area under the receiver operating characteristic curve (AUC) measures the
-model's ability to discriminate those who pass from those who fail to pass the
-level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
-poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
-outstanding.
 
 ```{r m3a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m3a-auc-plot}",
@@ -2177,9 +2186,6 @@ We omit calculating odds-ratios because model 3b is not better than model 2b.
 \FloatBarrier
 
 ## Assessing Goodness of Fit, Discrimination, and Calibration
-Since we are running the continuation-ration model as a logistic regression, all
-the stadard methods for assessing goodness of fit for logistic regresion models
-apply.
 
 \FloatBarrier
 
@@ -2229,11 +2235,6 @@ round(lrcm(roc.m3b, seed = 7146), digits = 3)
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
-The area under the receiver operating characteristic curve (AUC) measures the
-model's ability to discriminate those who pass from those who fail to pass the
-level transitions. It can range from 0.50 to 1.00; values of 0.50--0.69 are
-poor, 0.70-0.79 are acceptable, .80-.89 are excellent, and $\geq$ 0.90 are
-outstanding.
 
 ```{r m3b-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m3b-auc-plot}",
