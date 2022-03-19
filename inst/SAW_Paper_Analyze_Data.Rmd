@@ -612,6 +612,11 @@ interaction. These should be functionally equivalent to the results you get with
 model includes a term that is absent from the other model. They are likelihood
 ratio tests (LRTs).
 
+We used odds-ratios to quantify effect sizes for both specific model parameters
+and for contrasts derived from combining model parameters. When using contrasts
+to do things like pairwise comparisons, we obtain simultaneous 95% CIs that are
+adjusted for multiple testing via Westfall's (1997) method.
+
 We used the inverse logit transformation to convert fitted values and associated
 confidence intervals into the conditional probability of passing a particular
 level transition given that specific values on the predictors. We computed the
@@ -773,13 +778,6 @@ kable_styling(latex_options = c("repeat_header"))
 \FloatBarrier
 
 ## Odds-Ratios for Course Effect
-We exponentiate the course parameters to obtain the odds-ratios showing the
-effect of being in a second-, third-, or fourth-year Spanish course instead of a
-first-year course. This quantifies the effect of course, which this model
-assumes is equal across level transitions. We will test whether that assumption
-is reasonable in another model later. We are using contrasts to do pairwise
-comparisons and get simultaneous 95% CIs that are both adjusted for multiple
-testing via Westfall's (1997) method.
 
 ```{r ma1-ORs-Course}
 # Run multiple comparisons examine the course effect & get adjusted 95% CIs. 
@@ -808,9 +806,6 @@ kable_styling(latex_options = c("repeat_header"))
 \FloatBarrier
 
 ## Assessing Goodness of Fit, Discrimination, and Calibration
-Since we are running the continuation-ration model as a logistic regression, all
-the stadard methods for assessing goodness of fit for logistic regresion models
-apply.
 
 \FloatBarrier
 
