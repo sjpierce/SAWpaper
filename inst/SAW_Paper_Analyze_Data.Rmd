@@ -807,7 +807,7 @@ apply.
 
 \FloatBarrier
 
-### Hosmer-Lemeshow goodness of fit test. 
+### Hosmer-Lemeshow Goodness of Fit Test
 Figure \ref{fig:m1a-calib-plot} shows a calibration plot for this model that has 
 been annotated with the results of a Hosmer-Lemeshow test for goodness of fit. 
 
@@ -1070,7 +1070,7 @@ apply.
 
 \FloatBarrier
 
-### Hosmer-Lemeshow goodness of fit test. 
+### Hosmer-Lemeshow Goodness of Fit Test
 The null hypothesis for the Hosmer-Lemeshow test is that the data fit the model,
 so a significant result is actually undesirable because it says that the data
 don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
@@ -1318,7 +1318,7 @@ apply.
 
 \FloatBarrier
 
-### Hosmer-Lemeshow goodness of fit test. 
+### Hosmer-Lemeshow Goodness of Fit Test
 The null hypothesis for the Hosmer-Lemeshow test is that the data fit the model,
 so a significant result is actually undesirable because it says that the data
 don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
@@ -1710,7 +1710,7 @@ apply.
 
 \FloatBarrier
 
-### Hosmer-Lemeshow goodness of fit test. 
+### Hosmer-Lemeshow Goodness of Fit Test
 The null hypothesis for the Hosmer-Lemeshow test is that the data fit the model,
 so a significant result is actually undesirable because it says that the data
 don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
@@ -1996,7 +1996,7 @@ apply.
 
 \FloatBarrier
 
-### Hosmer-Lemeshow goodness of fit test. 
+### Hosmer-Lemeshow Goodness of Fit Test
 The null hypothesis for the Hosmer-Lemeshow test is that the data fit the model,
 so a significant result is actually undesirable because it says that the data
 don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
@@ -2189,7 +2189,7 @@ We omit calculating odds-ratios because model 3b is not better than model 2b.
 
 \FloatBarrier
 
-### Hosmer-Lemeshow goodness of fit test. 
+### Hosmer-Lemeshow Goodness of Fit Test 
 The null hypothesis for the Hosmer-Lemeshow test is that the data fit the model,
 so a significant result is actually undesirable because it says that the data
 don't fit the model. This is a measure of calibration (Fenlon et al., 2018), 
