@@ -728,6 +728,9 @@ m1a %>%
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
+Table \ref{tab:m1a-pass-rates} shows the conditional and unconditional pass
+rates estimated by Model 1a as a function of level transition testlet and
+course.
 
 ```{r m1a-pass-rates}
 # Create a new data frame object for use with predict()
@@ -1260,6 +1263,9 @@ m2a %>%
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
+Table \ref{tab:m2a-pass-rates} shows the conditional and unconditional pass
+rates estimated by Model 1a as a function of level transition testlet and
+COPIC scores. 
 
 ```{r m2a-pass-rates}
 # Create a new data frame object for use with predict()
