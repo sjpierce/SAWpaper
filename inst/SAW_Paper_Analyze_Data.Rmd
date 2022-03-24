@@ -46,11 +46,11 @@ header-includes:
 This file reproduces the results reported in our manuscript (Winke, Zhang, &
 Pierce, 2022), which was based on a presentation (Winke, Pierce, & Zhang 2018).
 It analyzes data on Spanish language learners who took a Can-Do self-assessment
-test, along with the more authoritative OPIc language proficiency test. We did
-both correlation analyses and continuation-ratio models that examine the effect
-of course and OPIc speaking proficiency scores on the passing rate for each
-level of the Can-Do statements self-assessment. The objective was to validate
-the Can-Do test results.
+test, along with the more authoritative OPIc language proficiency test (Winke &
+Zhang, 2022). We did both correlation analyses and continuation-ratio models
+that examine the effect of course and OPIc speaking proficiency scores on the
+passing rate for each level of the Can-Do statements self-assessment. The
+objective was to validate the Can-Do test results.
 
 \FloatBarrier
 
@@ -2401,6 +2401,11 @@ https://doi.org/10.1080/00031305.2019.1583913
 Westfall, P. H. (1997). Multiple testing of general contrasts using logical 
 constraints and correlations. 
 *Journal of the American Statistical Association, 92*(437), 299-306. https://doi.org/10.1080/01621459.1997.10473627
+
+Winke, P., & Zhang, X. (2022, March 14). 
+*Data and codebook for SSLA article: “A closer look at a marginalized test method: Self-assessment as a measure of speaking proficiency.”* 
+(Study 164981; Version V1) [Data files and codebooks]. Inter-university
+Consortium for Political and Social Research. https://doi.org/10.3886/E164981V1
 
 Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a marginalized 
 test method: Self-assessment as a measure of speaking proficiency [Manuscript 
