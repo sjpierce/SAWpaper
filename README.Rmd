@@ -21,18 +21,17 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 This package and corresponding GitHub repository are intended to enhance the
-reproducibility of a research paper by serving as a research compendium
-(Marwick, Boettiger, & Mullen, 2018). The principal investigators for the study
-are Dr. Paula Winke (Professor) and Dr. Susan Gass (University Distinguished 
-Professor), both of whom belong to the Department of Linguistics, Languages, & 
-Cultures at Michigan State University. The paper analyzes data on Spanish 
-language learners who took a Can-Do self-assessment test, along with the more 
-authoritative OPIc language proficiency test. We did both correlation analyses 
-and continuation-ratio models that examine the effect of course and OPIc 
-speaking proficiency scores on the passing rate for each level of the Can-Do 
-statements self-assessment. The objective was to validate the Can-Do test 
-results.
-
+reproducibility of a research paper (Winke, Zhang, & Pierce, 2022) by serving as
+a research compendium (Marwick, Boettiger, & Mullen, 2018). The principal
+investigators for the study are Dr. Paula Winke (Professor) and Dr. Susan Gass
+(University Distinguished Professor), both of whom belong to the Department of
+Linguistics, Languages, & Cultures at Michigan State University. The paper
+analyzes data on Spanish language learners who took a Can-Do self-assessment
+test, along with the more authoritative OPIc language proficiency test. We did
+both correlation analyses and continuation-ratio models that examine the effect
+of course and OPIc speaking proficiency scores on the passing rate for each
+level of the Can-Do statements self-assessment. The objective was to validate
+the Can-Do test results.
 
 # Funding Sources 
 Funding for this research was provided by the following grants. 
