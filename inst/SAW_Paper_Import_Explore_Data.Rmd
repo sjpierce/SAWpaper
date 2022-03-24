@@ -110,14 +110,15 @@ for the script to work as intended.
 \FloatBarrier
 
 ## Student-Level Data (for Correlation Analyses)
-The file `Students_Data.sav` has the cleaned self-assessment data on a set of
-Spanish students, with one row per student. We prepared an SPSS file to simplify
-archiving and attaching meta-data such as variable and value labels, level of
-measurement, and so on. The chunk below reads that file into a data frame called
-`SData`, then converts a couple variables to proper factors.
+The file `Students_Data-WinkeZhang.sav` has the cleaned self-assessment data on 
+a set of Spanish students, with one row per student. We prepared an SPSS file to
+simplify archiving and attaching meta-data such as variable and value labels,
+level of measurement, and so on. The chunk below reads that file into a data
+frame called `SData`, then converts a couple variables to proper factors.
 
 ```{r import-student-data}
-SData <- read_sav(here::here("inst/extdata/Students_Data.sav"), user_na = TRUE) %>% 
+SData <- read_sav(here::here("inst/extdata/Students_Data-WinkeZhang.sav"), 
+                  user_na = TRUE) %>% 
   mutate(Gender = as_factor(Gender),
          Course = as_factor(Course),
          LevelF = as_factor(Level, levels = "values"))
@@ -138,15 +139,15 @@ variables, while the `VSData` data frame contains `r nrow(VSData)` rows and
 \FloatBarrier
 
 ## Testlet-Level Data (for Continuation-Rato Modeling)
-The file `Testlet_Attempts_Data.sav` contains data about the same set of
-students (those identified in `Students_Data.sav`) that has been expanded to one
-row per student per self-assessment testlet attempted. This data structure is
-conceptually similar to a person-period file for longitudinal analysis. The
-chunk below reads that file into a data frame called `TAData`, then converts a
-couple variables to proper factors. 
+The file `Testlet_Attempts_Data-WinkeZhang.sav` contains data about the same set
+of students (those identified in `Students_Data-WinkeZhang.sav`) that has been
+expanded to one row per student per self-assessment testlet attempted. This data
+structure is conceptually similar to a person-period file for longitudinal
+analysis. The chunk below reads that file into a data frame called `TAData`,
+then converts a couple variables to proper factors.
 
 ```{r import-crm-testlet-data}
-TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts_Data.sav"), 
+TAData <- read_sav(here::here("inst/extdata/Testlet_Attempts_Data-WinkeZhang.sav"),
                    user_na = TRUE) %>% 
   mutate(Gender = as_factor(Gender),
          Course = as_factor(Course),
