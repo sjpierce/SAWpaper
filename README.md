@@ -25,12 +25,6 @@ and OPIc speaking proficiency scores on the passing rate for each level
 of the Can-Do statements self-assessment. The objective was to validate
 the Can-Do test results.
 
-# Associated Research Paper
-
-Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a
-marginalized test method: Self-assessment as a measure of speaking
-proficiency \[Manuscript accepted for publication\]. *Studies in Second
-Language Acquisition*.
 
 # Funding Sources
 
