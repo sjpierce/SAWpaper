@@ -274,12 +274,11 @@ following files in this order.
 # Obtaining Data Files
 
 The data files required to use this package are not available in the
-GitHub repository. We plan to deposit them with the [Inter-university
-Consortium for Political and Social
-Research](https://www.icpsr.umich.edu/). Once we have done so, we will
-update this section with the reference and a link to the deposited
-materials. After you get the files, put them all in the subfolder called
-`SAWpaper/inst/extdata`.
+GitHub repository. They were instead deposited with the
+[Inter-university Consortium for Political and Social
+Research](https://www.icpsr.umich.edu/) as [Winke & Zhang
+(2022)](https://doi.org/10.3886/E164981V1). After you get the SPSS data
+files, put them all in the subfolder called `SAWpaper/inst/extdata`.
 
 # References
 
