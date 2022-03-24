@@ -25,22 +25,6 @@ and OPIc speaking proficiency scores on the passing rate for each level
 of the Can-Do statements self-assessment. The objective was to validate
 the Can-Do test results.
 
-# Task List
-
--   Update the data documentation to point toward the published data
-    archive at ICPSR.
--   Update `inst/SAW_Paper_Spanish_Analysis.Rmd` to:
-    -   Integrate code from Xiaowan’s file `CRM_Spanish_2020-2-3.Rmd`?
-    -   Read data from imported .RData file rather than CSV files.
--   Copy Xiaowan’s custom functions from `CRM_Spanish_2020-2-3.Rmd` into
-    R scripts under `R/` folder and add roxygen documentation to
-    generate help file.
--   Fix check() warning about Undocumented data sets: ‘df_corr’
-    ‘df_crm’. All user-level objects in a package should have
-    documentation entries. See chapter ‘Writing R documentation files’
-    in the ‘Writing R Extensions’ manual.
--   Add package citation information.
-
 # Associated Research Paper
 
 Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a
