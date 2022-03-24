@@ -31,12 +31,12 @@ Funding for this research was provided by the following grants.
 
 Winke, P., Gass, S., & Pierce, S. J. (08/01/2017–12/31/2018). *Michigan
 State University Language Flagship Proficiency Initiative Year 4
-continuation proposal* (Award #: 0054-MSU-22-PI-280-PO2) \[Grant\].
+continuation proposal* (Award \#: 0054-MSU-22-PI-280-PO2) \[Grant\].
 Institute of International Education.
 
 Winke, P., Gass, S., & Pierce, S. J. (01/01/2019–12/31/2019). *Michigan
 State University Language Flagship Proficiency Initiative Year 5
-continuation proposal* (Award #: 0054-MSU-22-PI-280-PO2) \[Grant\].
+continuation proposal* (Award \#: 0054-MSU-22-PI-280-PO2) \[Grant\].
 Institute of International Education.
 
 # Disclaimer
@@ -61,12 +61,12 @@ output.
     reproduce our results. We recommend using the most recent stable
     release of R available from the [Comprehensive R Archive Network
     (CRAN)](https://cran.r-project.org/).
--   We used [RStudio](www.rstudio.org) 2021.9.1.372 (RStudio Team, 2021)
+-   We used [RStudio](www.rstudio.org) 2022.2.0.443 (RStudio Team, 2021)
     to work with R and R Markdown files. RStudio is an excellent
     integrated development environment (IDE). We recommend using the
     most recent stable release available. The software chain for R
-    Markdown looks like this: **Rmd file > RStudio > R > rmarkdown >
-    knitr > md file > pandoc > tex file > TinyTeX > PDF file**.
+    Markdown looks like this: **Rmd file \> RStudio \> R \> rmarkdown \>
+    knitr \> md file \> pandoc \> tex file \> TinyTeX \> PDF file**.
 -   A version of [pandoc](https://pandoc.org/) comes bundled with
     RStudio, but if you want the most recent version, download it from
     <https://pandoc.org/>.
@@ -77,7 +77,7 @@ output.
     with R at the [Happy Git and GitHub for the
     userR](https://happygitwithr.com) website (Bryan et al., n.d.).
     Other useful resources on using Git and GitHub include Bryan
-    2018. and Perez-Riverol et al. (2016). Chacon and Straub (2014) is a
+    2018) and Perez-Riverol et al. (2016). Chacon and Straub (2014) is a
           full book on using Git for version control.
 -   We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
     LaTeX files produced by pandoc into PDF files. However, it may be
@@ -190,20 +190,24 @@ dir_tree(path = here(), recurse = TRUE, type = "any")
 #> |   +-- Delete_nul_file.bat
 #> |   +-- Development_Tools.R
 #> |   +-- extdata
-#> |   |   +-- Students_Data.sav
-#> |   |   +-- Students_Data_old.sav
-#> |   |   +-- Testlet_Attempts_Data.sav
-#> |   |   \-- Testlet_Attempts_Data_old.sav
+#> |   |   +-- 164981-V1.zip
+#> |   |   +-- Drafts
+#> |   |   |   +-- Students_Data.sav
+#> |   |   |   +-- Students_Data_old.sav
+#> |   |   |   +-- Testlet_Attempts_Data.sav
+#> |   |   |   \-- Testlet_Attempts_Data_old.sav
+#> |   |   +-- Students_Data-WinkeZhang.sav
+#> |   |   \-- Testlet_Attempts_Data-WinkeZhang.sav
 #> |   +-- F4.png
 #> |   +-- F5.png
-#> |   +-- nul
 #> |   +-- R_Citations.Rmd
-#> |   +-- SAW_Paper_Analyze_Data.log
 #> |   +-- SAW_Paper_Analyze_Data.pdf
 #> |   +-- SAW_Paper_Analyze_Data.Rmd
+#> |   +-- SAW_Paper_Analyze_Data_2022-03-15.pdf
 #> |   +-- SAW_Paper_Import_Explore_Data.pdf
 #> |   +-- SAW_Paper_Import_Explore_Data.Rmd
-#> |   \-- SAW_Paper_Import_Explore_Data_2022-03-06.pdf
+#> |   +-- SAW_Paper_Import_Explore_Data_2022-03-06.pdf
+#> |   \-- SAW_Paper_Import_Explore_Data_2022-03-15.pdf
 #> +-- LICENSE
 #> +-- man
 #> |   \-- SAWpaper-package.Rd
