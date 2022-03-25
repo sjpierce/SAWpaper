@@ -443,17 +443,16 @@ HC <- hetcor(as.data.frame(VSData[, c(cvars, ovars)]), ML=TRUE,
 Table \ref{tab:show-rps-rpc} shows the polyserial and polychoric correlations,
 along with confidence intervals and associated statistics.
 
-
 ```{r show-rps-rpc}
-rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, pdigits = NULL),
-      r.pc(HC, ord = ovars, digits = 2, pdigits = NULL)) %>% 
+rps.rpc <- rbind(r.ps(HC, cont = cvars, ord = ovars, digits = 2, 
+                      pdigits = NULL),
+                 r.pc(HC, ord = ovars, digits = 2, pdigits = NULL)) %>% 
   mutate(Variables = word(rownames(.), 2, sep = "\\:"),
          Type = word(rownames(.), 1, sep = "\\:"),
          Pval = format(Pval, digits = 3)) %>% 
-  select(Variables, Type, Cor, SE, CI.LL, CI.UL, Z, Pval, Sval, BFB, PPH1) -> 
-  T07
+  select(Variables, Type, Cor, SE, CI.LL, CI.UL, Z, Pval, Sval, BFB, PPH1)
 
-kable(T07, format = "latex", booktabs = TRUE, row.names = FALSE,
+kable(rps.rpc, format = "latex", booktabs = TRUE, row.names = FALSE,
       digits = c(Inf, Inf, rep(x = 2, times = 5), Inf, c(2, 2, 2)),
       caption = "Polyserial and Polychoric Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
@@ -465,40 +464,38 @@ Level. Note that it is inappropriate to use Pearson's r for ordinal variables.
 We include them here only for comparison purposes. 
 
 ```{r pearson}
-T08a <- r.p(HC, cont = cvars, digits = 2, pdigits = NULL)
+rp <- r.p(HC, cont = cvars, digits = 2, pdigits = NULL)
 ```
 
 Now obtain Spearman correlations for comparison purposes even though they are 
 not technically appropriate for our purpose. 
 
 ```{r spearman}
-T08b <- ci.rp(r = cor(x = VSData$Level.n, y = VSData$Course.n, 
-                      method = "spearman"), 
-              n = nrow(VSData), rn = "r.s: Level and Course")
-T08c <- ci.rp(r = cor(x = VSData$Level.n, y = VSData$OPIC.n, 
-                      method = "spearman"), 
-              n = nrow(VSData), rn = "r.s: Level and OPIC")
-T08d <- ci.rp(r = cor(x = VSData$Course.n, y = VSData$OPIC.n, 
-                      method = "spearman"), 
-              n = nrow(VSData), rn = "r.s: Course and OPIC")
+rsa <- ci.rp(r = cor(x = VSData$Level.n, y = VSData$Course.n, 
+                     method = "spearman"), 
+             n = nrow(VSData), rn = "r.s: Level and Course")
+rsb <- ci.rp(r = cor(x = VSData$Level.n, y = VSData$OPIC.n, 
+                     method = "spearman"), 
+             n = nrow(VSData), rn = "r.s: Level and OPIC")
+rsc <- ci.rp(r = cor(x = VSData$Course.n, y = VSData$OPIC.n, 
+                     method = "spearman"), 
+             n = nrow(VSData), rn = "r.s: Course and OPIC")
 ```
 
 Table \ref{tab:show-rp-rs} shows the Pearson and Spearman correlations,
 along with confidence intervals and associated statistics. 
 
-
 ```{r show-rp-rs}
 # Bind into a data frame 
-rbind(T08a, T08b, T08c, T08d) %>% 
+rp.rs <- rbind(rp, rsa, rsb, rsc) %>% 
   mutate(Variables = word(rownames(.), 2, sep = "\\:"),
          Type = word(rownames(.), 1, sep = "\\:"),
          Pval = format(Pval, digits = 3),
          BFB = format(BFB, digits = 3))  %>% 
   select(Variables, Type, Cor, SE, CI.LL, CI.UL, t, df, Pval, Sval, BFB, 
-         PPH1) -> 
-  T08
+         PPH1)
 
-kable(T08, format = "latex", booktabs = TRUE, row.names = FALSE,
+kable(rp.rs, format = "latex", booktabs = TRUE, row.names = FALSE,
       digits = c(rep(x = 2, times = 8), Inf, c(2, 2, 2)),
       caption = "Pearson and Spearman Correlations") %>%
 kable_styling(latex_options = c("repeat_header"))
