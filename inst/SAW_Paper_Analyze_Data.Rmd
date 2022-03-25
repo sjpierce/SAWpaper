@@ -1355,9 +1355,10 @@ m2a %>%
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 23 tests the significance of unique additional variance
-explained by the term on that line after controlling for all previously entered
-terms. Significant results mean adding that term improved the model.
+Each row in Table \ref{tab:m2a-Type-I} tests the significance of unique
+additional variance explained by the term on that line after controlling for all
+previously entered terms. Significant results mean adding that term improved the
+model.
 
 ```{r m2a-Type-I}
 m2a %>%
@@ -1373,14 +1374,14 @@ m2a %>%
 \FloatBarrier
 
 ## Simultaneous Tests of Main Effects via LRT (Type III SS)
-The simultaneous tests in Table 24 are the effects of the indicated terms after
-controlling for all other terms in the model. They are only computed for terms
-that are not part of a higher-order interaction because it makes no sense to
-test for a main effect when the variable is involved in an interaction. These
-should be functionally equivalent to the results you get with *anova()* when you
-feed it a pair of nested models that differ only in that one model includes a
-term that is absent from the other model. They are likelihood ratio tests
-(LRTs).
+The simultaneous tests in Table \ref{tab:m2a-Type-III} are the effects of the
+indicated terms after controlling for all other terms in the model. They are
+only computed for terms that are not part of a higher-order interaction because
+it makes no sense to test for a main effect when the variable is involved in an
+interaction. These should be functionally equivalent to the results you get with
+*anova()* when you feed it a pair of nested models that differ only in that one
+model includes a term that is absent from the other model. They are likelihood
+ratio tests (LRTs).
 
 ```{r m2a-Type-III}
 m2a %>% 
@@ -1786,12 +1787,12 @@ favors model 2a by a larger margin because it imposes a stronger penalty for mod
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 30 tests the significance of unique additional variance
-explained by the term on that line after controlling for all previously entered
-terms. Significant results mean adding that term improved the model. Here, we
-want to focus on the result for the interaction effect. That tells us whether
-allowing OPIc to have a level-specific effect instead of a constant effect
-across levels improved the model.
+Each row in Table \ref{tab:m2b-Type-I} tests the significance of unique
+additional variance explained by the term on that line after controlling for all
+previously entered terms. Significant results mean adding that term improved the
+model. Here, we want to focus on the result for the interaction effect. That
+tells us whether allowing OPIc to have a level-specific effect instead of a
+constant effect across levels improved the model.
 
 ```{r m2b-Type-I}
 m2b %>%
@@ -2218,9 +2219,10 @@ m3a %>%
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 36 tests the significance of unique additional variance
-explained by the term on that line after controlling for all previously entered
-terms. Significant results mean adding that term improved the model. 
+Each row in Table \ref{tab:m3a-Type-I} tests the significance of unique
+additional variance explained by the term on that line after controlling for all
+previously entered terms. Significant results mean adding that term improved the
+model.
 
 ```{r m3a-Type-I}
 m3a %>%
@@ -2240,14 +2242,14 @@ in the conditional pass rates after controlling for COPIC.
 \FloatBarrier
 
 ## Simultaneous Tests of Main/Interaction Effects via LRT (Type III SS)
-The simultaneous tests in Table 37 are the effects of the indicated terms after
-controlling for all other terms in the model. They are only computed for terms
-that are not part of a higher-order interaction because it makes no sense to
-test for a main effect when the variable is involved in an interaction. These
-should be functionally equivalent to the results you get with *anova()* when you
-feed it a pair of nested models that differ only in that one model includes a
-term that is absent from the other model. They are likelihood ratio tests
-(LRTs).
+The simultaneous tests in Table \ref{tab:m3a-Type-III} are the effects of the
+indicated terms after controlling for all other terms in the model. They are
+only computed for terms that are not part of a higher-order interaction because
+it makes no sense to test for a main effect when the variable is involved in an
+interaction. These should be functionally equivalent to the results you get with
+*anova()* when you feed it a pair of nested models that differ only in that one
+model includes a term that is absent from the other model. They are likelihood
+ratio tests (LRTs).
 
 ```{r m3a-Type-III}
 m3a %>% 
@@ -2264,9 +2266,9 @@ Results of the simultaneous tests are consistent with those of the sequential
 tests in showing that Course was no longer a significant predictor of the 
 conditional pass rates after controlling for COPIC.
 
-The fact that the course effect is not significant in Table 37 tells us that we
-can really revert back to model 2a because Course doesn't have an effect after
-controlling for level and COPIC.
+The fact that the course effect is not significant in Table 
+\ref{tab:m3a-Type-III} suggest that we can revert back to Model 2a because
+Course doesn't have an effect after controlling for level and COPIC.
 
 \FloatBarrier
 
@@ -2438,10 +2440,10 @@ m3b %>%
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Each row in Table 40 tests the significance of unique additional variance
-explained by the term on that line after controlling for all previously entered
-terms. Significant results mean adding that term improved the model. Note that 
-course actually entered the model last. 
+Each row in Table \ref{tab:m3b-Type-I} tests the significance of unique
+additional variance explained by the term on that line after controlling for all
+previously entered terms. Significant results mean adding that term improved the
+model. Note that course actually entered the model last.
 
 ```{r m3b-Type-I}
 m3b %>%
@@ -2457,14 +2459,14 @@ m3b %>%
 \FloatBarrier
 
 ## Simultaneous Tests of Main/Interaction Effects via LRT (Type III SS)
-The simultaneous tests in Table 41 are the effects of the indicated terms after
-controlling for all other terms in the model. They are only computed for terms
-that are not part of a higher-order interaction because it makes no sense to
-test for a main effect when the variable is involved in an interaction. These
-should be functionally equivalent to the results you get with *anova()* when you
-feed it a pair of nested models that differ only in that one model includes a
-term that is absent from the other model. They are likelihood ratio tests
-(LRTs).
+The simultaneous tests in Table \ref{tab:m3b-Type-III} are the effects of the
+indicated terms after controlling for all other terms in the model. They are
+only computed for terms that are not part of a higher-order interaction because
+it makes no sense to test for a main effect when the variable is involved in an
+interaction. These should be functionally equivalent to the results you get with
+*anova()* when you feed it a pair of nested models that differ only in that one
+model includes a term that is absent from the other model. They are likelihood
+ratio tests (LRTs).
 
 ```{r m3b-Type-III}
 m3b %>% 
@@ -2487,9 +2489,10 @@ anova(m3a, m3b, test = "Chisq") %>%
        caption = "Model 3a vs 3b: Likelihood Ratio Test for Interaction")
 ```
 
-The fact that the course effect is not significant in Table 41 tells us that we
-can really revert back to model 2b because course doesn't have an effect after
-controlling for level, COPIC, and their interaction.
+The fact that the course effect is not significant in Table
+\ref{tab:m3b-Type-III} suggests that we can revert back to Model 2a because
+course doesn't have an effect after controlling for testlet, COPIC, and their
+interaction.
 
 \FloatBarrier
 
