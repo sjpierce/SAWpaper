@@ -1019,43 +1019,79 @@ drawing conclusions.
 
 \FloatBarrier
 
-### Main Effects
+### Main Effect of Testlet
+Figures \ref{fig:m1a-plot-Testlet-LogOdds} and \ref{fig:m1a-plot-Testlet-CPR}
+respectively plot the main effect of the self-assessment level transition 
+testlet on the scale of the linear predictor (log-odds) and on the response 
+scale (probability or conditional pass rates). 
 
-```{r}
-visreg(m1a, ylab = "Log odds (Pass)")
-visreg(m1a, ylab = "Conditional Pass Rate", scale = "response", rug = 2)
+```{r m1a-plot-Testlet-LogOdds, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-plot-Testlet-LogOdds}",
+              "Model 1a Main Effect of Testlet on Log-Odds Scale.")
+visreg(m1a, xvar = "Testlet", ylab = "Log odds (Pass)")
+```
+
+```{r m1a-plot-Testlet-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-plot-Testlet-CPR}",
+              "Model 1a Main Effect of Testlet on Probability Scale.")
+visreg(m1a, xvar = "Testlet", ylab = "Conditional Pass Rate", 
+       scale = "response", rug = 2, ylim = c(0, 1))
+```
+
+### Main Effect of Course
+Figures \ref{fig:m1a-plot-Course-LogOdds} and \ref{fig:m1a-plot-Course-CPR}
+respectively plot the main effect of course on the scale of the linear predictor
+(log-odds) and on the response scale (probability or conditional pass rates).
+
+```{r m1a-plot-Course-LogOdds, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-plot-Course-LogOdds}",
+              "Model 1a Main Effect of Course on Log-Odds Scale.")
+visreg(m1a, xvar = "Course", ylab = "Log odds (Pass)")
+```
+
+```{r m1a-plot-Course-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-plot-Course-CPR}",
+              "Model 1a Main Effect of Course on Probability Scale.")
+visreg(m1a, xvar = "Course", ylab = "Conditional Pass Rate", 
+       scale = "response", rug = 2, ylim = c(0, 1))
 ```
 
 \FloatBarrier
 
-### Conditional Pass Rates
-Use ggplot to generate the graph for conditional pass rates derived from model
-m1a. 
+### Conditional Pass Rates 
+Figure \ref{fig:m1a-plot-CPR} plots the conditional pass rates derived from
+Model 1a as a function of both testlet and course.
 
-```{r}
-F1 <- ggplot(m1a.ND[, ShowVars], 
-             aes(Testlet, Pass.Rate, group=Course, color=Course))+
+```{r m1a-plot-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-plot-CPR}",
+              "Model 1a Conditional Pass Rates by Self-Assessment Testlet and",
+              "Course.",
+              "Lines are labeled with Course.")
+m1a.FCPR <- ggplot(m1a.ND[, ShowVars], 
+                   aes(Testlet, Pass.Rate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.8))+
-      xlab("SA Level Transition")+
-      ylab("Conditional Pass Rate")+
-      ggtitle(label="Conditional Pass Rates by Course and SA Level Transition")
-direct.label(F1, "first.polygons")
+      xlab("Self-Assessment Testlet")+
+      ylab("Conditional Pass Rate")
+direct.label(m1a.FCPR, "first.points")
 ```
 
 \FloatBarrier
 
 ### Unconditional Pass Rates
-Use ggplot to generate the graph for unconditional pass rates derived from model
-m1a. 
+Figure \ref{fig:m1a-plot-UPR} plots the unconditional pass rates derived from
+Model 1a as a function of both testlet and course.
 
-```{r}
-F2 <- ggplot(m1a.ND[, ShowVars], 
-             aes(Testlet, Pass.URate, group=Course, color=Course))+
+```{r m1a-plot-UPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m1a-plot-UPR}",
+              "Model 1a Unconditional Pass Rates by Self-Assessment Testlet",
+              "and Course.",
+              "Lines are labeled with Course.")
+m1a.FUPR <- ggplot(m1a.ND[, ShowVars], 
+                   aes(Testlet, Pass.URate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.65))+
       xlab("SA Level Transition")+
-      ylab("Unconditional Pass Rate")+
-      ggtitle(label="Unconditional Pass Rates by Course and SA Level Transition")
-direct.label(F2, "first.polygons")
+      ylab("Unconditional Pass Rate")
+direct.label(m1a.FUPR, "first.points")
 ```
 
 \FloatBarrier
@@ -1276,7 +1312,7 @@ We omit detailed diagnostics because model 1b is not better than model 1a.
 \FloatBarrier
 
 ## Graphs
-We omit graphs because model 1b is not better than model 1a. See model 1a graphs
+We omit graphs because Model 1b is not better than Model 1a. See Model 1a graphs
 instead.
 
 \FloatBarrier
@@ -1598,19 +1634,42 @@ InfCases(m2a)
 
 ## Graphs
 
-### COPIC Effect in log odds (logits) and conditional pass rates
+### Main Effect of Testlet
+Figures \ref{fig:m2a-plot-Testlet-LogOdds} and \ref{fig:m2a-plot-Testlet-CPR}
+respectively plot the main effect of the self-assessment level transition 
+testlet on the scale of the linear predictor (log-odds) and on the response 
+scale (probability or conditional pass rates). 
 
-We visualize below the level-transition-specific OPIc effect. The effect of OPIc
-decreases as we go from the lowest to the highest level transition, as evidenced
-by the decreasingly steep slope from the left-most to the right-most panel.
+```{r m2a-plot-Testlet-LogOdds, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-Testlet-LogOdds}",
+              "Model 2a Main Effect of Testlet on Log-Odds Scale.")
+visreg(m2a, xvar = "Testlet", ylab = "Log odds (Pass)")
+```
 
-```{r}
-visreg(m2a, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
-       strip.names = TRUE, scale = "linear", 
+```{r m2a-plot-Testlet-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-Testlet-CPR}",
+              "Model 2a Main Effect of Testlet on Probability Scale.")
+visreg(m2a, xvar = "Testlet", ylab = "Conditional Pass Rate", 
+       scale = "response", rug = 2, ylim = c(0, 1))
+```
+
+### Main Effect of COPIC
+Figures \ref{fig:m2a-plot-COPIC-LogOdds} and \ref{fig:m2a-plot-COPIC-CPR}
+respectively plot the main effect of COPIC on the scale of the linear predictor
+(log-odds) and on the response scale (probability or conditional pass rates).
+
+```{r m2a-plot-COPIC-LogOdds, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-COPIC-LogOdds}",
+              "Model 2a Main Effect of Centered OPIc Score on Log-Odds Scale.")
+visreg(m2a, xvar = "COPIC", jitter = TRUE, scale = "linear", 
        xlab = "Centered OPIC Score (OPIC - 5)", 
        ylab = "Log odds (Pass)")
-visreg(m2a, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
-       strip.names = TRUE, scale = "response", rug = 2,
+```
+
+```{r m2a-plot-COPIC-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-COPIC-CPR}",
+              "Model 2a Main Effect of Centered OPIc Score on Probability Scale.")
+visreg(m2a, xvar = "COPIC", jitter = TRUE, scale = "response", rug = 2,
        xlab = "Centered OPIC Score (OPIC - 5)", 
        ylab = "Conditional Pass Rate")
 ```
@@ -1618,44 +1677,44 @@ visreg(m2a, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
 \FloatBarrier
 
 ### Conditional Pass Rates
-Use ggplot to generate the graph for conditional pass rates derived from model
-m2a.
+Figure \ref{fig:m2a-plot-CPR} plots the conditional pass rates derived from
+Model 2a as a function of both testlet and OPIc score.
 
-```{r m2a-plot-cond-pass, fig.height=3, fig.width=5, fig.cap=FCap}
-FCap <- paste("\\label{fig:m2a-plot-cond-pass}",
+```{r m2a-plot-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-CPR}",
               "Model 2a Conditional Pass Rates by OPIc Score and",
               "Self-Assessment Testlet.",
               "Lines are labeled with OPIc score.")
-FCPR <- ggplot(m2a.ND[, ShowVars], 
-               aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
+m2a.FCPR <- ggplot(m2a.ND[, ShowVars], 
+                   aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("Self-assessment Testlet")+
   ylab("Conditional Pass Rate")
-  direct.label(FCPR, "first.points")
+  direct.label(m2a.FCPR, "first.points")
 # for the manuscript
-ggsave("F4.png", plot=direct.label(FCPR, "first.points"), 
+ggsave("F4.png", plot=direct.label(m2a.FCPR, "first.points"), 
        width = 6.5, height = 8.5, dpi = 300)
 ```
 
 \FloatBarrier
 
 ### Unconditional Pass Rates  
-Use ggplot to generate the graph for unconditional pass rates derived from model
-m2a.
+Figure \ref{fig:m2a-plot-UPR} plots the unconditional pass rates derived from
+Model 2a as a function of both testlet and OPIc score.
 
-```{r m2a-plot-uncond-pass, fig.height=3, fig.width=5, fig.cap=FCap}
-FCap <- paste("\\label{fig:m2a-plot-uncond-pass}",
+```{r m2a-plot-UPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2a-plot-UPR}",
               "Model 2a Unconditional Pass Rates by OPIc Score and",
               "Self-Assessment Testlet.",
               "Lines are labeled with OPIc score.")
-FUPR <- ggplot(m2a.ND[, ShowVars], 
-               aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
+m2a.FUPR <- ggplot(m2a.ND[, ShowVars], 
+                   aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("Self-assessment Testlet")+
   ylab("Unconditional Pass Rate")
-  direct.label(FUPR, "first.points")
+  direct.label(m2a.FUPR, "first.points")
 # for the manuscript
-ggsave("F5.png", plot=direct.label(FUPR, "first.points"), 
+ggsave("F5.png", plot=direct.label(m2a.FUPR, "first.points"), 
        width = 9, height = 5.5, dpi = 300)
 ```
 
@@ -2039,17 +2098,30 @@ InfCases(m2b)
 
 \FloatBarrier
 
-### Interaction Effect
+### Interaction Effect of COPIC by Testlet 
+We visualize below the transition testlet-specific OPIc effect. Figures
+\ref{fig:m2b-plot-Interaction-LogOdds} and \ref{fig:m2b-plot-Interaction-CPR}
+respectively plot the centered OPIC score by testlet interaction effect by
+showing the simple effect of centered OPIc score separately for each
+self-assessment transition testlet on the scale of the linear predictor
+(log-odds) and on the response scale (probability or conditional pass rates).
+The effect of OPIc decreases as we go from the first to the fourth testlet, as
+evidenced by the shallower slope from the left-most to the right-most panel.
 
-We visualize below the level-transition-specific OPIc effect. The effect of OPIc
-decreases as we go from the lowest to the highest level transition, as evidenced
-by the decreasingly steep slope from the left-most to the right-most panel.
-
-```{r}
+```{r m2b-plot-Interaction-LogOdds, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2b-plot-Interaction-LogOdds}",
+              "Model 2b Interaction Effect of COPIC by Testlet on Log-Odds", 
+              "Scale.")
 visreg(m2b, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
        strip.names = TRUE, scale = "linear", 
        xlab = "Centered OPIC Score (OPIC - 5)", 
        ylab = "Log odds (Pass)")
+```
+
+```{r m2b-plot-Interaction-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2b-plot-Interaction-CPR}",
+              "Model 2b Interaction Effect of COPIC by Testlet on",
+              "Probability Scale.")
 visreg(m2b, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
        strip.names = TRUE, scale = "response", rug = 2,
        xlab = "Centered OPIC Score (OPIC - 5)", 
@@ -2059,33 +2131,39 @@ visreg(m2b, xvar = "COPIC", by = "Testlet", layout = c(4, 1), jitter = TRUE,
 \FloatBarrier
 
 ### Conditional Pass Rates
-Use ggplot to generate the graph for conditional pass rates derived from model
-m2b.
+Figure \ref{fig:m2b-plot-CPR} plots the conditional pass rates derived from
+Model 2b as a function of both testlet and OPIc score.
 
-```{r}
-F3 <- ggplot(m2b.ND[, ShowVars], 
-             aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
+```{r m2b-plot-CPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2b-plot-CPR}",
+              "Model 2b Conditional Pass Rates by OPIc Score and",
+              "Self-Assessment Testlet.",
+              "Lines are labeled with OPIc score.")
+m2b.FCPR <- ggplot(m2b.ND[, ShowVars], 
+                   aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
-      xlab("SA Level Transition")+
-      ylab("Conditional Pass Rate")+
-      ggtitle(label="Conditional Pass Rates by OPIC Score and Level Transition")
-direct.label(F3, "first.polygons")
+      xlab("Self-Assessment Testlet")+
+      ylab("Conditional Pass Rate")
+direct.label(m2b.FCPR, "first.points")
 ```
 
 \FloatBarrier
 
 ### Unconditional Pass Rates  
-Use ggplot to generate the graph for unconditional pass rates derived from model
-m2b.
+Figure \ref{fig:m2b-plot-UPR} plots the unconditional pass rates derived from
+Model 2b as a function of both testlet and OPIc score.
 
-```{r}
-F4 <- ggplot(m2b.ND[, ShowVars], 
-             aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
+```{r m2b-plot-UPR, fig.height=3, fig.width=5, fig.cap=FCap}
+FCap <- paste("\\label{fig:m2b-plot-UPR}",
+              "Model 2b Unconditional Pass Rates by OPIc Score and",
+              "Self-Assessment Testlet.",
+              "Lines are labeled with OPIc score.")
+m2b.FUPR <- ggplot(m2b.ND[, ShowVars], 
+                   aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
-      xlab("SA Level Transition")+
-      ylab("Unconditional Pass Rate")+
-      ggtitle(label="Unconditional Pass Rates by OPIC Score and SA Level Transition")
-direct.label(F4, "first.polygons")
+      xlab("Self-Assessment Testlet")+
+      ylab("Unconditional Pass Rate")
+direct.label(m2b.FUPR, "first.points")
 ```
 
 \FloatBarrier
@@ -2515,7 +2593,7 @@ We omit diagnostics because model 3b is not better than model 2b.
 \FloatBarrier
 
 ## Graphs
-We omit graphs because model 3b is not better than model 2b. 
+We omit graphs because Model 3b is not better than Models 2a and 2b. 
 
 \FloatBarrier
 
