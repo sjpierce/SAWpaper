@@ -306,7 +306,7 @@ helps one to see non-linearity in the relationship between variables. Here we
 substantial evidence if non-linearity because the loess fit line is quite bowed
 rather than mostly straight. 
 
-```{r plot-SAScore-OPICV-linear, fig.height=3, fig.width=5, fig.cap=FCap}
+```{r plot-SAScore-OPICV-linear, message=FALSE, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:plot-SAScore-OPICV-linear}",
               "Self-Assessment Total Score as a function of OPIc Score,", 
               "With Linear Fit Line.")
@@ -331,7 +331,7 @@ ggplot(VSData, aes(OPICV, Item1_50))+
   guides(color = guide_legend(title="Course"))
 ```
 
-```{r plot-SAScore-OPICV-loess, fig.height=3, fig.width=5, fig.cap=FCap}
+```{r plot-SAScore-OPICV-loess, message=FALSE, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:plot-SAScore-OPICV-loess}",
               "Self-Assessment Total Score as a function of OPIc Score,", 
               "With Loess Fit Line.")
@@ -357,7 +357,7 @@ lines: one for each course level. Compare that to Figure
 \ref{fig:plot-SAScore-OPICV-by-Course-loess} where we show separate loess curves for 
 each of the four course levels instead.  
 
-```{r plot-SAScore-OPICV-by-Course-linear, fig.height=3, fig.width=5, fig.cap=FCap}
+```{r plot-SAScore-OPICV-by-Course-linear, message=FALSE, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:plot-SAScore-OPICV-by-Course-linear}",
               "Self-Assessment Total Score as a function of OPIc Score and", 
               "Course, With Linear Fit Lines.")
@@ -373,7 +373,7 @@ ggplot(VSData, aes(OPICV, Item1_50, color=Course))+
   guides(color = guide_legend(title="Course"))
 ```
 
-```{r plot-SAScore-OPICV-by-Course-loess, fig.height=3, fig.width=5, fig.cap=FCap}
+```{r plot-SAScore-OPICV-by-Course-loess, message=FALSE, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:plot-SAScore-OPICV-by-Course-loess}",
               "Self-Assessment Total Score as a function of OPIc Score and", 
               "Course, With Loess Fit Lines.")
