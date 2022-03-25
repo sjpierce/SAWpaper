@@ -801,8 +801,7 @@ m1a.ND$Pass.URate <- c(cumprod(m1a.ND[m1a.ND$Course == "100", "Pass.Rate"]),
 
 ShowVars <- c("Testlet", "Course", "Pass.Rate", "Pass.LL", "Pass.UL",
               "Pass.URate")
-T14 <- m1a.ND[, ShowVars] 
-kable(T14, format = "latex", booktabs = TRUE, digits = 2, 
+kable(m1a.ND[, ShowVars], format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates with 95 percent CIs and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>%
@@ -1034,7 +1033,8 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m1a. 
 
 ```{r}
-F1 <- ggplot(T14, aes(Testlet, Pass.Rate, group=Course, color=Course))+
+F1 <- ggplot(m1a.ND[, ShowVars], 
+             aes(Testlet, Pass.Rate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.8))+
       xlab("SA Level Transition")+
       ylab("Conditional Pass Rate")+
@@ -1049,7 +1049,8 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m1a. 
 
 ```{r}
-F2 <- ggplot(T14, aes(Testlet, Pass.URate, group=Course, color=Course))+
+F2 <- ggplot(m1a.ND[, ShowVars], 
+             aes(Testlet, Pass.URate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.65))+
       xlab("SA Level Transition")+
       ylab("Unconditional Pass Rate")+
@@ -1391,8 +1392,8 @@ m2a.ND$Pass.URate <- c(cumprod(m2a.ND[m2a.ND$COPIC == -4, "Pass.Rate"]),
 
 ShowVars <- c("Testlet", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL",
               "Pass.URate")
-T25 <- m2a.ND[, ShowVars] 
-kable(T25, format = "latex", booktabs = TRUE, digits = 2, 
+ 
+kable(m2a.ND[, ShowVars], format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>% 
@@ -1625,7 +1626,8 @@ FCap <- paste("\\label{fig:m2a-plot-cond-pass}",
               "Model 2a Conditional Pass Rates by OPIc Score and",
               "Self-Assessment Testlet.",
               "Lines are labeled with OPIc score.")
-FCPR <- ggplot(T25, aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
+FCPR <- ggplot(m2a.ND[, ShowVars], 
+               aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("Self-assessment Testlet")+
   ylab("Conditional Pass Rate")
@@ -1646,7 +1648,8 @@ FCap <- paste("\\label{fig:m2a-plot-uncond-pass}",
               "Model 2a Unconditional Pass Rates by OPIc Score and",
               "Self-Assessment Testlet.",
               "Lines are labeled with OPIc score.")
-FUPR <- ggplot(T25, aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
+FUPR <- ggplot(m2a.ND[, ShowVars], 
+               aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
   geom_line()+ coord_cartesian(ylim = c(0, 1))+
   xlab("Self-assessment Testlet")+
   ylab("Unconditional Pass Rate")
@@ -1793,8 +1796,7 @@ m2b.ND$Pass.URate <- c(cumprod(m2b.ND[m2b.ND$COPIC == -4, "Pass.Rate"]),
 
 ShowVars <- c("Testlet", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL",
               "Pass.URate")
-T32 <- m2b.ND[, ShowVars] 
-kable(T32, format = "latex", booktabs = TRUE, digits = 2, 
+kable(m2b.ND[, ShowVars], format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
       caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
                       "Unconditional Pass Rates by Level Transition and Course")) %>% 
@@ -2061,7 +2063,8 @@ Use ggplot to generate the graph for conditional pass rates derived from model
 m2b.
 
 ```{r}
-F3 <- ggplot(T32, aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
+F3 <- ggplot(m2b.ND[, ShowVars], 
+             aes(Testlet, Pass.Rate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
       xlab("SA Level Transition")+
       ylab("Conditional Pass Rate")+
@@ -2076,7 +2079,8 @@ Use ggplot to generate the graph for unconditional pass rates derived from model
 m2b.
 
 ```{r}
-F4 <- ggplot(T32, aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
+F4 <- ggplot(m2b.ND[, ShowVars], 
+             aes(Testlet, Pass.URate, group=OPIC, color=OPIC))+
       geom_line()+ coord_cartesian(ylim = c(0, 1))+
       xlab("SA Level Transition")+
       ylab("Unconditional Pass Rate")+
