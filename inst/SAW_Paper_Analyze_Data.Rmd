@@ -1766,13 +1766,13 @@ m2b %>%
 
 \newpage
 
-We can see that the difference in AICs
+We can see from Table \ref{tab:show-models} that the difference in AICs
 ($\Delta AIC = AIC_{2a} - AIC_{2b} = `r round(AIC(m2a) - AIC(m2b), digits = 3)`$)
-favors model 2b, which has the lower AIC value, but not by a large margin. 
-Meanwhile, difference in BICs 
+favors Model 2b, which has a lower AIC value than Model 2a, but not by a large
+margin. Meanwhile, difference in BICs
 ($\Delta BIC = BIC_{2a} - BIC_{2b} = `r round(BIC(m2a) - BIC(m2b), digits = 3)`$) 
-favors model 2a by a larger margin because it imposes a stronger penalty for model complexity 
-(lack of parsimony). 
+favors Model 2a by a larger margin because it imposes a stronger penalty for
+model complexity (lack of parsimony).
 
 \FloatBarrier
 
