@@ -650,11 +650,37 @@ Youden index. Here are short definitions of what some of these statistics
 measure. 
 
 * Accuracy is the model's overall ability to correctly classify learners
-  according to whether they pass vs fail the level transitions. 
+  according to whether they pass versus fail the level transitions. 
 * Sensitivity is the ability of the model to correctly identify learners who 
   passed level transitions. 
 * Specificity is the ability of the model to correctly identify learners who 
   fail the level transitions. 
+
+Table \ref{tab:classification-measures} shows a list of the classification 
+measures computed for each model, along with the label used in tables later to
+identify each measure. 
+
+```{r classification-measures}
+data.frame(Measure = c("Threshold value", "Specificity", "Sensitivity", 
+                       "Accuracy", "True negative count", "True positive count",
+                       "False negative count", "False positive count",
+                       "Negative predictive value", "Positive predictive value",
+                       "False discovery rate", "False postivie rate",
+                       "True positive rate", "True negative rate",
+                       "False negative rate", "1 - Specificity",
+                       "1 - Sensitivity", "1 - Accuracy",
+                       "1 - Negative predictive value", 
+                       "1 - Positive predictive value", "Precision", "Recall",
+                       "Youden Index", 
+                       "Distance to Top Left Corner of the ROC space"),
+           Label = c("threshold", "specificity", "sensitivity", "accuracy",
+                     "tn", "tp", "fn", "fp", "npv", "ppv", "fdr", "fpr", "tpr", 
+                     "tnr", "fnr", "1-specificity", "1-sensitivity", 
+                     "1-accuracy", "1-npv", "1-ppv", "precision", "recall",
+                     "youden", "closest.topleft")) %>% 
+  kable(format = "latex", booktabs = TRUE, row.names = FALSE,
+        caption = "Classification Measures Reported for Each Model")
+```
 
 The area under the receiver operating characteristic curve (AUC) measures the
 model's ability to discriminate those who pass from those who fail to pass the
@@ -877,21 +903,17 @@ HLT.m1a %>%
 \FloatBarrier
 
 ### Classification 
-Below, we use functions from the pROC package to identify the optimal cutpoint 
-$c$ to use when converting fitted probabilities of passing a LTT into a binary
-prediction of whether the individual will pass it. The naieve cutpoint would be
-$c = 0.5$, but that is not necessarily the optimal cutpoint. Choosing a cutpoint
-via use of the Youden index (Youden, 1950) is optimal with respect to overall
-misclassification rate for a given weighting of sensitivity and specificity
-(Perkins & Schisterman, 2006). Below, we show the results of various 
-classification measures given that we use the optimal cutpoint based on the 
-Youden index. 
+Table \ref{tab:m1a-classification} presents the classification measures for this
+model.
 
 ```{r m1a-classification}
 set.seed(4921) # For reproducibility of bootstrap estimates.
 roc.m1a <- roc(Pass ~ pred.m1a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m1a, seed = 4684), digits = 3)
+round(lrcm(roc.m1a, seed = 4684), digits = 3) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+        caption = "Classification Measures for Model 1a") %>% 
+  add_header_above(header = c(" " = 2, "Bootstrapped Quantiles" = 3))
 ```
 
 \FloatBarrier
@@ -1175,14 +1197,17 @@ HLT.m1b %>%
 \FloatBarrier
 
 ### Classification 
-Here we want to examine the classification table, plus the overall accuracy,
-sensitivity, and specificity estimates.
+Table \ref{tab:m1b-classification} presents the classification measures for this
+model.
 
 ```{r m1b-classification}
 set.seed(1574) # For reproducible bootstrap estimates.
 roc.m1b <- roc(Pass ~ pred.m1b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m1b, seed = 6711), digits = 3)
+round(lrcm(roc.m1b, seed = 6711), digits = 3) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+        caption = "Classification Measures for Model 1b") %>% 
+  add_header_above(header = c(" " = 2, "Bootstrapped Quantiles" = 3))
 ```
 
 The low sensitivity indicates that the model does a poor job of correctly
@@ -1441,14 +1466,17 @@ HLT.m2a %>%
 \FloatBarrier
 
 ### Classification 
-Here we want to examine the classification table, plus the overall accuracy,
-sensitivity, and specificity estimates.
+Table \ref{tab:m2a-classification} presents the classification measures for 
+this model. 
 
 ```{r m2a-classification}
 set.seed(5378) # For reproducible bootstrap estimates.
 roc.m2a <- roc(Pass ~ pred.m2a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m2a, seed = 9825), digits = 3)
+round(lrcm(roc.m2a, seed = 9825), digits = 3) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+        caption = "Classification Measures for Model 2a") %>% 
+  add_header_above(header = c(" " = 2, "Bootstrapped Quantiles" = 3))
 ```
 
 \FloatBarrier
@@ -1861,14 +1889,17 @@ HLT.m2b %>%
 \FloatBarrier
 
 ### Classification 
-Here we want to examine the classification table, plus the overall accuracy,
-sensitivity, and specificity estimates.
+Table \ref{tab:m2b-classification} presents the classification measures for 
+this model. 
 
 ```{r m2b-classification}
 set.seed(3179) # For reproducible bootstrap estimates.
 roc.m2b <- roc(Pass ~ pred.m2b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m2b, seed = 7146), digits = 3)
+round(lrcm(roc.m2b, seed = 7146), digits = 3) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+        caption = "Classification Measures for Model 2b") %>% 
+  add_header_above(header = c(" " = 2, "Bootstrapped Quantiles" = 3))
 ```
 
 \FloatBarrier
@@ -2170,14 +2201,18 @@ HLT.m3a %>%
 \FloatBarrier
 
 ### Classification 
-Here we want to examine the classification table, plus the overall accuracy,
-sensitivity, and specificity estimates.
+Table \ref{tab:m3a-classification} presents the classification measures for 
+this model. 
+
 
 ```{r m3a-classification}
 set.seed(3419) # For reproducibility of bootstrap estimates.
 roc.m3a <- roc(Pass ~ pred.m3a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m3a, seed = 6342), digits = 3) 
+round(lrcm(roc.m3a, seed = 6342), digits = 3) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+        caption = "Classification Measures for Model 3a") %>% 
+  add_header_above(header = c(" " = 2, "Bootstrapped Quantiles" = 3))
 ```
 
 \FloatBarrier
@@ -2381,14 +2416,17 @@ HLT.m3b %>%
 \FloatBarrier
 
 ### Classification 
-Here we want to examine the classification table, plus the overall accuracy,
-sensitivity, and specificity estimates.
+Table \ref{tab:m3b-classification} presents the classification measures for 
+this model. 
 
 ```{r m3b-classification}
 set.seed(9173) # For reproducibility of bootstrap estimates.
 roc.m3b <- roc(Pass ~ pred.m3b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
-round(lrcm(roc.m3b, seed = 7146), digits = 3) 
+round(lrcm(roc.m3b, seed = 7146), digits = 3) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+        caption = "Classification Measures for Model 3b") %>% 
+  add_header_above(header = c(" " = 2, "Bootstrapped Quantiles" = 3))
 ```
 
 \FloatBarrier
