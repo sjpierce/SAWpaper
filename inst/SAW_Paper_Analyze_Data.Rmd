@@ -666,6 +666,17 @@ model and annotate it with the best classification threshold, plus the
 corresponding values of sensitivity and specificity, the AUC, and the 95%
 confidence interval for the AUC.
 
+```{r save-predicted-values}
+# Save model predicted values to facilitate computing classification measures.
+VTAData <- VTAData %>% 
+  mutate(pred.m1a = predict(m1a, type = "response"),
+         pred.m1b = predict(m1b, type = "response"),
+         pred.m2a = predict(m2a, type = "response"),
+         pred.m2b = predict(m2b, type = "response"),
+         pred.m3a = predict(m3a, type = "response"),
+         pred.m3b = predict(m3b, type = "response"))
+```
+
 Finally, we run model diagnostics to see if there are any obvious problems with
 each model. First we check for outliers, examine residual plots and index plots
 for a couple influence measures to look for observations with values exceeding 
@@ -877,7 +888,6 @@ classification measures given that we use the optimal cutpoint based on the
 Youden index. 
 
 ```{r m1a-classification}
-VTAData$pred.m1a <- predict(m1a, type = "response")
 set.seed(4921) # For reproducibility of bootstrap estimates.
 roc.m1a <- roc(Pass ~ pred.m1a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
@@ -1169,7 +1179,6 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r m1b-classification}
-VTAData$pred.m1b <- predict(m1b, type = "response")
 set.seed(1574) # For reproducible bootstrap estimates.
 roc.m1b <- roc(Pass ~ pred.m1b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
@@ -1436,7 +1445,6 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r m2a-classification}
-VTAData$pred.m2a <- predict(m2a, type = "response")
 set.seed(5378) # For reproducible bootstrap estimates.
 roc.m2a <- roc(Pass ~ pred.m2a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
@@ -1857,7 +1865,6 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r m2b-classification}
-VTAData$pred.m2b <- predict(m2b, type = "response")
 set.seed(3179) # For reproducible bootstrap estimates.
 roc.m2b <- roc(Pass ~ pred.m2b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
@@ -2167,7 +2174,6 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r m3a-classification}
-VTAData$pred.m3a <- predict(m3a, type = "response")
 set.seed(3419) # For reproducibility of bootstrap estimates.
 roc.m3a <- roc(Pass ~ pred.m3a, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
@@ -2379,7 +2385,6 @@ Here we want to examine the classification table, plus the overall accuracy,
 sensitivity, and specificity estimates.
 
 ```{r m3b-classification}
-VTAData$pred.m3b <- predict(m3b, type = "response")
 set.seed(9173) # For reproducibility of bootstrap estimates.
 roc.m3b <- roc(Pass ~ pred.m3b, data = VTAData, ci = TRUE, direction = "<",
                ci.method = "bootstrap", boot.n = 10000)
