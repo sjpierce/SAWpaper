@@ -687,7 +687,9 @@ outstanding. These interpretive heuristics come from Hosmer, Lemeshow, &
 Sturdivant (2013, p. 177). Thus, for each model we plot the ROC curve for the
 model and annotate it with the best classification threshold, plus the
 corresponding values of sensitivity and specificity, the AUC, and the 95%
-confidence interval for the AUC.
+confidence interval for the AUC. To compare ROC curves between selected models,
+we use a two-sides, stratified bootstrap test for the difference between the AUC
+values (Robin et al., 2011).
 
 ```{r save-predicted-values}
 # Save model predicted values to facilitate computing classification measures.
@@ -931,7 +933,7 @@ plot.roc(roc.m1a, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
 ```
 
 Based on this AUC result, we conclude that model 1a is generally poor at
-discriminating people who are passing vs failing the level transitions. That
+discriminating people who are passing versus failing the level transitions. That
 means course is not a particularly good predictor regardless of what hypothesis
 testing results show.
 
@@ -1279,28 +1281,32 @@ plot.roc(roc.m1b, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
          print.thres.cex = .8)
 ```
 
-Based on this AUC result, we conclude that model 1b does a poor job of
+Based on this AUC result, we conclude that Model 1b does a poor job of
 discriminating between those who pass vs fail the level transitions. That means
-course is still not a particularly good predictor.
+course is still not a particularly good predictor even after we allow it to have
+a non-parallel effect. Table \ref{tab:m1a-m1b-auc-test} compares the ROC curves
+for Models 1a and 1b and shows that they do not differ meaningfully with respect
+to discrimination performance. 
 
-Next we compare the ROC curves for models m1a and m1b using a bootstrap test for
-difference between the AUC values (Robin et al., 2011). 
-
-```{r}
+```{r m1a-m1b-auc-test, message=FALSE}
 set.seed(9537) # For reproducible bootstrap estimates.
 roct.m1a.m1b <- roc.test(roc.m1a, roc.m1b, method = "bootstrap", boot.n = 10000)
-roct.m1a.m1b
-```
-
-```{r}
-# Get the s-value, BFB, and posterior probability of H1. 
-convertp(p = roct.m1a.m1b$p.value, digits = 2)
+glance(roct.m1a.m1b) %>% 
+  cbind(., convertp(p = .$p.value, digits = 2)) %>% 
+  select(boot.n, estimate1, estimate2, statistic, p.value, S, BFB, PPH1) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 3, 3, 2, Inf, 2, 2, 2),
+       col.names = c("Bootstrap N", "Model 1a", "Model 1b", "D", "p", "S", 
+                     "BFB", "PPH1"),
+       caption = paste("Comparing Models 1a and 1b Via Two-Sided, Stratified",
+                       "Bootstrap Test for Correlated ROC Curves")) %>% 
+  add_header_above(header = c(" ", "AUC Estimates" = 2, " " = 5))
 ```
 
 \FloatBarrier
 
 ### $R^{2}$ Measures
-The results for model 1b are no better than they were for model 1a: 
+The results for Model 1b are only marginally better than they were for Model 1a: 
 $R^{2}_p = `r pseudoR2(m1b, digits = 2)`$ and 
 $R^{2}_{Dev} = `r R2Dev(m1b, digits = 2)`$. 
 
@@ -1531,7 +1537,7 @@ round(lrcm(roc.m2a, seed = 9825), digits = 3) %>%
 ### Area Under the Curve (AUC)
 Figure \ref{fig:m2a-auc-plot} shows the ROC curve for the model, annotated with 
 the best classification threshold for balancing sensitivity versus specificity 
-and the area under the curve (AUC). 
+and the area under the curve (AUC). Model 2a achieves adequate 
 
 ```{r m2a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2a-auc-plot}",
@@ -1544,18 +1550,24 @@ plot.roc(roc.m2a, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
          print.thres.cex = .8)
 ```
 
-Next we compare the ROC curves for models m1a and m2a using a bootstrap test for
-difference between the AUC values (Robin et al., 2011). 
+Model 2a shows acceptable ability to discriminate those who pass from those who
+fail to pass the level transition testlets. Table \ref{tab:m1a-m2a-auc-test}
+compares the ROC curves for Models 1a and 2a and shows that Model 2a performs 
+better than Model 1a with respect to that.
 
-```{r}
+```{r m1a-m2a-auc-test, message=FALSE}
 set.seed(7436) # For reproducible bootstrap estimates.
 roct.m1a.m2a <- roc.test(roc.m1a, roc.m2a, method = "bootstrap", boot.n = 10000)
-roct.m1a.m2a
-```
-
-```{r}
-# Get the s-value, BFB, and posterior probability of H1. 
-convertp(p = roct.m1a.m2a$p.value, digits = 2)
+glance(roct.m1a.m2a) %>% 
+  cbind(., convertp(p = .$p.value, digits = 2)) %>% 
+  select(boot.n, estimate1, estimate2, statistic, p.value, S, BFB, PPH1) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 3, 3, 2, Inf, 2, 2, 2),
+       col.names = c("Bootstrap N", "Model 1a", "Model 2a", "D", "p", "S", 
+                     "BFB", "PPH1"),
+       caption = paste("Comparing Models 1a and 2a Via Two-Sided, Stratified",
+                       "Bootstrap Test for Correlated ROC Curves")) %>% 
+  add_header_above(header = c(" ", "AUC Estimates" = 2, " " = 5))
 ```
 
 \FloatBarrier
@@ -2004,18 +2016,23 @@ plot.roc(roc.m2b, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
          print.thres.cex = .8)
 ```
 
-Next we compare the ROC curves for models m2a and m2b using a bootstrap test for
-the difference between the AUC values (Robin et al., 2011).
+Model 2b shows acceptable ability to discriminate those who pass from those who
+fail to pass the level transition testlets, but Table \ref{tab:m2a-m2b-auc-test}
+shows that it does not perform better at that than Model 2a.
 
-```{r}
+```{r m2a-m2b-auc-test, message=FALSE}
 set.seed(1128) # For reproducible bootstrap estimates.
 roct.m2a.m2b <- roc.test(roc.m2a, roc.m2b, method = "bootstrap", boot.n = 10000)
-roct.m2a.m2b
-```
-
-```{r}
-# Get the s-value, BFB, and posterior probability of H1. 
-convertp(p = roct.m2a.m2b$p.value, digits = 2)
+glance(roct.m2a.m2b) %>% 
+  cbind(., convertp(p = .$p.value, digits = 2)) %>% 
+  select(boot.n, estimate1, estimate2, statistic, p.value, S, BFB, PPH1) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 3, 3, 2, Inf, 2, 2, 2),
+       col.names = c("Bootstrap N", "Model 2a", "Model 2b", "D", "p", "S", 
+                     "BFB", "PPH1"),
+       caption = paste("Comparing Models 2a and 2b Via Two-Sided, Stratified",
+                       "Bootstrap Test for Correlated ROC Curves")) %>% 
+  add_header_above(header = c(" ", "AUC Estimates" = 2, " " = 5))
 ```
 
 \FloatBarrier
@@ -2350,18 +2367,23 @@ plot.roc(roc.m3a, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
          print.thres.cex = .8)
 ```
 
-Next we compare the ROC curves for models m3a and m2a using a bootstrap test for
-the difference between the AUC values (Robin et al., 2011). 
+Model 3a shows acceptable ability to discriminate those who pass from those who
+fail to pass the level transition testlets, but Table \ref{tab:m2a-m3a-auc-test}
+shows that it does not perform better at that than Model 2a.
 
-```{r}
+```{r m2a-m3a-auc-test, message=FALSE}
 set.seed(1346) # For reproducible bootstrap estimates.
 roct.m2a.m3a <- roc.test(roc.m2a, roc.m3a, method = "bootstrap", boot.n = 10000)
-roct.m2a.m3a
-```
-
-```{r}
-# Get the s-value, BFB, and posterior probability of H1. 
-convertp(p = roct.m2a.m3a$p.value, digits = 2)
+glance(roct.m2a.m3a) %>% 
+  cbind(., convertp(p = .$p.value, digits = 2)) %>% 
+  select(boot.n, estimate1, estimate2, statistic, p.value, S, BFB, PPH1) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 3, 3, 2, Inf, 2, 2, 2),
+       col.names = c("Bootstrap N", "Model 2a", "Model 3a", "D", "p", "S", 
+                     "BFB", "PPH1"),
+       caption = paste("Comparing Models 2a and 3a Via Two-Sided, Stratified",
+                       "Bootstrap Test for Correlated ROC Curves")) %>% 
+  add_header_above(header = c(" ", "AUC Estimates" = 2, " " = 5))
 ```
 
 \FloatBarrier
@@ -2564,18 +2586,23 @@ plot.roc(roc.m3b, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
          print.thres.cex = .8)
 ```
 
-Next we compare the ROC curves for models m2a and m3b using a bootstrap test for
-the difference between the AUC values (Robin et al., 2011). 
+Model 3b shows acceptable ability to discriminate those who pass from those who
+fail to pass the level transition testlets, but Table \ref{tab:m2a-m3b-auc-test}
+shows that it does not perform better at that than Model 2a.
 
-```{r}
+```{r m2a-m3b-auc-test, message=FALSE}
 set.seed(1128) # For reproducible bootstrap estimates.
 roct.m2a.m3b <- roc.test(roc.m2a, roc.m3b, method = "bootstrap", boot.n = 10000)
-roct.m2a.m3b
-```
-
-```{r}
-# Get the s-value, BFB, and posterior probability of H1. 
-convertp(p = roct.m2a.m3b$p.value, digits = 2)
+glance(roct.m2a.m3b) %>% 
+  cbind(., convertp(p = .$p.value, digits = 2)) %>% 
+  select(boot.n, estimate1, estimate2, statistic, p.value, S, BFB, PPH1) %>% 
+  kable(format = "latex", booktabs = TRUE, 
+       digits = c(0, 3, 3, 2, Inf, 2, 2, 2),
+       col.names = c("Bootstrap N", "Model 2a", "Model 3b", "D", "p", "S", 
+                     "BFB", "PPH1"),
+       caption = paste("Comparing Models 2a and 3b Via Two-Sided, Stratified",
+                       "Bootstrap Test for Correlated ROC Curves")) %>% 
+  add_header_above(header = c(" ", "AUC Estimates" = 2, " " = 5))
 ```
 
 \FloatBarrier
