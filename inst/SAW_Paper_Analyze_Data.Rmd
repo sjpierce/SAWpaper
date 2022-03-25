@@ -813,13 +813,13 @@ kable_styling(latex_options = c("repeat_header"))
 \FloatBarrier
 
 ## Odds-Ratios for Course Effect
-Table \ref{tab:ma1-ORs-Course} shows the Model 1a odds-ratios for the effect of
+Table \ref{tab:m1a-ORs-Course} shows the Model 1a odds-ratios for the effect of
 being in a second-, third-, or fourth-year Spanish course instead of a
 first-year course. They quantify the course effect sizes, which this model
 assumes are equal across level transition testlets. Model 1b tests whether that
 assumption is reasonable.
 
-```{r ma1-ORs-Course}
+```{r m1a-ORs-Course}
 # Run multiple comparisons examine the course effect & get adjusted 95% CIs. 
 m1a.ct <- glht(m1a, linfct = mcp(Course = "Tukey"))
 m1a.mc <- summary(m1a.ct, test = adjusted("Westfall"))
