@@ -1,3 +1,19 @@
+# SAWpaper 0.18.0, 2022-03-24
+* Updated `README.Rmd` and `README.md` to:
+    * Updated introduction paragraph.
+    * Update Obtaining Data Files section.
+    * Remove Associated Research Paper section. 
+    * Updated References section.
+* Updated `inst/SAW_Paper_Import_Explore_Data.Rmd` to:
+    * Read in final archived data files. 
+    * Add reference for the archived data files. 
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Add reference for the archived data files. 
+    * Improve calibration plots and summaries of Hosmer-Lemeshow tests. 
+    * Save predicted values for all models in one step.
+    * Convert classification measures to tables.
+    * Improve object names in the Correlations section.
+
 # SAWpaper 0.17.0, 2022-03-18
 * Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
     * Collect descriptions of statistical methods and model diagnostics together 
