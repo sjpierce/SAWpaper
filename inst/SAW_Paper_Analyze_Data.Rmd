@@ -505,10 +505,10 @@ course level and OPIc scores significantly predict the conditional pass rate for
 each transition on the SA. A parallel effect for a predictor is one where the
 predictor's effect is constant across the transition testlets while a
 non-parallel effect allows it to vary across testlets. Models 1a and 1b focus
-primarily on whether there is a parallel or non-parallel course effect. Models 2a
-and 2b primarily test whether there is a parallel or non-parallel effect of OPIc
-score *and are the models report in our published manuscript*. Finally, models
-3a and 3b include both course and OPIc score as predictors.
+primarily on whether there is a parallel or non-parallel course effect. Models
+2a and 2b primarily test whether there is a parallel or non-parallel effect of
+OPIc score *and are the models reported in our published manuscript*. Finally,
+Models 3a and 3b include both course and OPIc score as predictors.
 
 ```{r fit-models}
 # Model 1a: Parallel course effect
@@ -922,7 +922,7 @@ plot.roc(roc.m1a, print.auc = TRUE, print.auc.cex = .8, print.thres = "best",
          print.thres.cex = .8)
 ```
 
-Based on this AUC result, we conclude that model 1a is generally poor at
+Based on this AUC result, we conclude that Model 1a is generally poor at
 discriminating people who are passing versus failing the level transitions. That
 means course is not a particularly good predictor regardless of what hypothesis
 testing results show.
@@ -1177,7 +1177,7 @@ We omit these rates because Model 1b is not better than Model 1a.
 \FloatBarrier
 
 ## Odds-Ratios for Course Effect
-We omit these odds-ratios because model 1b is not better than model 1a. 
+We omit these odds-ratios because Model 1b is not better than Model 1a. 
 
 \FloatBarrier
 
@@ -1303,7 +1303,7 @@ $R^{2}_{Dev} = `r R2Dev(m1b, digits = 2)`$.
 \FloatBarrier
 
 ## Diagnostics
-We omit detailed diagnostics because model 1b is not better than model 1a. 
+We omit detailed diagnostics because Model 1b is not better than Model 1a. 
 
 \FloatBarrier
 
@@ -1314,9 +1314,9 @@ instead.
 \FloatBarrier
 
 ## Conclusion
-The interaction is not improving the model. We should interpret model 1a instead
-of model 1b. That may change if we build in other covariates. However, we should
-also test COPIC as an alternative to course. We turn to that next in model 2a.
+The interaction is not improving the model. We should interpret Model 1a instead
+of Model 1b. That may change if we build in other covariates. However, we should
+also test COPIC as an alternative to course. We turn to that next in Model 2a.
 
 \FloatBarrier
 
@@ -1725,10 +1725,10 @@ ggsave("F5.png", plot=direct.label(m2a.FUPR, "first.points"),
 
 ## Conclusion
 Model 2a suggests that higher OPIC scores are associated with higher passing
-rates across the level transitions. Furthermore, model 2a is clearly better than
-model 1a. However, we still need to run another model to see whether relaxing
+rates across the level transitions. Furthermore, Model 2a is clearly better than
+Model 1a. However, we still need to run another model to see whether relaxing
 the assumption that the OPIC effect is constant across levels is viable. We do
-that in model 2b.
+that in Model 2b.
 
 \newpage
 
@@ -2021,7 +2021,7 @@ glance(roct.m2a.m2b) %>%
 ### $R^{2}$ Measures
 The values for $R^{2}_p = `r pseudoR2(m2b, digits = 2)`$ and 
 $R^{2}_{Dev} = `r R2Dev(m2b, digits = 2)`$ are more encouraging than those from 
-models 1a and 1b, but identical to those from model 2a. 
+models 1a and 1b, but identical to those from Model 2a. 
 
 \FloatBarrier
 
@@ -2167,10 +2167,10 @@ direct.label(m2b.FUPR, "first.points")
 \FloatBarrier
 
 ## Conclusion
-Model 2b is better than model 2a because the Level x COPIC interaction is
-significant. It has better accuracy and sensitivity than model 1a, but we need
-to run another model to decide whether adding a course effect to model 2b will
-improve the model. That will be done in model 3a.
+Model 2b is better than Model 2a because the Level x COPIC interaction is
+significant. It has better accuracy and sensitivity than Model 1a, but we need
+to run another model to decide whether adding a course effect to Model 2b will
+improve the model. That will be done in Model 3a.
 
 \FloatBarrier
 
@@ -2253,12 +2253,12 @@ Course doesn't have an effect after controlling for level and COPIC.
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We omit calculating these rates because model 3a is not better than model 2a.
+We omit calculating these rates because Model 3a is not better than Model 2a.
 
 \FloatBarrier
 
 ## Odds-Ratio for COPIC Effect 
-We omit calculating odds-ratios because model 3a is not better than model 2a.
+We omit calculating odds-ratios because Model 3a is not better than Model 2a.
 
 \FloatBarrier
 
@@ -2378,19 +2378,19 @@ models 1a and 1b, but identical to those from models 2a and 2b.
 \FloatBarrier
 
 ## Diagnostics
-We omit diagnostics because model 3a is not better than model 2a.
+We omit diagnostics because Model 3a is not better than Model 2a.
 
 \FloatBarrier
 
 ## Graphs
-We omit graphs because model 3a is not better than model 2a. 
+We omit graphs because Model 3a is not better than Model 2a. 
 
 \FloatBarrier
 
 ## Conclusion
-What distinguished this model from model 2a was inclusion of the parallel course
+What distinguished this model from Model 2a was inclusion of the parallel course
 effect, but the Type III LRT for that effect is not-significant. We will report
-model 2a over this model on the basis of parsimony.
+Model 2a over this model on the basis of parsimony.
 
 
 # Model 3b: Parallel Course + Non-parallel OPIc Effects
@@ -2477,12 +2477,12 @@ interaction.
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We omit calculating these rates because model 3b is not better than model 2b.
+We omit calculating these rates because Model 3b is not better than Model 2b.
 
 \FloatBarrier
 
 ## Odds-Ratio for COPIC Effect 
-We omit calculating odds-ratios because model 3b is not better than model 2b.
+We omit calculating odds-ratios because Model 3b is not better than Model 2b.
 
 \FloatBarrier
 
@@ -2598,7 +2598,7 @@ models 1a and 1b, but identical to those from models 2a, 2b, and 3a.
 \FloatBarrier
 
 ## Diagnostics
-We omit diagnostics because model 3b is not better than model 2b.
+We omit diagnostics because Model 3b is not better than Model 2b.
 
 \FloatBarrier
 
@@ -2608,9 +2608,9 @@ We omit graphs because Model 3b is not better than Models 2a and 2b.
 \FloatBarrier
 
 ## Conclusion
-What distinguished this model from model 2b was inclusion of the parallel course
+What distinguished this model from Model 2b was inclusion of the parallel course
 effect, but the Type III LRT for that effect is not-significant. We will report
-model 2b over this model on the basis of parsimony.
+Model 2b over this model on the basis of parsimony.
 
 \FloatBarrier
 
