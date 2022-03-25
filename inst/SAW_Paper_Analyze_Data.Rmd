@@ -1764,16 +1764,6 @@ m2b %>%
         caption = "Model 2b Coefficients")
 ```
 
-Let's show the models 2a and 2b side by side. 
-
-```{r, results='asis'} 
-T29 <- list(m2a, m2b)
-texreg(T29, use.packages = FALSE, dcolumn = TRUE, booktabs = TRUE, 
-       single.row = TRUE, digits = 3, label = "T26", 
-       custom.model.names = c("Model 2a Parallel", "Model 2b Non-Parallel"), 
-       caption = "Parallel vs. Non-Parallel OPIC Effect")
-```
-
 \newpage
 
 We can see that the difference in AICs
