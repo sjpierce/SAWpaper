@@ -824,23 +824,23 @@ assumption is reasonable.
 m1a.ct <- glht(m1a, linfct = mcp(Course = "Tukey"))
 m1a.mc <- summary(m1a.ct, test = adjusted("Westfall"))
 m1a.ci <- confint(m1a.ct, calpha = adjusted_calpha(test = "Westfall"))
-T15 <- data.frame(Est   = m1a.mc$test$coefficients, 
-                  SE    = m1a.mc$test$sigma, 
-                  CI.LL = m1a.ci$confint[, "lwr"],
-                  CI.UL = m1a.ci$confint[, "upr"],
-                  OR    = exp(m1a.mc$test$coefficients),
-                  OR.LL = exp(m1a.ci$confint[, "lwr"]),
-                  OR.UL = exp(m1a.ci$confint[, "upr"]),
-                  z     = m1a.mc$test$tstat,
-                  p     = m1a.mc$test$pvalues,
-                  Sval  = p2s(m1a.mc$test$pvalues),
-                  BFB   = p2bfb(m1a.mc$test$pvalues),
-                  PPH1  = p2pp(m1a.mc$test$pvalues))
-kable(T15, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
-      digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2), 
-      caption = paste("Multiple Comparisons for Course Effect, Westfall (1997)",
-      "Adjustment for Multiplicity")) %>%
-kable_styling(latex_options = c("repeat_header"))
+data.frame(Est   = m1a.mc$test$coefficients, 
+           SE    = m1a.mc$test$sigma, 
+           CI.LL = m1a.ci$confint[, "lwr"],
+           CI.UL = m1a.ci$confint[, "upr"],
+           OR    = exp(m1a.mc$test$coefficients),
+           OR.LL = exp(m1a.ci$confint[, "lwr"]),
+           OR.UL = exp(m1a.ci$confint[, "upr"]),
+           z     = m1a.mc$test$tstat,
+           p     = m1a.mc$test$pvalues,
+           Sval  = p2s(m1a.mc$test$pvalues),
+           BFB   = p2bfb(m1a.mc$test$pvalues),
+           PPH1  = p2pp(m1a.mc$test$pvalues)) %>% 
+  kable(., format = "latex", booktabs = TRUE, format.args = list(digits = 3),
+        digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2), 
+        caption = paste("Multiple Comparisons for Course Effect, Westfall",
+                        "(1997) Adjustment for Multiplicity")) %>%
+  kable_styling(latex_options = c("repeat_header"))
 ```
 
 \FloatBarrier
@@ -1451,15 +1451,15 @@ This quantifies the effect of COPIC, which this model assumes is equal across
 level transitions. We will test whether that assumption is reasonable in another
 model later.
 
-```{r}
-T26   <- cbind(OR = exp(coef(m2a)[5]), 
-               LL = exp(confint(m2a, level = 0.95)[5, 1]),
-               UL = exp(confint(m2a, level = 0.95)[5, 2]))
-dimnames(T26)[[1]] <- "COPIC (0 vs 1)"
-kable(T26, format = "latex", booktabs = TRUE, digits = 2, 
+```{r m2a-OR-COPIC}
+m2a.OR <- cbind(OR = exp(coef(m2a)[5]), 
+                LL = exp(confint(m2a, level = 0.95)[5, 1]),
+                UL = exp(confint(m2a, level = 0.95)[5, 2]))
+dimnames(m2a.OR)[[1]] <- "COPIC (0 vs 1)"
+kable(m2a.OR, format = "latex", booktabs = TRUE, digits = 2, 
       caption = paste("Odds-Ratios for COPIC Effect (Estimates and 95 Percent",
                       "Confidence Intervals)")) %>% 
-kable_styling(latex_options = c("repeat_header")) 
+  kable_styling(latex_options = c("repeat_header")) 
 ```
 
 \FloatBarrier
