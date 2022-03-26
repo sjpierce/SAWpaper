@@ -1134,7 +1134,7 @@ m1b %>%
 \FloatBarrier
 
 ## Sequential Tests (Type I SS)
-Table \ref{tab:1b-Type-I} presents the sequential test for the Model 1b. Here,
+Table \ref{tab:m1b-Type-I} presents the sequential test for the Model 1b. Here,
 we want to focus on the result for the interaction effect. That tells us whether
 allowing course to have a level-specific effect instead of a constant effect
 across levels improved the model.
@@ -1289,9 +1289,9 @@ glance(roct.m1a.m1b) %>%
 \FloatBarrier
 
 ### $R^{2}$ Measures
-The results for Model 1b are only marginally better than they were for Model 1a: 
-$R^{2}_p = `r pseudoR2(m1b, digits = 2)`$ and 
-$R^{2}_{Dev} = `r R2Dev(m1b, digits = 2)`$. 
+The $R^{2}_p = `r pseudoR2(m1b, digits = 2)`$ and 
+$R^{2}_{Dev} = `r R2Dev(m1b, digits = 2)`$ for Model 1b are only marginally 
+better than those from Model 1a. 
 
 \FloatBarrier
 
@@ -1358,13 +1358,7 @@ m2a %>%
 
 ## Simultaneous Tests of Main Effects via LRT (Type III SS)
 The simultaneous tests in Table \ref{tab:m2a-Type-III} are the effects of the
-indicated terms after controlling for all other terms in the model. They are
-only computed for terms that are not part of a higher-order interaction because
-it makes no sense to test for a main effect when the variable is involved in an
-interaction. These should be functionally equivalent to the results you get with
-*anova()* when you feed it a pair of nested models that differ only in that one
-model includes a term that is absent from the other model. They are likelihood
-ratio tests (LRTs).
+indicated terms after controlling for all other terms in the model. 
 
 ```{r m2a-Type-III}
 m2a %>% 
@@ -1381,7 +1375,7 @@ m2a %>%
 
 ## Conditional and Unconditional Pass Rates
 Table \ref{tab:m2a-pass-rates} shows the conditional and unconditional pass
-rates estimated by Model 1a as a function of level transition testlet and
+rates estimated by Model 2a as a function of level transition testlet and
 COPIC scores. 
 
 ```{r m2a-pass-rates}
@@ -1430,11 +1424,10 @@ kable_styling(latex_options = c("repeat_header"))
 \FloatBarrier
 
 ## Odds-Ratio for COPIC Effect 
-We exponentiate the COPIC parameter to obtain the odds-ratio showing the effect
-of an extra point on the COPIC (i.e., a score of 6 vs 5 in the raw variable).
-This quantifies the effect of COPIC, which this model assumes is equal across
-level transitions. We will test whether that assumption is reasonable in another
-model later.
+Table \ref{tab:m2a-OR-COPIC} shows the odds-ratio associated with an extra point
+on the `COPIC` (i.e., a score of 6 vs 5 in the raw OPIc score). This quantifies
+the effect of COPIC, which this model assumes is equal across level transitions.
+We will test whether that assumption is reasonable in Model 2b later.
 
 ```{r m2a-OR-COPIC, message=FALSE}
 m2a.OR <- cbind(OR = exp(coef(m2a)[5]), 
@@ -1519,7 +1512,7 @@ round(lrcm(roc.m2a, seed = 9825), digits = 3) %>%
 ### Area Under the Curve (AUC)
 Figure \ref{fig:m2a-auc-plot} shows the ROC curve for the model, annotated with 
 the best classification threshold for balancing sensitivity versus specificity 
-and the area under the curve (AUC). Model 2a achieves adequate 
+and the area under the curve (AUC). 
 
 ```{r m2a-auc-plot, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2a-auc-plot}",
@@ -1557,7 +1550,7 @@ glance(roct.m1a.m2a) %>%
 ### $R^{2}$ Measures
 The values for $R^{2}_p = `r pseudoR2(m2a, digits = 2)`$ and 
 $R^{2}_{Dev} = `r R2Dev(m2a, digits = 2)`$ are more encouraging than those from 
-models 1a and 1b. 
+Models 1a and 1b. 
 
 ## Diagnostics
 We need to run model diagnostics to see if there are any obvious problems with 
@@ -1613,7 +1606,7 @@ text(x = hatco(m2a), y = 5, pos = 4, col = "blue", cex = .75,
 
 Table \ref{tab:m2a-influential-cases} shows a list of influential cases for
 Model 2a. While there are a fair number of cases with both high Cook's distance
-and high leverage, only few also have large standardized Pearson residuals.
+and high leverage, only a few also have large standardized Pearson residuals.
 
 ```{r m2a-influential-cases}
 FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
@@ -1728,7 +1721,7 @@ ggsave("F5.png", plot=direct.label(m2a.FUPR, "first.points"),
 Model 2a suggests that higher OPIC scores are associated with higher passing
 rates across the level transitions. Furthermore, Model 2a is clearly better than
 Model 1a. However, we still need to run another model to see whether relaxing
-the assumption that the OPIC effect is constant across levels is viable. We do
+the assumption that the OPIC effect is constant across testlets is viable. We do
 that in Model 2b.
 
 \FloatBarrier
@@ -1756,7 +1749,7 @@ m2b %>%
 We can see from Table \ref{tab:show-models} that the difference in AICs
 ($\Delta AIC = AIC_{2a} - AIC_{2b} = `r round(AIC(m2a) - AIC(m2b), digits = 3)`$)
 favors Model 2b, which has a lower AIC value than Model 2a, but not by a large
-margin. Meanwhile, difference in BICs
+margin. Meanwhile, the difference in BICs
 ($\Delta BIC = BIC_{2a} - BIC_{2b} = `r round(BIC(m2a) - BIC(m2b), digits = 3)`$) 
 favors Model 2a by a larger margin because it imposes a stronger penalty for
 model complexity (lack of parsimony).
@@ -1785,10 +1778,7 @@ m2b %>%
 \FloatBarrier
 
 ## Simultaneous Tests of Interaction Effects via LRT (Type III SS)
-Another way to test whether the interaction was significant is to compare models
-via a likelihood ratio test (LRT). We can do that by feeding the *anova()*
-function two model fit objects. The models must be nested (one contains only a
-subset of the parameters in the other model).
+Table \ref{tab:m2a-m2b-LRT} shows the result of another way of testing the interaction: a likelihood ratio test (LRT) for comparing nested models. 
 
 ```{r m2a-m2b-LRT}
 anova(m2a, m2b, test = "Chisq") %>%  
@@ -1803,12 +1793,9 @@ anova(m2a, m2b, test = "Chisq") %>%
 \FloatBarrier
 
 ## Conditional and Unconditional Pass Rates
-We use the inverse logit transformation to convert fitted values and associated
-confidence intervals into the conditional probability of passing a particular
-level transition given that the student has a particular COPIC score.
-
-We compute the unconditional pass rates from the conditional pass rates as sets
-of cumulative products.
+Table \ref{tab:m2b-pass-rates} shows the conditional and unconditional pass
+rates estimated by Model 2b as a function of level transition testlet and
+COPIC scores. 
 
 ```{r m2b-pass-rates}
 # Create a new data frame object for use with predict()
@@ -2014,7 +2001,7 @@ glance(roct.m2a.m2b) %>%
 ### $R^{2}$ Measures
 The values for $R^{2}_p = `r pseudoR2(m2b, digits = 2)`$ and 
 $R^{2}_{Dev} = `r R2Dev(m2b, digits = 2)`$ are more encouraging than those from 
-models 1a and 1b, but identical to those from Model 2a. 
+Models 1a and 1b, but identical to those from Model 2a. 
 
 \FloatBarrier
 
@@ -2072,7 +2059,7 @@ text(x = hatco(m2b), y = 5, pos = 4, col = "blue", cex = .75,
 
 Table \ref{tab:m2b-influential-cases} shows a list of influential cases for
 Model 2b. While there are a fair number of cases with both high Cook's distance
-and high leverage, only few also have large standardized Pearson residuals.
+and high leverage, only a few also have large standardized Pearson residuals.
 
 ```{r m2b-influential-cases}
 FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
@@ -2168,21 +2155,22 @@ direct.label(m2b.FUPR, "first.points")
 \FloatBarrier
 
 ## Conclusion
-Model 2b is better than Model 2a because the Level x COPIC interaction is
-significant. It has better accuracy and sensitivity than Model 1a, but we need
-to run another model to decide whether adding a course effect to Model 2b will
-improve the model. That will be done in Model 3a.
+Model 2b is not really any better than Model 2a even though the Testlet x COPIC
+interaction is significant. It has better accuracy and sensitivity than Model
+1a, but we need to run models to decide whether adding a course effect to
+Model 2a or 2b will improve the situation. That will be done in Models 3a and 
+3b.
 
 \FloatBarrier
 
 # Model 3a: Parallel Course + Parallel OPIc Effects 
 
 We now test a model with a parallel course effect and a parallel OPIc
-effect. We want to see if course and OPIc are still significant preditors 
-of the condtional pass rates when they are simultaneously included into one 
-regression model. Model 3a tells us to what extent OPIc and Course each predicts
-the conditional pass rates, after controlling for the other predictor's effect. 
-Table \ref{tab:m3a-coef} below shows the raw parameter estimates, confidence
+effect. We want to see if course and OPIc are still significant predictors 
+of the conditional pass rates when they are both in the same model. Model 3a
+tells us to what extent OPIc and Course each predict the conditional pass
+rates, after controlling for the other predictor's effect. Table
+\ref{tab:m3a-coef} below shows the raw parameter estimates, confidence
 intervals, s-values, BFBs, and posterior probabilities of H1 corresponding to
 the p-values.
 
@@ -2216,21 +2204,15 @@ m3a %>%
        caption = "Model 3a Sequential Tests (Type I SS): Analysis of Deviance")
 ```
 
-Note that Course entered the model last, and it was not significant. This 
-indicated that Course did not explain a significant amount of the variance 
-in the conditional pass rates after controlling for COPIC.
+Note that course entered the model last and it was not significant. This 
+indicates that course did not explain a significant amount of the variance 
+in the conditional pass rates after controlling for OPIc scores.
 
 \FloatBarrier
 
 ## Simultaneous Tests of Main/Interaction Effects via LRT (Type III SS)
 The simultaneous tests in Table \ref{tab:m3a-Type-III} are the effects of the
-indicated terms after controlling for all other terms in the model. They are
-only computed for terms that are not part of a higher-order interaction because
-it makes no sense to test for a main effect when the variable is involved in an
-interaction. These should be functionally equivalent to the results you get with
-*anova()* when you feed it a pair of nested models that differ only in that one
-model includes a term that is absent from the other model. They are likelihood
-ratio tests (LRTs).
+indicated terms after controlling for all other terms in the model. 
 
 ```{r m3a-Type-III}
 m3a %>% 
@@ -2244,12 +2226,9 @@ m3a %>%
 ```
 
 Results of the simultaneous tests are consistent with those of the sequential 
-tests in showing that Course was no longer a significant predictor of the 
-conditional pass rates after controlling for COPIC.
-
-The fact that the course effect is not significant in Table 
-\ref{tab:m3a-Type-III} suggest that we can revert back to Model 2a because
-Course doesn't have an effect after controlling for level and COPIC.
+tests in showing that course was no longer a significant predictor of the 
+conditional pass rates after controlling for OPIc scores. This suggests that we
+should consider reporting Model 2a instead of Model 3a. 
 
 \FloatBarrier
 
@@ -2371,7 +2350,7 @@ glance(roct.m2a.m3a) %>%
 ### $R^{2}$ Measures
 The values for $R^{2}_p = `r pseudoR2(m3a, digits = 2)`$ and 
 $R^{2}_{Dev} = `r R2Dev(m3a, digits = 2)`$ are more encouraging than those from 
-models 1a and 1b, but identical to those from models 2a and 2b. 
+Models 1a and 1b, but identical to those from Models 2a and 2b. 
 
 \FloatBarrier
 
@@ -2394,10 +2373,10 @@ Model 2a over this model on the basis of parsimony.
 
 # Model 3b: Parallel Course + Non-parallel OPIc Effects
 We finally test a model with a parallel course effect and a non-parallel OPIc
-effect. We add the course effect into the model after the interaction so that a
-sequential test will examine whether it adds any value beyond the non-parallel
-OPIC effect. Table \ref{tab:m3b-coef} below shows the raw parameter estimates,
-confidence intervals, s-values, BFBs, and posterior probabilities of H1 
+effect. We add the course effect into the model after the interaction so that we
+can examine whether it adds any value beyond the non-parallel OPIc effect in
+Model 2b. Table \ref{tab:m3b-coef} below shows the raw parameter estimates,
+confidence intervals, s-values, BFBs, and posterior probabilities of H1
 corresponding to the p-values.
 
 ```{r m3b-coef}
@@ -2422,7 +2401,11 @@ m3b %>%
 Each row in Table \ref{tab:m3b-Type-I} tests the significance of unique
 additional variance explained by the term on that line after controlling for all
 previously entered terms. Significant results mean adding that term improved the
-model. Note that course actually entered the model last.
+model. Note that course actually entered the model last, but is not the last row
+in the table. That means R's algorithm is testing all the main effects before
+all the interaction effects, which is not the order we intended. Therefore, we
+should rely on a simultaneous test (Type III SS) of the course effect instead of
+the sequential test reported in Table \ref{tab:m3b-Type-I}.
 
 ```{r m3b-Type-I}
 m3b %>%
@@ -2442,10 +2425,7 @@ The simultaneous tests in Table \ref{tab:m3b-Type-III} are the effects of the
 indicated terms after controlling for all other terms in the model. They are
 only computed for terms that are not part of a higher-order interaction because
 it makes no sense to test for a main effect when the variable is involved in an
-interaction. These should be functionally equivalent to the results you get with
-*anova()* when you feed it a pair of nested models that differ only in that one
-model includes a term that is absent from the other model. They are likelihood
-ratio tests (LRTs).
+interaction. The course effect here effectively compares Models 2b and 3b. 
 
 ```{r m3b-Type-III}
 m3b %>% 
@@ -2461,7 +2441,8 @@ m3b %>%
 The fact that the course effect is not significant in Table
 \ref{tab:m3b-Type-III} suggests that we can revert back to Model 2a because
 course doesn't have an effect after controlling for testlet, COPIC, and their
-interaction.
+interaction. Model 3b isn't really any better than Model 2b, which itself was no
+better than Model 2a.
 
 \FloatBarrier
 
@@ -2582,7 +2563,7 @@ glance(roct.m2a.m3b) %>%
 ### $R^{2}$ Measures
 The values for $R^{2}_p = `r pseudoR2(m3b, digits = 2)`$ and 
 $R^{2}_{Dev} = `r R2Dev(m3b, digits = 2)`$ are more encouraging than those from 
-models 1a and 1b, but identical to those from models 2a, 2b, and 3a.
+Models 1a and 1b, but identical to those from Models 2a, 2b, and 3a.
 
 \FloatBarrier
 
@@ -2597,9 +2578,9 @@ We omit graphs because Model 3b is not better than Models 2a and 2b.
 \FloatBarrier
 
 ## Conclusion
-What distinguished this model from Model 2b was inclusion of the parallel course
+What distinguished Model 3b from Model 2b was inclusion of the parallel course
 effect, but the Type III LRT for that effect is not-significant. We will report
-Model 2b over this model on the basis of parsimony.
+Model 2a over this model on the basis of parsimony.
 
 \FloatBarrier
 
@@ -2675,11 +2656,10 @@ Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a marginalized
 test method: Self-assessment as a measure of speaking proficiency [Manuscript 
 accepted for publication]. *Studies in Second Language Acquisition*.
 
-Winke, P., Pierce, S. J., & Zhang, X. (2018, October). Self-assessment works! 
-Continuation-ratio models for testing course and OPIc score effects on oral 
-proficiency self-assessments. Paper presented at the East Coast Organization 
-of Language Testers 2018 conference, hosted by the Educational Testing Service,
-Princeton, NJ. https://sites.google.com/site/ecoltaelrc/home
+Winke, P., Pierce, S. J., & Zhang, X. (2018, October 12-13). 
+*Self-assessment works! Continuation-ratio models for testing course and OPIc score effects on oral proficiency self-assessments*. 
+[Paper presentation] East Coast Organization of Language Testers 2018
+conference, Princeton, NJ, United States.
 
 Youden, W. J. (1950). Index for rating diagnostic tests. *Cancer, 3*(1), 32-35.
 https://doi.org/10.1002/1097-0142(1950)3%3A1%3C32%3A%3AAID-CNCR2820030106%3E3.0.CO%3B2-3
