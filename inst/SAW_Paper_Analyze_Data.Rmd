@@ -948,7 +948,7 @@ Figure \ref{fig:m1a-resid-plots} shows residual plots for this model.
 ```{r m1a-resid-plots, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m1a-resid-plots}",
               "Model 1a Residual Plots.")
-residualPlots(m1a, layout = c(1,3))
+residualPlots(m1a, layout = c(1,3), tests = FALSE)
 ```
 
 Now we look at some index plots for influence measures. We are looking for
@@ -1582,7 +1582,7 @@ Figure \ref{fig:m2a-resid-plots} shows residual plots for this model.
 ```{r m2a-resid-plots, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2a-resid-plots}",
               "Model 2a Residual Plots.")
-residualPlots(m2a, layout = c(1,3))
+residualPlots(m2a, layout = c(1,3), tests = FALSE)
 ```
 
 Now we look at some index plots for influence measures. We are looking for
@@ -2037,7 +2037,7 @@ Figure \ref{fig:m2b-resid-plots} shows residual plots for this model.
 ```{r m2b-resid-plots, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2b-resid-plots}",
               "Model 2b Residual Plots.")
-residualPlots(m2b, layout = c(1,3))
+residualPlots(m2b, layout = c(1,3), tests = FALSE)
 ```
 
 Now we look at some index plots for influence measures. We are looking for
