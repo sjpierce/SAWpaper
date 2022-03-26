@@ -621,9 +621,8 @@ calibration plots. These plot split the data into the same set of bins used for
 the HLT, by grouping the predicted probabilities into bins with a minimum width
 (typically 0.10 because that way all the values grouped together are quite
 similar). The confidence interval for each bin is labeled with the bin's sample
-size for the bin. Ideally, the point estimate for each bin is close to the
-dashed line, but at a minimum we want all the confidence intervals to overlap
-that dashed line.
+size. Ideally, the point estimate for each bin is close to the dashed line, but
+at a minimum we want all the confidence intervals to overlap that dashed line.
 
 We also use functions from the pROC package to identify the optimal cutpoint $c$
 to use when converting fitted probabilities of passing a testlet into a binary
@@ -678,7 +677,7 @@ Sturdivant (2013, p. 177). Thus, for each model we plot the ROC curve for the
 model and annotate it with the best classification threshold, plus the
 corresponding values of sensitivity and specificity, the AUC, and the 95%
 confidence interval for the AUC. To compare ROC curves between selected models,
-we use a two-sides, stratified bootstrap test for the difference between the AUC
+we use two-sided, stratified bootstrap tests for the difference between the AUC
 values (Robin et al., 2011).
 
 ```{r save-predicted-values}
@@ -703,11 +702,11 @@ the cutoffs.
 We first fit a basic model that omits the intercept term in order to
 simplify post-processing of the model results into interpretable estimates. We
 focus here on a model examining whether the course a learner is taking affects
-the pass rate for each level transition. This model assumes that the higher
-level courses have a constant effect on the pass rates across all level
-transitions. Table \ref{tab:m1a-coef} below shows the raw parameter estimates,
-confidence intervals, s-values, BFBs, and posterior probabilities of H1 
-corresponding to the p-values.
+the pass rate for each level transition testlet. This model assumes that the
+higher level courses have a constant effect on the pass rates across all level
+transition testlets. Table \ref{tab:m1a-coef} below shows the raw parameter
+estimates, confidence intervals, s-values, BFBs, and posterior probabilities of
+H1 corresponding to the p-values.
 
 ```{r m1a-coef}
 m1a %>% 
