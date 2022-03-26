@@ -95,9 +95,10 @@ library(SAWpaper)         # For version information.
 We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
 script *`r knitr:::current_input()`* generates this PDF file.
 
-- We used [RStudio](www.rstudio.org) `r rstudioapi::versionInfo()$version` to 
-  work with R and R markdown files. The software chain looks like this:
-  **Rmd file > RStudio > R > rmarkdown > knitr > pandoc > TinyTeX or MiKTeX > PDF file**.
+- We used [RStudio](www.rstudio.org) to work with R and R markdown files. 
+- Our software chain looks like this:
+  **Rmd file > RStudio > R > rmarkdown > knitr > md file > pandoc > tex file > TinyTeX > PDF file**.
+- Source script: *`r knitr:::current_input()`*
 - We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
   files into PDF files. However, it should be viable to use 
   [MiKTeX](https://miktex.org) instead. 
