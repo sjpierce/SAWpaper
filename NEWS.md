@@ -1,3 +1,31 @@
+# SAWpaper 0.20.0, 2022-03-26
+* Updated software license by updating /adding the files:
+    * `DESCRIPTION`
+    * `LICENSE`
+    * `LICENSE.md`
+    * `LICENSE.note`
+* Added PNG files used in manuscript.
+    * `inst/F4.png`
+    * `inst/F5.png`
+* Updated `inst/SAW_Paper_Import_Explore_Data.Rmd` to:
+    * Fix code alignment. 
+    * Updated Software Information section.
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Improve display of influential cases.
+    * Improved captions for index plots of leverage and Cook's D, then removed
+      code the generated redundant output.
+    * Improved explanatory text and headings.
+    * Set chunk options to suppress certain messages.
+    * Improved table captions and figure labeling.
+    * Updated Software Information section.
+    * Removed code that created redundant output. 
+    * Stop loading pander package because we no longer need it.
+* Updated `inst/R_Citations.Rmd` to:
+    * Parameterize the left footer. 
+    * Update packages loaded and cited. 
+    * Remove Project Information section.
+* Updated `README.Rmd` and `README.md` extensively. 
+
 # SAWpaper 0.19.0, 2022-03-25
 * Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
     * Improved diagnostics plots and figure referencing. 
