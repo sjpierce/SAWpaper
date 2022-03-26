@@ -1867,7 +1867,7 @@ estimate pairwise differences in the simple slope of COPIC between testlets.
 RN <- c("Slope @ T1", "Slope @ T2", "Slope @ T3", "Slope @ T4",
         "Slope diff: T1 - T2", "Slope diff: T1 - T3",
         "Slope diff: T1 - T4", "Slope diff: T2 - T3",
-        "Slope diff: T2 - T4", "Slope diff: t3 - T4")
+        "Slope diff: T2 - T4", "Slope diff: T3 - T4")
 K <- matrix(c(0, 0, 0, 0, 1, 0, 0, 0, 
               0, 0, 0, 0, 1, 1, 0, 0, 
               0, 0, 0, 0, 1, 0, 1, 0, 
