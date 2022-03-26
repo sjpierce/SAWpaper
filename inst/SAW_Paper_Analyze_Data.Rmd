@@ -825,8 +825,8 @@ data.frame(Est   = m1a.mc$test$coefficients,
            PPH1  = p2pp(m1a.mc$test$pvalues)) %>% 
   kable(., format = "latex", booktabs = TRUE, format.args = list(digits = 3),
         digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2), 
-        caption = paste("Multiple Comparisons for Course Effect, Westfall",
-                        "(1997) Adjustment for Multiplicity")) %>%
+        caption = paste("Model 1a Multiple Comparisons for Course Effect,",
+                        "With Westfall (1997) Adjustment for Multiplicity")) %>%
   kable_styling(latex_options = c("repeat_header"))
 ```
 
@@ -1083,7 +1083,7 @@ FCap <- paste("\\label{fig:m1a-plot-UPR}",
 m1a.FUPR <- ggplot(m1a.ND[, ShowVars], 
                    aes(Testlet, Pass.URate, group=Course, color=Course))+
       geom_line()+ coord_cartesian(ylim = c(0, 0.65))+
-      xlab("SA Level Transition")+
+      xlab("Self-Assessment Testlet")+
       ylab("Unconditional Pass Rate")
 direct.label(m1a.FUPR, "first.points")
 ```
