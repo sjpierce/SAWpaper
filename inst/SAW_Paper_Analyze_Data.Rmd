@@ -996,8 +996,20 @@ addmargins(table(hatvalues(m1a) > hatco(m1a)))
 ```
 
 ```{r m1a-influential-cases}
+FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
+            "defined by hat > ", round(hatco(m1a), digits = 3), 
+            " and Cook's D > ", round(CookDco(m1a), digits = 3), 
+            ". Standardized Pearson residuals with absolute values > 1.96 are ", 
+            "flagged.")
+
 # Identify cases w/ high leverage and high Cook's D. 
-InfCases(m1a)
+m1a %>% InfCases(.) %>% 
+  mutate(Flag = if_else(abs(StdPearson) > 1.96, true = "x", false = "")) %>% 
+  kable(format = "latex", booktabs = TRUE, longtable = TRUE, digits = 3,
+        caption = "Model 1a Influential Cases") %>% 
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+         threeparttable = TRUE)
 ```
 
 There are a lot of observations with high Cook's distance and high leverage.
@@ -1630,8 +1642,20 @@ addmargins(table(hatvalues(m2b) > hatco(m2a)))
 ```
 
 ```{r m2a-influential-cases}
+FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
+            "defined by hat > ", round(hatco(m2a), digits = 3), 
+            " and Cook's D > ", round(CookDco(m2a), digits = 3), 
+            ". Standardized Pearson residuals with absolute values > 1.96 are ", 
+            "flagged.")
+
 # Identify cases w/ high leverage and high Cook's D. 
-InfCases(m2a)
+m2a %>% InfCases(.) %>% 
+  mutate(Flag = if_else(abs(StdPearson) > 1.96, true = "x", false = "")) %>% 
+  kable(format = "latex", booktabs = TRUE, longtable = TRUE, digits = 3,
+        caption = "Model 2a Influential Cases") %>% 
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+         threeparttable = TRUE)
 ```
 
 \FloatBarrier
@@ -2084,8 +2108,20 @@ addmargins(table(hatvalues(m2b) > hatco(m2b)))
 ```
 
 ```{r m2b-influential-cases}
+FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
+            "defined by hat > ", round(hatco(m2b), digits = 3), 
+            " and Cook's D > ", round(CookDco(m2b), digits = 3), 
+            ". Standardized Pearson residuals with absolute values > 1.96 are ", 
+            "flagged.")
+
 # Identify cases w/ high leverage and high Cook's D. 
-InfCases(m2b)
+m2b %>% InfCases(.) %>% 
+  mutate(Flag = if_else(abs(StdPearson) > 1.96, true = "x", false = "")) %>% 
+  kable(format = "latex", booktabs = TRUE, longtable = TRUE, digits = 3,
+        caption = "Model 2b Influential Cases") %>% 
+  kable_styling(latex_options = c("repeat_header")) %>% 
+  footnote(general = FN, general_title = "Note: ", footnote_as_chunk = TRUE,
+         threeparttable = TRUE)
 ```
 
 \FloatBarrier
