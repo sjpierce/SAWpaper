@@ -2664,13 +2664,11 @@ https://doi.org/10.1002/1097-0142(1950)3%3A1%3C32%3A%3AAID-CNCR2820030106%3E3.0.
 
 # Software Information
 We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
-script generates the PDF file containing explanatory text, R code, and R output.
+script *`r knitr:::current_input()`* generates this PDF file.
 
 - We used [RStudio](www.rstudio.org) to work with R and R markdown files. 
 - Our software chain looks like this:
   **Rmd file > RStudio > R > rmarkdown > knitr > md file > pandoc > tex file > TinyTeX > PDF file**.
-- Source script: *`r knitr:::current_input()`*
-- Default output file: *`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`*
 - We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile LaTeX 
   files into PDF files. However, it should be viable to use 
   [MiKTeX](https://miktex.org) instead. 
