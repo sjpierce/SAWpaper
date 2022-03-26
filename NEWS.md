@@ -1,3 +1,23 @@
+# SAWpaper 0.19.0, 2022-03-25
+* Updated `inst/SAW_Paper_Analyze_Data.Rmd` to: 
+    * Improved diagnostics plots and figure referencing. 
+    * Improve object names for conditional and unconditional pass rates.
+    * Improve figures showing main effects and interaction effect. 
+    * Improve presentation of AUC results. 
+    * Fixed chunk names and associated table reference.
+    * Improve object names and eliminate saving unnecessary objects.
+    * Add more dynamic table referencing.
+    * Remove redundant table. 
+    * Remove Remaining Tasks section. 
+    * Set chunk options to suppress certain messages.
+    * Capitalized references to specific models. 
+    * Improved explantory text. 
+    * Improve section headings and prevent tables/figures from floating beyond
+      their section.
+    * Fix warning message from residual plots.
+    * Fixed contrast labelling and signs of selected comparisons for Model 2b 
+      nd improved object names.
+
 # SAWpaper 0.18.0, 2022-03-24
 * Updated `README.Rmd` and `README.md` to:
     * Updated introduction paragraph.

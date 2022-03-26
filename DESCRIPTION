@@ -1,8 +1,8 @@
 Package: SAWpaper
 Type: Package
 Title: Self-Assessment Works Paper Research Compendium
-Version: 0.18.0
-Date: 2022-03-24
+Version: 0.19.0
+Date: 2022-03-25
 Authors@R: 
     c(person(given = c("Steven", "J."),
            family = "Pierce",
