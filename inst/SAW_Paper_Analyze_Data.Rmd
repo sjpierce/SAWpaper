@@ -1864,28 +1864,28 @@ estimate pairwise differences in the simple slope of COPIC between testlets.
 
 ```{r m2b-OR-COPIC}
 # Create objects to hold row names and a contrast matrix (K).
-RN <- c("Slope @ L1", "Slope @ L2", "Slope @ L3", "Slope @ L4",
-        "Slope diff: L1 - L2", "Slope diff: L1 - L3",
-        "Slope diff: L1 - L4", "Slope diff: L2 - L3",
-        "Slope diff: L2 - L4", "Slope diff: L3 - L4")
+RN <- c("Slope @ T1", "Slope @ T2", "Slope @ T3", "Slope @ T4",
+        "Slope diff: T1 - T2", "Slope diff: T1 - T3",
+        "Slope diff: T1 - T4", "Slope diff: T2 - T3",
+        "Slope diff: T2 - T4", "Slope diff: t3 - T4")
 K <- matrix(c(0, 0, 0, 0, 1, 0, 0, 0, 
               0, 0, 0, 0, 1, 1, 0, 0, 
               0, 0, 0, 0, 1, 0, 1, 0, 
               0, 0, 0, 0, 1, 0, 0, 1, 
-              0, 0, 0, 0, 0, 1, 0, 0, 
-              0, 0, 0, 0, 0, 0, 1, 0, 
-              0, 0, 0, 0, 0, 0, 0, 1, 
+              0, 0, 0, 0, 0, -1, 0, 0, 
+              0, 0, 0, 0, 0, 0, -1, 0, 
+              0, 0, 0, 0, 0, 0, 0, -1, 
               0, 0, 0, 0, 0, 1, -1, 0, 
               0, 0, 0, 0, 0, 1, 0, -1, 
               0, 0, 0, 0, 0, 0, 1, -1),
             nrow=10, byrow = TRUE,
             dimnames = list(RN, names(coef(m2b))))
 
-# Run multiple comparisons examine the course effect & get adjusted 95% CIs. 
+# Run multiple comparisons examine the COPIC effect & get adjusted 95% CIs. 
 m2b.ct <- glht(m2b, linfct = K)
 m2b.mc <- summary(m2b.ct, test = adjusted("Westfall"))
 m2b.ci <- confint(m2b.ct, calpha = adjusted_calpha(test = "Westfall"))
-T33 <- data.frame(Est   = m2b.mc$test$coefficients, 
+m2b.OR <- data.frame(Est   = m2b.mc$test$coefficients, 
                   SE    = m2b.mc$test$sigma, 
                   CI.LL = m2b.ci$confint[, "lwr"],
                   CI.UL = m2b.ci$confint[, "upr"],
@@ -1897,10 +1897,10 @@ T33 <- data.frame(Est   = m2b.mc$test$coefficients,
                   Sval  = p2s(m2b.mc$test$pvalues),
                   BFB   = p2bfb(m2b.mc$test$pvalues),
                   PPH1  = p2pp(m2b.mc$test$pvalues))
-T33$OR[5:10]    <- NA
-T33$OR.LL[5:10] <- NA
-T33$OR.UL[5:10] <- NA
-kable(T33, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
+m2b.OR$OR[5:10]    <- NA
+m2b.OR$OR.LL[5:10] <- NA
+m2b.OR$OR.UL[5:10] <- NA
+kable(m2b.OR, format = "latex", booktabs = TRUE, format.args = list(digits = 3),
       digits = c(rep(x = 2, times = 8), Inf, 2, 2, 2),
       caption = paste("Simple Slopes of COPIC Effect, Westfall (1997)",
                       "Adjustment for Multiplicity")) %>% 
