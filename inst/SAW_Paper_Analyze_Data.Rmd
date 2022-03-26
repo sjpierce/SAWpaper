@@ -1812,7 +1812,7 @@ level transition given that the student has a particular COPIC score.
 We compute the unconditional pass rates from the conditional pass rates as sets
 of cumulative products.
 
-```{r}
+```{r m2b-pass-rates}
 # Create a new data frame object for use with predict()
 m2b.ND <- data.frame(Testlet = gl(n = 4, k = 1, length = 36,
                                   labels = c("1", "2", "3", "4")), 
@@ -1857,13 +1857,12 @@ kable_styling(latex_options = c("repeat_header"))
 \FloatBarrier
 
 ## Odds-Ratios for COPIC Effect    
-We exponentiate combinations of the parameters to obtain the odds-ratios showing
-the effect of COPIC at each level. This quantifies the effect of COPIC, which
-this model assumes varies across level transitions. We are using contrasts that
-estimate the simple slope of COPIC at each level, then get simultaneous 95% CIs
-that are adjusted for multiple testing via Westfall's (1997) method.
+Table \ref{tab:m2b-OR-COPIC} contains the odds-ratios showing simple effect of
+COPIC at each level transition testlet, which vary because this model relaxed
+the assumption of parallel effect across testlets. It also shows contrasts that
+estimate pairwise differences in the simple slope of COPIC between testlets.
 
-```{r}
+```{r m2b-OR-COPIC}
 # Create objects to hold row names and a contrast matrix (K).
 RN <- c("Slope @ L1", "Slope @ L2", "Slope @ L3", "Slope @ L4",
         "Slope diff: L1 - L2", "Slope diff: L1 - L3",
