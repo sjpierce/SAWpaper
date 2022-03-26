@@ -86,8 +86,8 @@ library(rmarkdown)         # for render(), pandoc_version().
 library(knitr)             # for kable()
 library(tidyr)             # for unite()
 library(dplyr)             # for filter(), select(), etc.
-library(sjlabelled)       # For set_label(), get_label()
-library(haven)            # for read_spss()
+library(sjlabelled)        # For set_label(), get_label() 
+library(haven)             # for read_spss() 
 # Set package options. 
 options(kableExtra.latex.load_packages = FALSE)
 library(kableExtra)        # for kable_styling(), add_header_above(), 
