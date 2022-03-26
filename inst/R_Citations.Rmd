@@ -91,20 +91,6 @@ library(SAWpaper)         # For version information.
 
 \FloatBarrier
 
-# Project Information
-These materials are scholarly products based on research funded by the following 
-grants. 
-
-Winke, P., Gass, S., & Pierce, S. J. (08/01/2017–12/31/2018). 
-*Michigan State University Language Flagship Proficiency Initiative Year 4 continuation proposal* 
-(Award #: 0054-MSU-22-PI-280-PO2) [Grant]. Institute of International Education. 
-
-Winke, P., Gass, S., & Pierce, S. J. (01/01/2019–12/31/2019). 
-*Michigan State University Language Flagship Proficiency Initiative Year 5 continuation proposal* 
-(Award #: 0054-MSU-22-PI-280-PO2) [Grant]. Institute of International Education. 
-
-\FloatBarrier
-
 # Software Information
 We use R Markdown to enhance reproducibility. Knitting the source R Markdown 
 script *`r knitr:::current_input()`* generates this PDF file.
