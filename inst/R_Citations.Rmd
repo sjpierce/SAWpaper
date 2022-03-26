@@ -86,6 +86,7 @@ Load R packages that we need to get additional functions.
 library(here)             # for here()
 library(rmarkdown)        # for render()
 library(piercer)          # for git_report(), which_latex()
+library(SAWpaper)         # For version information. 
 ```
 
 \FloatBarrier
@@ -124,21 +125,16 @@ dependencies:
 # Check and report whether we used TinyTex or other LaTeX software. 
 which_latex()
 
-# RStudio citation.
-rstudioapi::versionInfo()
-
 # Get R citation.
 citation() 
 
-
 # Get package citations.
 
-#citation("assertthat")
+citation("broom")
 citation("car")
 citation("devtools")
 citation("directlabels")
 citation("dplyr")
-citation("git2r")
 citation("ggplot2")
 citation("haven")
 citation("here")
@@ -148,7 +144,6 @@ citation("knitr")
 citation("lattice")
 citation("modEvA")
 citation("multcomp")
-citation("pander")
 citation("piercer")
 citation("polycor")
 citation("pROC")
@@ -160,8 +155,7 @@ citation("texreg")
 citation("tidyr")
 citation("tinytex")
 citation("visreg")
-#citation("utils")
-
+citation("xfun")
 ```
 
 The current Git commit details and status are:
