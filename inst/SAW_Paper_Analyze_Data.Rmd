@@ -1253,10 +1253,6 @@ round(lrcm(roc.m1b, seed = 6711), digits = 3) %>%
   add_header_above(header = c(" " = 2, "Bootstrapped Quantiles" = 3))
 ```
 
-The low sensitivity indicates that the model does a poor job of correctly
-identifying those who pass the level transitions. The high specificity indicates
-that it does a good job of identifying those who fail to pass level transitions.
-
 \FloatBarrier
 
 ### Area Under the Curve (AUC)
