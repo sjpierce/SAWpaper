@@ -957,14 +957,10 @@ shows an index plot of Cook's D for this model.
 
 ```{r m1a-plotCookD, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m1a-plotCookD}",
-              "Model 1a Index Plot of Coook's D.")
+              "Model 1a Index Plot of Coook's D.",
+              "The", sum(cooks.distance(m1a) > CookDco(m1a)), "observations",
+              "with values exceeding the cutoff are shown in red.")
 PlotCookD(m1a)
-```
-
-```{r m1a-high-CookD}
-# How many cases have high Cook's Distances (D > cutoff)?
-summary(cooks.distance(m1a))
-addmargins(table(cooks.distance(m1a) > CookDco(m1a)))
 ```
 
 Figure \ref{fig:m1a-plot-leverage} shows an index plot of leverage values for 
@@ -974,7 +970,9 @@ D.
 
 ```{r m1a-plot-leverage, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m1a-plot-leverage}",
-              "Model 1a Index Plot of Leverage Values.")
+              "Model 1a Index Plot of Leverage Values.",
+              "The", sum(hatvalues(m1a) > hatco(m1a)), "observations",
+              "with values exceeding the cutoff are shown in red.")
 PlotHat(m1a)
 ```
 
@@ -989,11 +987,8 @@ text(x = hatco(m1a), y = 3, pos = 4, col = "blue", cex = .75,
      labels = paste("Leverage cutoff >", round(hatco(m1a), digits = 3)))
 ```
 
-```{r m1a-high-leverage}
-# How many cases have high leverage (hat > cutoff)?
-summary(hatvalues(m1a))
-addmargins(table(hatvalues(m1a) > hatco(m1a)))
-```
+Table \ref{tab:m1a-influential-cases} shows a list of influential cases for Model 1a. While there are a fair number of cases with both high Cook's distance and 
+high leverage, only few also have large standardized Pearson residuals.
 
 ```{r m1a-influential-cases}
 FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
@@ -1599,18 +1594,14 @@ residualPlots(m2a, layout = c(1,3), tests = FALSE)
 
 Now we look at some index plots for influence measures. We are looking for
 observations with values exceeding the cutoffs. Figure \ref{fig:m2a-plotCookD}
-shows an index plot of Cook's D for this model.
+shows an index plot of Cook's D for this model. 
 
 ```{r m2a-plotCookD, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2a-plotCookD}",
-              "Model 2a Index Plot of Coook's D.")
+              "Model 2a Index Plot of Coook's D.",
+              "The", sum(cooks.distance(m2a) > CookDco(m2a)), "observations",
+              "with values exceeding the cutoff are shown in red.")
 PlotCookD(m2a)
-```
-
-```{r m2a-high-CookD}
-# How many cases have high Cook's Distances (D > cutoff)?
-summary(cooks.distance(m2a))
-addmargins(table(cooks.distance(m2a) > CookDco(m2a)))
 ```
 
 Figure \ref{fig:m2a-plot-leverage} shows an index plot of leverage values for 
@@ -1620,7 +1611,9 @@ D.
 
 ```{r m2a-plot-leverage, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2a-plot-leverage}",
-              "Model 2a Index Plot of Leverage Values.")
+              "Model 2a Index Plot of Leverage Values.",
+              "The", sum(hatvalues(m2a) > hatco(m2a)), "observations",
+              "with values exceeding the cutoff are shown in red.")
 PlotHat(m2a)
 ```
 
@@ -1635,11 +1628,9 @@ text(x = hatco(m2a), y = 5, pos = 4, col = "blue", cex = .75,
      labels = paste("Leverage cutoff >", round(hatco(m2a), digits = 3)))
 ```
 
-```{r m2a-high-leverage}
-# How many cases have high leverage (hat > cutoff)?
-summary(hatvalues(m2a))
-addmargins(table(hatvalues(m2b) > hatco(m2a)))
-```
+Table \ref{tab:m2a-influential-cases} shows a list of influential cases for
+Model 2a. While there are a fair number of cases with both high Cook's distance
+and high leverage, only few also have large standardized Pearson residuals.
 
 ```{r m2a-influential-cases}
 FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
@@ -2069,14 +2060,10 @@ shows an index plot of Cook's D for this model.
 
 ```{r m2b-plotCookD, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2b-plotCookD}",
-              "Model 2b Index Plot of Coook's D.")
+              "Model 2b Index Plot of Coook's D.",
+              "The", sum(cooks.distance(m2b) > CookDco(m2b)), "observations",
+              "with values exceeding the cutoff are shown in red.")
 PlotCookD(m2b)
-```
-
-```{r m2b-high-CookD}
-# How many cases have high Cook's Distances (D > cutoff)?
-summary(cooks.distance(m2b))
-addmargins(table(cooks.distance(m2b) > CookDco(m2b)))
 ```
 
 Figure \ref{fig:m2b-plot-leverage} shows an index plot of leverage values for 
@@ -2086,7 +2073,9 @@ D.
 
 ```{r m2b-plot-leverage, fig.height=3, fig.width=5, fig.cap=FCap}
 FCap <- paste("\\label{fig:m2b-plot-leverage}",
-              "Model 2b Index Plot of Leverage Values.")
+              "Model 2b Index Plot of Leverage Values.",
+              "The", sum(hatvalues(m2b) > hatco(m2b)), "observations",
+              "with values exceeding the cutoff are shown in red.")
 PlotHat(m2b)
 ```
 
@@ -2101,11 +2090,9 @@ text(x = hatco(m2b), y = 5, pos = 4, col = "blue", cex = .75,
      labels = paste("Leverage cutoff >", round(hatco(m2b), digits = 3)))
 ```
 
-```{r m2b-high-leverage}
-# How many cases have high leverage (hat > cutoff)?
-summary(hatvalues(m2b))
-addmargins(table(hatvalues(m2b) > hatco(m2b)))
-```
+Table \ref{tab:m2b-influential-cases} shows a list of influential cases for
+Model 2b. While there are a fair number of cases with both high Cook's distance
+and high leverage, only few also have large standardized Pearson residuals.
 
 ```{r m2b-influential-cases}
 FN <- paste0("All cases shown have high leverage (hat) and Cook's D values, ", 
