@@ -792,8 +792,8 @@ ShowVars <- c("Testlet", "Course", "Pass.Rate", "Pass.LL", "Pass.UL",
               "Pass.URate")
 kable(m1a.ND[, ShowVars], format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
-      caption = paste("Conditional Pass Rates with 95 percent CIs and",
-                      "Unconditional Pass Rates by Level Transition and Course")) %>%
+      caption = paste("Model 1a Conditional Pass Rates with 95 percent CIs",
+                      "and Unconditional Pass Rates by Testlet and Course")) %>%
 kable_styling(latex_options = c("repeat_header"))
 ```
 
@@ -1421,8 +1421,9 @@ ShowVars <- c("Testlet", "COPIC", "OPIC", "Pass.Rate", "Pass.LL", "Pass.UL",
  
 kable(m2a.ND[, ShowVars], format = "latex", booktabs = TRUE, digits = 2, 
       format.args = list(nsmall = 2),
-      caption = paste("Conditional Pass Rates (with 95 percent CIs) and",
-                      "Unconditional Pass Rates by Level Transition and Course")) %>% 
+      caption = paste("Model 2a Conditional Pass Rates (with 95 percent CIs)",
+                      "and Unconditional Pass Rates by Testlet and OPIc",
+                      "Score")) %>% 
 kable_styling(latex_options = c("repeat_header")) 
 ```
 
@@ -1441,8 +1442,8 @@ m2a.OR <- cbind(OR = exp(coef(m2a)[5]),
                 UL = exp(confint(m2a, level = 0.95)[5, 2]))
 dimnames(m2a.OR)[[1]] <- "COPIC (0 vs 1)"
 kable(m2a.OR, format = "latex", booktabs = TRUE, digits = 2, 
-      caption = paste("Odds-Ratios for COPIC Effect (Estimates and 95 Percent",
-                      "Confidence Intervals)")) %>% 
+      caption = paste("Model 2a Odds-Ratios for COPIC Effect (Estimate and ",
+                      "95 Percent Confidence Interval)")) %>% 
   kable_styling(latex_options = c("repeat_header")) 
 ```
 
