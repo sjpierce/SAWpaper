@@ -2458,16 +2458,6 @@ m3b %>%
        caption = "Model 3b Simultaneous Tests (Type III SS)")
 ```
 
-```{r m3a-m3b-LRT}
-anova(m3a, m3b, test = "Chisq") %>%  
-  cbind(., convertp(.[,"Pr(>Chi)"])) %>% 
-  kable(format = "latex", booktabs = TRUE, 
-       digits = c(0, 2, 0, 2, Inf, 2, 2, 2),
-       col.names = c("Resid. Df", "Resid. Deviance", "Df", "Deviance", 
-                     "p-value", "S", "BFB", "PPH1"),
-       caption = "Model 3a vs 3b: Likelihood Ratio Test for Interaction")
-```
-
 The fact that the course effect is not significant in Table
 \ref{tab:m3b-Type-III} suggests that we can revert back to Model 2a because
 course doesn't have an effect after controlling for testlet, COPIC, and their
