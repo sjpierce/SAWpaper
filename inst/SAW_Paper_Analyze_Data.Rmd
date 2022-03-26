@@ -1446,7 +1446,7 @@ This quantifies the effect of COPIC, which this model assumes is equal across
 level transitions. We will test whether that assumption is reasonable in another
 model later.
 
-```{r m2a-OR-COPIC}
+```{r m2a-OR-COPIC, message=FALSE}
 m2a.OR <- cbind(OR = exp(coef(m2a)[5]), 
                 LL = exp(confint(m2a, level = 0.95)[5, 1]),
                 UL = exp(confint(m2a, level = 0.95)[5, 2]))
