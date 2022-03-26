@@ -8,6 +8,8 @@ output:
    number_sections: true
    toc: yes
    toc_depth: 3
+params: 
+ LogFile: "SAW_Paper_Analyze_Data.pdf"
 urlcolor: blue
 header-includes:
 - \usepackage{fancyhdr}
@@ -33,7 +35,7 @@ header-includes:
 - \lhead{Self-Assessment Works! Analyze Data}
 - \rhead{\today\ \currenttime}
 - \cfoot{ }
-- \lfoot{\texttt{\footnotesize \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
+- \lfoot{\texttt{\small \detokenize{`r params$LogFile`}}} 
 - \fancyfoot[R]{\thepage}
 - \renewcommand{\headrulewidth}{0.4pt}
 - \renewcommand{\footrulewidth}{0.4pt}

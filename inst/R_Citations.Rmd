@@ -8,6 +8,8 @@ output:
    number_sections: true
    toc: yes
    toc_depth: 3
+params: 
+ LogFile: "R_Citations.pdf"
 urlcolor: blue
 header-includes:
 - \usepackage{fancyhdr}
@@ -32,7 +34,7 @@ header-includes:
 - \pagestyle{fancy}
 - \lhead{SAWpaper R Citations}
 - \rhead{\today\ \currenttime}
-- \lfoot{\texttt{\small \detokenize{`r sub(".Rmd", ".pdf", knitr:::current_input(dir = FALSE))`}}} 
+- \lfoot{\texttt{\small \detokenize{`r params$LogFile`}}} 
 - \cfoot{ }
 - \fancyfoot[R]{\thepage\ of \pageref*{LastPage}}
 - \renewcommand{\headrulewidth}{0.4pt}
