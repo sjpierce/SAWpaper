@@ -1007,10 +1007,6 @@ m1a %>% InfCases(.) %>%
          threeparttable = TRUE)
 ```
 
-There are a lot of observations with high Cook's distance and high leverage.
-That is a bit concerning, but this may not be the final model we want to use for
-drawing conclusions. 
-
 \FloatBarrier
 
 ## Graphs
@@ -1112,7 +1108,7 @@ be relaxed by running another model and comparing it to this one.
 Despite the significant effects, the model doesn't discriminate well between
 those who pass vs. fail (it has modest accuracy, low sensitivity, high
 specificity, and low AUC). It explains only a small percentage of the variance.
-We can probably do better by considering another predictor. 
+We can probably do better with a different model. 
 
 \FloatBarrier
 
