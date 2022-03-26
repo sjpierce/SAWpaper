@@ -1029,6 +1029,8 @@ visreg(m1a, xvar = "Testlet", ylab = "Conditional Pass Rate",
        scale = "response", rug = 2, ylim = c(0, 1))
 ```
 
+\FloatBarrier
+
 ### Main Effect of Course
 Figures \ref{fig:m1a-plot-Course-LogOdds} and \ref{fig:m1a-plot-Course-CPR}
 respectively plot the main effect of course on the scale of the linear predictor
@@ -1301,12 +1303,12 @@ $R^{2}_{Dev} = `r R2Dev(m1b, digits = 2)`$.
 
 \FloatBarrier
 
-## Diagnostics
+## Diagnostics (Omitted)
 We omit detailed diagnostics because Model 1b is not better than Model 1a. 
 
 \FloatBarrier
 
-## Graphs
+## Graphs (Omitted)
 We omit graphs because Model 1b is not better than Model 1a. See Model 1a graphs
 instead.
 
@@ -1655,6 +1657,8 @@ visreg(m2a, xvar = "Testlet", ylab = "Conditional Pass Rate",
        scale = "response", rug = 2, ylim = c(0, 1))
 ```
 
+\FloatBarrier
+
 ### Main Effect of COPIC
 Figures \ref{fig:m2a-plot-COPIC-LogOdds} and \ref{fig:m2a-plot-COPIC-CPR}
 respectively plot the main effect of COPIC on the scale of the linear predictor
@@ -1729,8 +1733,6 @@ Model 1a. However, we still need to run another model to see whether relaxing
 the assumption that the OPIC effect is constant across levels is viable. We do
 that in Model 2b.
 
-\newpage
-
 \FloatBarrier
 
 # Model 2b: Non-parallel OPIc Effect 
@@ -1752,8 +1754,6 @@ m2b %>%
                       "CI.UL", "S", "BFB", "PPH1"),
         caption = "Model 2b Coefficients")
 ```
-
-\newpage
 
 We can see from Table \ref{tab:show-models} that the difference in AICs
 ($\Delta AIC = AIC_{2a} - AIC_{2b} = `r round(AIC(m2a) - AIC(m2b), digits = 3)`$)
@@ -2251,12 +2251,12 @@ Course doesn't have an effect after controlling for level and COPIC.
 
 \FloatBarrier
 
-## Conditional and Unconditional Pass Rates
+## Conditional and Unconditional Pass Rates (Omitted)
 We omit calculating these rates because Model 3a is not better than Model 2a.
 
 \FloatBarrier
 
-## Odds-Ratio for COPIC Effect 
+## Odds-Ratio for COPIC Effect (Omitted)
 We omit calculating odds-ratios because Model 3a is not better than Model 2a.
 
 \FloatBarrier
@@ -2376,12 +2376,12 @@ models 1a and 1b, but identical to those from models 2a and 2b.
 
 \FloatBarrier
 
-## Diagnostics
+## Diagnostics (Omitted)
 We omit diagnostics because Model 3a is not better than Model 2a.
 
 \FloatBarrier
 
-## Graphs
+## Graphs (Omitted)
 We omit graphs because Model 3a is not better than Model 2a. 
 
 \FloatBarrier
@@ -2391,6 +2391,7 @@ What distinguished this model from Model 2a was inclusion of the parallel course
 effect, but the Type III LRT for that effect is not-significant. We will report
 Model 2a over this model on the basis of parsimony.
 
+\FloatBarrier
 
 # Model 3b: Parallel Course + Non-parallel OPIc Effects
 We finally test a model with a parallel course effect and a non-parallel OPIc
@@ -2475,12 +2476,12 @@ interaction.
 
 \FloatBarrier
 
-## Conditional and Unconditional Pass Rates
+## Conditional and Unconditional Pass Rates (Omitted)
 We omit calculating these rates because Model 3b is not better than Model 2b.
 
 \FloatBarrier
 
-## Odds-Ratio for COPIC Effect 
+## Odds-Ratio for COPIC Effect  (Omitted)
 We omit calculating odds-ratios because Model 3b is not better than Model 2b.
 
 \FloatBarrier
@@ -2596,12 +2597,12 @@ models 1a and 1b, but identical to those from models 2a, 2b, and 3a.
 
 \FloatBarrier
 
-## Diagnostics
+## Diagnostics (Omitted)
 We omit diagnostics because Model 3b is not better than Model 2b.
 
 \FloatBarrier
 
-## Graphs
+## Graphs (Omitted)
 We omit graphs because Model 3b is not better than Models 2a and 2b. 
 
 \FloatBarrier
