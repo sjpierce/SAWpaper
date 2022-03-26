@@ -26,7 +26,7 @@ Description: This package and corresponding GitHub repository are intended to
   effect of course and OPIc speaking proficiency scores on the passing rate for 
   each level of the Can-Do statements self-assessment. The objective was to 
   validate the Can-Do test results.
-License: GPL-3 + file LICENSE
+License: GPL (>= 3) + file LICENSE
 URL: https://github.com/sjpierce/SAWpaper
 BugReport: https://github.com/sjpierce/SAWpaper/issues
 Encoding: UTF-8
