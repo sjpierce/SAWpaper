@@ -161,7 +161,6 @@ library(visreg)            # for visreg()
 library(rmarkdown)         # for render(), pandoc_version(). 
 library(knitr)             # for kable()
 library(texreg)            # for texreg()
-library(pander)            # for pander()
 library(pROC)              # for roc()
 library(ggplot2)           # for ggplot()
 library(tidyr)             # for unite()
@@ -2380,11 +2379,6 @@ confidence intervals, s-values, BFBs, and posterior probabilities of H1
 corresponding to the p-values.
 
 ```{r m3b-coef}
-# T38 <- summary(m3b)
-# set.caption("Model 3a Summary")
-# pander(T38, digits = c(5, 5, 4, 3), round = c(4, 4, 2, Inf), justify = "right",
-#        caption = "Model 3a Summary")
-
 m3b %>% 
   tidy(., conf.int = TRUE, conf.level = .95) %>% 
   cbind(., convertp(.$p.value, digits = 2)) %>% 
