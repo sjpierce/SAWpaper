@@ -48,8 +48,11 @@ inst/manuscript
 Thumbs.db
 
 # Omit PDF output files from knitting .Rmd files in selected folders.
-# This is to keep report results off of GitHub.
-inst/*.pdf
+# These are the default output files we can omit from GitHub, but allows the 
+# published versions to be tracked. 
+inst/SAW_Paper_Analyze_Data.pdf
+inst/SAW_Paper_Import_Explore_Data.pdf
+inst/R_Citations.pdf
 
 # Windows batch file only useful on my computer.
 inst/Delete_nul_file.bat
