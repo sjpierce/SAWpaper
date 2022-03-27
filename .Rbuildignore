@@ -18,3 +18,10 @@
 
 # Exclude manuscript folder.
 ^inst/manuscript$
+
+# Exclude data files. They don't need to be in the package library, just in the 
+# local repository. 
+data/SAW_Paper_Data.RData$
+inst/extdata/Students_Data-WinkeZhang.sav$
+inst/extdata/Testlet_Attempts_Data-WinkeZhang.sav$
+inst/extdata/164981-V1.zip$

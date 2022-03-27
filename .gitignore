@@ -33,9 +33,11 @@
 /*_cache/
 /cache/
 
-# Folders containing data we will archive elsewhere, so omit from GitHub
-data
-inst/extdata
+# Files containing data we will archive elsewhere, so omit from GitHub
+data/SAW_Paper_Data.RData
+inst/extdata/Students_Data-WinkeZhang.sav
+inst/extdata/Testlet_Attempts_Data-WinkeZhang.sav
+inst/extdata/164981-V1.zip
 
 # Other folders we don't want to track
 drafts
