@@ -504,6 +504,7 @@ Pierce, S. J., & Zhang, X. (2022). *SAWpaper: Self-assessment works
 paper research compendium*. (Version 1.0.0) \[Reproducible research
 materials and computer program, R package\]. GitHub and Zenodo.
 <https://github.com/sjpierce/SAWpaper> and
+<https://doi.org/10.5281/zenodo.6388011>
 
 Winke, P., & Zhang, X. (2022, March 14). *Data and codebook for SSLA
 article: “A closer look at a marginalized test method: Self-assessment
