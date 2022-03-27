@@ -1,3 +1,11 @@
+# SAWpaper 1.0.1, 2022-03-27
+* Obtained DOIs from Zenodo.
+    * DOI: 10.5281/zenodo.6388010 always points to the latest version. 
+    * DOI: 10.5281/zenodo.6388011 specifically points to v1.0.0
+* Updated `README.Rmd` and `README.md`
+    * Added DOI badge. 
+    * Added DOI link to Citing This Package section. 
+
 # SAWpaper 1.0.0, 2022-03-27
 * Added final output files produced from running code after installing version 
   1.0.0 on my computer. These correspond to output we used in the manuscript and
