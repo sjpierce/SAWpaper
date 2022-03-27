@@ -1,3 +1,14 @@
+# SAWpaper 0.21.0, 2022-03-27
+* Updated `.gitignore` to:
+    * Omit specific data files instead of entire folders. 
+    * Omit selected PDF files and allow others.
+* Updated `.Rbuildignore` to:
+    * Omit specific data files instead of entire folders. 
+    * Omit PDF files.
+* Add files:
+    * `data\Placeholder.txt`
+    * `inst\extdata\Placeholder.txt`
+
 # SAWpaper 0.20.0, 2022-03-26
 * Updated software license by updating /adding the files:
     * `DESCRIPTION`
