@@ -1,3 +1,11 @@
+# SAWpaper 1.0.0, 2022-03-27
+* Added final output files produced from running code after installing version 
+  1.0.0 on my computer. These correspond to output we used in the manuscript and
+  are being bundled into the version 1.0.0 release. 
+    * `inst\SAW_Paper_Analyze_Published.pdf`
+    * `inst\SAW_Paper_Import_Explore_Published.pdf`
+    * `inst\R_Citations_Published.pdf`
+
 # SAWpaper 0.21.0, 2022-03-27
 * Updated `.gitignore` to:
     * Omit specific data files instead of entire folders. 
@@ -5,7 +13,7 @@
 * Updated `.Rbuildignore` to:
     * Omit specific data files instead of entire folders. 
     * Omit PDF files.
-* Add files:
+* Added files:
     * `data\Placeholder.txt`
     * `inst\extdata\Placeholder.txt`
 
