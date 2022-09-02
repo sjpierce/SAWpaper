@@ -5,7 +5,10 @@ Steven J. Pierce & Xiaowan Zhang
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6388011.svg)](https://doi.org/10.5281/zenodo.6388011)
+[![Latest version
+DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6388010.svg)](https://doi.org/10.5281/zenodo.6388010)
+[![version 1.0.0
+DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6388011.svg)](https://doi.org/10.5281/zenodo.6388011)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![Project Status:
@@ -43,7 +46,7 @@ output.
     reproduce our results. We recommend using the most recent stable
     release of R available from the [Comprehensive R Archive Network
     (CRAN)](https://cran.r-project.org/).
--   We used [RStudio](www.rstudio.org) 2022.2.0.443 (RStudio Team, 2021)
+-   We used [RStudio](www.rstudio.org) 2022.7.1.554 (RStudio Team, 2021)
     to work with R and R Markdown files. RStudio is an excellent
     integrated development environment (IDE). We recommend using the
     most recent stable release available. The software chain for R
@@ -84,7 +87,7 @@ manuscript was accepted for publication.
 
 Before installing *SAWpaper*, make sure you have:
 
--   Obtained the *SSACHR* repository from GitHub and reviewed its
+-   Obtained the *SAWpaper* repository from GitHub and reviewed its
     contents.
 -   Installed R 4.1.3 or later. You can get the most recent version of R
     from the [Comprehensive R Archive Network
@@ -110,9 +113,9 @@ Before installing *SAWpaper*, make sure you have:
     compilation?” It usually works fine if I choose “no”. Occasionally,
     it appears necessary to choose “yes”, but I am more likely to run
     into problems when doing that.  
--   Install the *SSACHR* package to your R package library.
+-   Install the *SAWpaper* package to your R package library.
 -   Install additional R packages from CRAN.
--   After installing *SSACHR*, see the Obtaining Data Files section
+-   After installing *SAWpaper*, see the Obtaining Data Files section
     below. You will need to download the data from an archive and put
     them in the right subfolder on your computer.
 
@@ -498,7 +501,15 @@ International Education.
 # Citing This Package
 
 Please cite the package itself, plus the associated data files and the
-journal article.
+journal article. The first citation below shows the latest released
+version number, and the DOI that always points to the latest release.
+Version 1.0.0 was the latest release when the publication was accepted.
+
+Pierce, S. J., & Zhang, X. (2022). *SAWpaper: Self-assessment works
+paper research compendium*. (Version 1.0.2) \[Reproducible research
+materials and computer program, R package\]. GitHub and Zenodo.
+<https://github.com/sjpierce/SAWpaper> and
+<https://doi.org/10.5281/zenodo.6388010>
 
 Pierce, S. J., & Zhang, X. (2022). *SAWpaper: Self-assessment works
 paper research compendium*. (Version 1.0.0) \[Reproducible research
