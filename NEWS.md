@@ -1,3 +1,10 @@
+# SAWpaper 1.0.2, 2022-09-02
+* Updated `README.Rmd` and `README.md`:
+    * Fix package name in installation instructions. 
+    * Add an extra DOI badge for the latest version. 
+    * Update Cite This Package section with extra citation that shows the latest
+      version number and corresponding DOI. 
+
 # SAWpaper 1.0.1, 2022-03-27
 * Obtained DOIs from Zenodo.
     * DOI: 10.5281/zenodo.6388010 always points to the latest version. 
