@@ -1,3 +1,7 @@
+# SAWpaper 1.0.3, 2025-03-02
+* Updated `README.Rmd` and `README.md`:
+    * Updated manuscript citation and some narrative text. 
+    
 # SAWpaper 1.0.2, 2022-09-02
 * Updated `README.Rmd` and `README.md`:
     * Fix package name in installation instructions. 
