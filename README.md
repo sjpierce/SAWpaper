@@ -14,22 +14,23 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![Project Status:
 Inactive](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/cstatops)](https://CRAN.R-project.org/package=SAWpaper)
+status](https://www.r-pkg.org/badges/version/SAWpaper)](https://CRAN.R-project.org/package=SAWpaper)
 <!-- badges: end -->
 
 This package and corresponding GitHub repository are intended to enhance
-the reproducibility of a research paper (Winke, Zhang, & Pierce, 2022)
-by serving as a research compendium (Marwick, Boettiger, & Mullen,
-2018). The principal investigators for the study are Dr. Paula Winke
-(Professor) and Dr. Susan Gass (University Distinguished Professor),
-both of whom belong to the Department of Linguistics, Languages, &
-Cultures at Michigan State University. The paper analyzes data on
-Spanish language learners who took a Can-Do self-assessment test, along
-with the more authoritative OPIc language proficiency test. We did both
-correlation analyses and continuation-ratio models that examine the
-effect of course and OPIc speaking proficiency scores on the passing
-rate for each level of the Can-Do statements self-assessment. The
-objective was to validate the Can-Do test results.
+the reproducibility of a research paper ([Winke, Zhang, & Pierce,
+2023](https://doi.org/10.1017/S0272263122000079)) by serving as a
+research compendium (Marwick, Boettiger, & Mullen, 2018). The principal
+investigators for the study were Dr. Paula Winke (Professor) and Dr.
+Susan Gass (University Distinguished Professor), both of whom belong to
+the Department of Linguistics, Languages, & Cultures at Michigan State
+University. The paper analyzes data on Spanish language learners who
+took a Can-Do self-assessment test, along with the more authoritative
+OPIc language proficiency test. We did both correlation analyses and
+continuation-ratio models that examine the effect of course and OPIc
+speaking proficiency scores on the passing rate for each level of the
+Can-Do statements self-assessment. The objective was to validate the
+Can-Do test results.
 
 # Software Environment
 
@@ -41,40 +42,45 @@ can also produce HTML or Markdown files too depending on the contents of
 the R Markdown file. We have designed most of our scripts to produce PDF
 output.
 
--   We used the [R statistical software](https://www.r-project.org/) to
-    do data management and run our analyses. You will need R to to
-    reproduce our results. We recommend using the most recent stable
-    release of R available from the [Comprehensive R Archive Network
-    (CRAN)](https://cran.r-project.org/).
--   We used [RStudio](www.rstudio.org) 2022.7.1.554 (RStudio Team, 2021)
-    to work with R and R Markdown files. RStudio is an excellent
-    integrated development environment (IDE). We recommend using the
-    most recent stable release available. The software chain for R
-    Markdown looks like this: **Rmd file \> RStudio \> R \> rmarkdown \>
-    knitr \> md file \> pandoc \> tex file \> TinyTeX \> PDF file**.
--   A version of [pandoc](https://pandoc.org/) comes bundled with
-    RStudio, but if you want the most recent version, download it from
-    <https://pandoc.org/>.
--   We use Git (Torvalds et al., 2022) for version control, with the
-    primary (i.e., main) repository hosted online by
-    [GitHub](https://github.com/). For a short introduction to Git, see
-    Bryan (2018). There is a longer, more detailed resource on using Git
-    with R at the [Happy Git and GitHub for the
-    userR](https://happygitwithr.com) website (Bryan et al., n.d.).
-    Other useful resources on using Git and GitHub include Bryan
-    2018) and Perez-Riverol et al. (2016). Chacon and Straub (2014) is a
-          full book on using Git for version control.
--   We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
-    LaTeX files produced by pandoc into PDF files. However, it may be
-    viable to use [MiKTeX](https://miktex.org) instead.
--   This package depends on functions from the *piercer* package, which
-    is available from a public GitHub repository at
-    <https://github.com/sjpierce/piercer>. Please read and follow the
-    installation instructions for *piercer* before trying to use this
-    package.
--   Wickham and Bryan (n.d.) provides extensive guidance on creating R
-    packages.
--   We recommend frequently updating your installed R packages.
+- We used the [R statistical software](https://www.r-project.org/) to do
+  data management and run our analyses. You will need R to to reproduce
+  our results. We recommend using the most recent stable release of R
+  available from the [Comprehensive R Archive Network
+  (CRAN)](https://cran.r-project.org/).
+- We used [RStudio](www.rstudio.org) 2022.02.0.443 (RStudio Team, 2021)
+  to work with R and R Markdown files. RStudio is an excellent
+  integrated development environment (IDE). We recommend using the most
+  recent stable release available. The software chain for R Markdown
+  looks like this: **Rmd file \> RStudio \> R \> rmarkdown \> knitr \>
+  md file \> pandoc \> tex file \> TinyTeX \> PDF file**.
+- A version of [pandoc](https://pandoc.org/) comes bundled with RStudio,
+  but if you want the most recent version, download it from
+  <https://pandoc.org/>.
+- We use Git (Torvalds et al., 2022) for version control, with the
+  primary (i.e., main) repository hosted online by
+  [GitHub](https://github.com/). For a short introduction to Git, see
+  Bryan (2018). There is a longer, more detailed resource on using Git
+  with R at the [Happy Git and GitHub for the
+  userR](https://happygitwithr.com) website (Bryan et al., n.d.). Other
+  useful resources on using Git and GitHub include Bryan
+  2018) and Perez-Riverol et al. (2016). Chacon and Straub (2014) is a
+        full book on using Git for version control.
+- We recommend using [TinyTeX](https://yihui.org/tinytex/) to compile
+  LaTeX files produced by pandoc into PDF files. However, it may be
+  viable to use [MiKTeX](https://miktex.org) instead.
+- This package depends on functions from the *piercer* package, which is
+  available from a public GitHub repository at
+  <https://github.com/sjpierce/piercer>. Please read and follow the
+  installation instructions for *piercer* before trying to use this
+  package.
+- Wickham and Bryan (n.d.) provides extensive guidance on creating R
+  packages.
+- We recommend frequently updating your installed R packages.
+
+The text above describes the software environment I used when we worked
+on the paper. Since then, I’ve switched to Quarto instead of R Markdown.
+You can see my current recommendations about [software for reproducible
+research](https://sjpierce.github.io/rr_software.html) on my blog site.
 
 # Installation
 
@@ -87,37 +93,35 @@ manuscript was accepted for publication.
 
 Before installing *SAWpaper*, make sure you have:
 
--   Obtained the *SAWpaper* repository from GitHub and reviewed its
-    contents.
--   Installed R 4.1.3 or later. You can get the most recent version of R
-    from the [Comprehensive R Archive Network
-    (CRAN)](https://cran.r-project.org/).
--   Installed any tools required for compiling packages (they will be
-    specific to your operating system). These will be necessary for the
-    *devtools* package to work. You may find Bryan & Hester’s (n.d.)
-    website useful, especially the [Set up an R dev
-    environment](https://rstats.wtf/set-up-an-r-dev-environment.html)
-    section.
-    -   On Windows, see
-        <https://cran.r-project.org/bin/windows/Rtools/>.
-    -   On Mac OS X, see <https://cran.r-project.org/bin/macosx/tools>
-        and <https://mac.R-project.org/tools/>.
--   Installed [TinyTeX](https://yihui.org/tinytex/) or some other
-    suitable LaTeX distribution.
--   Installed the [*devtools*](https://devtools.r-lib.org/) package for
-    R.
--   Installed the [*piercer*](https://github.com/sjpierce/piercer)
-    package for R.
--   Updated your R packages. You may be prompted with a dialog box
-    asking “Do you want to install from sources the packages which need
-    compilation?” It usually works fine if I choose “no”. Occasionally,
-    it appears necessary to choose “yes”, but I am more likely to run
-    into problems when doing that.  
--   Install the *SAWpaper* package to your R package library.
--   Install additional R packages from CRAN.
--   After installing *SAWpaper*, see the Obtaining Data Files section
-    below. You will need to download the data from an archive and put
-    them in the right subfolder on your computer.
+- Obtained the *SAWpaper* repository from GitHub and reviewed its
+  contents.
+- Installed R 4.1.3 or later. You can get the most recent version of R
+  from the [Comprehensive R Archive Network
+  (CRAN)](https://cran.r-project.org/).
+- Installed any tools required for compiling packages (they will be
+  specific to your operating system). These will be necessary for the
+  *devtools* package to work. You may find Bryan & Hester’s (n.d.)
+  website useful, especially the [Set up an R dev
+  environment](https://rstats.wtf/set-up-an-r-dev-environment.html)
+  section.
+  - On Windows, see <https://cran.r-project.org/bin/windows/Rtools/>.
+  - On Mac OS X, see <https://cran.r-project.org/bin/macosx/tools> and
+    <https://mac.R-project.org/tools/>.
+- Installed [TinyTeX](https://yihui.org/tinytex/) or some other suitable
+  LaTeX distribution.
+- Installed the [*devtools*](https://devtools.r-lib.org/) package for R.
+- Installed the [*piercer*](https://github.com/sjpierce/piercer) package
+  for R.
+- Updated your R packages. You may be prompted with a dialog box asking
+  “Do you want to install from sources the packages which need
+  compilation?” It usually works fine if I choose “no”. Occasionally, it
+  appears necessary to choose “yes”, but I am more likely to run into
+  problems when doing that.  
+- Install the *SAWpaper* package to your R package library.
+- Install additional R packages from CRAN.
+- After installing *SAWpaper*, see the Obtaining Data Files section
+  below. You will need to download the data from an archive and put them
+  in the right subfolder on your computer.
 
 ## Obtain the Repository from GitHub
 
@@ -162,134 +166,124 @@ research compendium folder structures discussed by Marwick et
 al. (2018). The repository is also set up as an [RStudio
 project](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects).
 
--   `SAWpaper`: This is the root folder for the repository. It holds
-    some files required for an R package, plus a set of subfolders.
-    -   `data`: This folder is where the data file produced by the
-        script `inst/SAW_Paper_Import_Explore_Data.Rmd` will be stored.
-        This is a standard folder for R package structures.
-        -   `SAW_Paper_Data.RData` is the data file produced by the
-            script `inst/SAW_Paper_Import_Explore_Data.Rmd` after it
-            imports the external data files. It is not distributed with
-            the repository (see the Obtaining Data Files section).
-        -   `Placeholder.text` This text file is just present to ensure
-            that the `data` subfolder will be created when you clone the
-            repository or extract files from ZIP file copy of the
-            repository obtained from GitHub.
-    -   `inst`: This folder is where you can find the key files you will
-        need to use if you want to re-run our analyses on your own
-        computer. The unintuitive name for this folder is a result of R
-        package building conventions (it is where you put files that
-        should be installed with the package).
-        -   `extdata`: This subfolder is where you will need to put the
-            SPSS data files mentioned in the Obtaining Data Files
-            section below.
-            -   `Placeholder.text` This text file is just present to
-                ensure that the `inst/extdata` subfolder will be created
-                when you clone the repository or extract files from ZIP
-                file copy of the repository obtained from GitHub.
-        -   `Development_Tools.R`: This file just contains R code
-            reminders that I use while developing packages.
-        -   `F4.png` is a graphics file created (and overwritten) by
-            knitting `SAW_Paper_Analyze_Data.Rmd`.
-        -   `F5.png` is a graphics file (and overwritten) by knitting
-            `SAW_Paper_Analyze_Data.Rmd`.
-        -   `SAW_Paper_Analyze_Data.pdf`: This is the default output
-            filename produced by knitting `SAW_Paper_Analyze_Data.Rmd`.
-            It is not distributed with the package because you would
-            just generate it on your own computer to check
-            reproducibility.
-        -   `SAW_Paper_Analyze_Data.Rmd`: This file should be knitted
-            after you knit `SAW_Paper_Import_Explore_Data.Rmd` because
-            it depends on a data files created by that script. It will
-            produce a PDF file called `SAW_Paper_Analyze_Data.pdf`.
-        -   `SAW_Paper_Analyze_Data_Published.pdf`: This is a copy of
-            the final output I produced on my computer when preparing to
-            release the package to the public. We relied on it to create
-            our manuscript. It is distributed with the package because
-            you may want to compare it to the results you get on your
-            own computer by knitting `SAW_Paper_Analyze_Data.Rmd`.
-        -   `SAW_Paper_Import_Explore_Data.pdf`: This is the default
-            output filename produced by knitting
-            `SAW_Paper_Import_Explore_Data.Rmd`. It is not distributed
-            with the package because you would just generate it on your
-            own computer to check reproducibility.
-        -   `SAW_Paper_Import_Explore_Data.Rmd`: Knitting this file
-            requires that you have already obtained the data files
-            mentioned in the Obtaining Data Files section below. It
-            performs initial data management steps to prepare the data
-            for use in other scripts.
-        -   `SAW_Paper_Import_Explore_Data_Published.pdf`: This is a
-            copy of the final output I produced on my computer when
-            preparing to release the package to the public. We relied on
-            it to create our manuscript. It is distributed with the
-            package because you may want to compare it to the results
-            you get on your own computer by knitting
-            `SAW_Paper_Import_Explore_Data.Rmd`.
-        -   `R_Citations.pdf`: This is the default output filename
-            produced by knitting `R_Citations.Rmd`. It is not
-            distributed with the package because you would just generate
-            it on your own computer to check reproducibility.
-        -   `R_Citations.Rmd`: This file generates details about the R
-            packages used by `Step_01_Data_Mgt.Rmd` and
-            `Step_02_Analysis.Rmd`. I recommend knitting it after you
-            knit those two files. When you knit it, you will get an
-            output file called `R_Citations.pdf` showing the citations
-            and versions for what is installed and in use on your
-            computer.
-        -   `R_Citations_Published.pdf`: This is a copy of the final
-            output I produced on my computer when preparing to release
-            the package to the public. It describes the software
-            environment I used to generate the files upon which our
-            published manuscript was based. You can compare it to the
-            environment on your computer. Maximum reproducibility should
-            occur when you are using the environment described in this
-            document.
-    -   `man`: This folder stores R help files associated with the
-        package. These are generally updated by processes used when
-        building the package such as running `devtools::document()` and
-        `devtools::check()`. Those commands read files from the roxygen
-        comments in files stored in `SAWpaper/R` and extract the help
-        documentation.
-    -   `R`: This folder folder normally holds R scripts (.R files) used
-        to define the custom functions developed for and used in the
-        package. These scripts should contain comments formatted for use
-        by the *roxygen2* package that are used to automate building the
-        help files for the package and its custom functions. *SAWpaper*
-        does not yet contain any custom functions (those got moved over
-        to *piercer*).
-        -   `SAWpaper-package.R` This file generates the package-level
-            help documentation, which is quite sparse because there are
-            no custom functions in this package.
-    -   `.gitignore`: This file tells Git what files to ignore and omit
-        from synchronizing with the main repository on GitHub.
-    -   `.Rbuildignore`: This file tells R what files to ignore when
-        building the package from the source code.
-    -   `DESCRIPTION`: This file is a brief, structured description of
-        the package that is required by R package building conventions.
-    -   `LICENSE`: This file contains the terms of the CC-BY-SA-4.0
-        license that applies to all non-source code content in this
-        repository.
-    -   `LICENSE.md`: This file contains the terms of the GPL3 software
-        license that apply to the source code in this repository.
-    -   `LICENSE.note`: This file contais a notes explaining why there
-        are are multiple licenses by specifying which content
-        repository/package content falls under each license.
-    -   `NAMESPACE`: This file is created automatically by R when
-        building the package. You should not edit it manually. It is
-        required by R package building conventions.
-    -   `NEWS.md`: This file contains an list of comments about the
-        changes made with each version of this package. It is required
-        by R package building conventions
-    -   `README.md`: This file is obtained by knitting the `README.Rmd`
-        file and is used by GitHub to display information about the
-        package. Do not edit it manually. In R Studio, you can read the
-        formatted version by opening the file and clicking the Preview
-        button.
-    -   `README.Rmd`: This file gives an introduction to the package.
-        Knitting it produces the `README.md` file and opens the preview
-        automatically.
-    -   `SAWpaper.Rproj`: This is an RStudio project file. It contains
-        settings for working with the project in that software.
+- `SAWpaper`: This is the root folder for the repository. It holds some
+  files required for an R package, plus a set of subfolders.
+  - `data`: This folder is where the data file produced by the script
+    `inst/SAW_Paper_Import_Explore_Data.Rmd` will be stored. This is a
+    standard folder for R package structures.
+    - `SAW_Paper_Data.RData` is the data file produced by the script
+      `inst/SAW_Paper_Import_Explore_Data.Rmd` after it imports the
+      external data files. It is not distributed with the repository
+      (see the Obtaining Data Files section).
+    - `Placeholder.text` This text file is just present to ensure that
+      the `data` subfolder will be created when you clone the repository
+      or extract files from ZIP file copy of the repository obtained
+      from GitHub.
+  - `inst`: This folder is where you can find the key files you will
+    need to use if you want to re-run our analyses on your own computer.
+    The unintuitive name for this folder is a result of R package
+    building conventions (it is where you put files that should be
+    installed with the package).
+    - `extdata`: This subfolder is where you will need to put the SPSS
+      data files mentioned in the Obtaining Data Files section below.
+      - `Placeholder.text` This text file is just present to ensure that
+        the `inst/extdata` subfolder will be created when you clone the
+        repository or extract files from ZIP file copy of the repository
+        obtained from GitHub.
+    - `Development_Tools.R`: This file just contains R code reminders
+      that I use while developing packages.
+    - `F4.png` is a graphics file created (and overwritten) by knitting
+      `SAW_Paper_Analyze_Data.Rmd`.
+    - `F5.png` is a graphics file (and overwritten) by knitting
+      `SAW_Paper_Analyze_Data.Rmd`.
+    - `SAW_Paper_Analyze_Data.pdf`: This is the default output filename
+      produced by knitting `SAW_Paper_Analyze_Data.Rmd`. It is not
+      distributed with the package because you would just generate it on
+      your own computer to check reproducibility.
+    - `SAW_Paper_Analyze_Data.Rmd`: This file should be knitted after
+      you knit `SAW_Paper_Import_Explore_Data.Rmd` because it depends on
+      a data files created by that script. It will produce a PDF file
+      called `SAW_Paper_Analyze_Data.pdf`.
+    - `SAW_Paper_Analyze_Data_Published.pdf`: This is a copy of the
+      final output I produced on my computer when preparing to release
+      the package to the public. We relied on it to create our
+      manuscript. It is distributed with the package because you may
+      want to compare it to the results you get on your own computer by
+      knitting `SAW_Paper_Analyze_Data.Rmd`.
+    - `SAW_Paper_Import_Explore_Data.pdf`: This is the default output
+      filename produced by knitting `SAW_Paper_Import_Explore_Data.Rmd`.
+      It is not distributed with the package because you would just
+      generate it on your own computer to check reproducibility.
+    - `SAW_Paper_Import_Explore_Data.Rmd`: Knitting this file requires
+      that you have already obtained the data files mentioned in the
+      Obtaining Data Files section below. It performs initial data
+      management steps to prepare the data for use in other scripts.
+    - `SAW_Paper_Import_Explore_Data_Published.pdf`: This is a copy of
+      the final output I produced on my computer when preparing to
+      release the package to the public. We relied on it to create our
+      manuscript. It is distributed with the package because you may
+      want to compare it to the results you get on your own computer by
+      knitting `SAW_Paper_Import_Explore_Data.Rmd`.
+    - `R_Citations.pdf`: This is the default output filename produced by
+      knitting `R_Citations.Rmd`. It is not distributed with the package
+      because you would just generate it on your own computer to check
+      reproducibility.
+    - `R_Citations.Rmd`: This file generates details about the R
+      packages used by `Step_01_Data_Mgt.Rmd` and
+      `Step_02_Analysis.Rmd`. I recommend knitting it after you knit
+      those two files. When you knit it, you will get an output file
+      called `R_Citations.pdf` showing the citations and versions for
+      what is installed and in use on your computer.
+    - `R_Citations_Published.pdf`: This is a copy of the final output I
+      produced on my computer when preparing to release the package to
+      the public. It describes the software environment I used to
+      generate the files upon which our published manuscript was based.
+      You can compare it to the environment on your computer. Maximum
+      reproducibility should occur when you are using the environment
+      described in this document.
+  - `man`: This folder stores R help files associated with the package.
+    These are generally updated by processes used when building the
+    package such as running `devtools::document()` and
+    `devtools::check()`. Those commands read files from the roxygen
+    comments in files stored in `SAWpaper/R` and extract the help
+    documentation.
+  - `R`: This folder folder normally holds R scripts (.R files) used to
+    define the custom functions developed for and used in the package.
+    These scripts should contain comments formatted for use by the
+    *roxygen2* package that are used to automate building the help files
+    for the package and its custom functions. *SAWpaper* does not yet
+    contain any custom functions (those got moved over to *piercer*).
+    - `SAWpaper-package.R` This file generates the package-level help
+      documentation, which is quite sparse because there are no custom
+      functions in this package.
+  - `.gitignore`: This file tells Git what files to ignore and omit from
+    synchronizing with the main repository on GitHub.
+  - `.Rbuildignore`: This file tells R what files to ignore when
+    building the package from the source code.
+  - `DESCRIPTION`: This file is a brief, structured description of the
+    package that is required by R package building conventions.
+  - `LICENSE`: This file contains the terms of the CC-BY-SA-4.0 license
+    that applies to all non-source code content in this repository.
+  - `LICENSE.md`: This file contains the terms of the GPL3 software
+    license that apply to the source code in this repository.
+  - `LICENSE.note`: This file contais a notes explaining why there are
+    are multiple licenses by specifying which content repository/package
+    content falls under each license.
+  - `NAMESPACE`: This file is created automatically by R when building
+    the package. You should not edit it manually. It is required by R
+    package building conventions.
+  - `NEWS.md`: This file contains an list of comments about the changes
+    made with each version of this package. It is required by R package
+    building conventions
+  - `README.md`: This file is obtained by knitting the `README.Rmd` file
+    and is used by GitHub to display information about the package. Do
+    not edit it manually. In R Studio, you can read the formatted
+    version by opening the file and clicking the Preview button.
+  - `README.Rmd`: This file gives an introduction to the package.
+    Knitting it produces the `README.md` file and opens the preview
+    automatically.
+  - `SAWpaper.Rproj`: This is an RStudio project file. It contains
+    settings for working with the project in that software.
 
 ## Install *devtools* from CRAN to Your Package Library
 
@@ -395,9 +389,9 @@ containing the repository and open the project file
 
 Then you can open and knit the key scripts in the following order:
 
--   `SAWpaper/inst/SAW_Paper_Import_Explore_Data.Rmd`
--   `SAWpaper/inst/SAW_Paper_Analyze_Data.Rmd`
--   `SAWpaper/inst/R_Citations.Rmd`
+- `SAWpaper/inst/SAW_Paper_Import_Explore_Data.Rmd`
+- `SAWpaper/inst/SAW_Paper_Analyze_Data.Rmd`
+- `SAWpaper/inst/R_Citations.Rmd`
 
 To do that from the R console, the following code should work. Each call
 to `Rscript_call()` runs the listed input script in a fresh R session
@@ -472,10 +466,10 @@ as a measure of speaking proficiency.”* (Study 164981; Version V1)
 \[Data files and codebooks\]. Inter-university Consortium for Political
 and Social Research. <https://doi.org/10.3886/E164981V1>
 
-Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a
+Winke, P., Zhang, X., & Pierce, S. J. (2023). A closer look at a
 marginalized test method: Self-assessment as a measure of speaking
-proficiency \[Manuscript accepted for publication\]. *Studies in Second
-Language Acquisition*.
+proficiency. *Studies in Second Language Acquisition*. *45*(2), 416-441.
+<https://doi.org/10.1017/S0272263122000079>
 
 # Funding Support
 
@@ -505,8 +499,8 @@ journal article. The first citation below shows the latest released
 version number, and the DOI that always points to the latest release.
 Version 1.0.0 was the latest release when the publication was accepted.
 
-Pierce, S. J., & Zhang, X. (2022). *SAWpaper: Self-assessment works
-paper research compendium*. (Version 1.0.2) \[Reproducible research
+Pierce, S. J., & Zhang, X. (2025). *SAWpaper: Self-assessment works
+paper research compendium*. (Version 1.0.3) \[Reproducible research
 materials and computer program, R package\]. GitHub and Zenodo.
 <https://github.com/sjpierce/SAWpaper> and
 <https://doi.org/10.5281/zenodo.6388010>
@@ -523,7 +517,7 @@ as a measure of speaking proficiency.”* (Study 164981; Version V1)
 \[Data files and codebooks\]. Inter-university Consortium for Political
 and Social Research. <https://doi.org/10.3886/E164981V1>
 
-Winke, P., Zhang, X., & Pierce, S. J. (2022). A closer look at a
+Winke, P., Zhang, X., & Pierce, S. J. (2023). A closer look at a
 marginalized test method: Self-assessment as a measure of speaking
-proficiency \[Manuscript accepted for publication\]. *Studies in Second
-Language Acquisition*.
+proficiency. *Studies in Second Language Acquisition*. *45*(2), 416-441.
+<https://doi.org/10.1017/S0272263122000079>
